@@ -1,0 +1,4 @@
+---
+user.isAllowedTo[管理]:
+- callback:\Gini\Module\Unpc::adminACL
+...

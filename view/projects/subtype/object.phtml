@@ -1,0 +1,15 @@
+<div class="hr_1"></div>
+<ul class="nav nav-pills bg-dark" style="padding: 10px 5px;">
+    <li class="nav-item">
+        <a class="nav-link <?= $subCat == 'base' ? 'active' : '' ?>" href="<?= URL("/project/profile/{$project->id}/object/base")?>">基础信息</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link <?= $subCat == 'ownership' ? 'active' : '' ?>" href="<?= URL("/project/profile/{$project->id}/object/ownership")?>">权属状况</a>
+    </li>
+</ul>
+<div class="hr_1"></div>
+<?= V("projects/subtype/object/{$subCat}", [
+    'project' => $project,
+    'subCat' => $subCat,
+    'form' => $form
+]) ?>

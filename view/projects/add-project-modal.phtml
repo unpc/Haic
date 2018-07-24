@@ -1,0 +1,84 @@
+<div id="add-project-modal" class="modal fade in">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title"><?= H(T('新建项目')) ?></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body" style="padding-top:20px;">
+            <form id="add-project-form" method="POST" action="gini-ajax:ajax/project/add">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['title'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['title']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="title"><?= H(T('项目名称')) ?></label>
+                        <input id="title" name="title" type="text" class="form-control <?= isset($form['_errors']['title']) ? 'is-invalid' : '' ?>" autocomplete="off" value="<?= H($form['title']) ?>" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['number'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['number']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="number"><?= H('项目编号') ?></label>
+                        <input id="number" name="number" type="text" class="form-control <?= isset($form['_errors']['number']) ? 'is-invalid' : '' ?>" value="<?= H($form['number']) ?>"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['type'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['type']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="type"><?= H('项目类型') ?></label>
+                        <select class="custom-select form-control <?= isset($form['_errors']['type']) ? 'is-invalid' : '' ?>" name="type" id="type" size="1">
+                            <option value=0 <?= $form['type'] == 0 ? "selected" : '' ?> >-------</option>
+                            <?php foreach (\Gini\ORM\Project::$TYPES as $k => $v): ?>
+                                <option value="<?= T($k) ?>" <?= $form['type'] == $k ? "selected" : '' ?>><?= T($v) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group form-group-lg">
+                        <label class="control-label" for="source_description"><?= H('来源信息') ?></label>
+                        <textarea name="source_description" class="form-control" rows="3" id="source_description"><?= $form['source_description'] ?></textarea>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-raised" form="add-project-form" type="submit"><i class="fa fa-plus fa-fw"></i> <?= H(T('添加')) ?></button>
+            <button class="btn btn-secondary btn-raised" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-fw "></i><?= H(T('关闭')) ?></button>
+        </div>
+    </div>
+</div>
+</div>
+<script data-ajax="true">
+require(['main'], function($){
+
+    var $modal = $('#add-project-modal');
+    $modal
+    .on('hidden.bs.modal', function(){
+        $modal.remove();
+    })
+    .modal();
+
+    $('#add-project-form').on('ajax-success', function(){
+        $modal
+        .removeAttr('id').modal('hide')
+        .find('[id]').removeAttr('id');
+    });
+
+});
+</script>

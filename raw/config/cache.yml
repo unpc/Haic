@@ -1,0 +1,11 @@
+---
+orm:
+  driver: none
+unpc:
+  driver: redis
+  options:
+    key_prefix: 'unpc#'
+    servers:
+    - host: 172.17.42.1
+      port: 6379
+...

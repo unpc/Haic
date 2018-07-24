@@ -1,0 +1,19 @@
+{
+    "shortname": "God",
+    "name": "God SoftWare",
+    "author": "Cheng Liu",
+    "description": "The assess for Tian Yuan Com",
+    "version": "0.1.0",
+    "email": "cheng.liu@geneegroup.com",
+    "dependencies": {
+        "gini": "*",
+        "auth": "^0.1.4",
+	"cache": "*"
+    },
+    "id": "god",
+    "composer": {
+	"config": {
+            "secure-http": false
+    	}
+    }
+}

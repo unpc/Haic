@@ -1,0 +1,35 @@
+body {
+	&.layout-login-container {
+		background: url('../img/login_bg.jpg') repeat;
+		height: 100%;
+		/*filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";*/
+
+		.card {
+			background-color: rgba(0,0,0,.1);
+			color:#FFF;
+			box-shadow: 0 4px 10px rgba(0,0,0,.3);
+	
+			.card-header {
+				background-color: rgba(0,0,0,.2);
+				border-bottom: 1px solid #fff;
+				font-size: 28px;
+				line-height: 36px;
+				color: #DDDDDD;
+			}
+	
+			.btn.active, .btn:active, .btn.focus, .btn:focus {
+				box-shadow: none;
+			}
+		}
+	
+		.form-check-label {
+			padding-left: 0px;
+		}
+
+		.login-title {
+			height: 100px;
+			line-height: 100px;
+			font-size: 28px;
+		}
+	}
+}

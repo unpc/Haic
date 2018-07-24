@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+            <div class="list-group" id="role-list-tab" role="tablist">
+                <?php foreach ($roles as $k => $r): ?>
+                <a class="list-group-item list-group-item-action <?= $role->id == $r->id ? 'active' : '' ?>"
+                    href="<?= URL("/role/{$r->id}")?>" 
+                    role="tab" ><?= $r->name ?></a>
+                <?php endforeach; ?>
+            </div>
+            <div class="hr"></div>
+            <form method="POST" action="<?= URL('/role')?>">
+                <input type="name" name="name" class="form-control" placeholder="请输入角色名称" aria-label="请输入名称" aria-describedby="addrole" value="">
+            </form>
+        </div>
+        <div class="col-10">
+            <div class="tab-content" id="role-tabContent">
+                <form method="POST" action="<?= URL('') ?>" id="perms-form">
+                    <?php
+                        $role_perms = \Gini\Config::get('role');
+                        $pps = (array)$role->perms;
+                        foreach ($role_perms as $key => $perms):
+                    ?>
+                        <div class="alert alert-primary" role="alert">
+                            <?= T($perms['name']) ?>
+                        </div>
+                        <?php foreach ($perms['perms'] as $v): ?>
+                            <div class="form-check-inline">
+                                <input class="form-check-input position-static" <?= array_key_exists($v, $pps) ? 'checked="checked"' : '' ?> type="checkbox" name="perms[<?= $v ?>]">&#160;<?= T($v) ?>
+                            </div>
+                        <?php endforeach; ?>
+                        <div class="hr"></div>
+                    <?php endforeach; ?>
+                    <button class="btn btn-primary btn-raised" form="perms-form" type="submit" value="submit" name="submit"><i class="fa fa-check fa-fw"></i> <?= H(T('保存')) ?></button>
+                    <button class="btn btn-dark btn-raised" form="perms-form" type="reset" value="reset" name="reset"><i class="fa fa-reply-all fa-fw"></i> <?= H(T('清空')) ?></button>
+                <form>
+            </div>
+        </div>
+    </div>
+</div>

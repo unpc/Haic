@@ -1,0 +1,86 @@
+<div class="container-fluid">
+    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+            <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/User/Add">
+                <i class="fa fa-plus"></i>
+                新用户
+            </button>
+        </div>
+        <form method="POST" action="<?= URL('/user')?>">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text" id="btnGroupAddon2">姓名</div>
+                </div>
+                <input type="name" name="name" class="form-control" placeholder="请输入人员姓名查找" aria-label="请输入人员姓名查找" aria-describedby="btnGroupAddon2" value="<?= $form['name']?>">
+            </div>
+        </form>
+    </div>
+    <div class="hr_2"></div>
+    <?= V('components/confirm') ?>
+    <table class="table table-light table-striped table-hover" id="user-table">
+        <thead>
+            <tr class="table-primary">
+                <th scope="col">职员编号</th>
+                <th scope="col">账号</th>
+                <th scope="col">姓名</th>
+                <th scope="col">联系方式</th>
+                <th scope="col">目前角色</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php if (count($users)):
+            foreach($users as $user): 
+                list($token, $backend) = \Gini\Auth::parseUserName($user->username);
+        ?>
+            <tr data-user-id="<?= intval($user->id) ?>">
+                <td><span class="badge badge-dark"><?= str_pad($user->id, 6, 0, STR_PAD_LEFT) ?></span></td>
+                <td><span class="badge badge-light"><?= H($token) ?></span></td>
+                <td><?= H($user->name) ?></td>
+                <td>
+                    <i class="fa fa-mobile fa-lg"></i>&#160;
+                    <?= H($user->phone) ?>
+                </td>
+                <td><?php
+                    $uroles = $user->roles();
+                    $r = [];
+                    foreach($uroles as $ur) {
+                        $r[$ur->role->id] = $ur->role->name;
+                    }
+                    echo implode(', ', $r);
+                ?></td>
+                <td style="vertical-align:middle">
+                    <div class="pull-right">
+                        <a class="btn no-padding"
+                            href="gini-ajax:AJAX/User/Edit/<?= (int)$user->id ?>"
+                            >
+                            <i class="fa fa-edit fa-lg fa-fw"></i>
+                        </a>
+                        <a class="btn no-padding"
+                            href="gini-ajax:AJAX/User/EditPwd/<?= (int)$user->id ?>"
+                            >
+                            <i class="fa fa-key fa-fw"></i>
+                        </a>
+                        <a class="btn no-padding"
+                            href="gini-ajax:AJAX/User/EditRole/<?= (int)$user->id ?>"
+                            >
+                            <i class="fa fa-group fa-fw"></i>
+                        </a>
+                        <a class="btn no-padding"
+                            data-confirm="<?= H(T('您确认删除用户:user吗?', [':user'=>$user->name])) ?>"
+                            data-confirm-description="<?= H(T('点击确认后会删除该用户信息, 请谨慎处理!')) ?>"
+                            href="gini-ajax:AJAX/User/Delete/<?= (int)$user->id ?>"
+                            >
+                            <i class="fa fa-trash-o fa-lg fa-fw"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        <?php endforeach; else: ?>
+            <tr>
+                <td colspan="5" style="text-align: center;"><?= T('没有找到匹配的用户!') ?></td>
+            </tr>
+        <?php endif; ?>
+        </tbody>
+    </table>
+</div>

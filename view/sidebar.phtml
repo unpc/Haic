@@ -1,0 +1,33 @@
+<sidebar class="navbar bg-dark" id="sidebar-nav" role="navigation">
+    <ul class="nav navbar-nav navbar-left sidebar-nav"  style="height: 100%">
+        <li class="nav-open text-white text-center">
+            <i class="fa fa-user fa-2x fa-fw"></i>
+            <h6><?= _G('ME')->name ?></h6>
+        </li>
+        <li class="<?= $selected == 'project' ? 'active' : '' ?>">
+            <a href="<?= URL('/project') ?>" class="text-white userList" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('项目管理'))?>">
+                <i class="fa fa-sitemap"></i><span style="padding-left: 8px;"><?= H(T('项目管理'))?></span>
+            </a>
+        </li>
+        <li class="<?= $selected == 'record' ? 'active' : '' ?>">
+            <a href=<?= URL('/record') ?> class="text-white userList" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('项目管理'))?>">
+                <i class="fa fa-folder"></i><span style="padding-left: 8px;"><?= H(T('档案管理'))?></span>
+            </a>
+        </li>
+        <li class="<?= $selected == 'user' ? 'active' : '' ?>">
+            <a href="<?= URL('/user') ?>" class="text-white userList" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('用户管理'))?>">
+                <i class="fa fa-user"></i><span style="padding-left: 8px;"><?= H(T('用户管理'))?></span>
+            </a>
+        </li>
+        <li class="<?= $selected == 'role' ? 'active' : '' ?>">
+            <a href=<?= URL('/role') ?> class="text-white userList" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('权限管理'))?>">
+                <i class="fa fa-group"></i><span style="padding-left: 8px;"><?= H(T('权限管理'))?></span>
+            </a>
+        </li>
+        <li class="<?= $selected == 'mine' ? 'active' : '' ?>">
+            <a href=<?= URL('/mine') ?> class="text-white userList" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('权限管理'))?>">
+                <i class="fa fa-book"></i><span style="padding-left: 8px;"><?= H(T('机构信息'))?></span>
+            </a>
+        </li>
+    </ul>
+</sidebar>

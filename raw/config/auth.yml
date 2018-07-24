@@ -1,0 +1,8 @@
+---
+backends:
+  database:
+    title: 本地用户
+    short_title: 本地
+    driver: database
+default_backend: database
+...

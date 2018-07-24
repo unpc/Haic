@@ -1,0 +1,55 @@
+<?php
+    $building = $project->building ?: new StdClass();
+?>
+<form id="add-project-ownership-type" method="POST" action="gini-ajax:ajax/building/addownership/<?= $project->id ?>">
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="row">
+            <div class="col-2">产权证种类: </div>
+            <div class="col-10">
+                <?php
+                    $ownership_cert_type = \Gini\ORM\Building::$ownership_cert_type;
+                    foreach ($ownership_cert_type as $k => $v):
+                ?>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="ownership_cert" value="<?= $k ?>" <?= $building->ownership_cert == $k ? 'checked="checked"': '' ?>>
+                        <label class="form-check-label"><?= $v ?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="hr_2"></div>
+        <?php if ($building->ownership_cert > 0): ?>
+            <div id="ownership-cert-box"></div>
+        <?php endif; ?>
+        <button class="btn btn-primary btn-raised" form="add-project-ownership-type" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
+        <div class="hr_2"></div>
+    </div>
+    <div class="col-2"></div>
+</div>
+</form>
+<script>
+require(['main'], function($) {
+    var $form = $('#add-project-ownership-type')
+        , _refreshBox = function(type) {
+            $.ajax({
+                type: 'POST',
+                url: 'ajax/building/getOwnershipView/<?= $building->id ?>',
+                data: {
+                    type: type
+                },
+                success: function(html) {
+                    $('#ownership-cert-box').html(html);
+                }
+            });
+        }
+    $form.on('change', '[name=ownership_cert]', function(e){
+        e.preventDefault();
+        _refreshBox($(this).val())
+        return false;
+    })
+
+    if (<?= $building->ownership_cert > 0 ?>) _refreshBox(<?= $building->ownership_cert ?>)
+})
+</script>

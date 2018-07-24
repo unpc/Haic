@@ -1,0 +1,36 @@
+{
+    "config": {
+        "secure-http": false
+    },
+    "name": "god",
+    "description": "The assess for Tian Yuan Com",
+    "license": "proprietary",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jia Huang",
+            "email": "iamfat@gmail.com"
+        }
+    ],
+    "bin": [
+        "bin/gini"
+    ],
+    "require": {
+        "sabre/dav": "2.*",
+        "doctrine/inflector": "@stable",
+        "mtdowling/cron-expression": "@stable",
+        "twbs/bootstrap": "4.0.0"
+    },
+    "require-dev": {
+        "henrikbjorn/lurker": "1.*"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://satis.genee.cn"
+        },
+        {
+            "packagist": false
+        }
+    ]
+}

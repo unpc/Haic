@@ -1,0 +1,10 @@
+---
+group: 
+  name: 天津天元房地产土地评估有限公司
+  address: 天津市河西区白楼名邸A-1301-1305
+  owner: 赵丽艳
+  level: 壹级
+  number: 建房估证字[2012]109号
+target: 本估价报告估价目的为确定房地产抵押贷款额度提供参考依据而评估房地产抵押价值。
+number_template: 津天元房估字E（%year）第%number号
+...

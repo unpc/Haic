@@ -1,0 +1,87 @@
+<div id="add-user-modal" class="modal fade in">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title"><?= H(T('添加新用户')) ?></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body" style="padding-top:20px;">
+            <form id="add-user-form" method="POST" action="gini-ajax:ajax/user/add">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['username'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['username']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="username"><?= H('登录账号') ?></label>
+                        <input id="username" name="username" type="text" class="form-control <?= isset($form['_errors']['username']) ? 'is-invalid' : '' ?>" value="<?= H($form['username']) ?>"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['name'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['name']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="name"><?= H(T('姓名')) ?></label>
+                        <input id="name" name="name" type="text" class="form-control <?= isset($form['_errors']['name']) ? 'is-invalid' : '' ?>" autocomplete="off" value="<?= H($form['name']) ?>" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['password'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['password']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="password"><?= H(T('密码')) ?></label>
+                        <input id="password" name="password" type="text" class="form-control <?= isset($form['_errors']['password']) ? 'is-invalid' : '' ?>" autocomplete="off" value="<?= H($form['password']) ?>" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg label-floating is-empty">
+                        <label for="email" class="control-label"><?= H(T('电子邮件')) ?></label>
+                        <input type="text" class="form-control" id="email" name="email" autocomplete="off" value="<?= H($form['email']) ?>" >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg label-floating is-empty">
+                        <label for="phone" class="control-label"><?= H(T('联系电话')) ?></label>
+                        <input type="text" class="form-control" id="phone" name="phone" autocomplete="off" value="<?= H($form['phone']) ?>" >
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-raised" form="add-user-form" type="submit"><i class="fa fa-plus fa-fw"></i> <?= H(T('添加')) ?></button>
+            <button class="btn btn-secondary btn-raised" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-fw "></i><?= H(T('关闭')) ?></button>
+        </div>
+    </div>
+</div>
+</div>
+<script data-ajax="true">
+require(['main'], function($){
+
+    var $modal = $('#add-user-modal');
+    $modal
+    .on('hidden.bs.modal', function(){
+        $modal.remove();
+    })
+    .modal();
+
+    $('#add-user-form').on('ajax-success', function(){
+        $modal
+        .removeAttr('id').modal('hide')
+        .find('[id]').removeAttr('id');
+    });
+
+});
+</script>

@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+            <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/Project/Add">
+                <i class="fa fa-plus"></i>
+                新项目
+            </button>
+        </div>
+        <form method="POST" action="<?= URL('/project')?>">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text" id="btnGroupAddon2">编号</div>
+                </div>
+                <input type="name" name="number" class="form-control" placeholder="请输入编号" aria-label="请输入编号" aria-describedby="btnGroupAddon2" value="<?= $form['number']?>">
+            </div>
+        </form>
+    </div>
+    <div class="hr_2"></div>
+    <?= V('components/confirm') ?>
+    <table class="table table-light table-striped table-hover" id="project-table">
+        <thead>
+            <tr class="table-primary">
+                <th scope="col">项目编号</th>
+                <th scope="col">项目类型</th>
+                <th scope="col">项目名称</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php if (count($projects)): foreach($projects as $project): ?>
+            <tr data-project-id="<?= intval($project->id) ?>">
+                <td><span class="badge badge-dark"><?= $project->number ?></span></td>
+                <td><span class="badge badge-light"><?= \Gini\ORM\Project::$TYPES[$project->type] ?></span></td>
+                <td><?= H($project->title) ?></td>
+                <td style="vertical-align:middle">
+                    <div class="pull-right">
+                        <a class="btn no-padding" href="<?= URL("/project/profile/{$project->id}") ?>">
+                            <i class="fa fa-edit fa-lg fa-fw"></i>
+                        </a>
+                        <a class="btn no-padding"
+                            data-confirm="<?= H(T('您确认删除编号:project的项目?', [':project'=>$project->number])) ?>"
+                            data-confirm-description="<?= H(T('点击确认后会删除项目信息, 请谨慎处理!')) ?>"
+                            href="gini-ajax:AJAX/Project/Delete/<?= (int)$project->id ?>"
+                            >
+                            <i class="fa fa-trash-o fa-lg fa-fw"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            <?php endforeach; else: ?>
+                <tr>
+                    <td colspan="5" style="text-align: center;"><?= T('没有找到匹配的项目!') ?></td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>

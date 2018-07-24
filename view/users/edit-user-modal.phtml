@@ -1,0 +1,80 @@
+<div id="edit-user-modal" class="modal fade in">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <?php list($token, $backend) = \Gini\Auth::parseUserName($user->username); ?>
+            <h4 class="modal-title"><?= H(T("修改人员({$token})信息")) ?></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body" style="padding-top:20px;">
+            <form id="edit-user-form" method="POST" action="gini-ajax:ajax/user/edit/<?= (int)$user->id ?>">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-group-lg">
+                            <?php if (isset($form['_errors']['name'])): ?>
+                            <span class="badge badge-danger pull-right">
+                                <?= H($form['_errors']['name']) ?>
+                            </span>
+                            <?php endif; ?>
+                            <label class="control-label" for="name"><?= H(T('姓名')) ?></label>
+                            <input id="name" name="name" type="text" class="form-control <?= isset($form['_errors']['name']) ? ' is-invalid':'' ?>" autocomplete="off" value="<?= H($form['_errors']['name'] ? $form['name'] : $user->name) ?>" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-group-lg">
+                            <?php if (isset($form['_errors']['phone'])): ?>
+                            <span class="badge badge-danger pull-right">
+                                <?= H($form['_errors']['phone']) ?>
+                            </span>
+                            <?php endif; ?>
+                            <label class="control-label" for="phone"><?= H(T('联系电话')) ?></label>
+                            <input id="phone" name="phone" type="text" class="form-control <?= isset($form['_errors']['phone']) ? ' is-invalid':'' ?>" autocomplete="off" value="<?= H($form['_errors']['phone'] ? $form['phone'] : $user->phone) ?>" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-group-lg">
+                            <?php if (isset($form['_errors']['email'])): ?>
+                            <span class="badge badge-danger pull-right">
+                                <?= H($form['_errors']['email']) ?>
+                            </span>
+                            <?php endif; ?>
+                            <label class="control-label" for="email"><?= H(T('联系邮箱')) ?></label>
+                            <input id="email" name="email" type="text" class="form-control <?= isset($form['_errors']['email']) ? ' is-invalid':'' ?>" autocomplete="off" value="<?= H($form['_errors']['email'] ? $form['email'] : $user->email) ?>" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-group-lg">
+                            <label class="control-label" for="number"><?= H(T('估价师注册号')) ?></label>
+                            <input id="number" name="number" type="text" class="form-control " autocomplete="off" value="<?= H($form['_errors'] ? $form['number'] : $user->number) ?>" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-raised" form="edit-user-form" type="submit"><i class="fa fa-plus fa-fw"></i> <?= H(T('修改')) ?></button>
+            <button class="btn btn-secondary btn-raised" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-fw "></i><?= H(T('关闭')) ?></button>
+        </div>
+    </div>
+    </div>
+</div>
+<script data-ajax="true">
+require(['main'], function($){
+
+    var $modal = $('#edit-user-modal');
+    $modal
+    .on('hidden.bs.modal', function(){
+        $modal.remove();
+    })
+    .modal();
+
+    $('#edit-user-form').on('ajax-success', function(){
+        $modal
+        .removeAttr('id').modal('hide')
+        .find('[id]').removeAttr('id');
+    });
+
+});
+</script>

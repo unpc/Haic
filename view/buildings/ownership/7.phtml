@@ -1,0 +1,164 @@
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="">证号</span>
+    </div>
+    <input name="number" type="text" class="form-control" value="<?= $building->ownership['number'] ?>" />
+</div>
+<div class="hr"></div>
+<table class="table table-sm table-bordered table-object">
+    <tbody>
+        <tr>
+            <td colspan="2" class="disable">房屋坐落</td>
+            <td colspan="6">
+                <input name="fwzl" type="text" class="form-control" value="<?= $building->ownership['fwzl'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">地号</td>
+            <td colspan="6">
+                <input name="fwdh" type="text" class="form-control" value="<?= $building->ownership['fwdh'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">所有权人(单位)</td>
+            <td colspan="6">
+                <input name="syqrdw" type="text" class="form-control" value="<?= $building->ownership['syqrdw'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">所有权性质</td>
+            <td colspan="6">
+                <input name="syqxz" type="text" class="form-control" value="<?= $building->ownership['syqxz'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">共有人</td>
+            <td colspan="6">
+                <input name="fwgyr" type="text" class="form-control" value="<?= $building->ownership['fwgyr'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" rowspan="7" class="disable">房屋状况</td>
+            <td class="disable">幢号</td>
+            <td class="disable">房号</td>
+            <td class="disable">层数</td>
+            <td class="disable">建筑结构</td>
+            <td class="disable">间数</td>
+            <td class="disable">建筑面积（平方米）</td>
+        </tr>
+        <tr>
+            <td><input name="fwzk[1][zh]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][1]['zh'] ?>" /></td>
+            <td><input name="fwzk[1][fh]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][1]['fh'] ?>" /></td>
+            <td><input name="fwzk[1][cs]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][1]['cs'] ?>" /></td>
+            <td><input name="fwzk[1][jzjg]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][1]['jzjg'] ?>" /></td>
+            <td><input name="fwzk[1][js]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][1]['js'] ?>" /></td>
+            <td><input name="fwzk[1][jzmj]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][1]['jzmj'] ?>" /></td>
+        </tr>
+        <tr>
+            <td><input name="fwzk[2][zh]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][2]['zh'] ?>" /></td>
+            <td><input name="fwzk[2][fh]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][2]['fh'] ?>" /></td>
+            <td><input name="fwzk[2][cs]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][2]['cs'] ?>" /></td>
+            <td><input name="fwzk[2][jzjg]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][2]['jzjg'] ?>" /></td>
+            <td><input name="fwzk[2][js]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][2]['js'] ?>" /></td>
+            <td><input name="fwzk[2][jzmj]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][2]['jzmj'] ?>" /></td>
+        </tr>
+        <tr>
+            <td><input name="fwzk[3][zh]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][3]['zh'] ?>" /></td>
+            <td><input name="fwzk[3][fh]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][3]['fh'] ?>" /></td>
+            <td><input name="fwzk[3][cs]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][3]['cs'] ?>" /></td>
+            <td><input name="fwzk[3][jzjg]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][3]['jzjg'] ?>" /></td>
+            <td><input name="fwzk[3][js]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][3]['js'] ?>" /></td>
+            <td><input name="fwzk[3][jzmj]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][3]['jzmj'] ?>" /></td>
+        </tr>
+        <tr>
+            <td><input name="fwzk[4][zh]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][4]['zh'] ?>" /></td>
+            <td><input name="fwzk[4][fh]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][4]['fh'] ?>" /></td>
+            <td><input name="fwzk[4][cs]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][4]['cs'] ?>" /></td>
+            <td><input name="fwzk[4][jzjg]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][4]['jzjg'] ?>" /></td>
+            <td><input name="fwzk[4][js]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][4]['js'] ?>" /></td>
+            <td><input name="fwzk[4][jzmj]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][4]['jzmj'] ?>" /></td>
+        </tr>
+        <tr>
+            <td><input name="fwzk[5][zh]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][5]['zh'] ?>" /></td>
+            <td><input name="fwzk[5][fh]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][5]['fh'] ?>" /></td>
+            <td><input name="fwzk[5][cs]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][5]['cs'] ?>" /></td>
+            <td><input name="fwzk[5][jzjg]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][5]['jzjg'] ?>" /></td>
+            <td><input name="fwzk[5][js]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][5]['js'] ?>" /></td>
+            <td><input name="fwzk[5][jzmj]" type="text" class="form-control" value="<?= $building->ownership['fwzk'][5]['jzmj'] ?>" /></td>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="4" class="disable">合计</td>
+            <td><input name="fwzkjscount" type="text" class="form-control" value="<?= $building->ownership['fwzkjscount'] ?>" /></td>
+            <td><input name="fwzkjzmjcount" type="text" class="form-control" value="<?= $building->ownership['fwzkjzmjcount'] ?>" /></td>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="8" class="disable">使用国有土地状况</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">建筑占地面积</td>
+            <td colspan="6">
+                <div class="form-inline" style="justify-content: center;">
+                    <input name="jzzdmj" type="text" class="form-control" value="<?= $building->ownership['jzzdmj'] ?>" /> 平方米
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">院落面积</td>
+            <td colspan="6">
+                <div class="form-inline" style="justify-content: center;">
+                    <input name="ylmj" type="text" class="form-control" value="<?= $building->ownership['ylmj'] ?>" /> 平方米
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" rowspan="2" class="disable">四至</td>
+            <td colspan="6">
+                <div class="form-inline">
+                    东: <input name="fwszdong" type="text" class="form-control" value="<?= $building->ownership['fwszdong'] ?>" size="20" />
+                    西: <input name="fwszxi" type="text" class="form-control" value="<?= $building->ownership['fwszxi'] ?>" size="20" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <div class="form-inline">
+                    南: <input name="fwsznan" type="text" class="form-control" value="<?= $building->ownership['fwsznan'] ?>" size="20" />
+                    北: <input name="fwszbei" type="text" class="form-control" value="<?= $building->ownership['fwszbei'] ?>" size="20" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">用途</td>
+            <td colspan="6">
+                <input name="fwyt" type="text" class="form-control" value="<?= $building->ownership['fwyt'] ?: '住宅' ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center disable" colspan="8" class="disable">契税摘要</td>
+        </tr>
+        <tr>
+            <td class="text-center disable" colspan="2">立契日期</td>
+            <td class="text-center disable" >价格</td>
+            <td class="text-center disable" colspan="2" >契税种类</td>
+            <td class="text-center disable" >税率</td>
+            <td class="text-center disable" colspan="2">纳税金额（元）</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input name="lqzy" type="text" class="form-control" value="<?= $building->ownership['lqzy'] ?>" />
+            </td>
+            <td>
+                <input name="fwjg" type="text" class="form-control" value="<?= $building->ownership['fwjg'] ?>" />
+            </td>
+            <td colspan="2">
+                <input name="fwqyzl" type="text" class="form-control" value="<?= $building->ownership['fwqyzl'] ?>" />
+            </td>
+            <td >
+                <input name="fwsl" type="text" class="form-control" value="<?= $building->ownership['fwsl'] ?>" />
+            </td>
+            <td colspan="2">
+                <input name="fwnsje" type="text" class="form-control" value="<?= $building->ownership['fwnsje'] ?>" />
+            </td>
+        </tr>
+    </tbody>
+</table>

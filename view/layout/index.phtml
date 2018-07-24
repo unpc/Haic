@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1" />
+    <title><?= $title ? H($title) : '工作面板' ?></title>
+    <base href="<?= H(URL('/')) ?>">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="assets/js/jquery.js"></script>
+    <script data-main="assets/js/main.js" src="assets/js/require.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5.js"></script>
+    <script src="assets/js/respond.js"></script>
+    <![endif]-->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/icon/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/icon/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/icon/apple-touch-icon-72.png">
+    <link rel="shortcut icon" href="assets/img/unpc2.png">
+</head>
+<body class="<?= $layout_class ?>">
+    <div id="wrap">
+        <div id="sidebar"><?= $sidebar ?></div>
+        <div id="nav"><?= $nav ?></div>
+        <div id="body"><?= $body ?></div>
+    </div>
+</body>
+</html>

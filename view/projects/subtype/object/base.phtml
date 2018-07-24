@@ -1,0 +1,672 @@
+<form id="add-project-object" method="POST" action="gini-ajax:ajax/project/addObject/<?= $project->id ?>">
+<?php 
+    $building = $project->building ?: new StdClass();
+    $structure_s = \Gini\ORM\Building::$structure_s;
+?>
+<table class="table table-sm table-bordered table-object">
+<tbody>
+    <tr>
+        <td colspan="2">项目名称</td>
+        <td colspan="4">
+            <input name="title" readonly type="text" class="form-control-plaintext" value="<?= $project->title ?>" />
+        </td>
+        <td>建造年代</td>
+        <td>
+            <input name="year" type="text" class="form-control" value="<?= $building->year ?>" />
+        </td>
+        <td>物业管理</td>
+        <td>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="property" value="1" <?= $building->property == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="property" value="2" <?= $building->property == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">坐落</td>
+        <td colspan="4">
+            <input name="address" type="text" class="form-control" value="<?= $building->address ?>" />
+        </td>
+        <td>结构</td>
+        <td colspan="3">
+            <?php foreach($structure_s as $k => $v): ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="structure" value="<?= $k ?>" <?= $building->structure == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">总层数</td>
+        <td colspan="2">
+            <input name="total_floor" type="text" class="form-control" value="<?= $building->total_floor ?>" />
+        </td>
+        <td>所在层数</td>
+        <td>
+            <input name="floor" type="text" class="form-control" value="<?= $building->floor ?>" />
+        </td>
+        <td>朝向</td>
+        <td colspan="3">
+            <?php
+                $front_s = \Gini\ORM\Building::$front_s;
+                foreach ($front_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="front" value="<?= $k ?>" <?= $building->front == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">用途</td>
+        <td colspan="2">
+            <?php
+                $use_s = \Gini\ORM\Building::$use_s;
+                foreach ($use_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="use" value="<?= $k ?>" <?= $building->use == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+        <td>建筑面积</td>
+        <td>
+            <input name="area" type="text" class="form-control" value="<?= $building->area ?>" />
+        </td>
+        <td>户型</td>
+        <td colspan="3">
+            <?php
+                $type_s = \Gini\ORM\Building::$type_s;
+                foreach ($type_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="type" value="<?= $k ?>" <?= $building->type == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">层高</td>
+        <td colspan="2">
+            <input name="height" type="text" class="form-control" value="<?= $building->height ?>" />
+        </td>
+        <td class="norwap">是否有抵押</td>
+        <td>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="mortgage" value="1" <?= $building->mortgage == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" >有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="mortgage" value="2" <?= $building->mortgage == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" >无</label>
+            </div>
+        </td>
+        <td>附属物</td>
+        <td colspan="3">
+            <?php
+                $appurtenance_s = \Gini\ORM\Building::$appurtenance_s;
+                foreach ($appurtenance_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="appurtenance[]" value="<?= $k ?>" <?= in_array($k, $building->appurtenance) ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">外墙</td>
+        <td colspan="7">
+            <?php
+                $out_wall_s = \Gini\ORM\Building::$out_wall_s;
+                foreach ($out_wall_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="out_wall[]" value="<?= $k ?>" <?= in_array($k, $building->out_wall) ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="18" class="align-middle">装修部分</td>
+        <td rowspan="5" class="align-middle">厅</td>
+        <td >门</td>
+        <td colspan="7">
+            <div>
+                <span>外:&#160;&#160;</span>
+                <?php
+                    $door_outside_s = \Gini\ORM\Building::$door_outside_s;
+                    foreach ($door_outside_s as $k => $v):
+                ?>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="parlour_door_outside" value="<?= $k ?>" <?= $building->parlour_door_outside == $k ? 'checked="checked"': '' ?>>
+                        <label class="form-check-label"><?= $v ?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div>
+                <span>内:&#160;&#160;</span>
+                <?php
+                    $door_inside_s = \Gini\ORM\Building::$door_inside_s;
+                    foreach ($door_inside_s as $k => $v):
+                ?>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="parlour_door_inside" value="<?= $k ?>" <?= $building->parlour_door_inside == $k ? 'checked="checked"': '' ?>>
+                        <label class="form-check-label"><?= $v ?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td >窗</td>
+        <td colspan="7">
+            <div>
+                <span>外:&#160;&#160;</span>
+                <?php
+                    $window_outside_s = \Gini\ORM\Building::$window_outside_s;
+                    foreach ($window_outside_s as $k => $v):
+                ?>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="parlour_window_outside" value="<?= $k ?>" <?= $building->parlour_window_outside == $k ? 'checked="checked"': '' ?>>
+                        <label class="form-check-label"><?= $v ?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div>
+                <span>内:&#160;&#160;</span>
+                <?php
+                    $window_inside_s = \Gini\ORM\Building::$window_inside_s;
+                    foreach ($window_inside_s as $k => $v):
+                ?>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="parlour_window_inside" value="<?= $k ?>" <?= $building->parlour_window_inside == $k ? 'checked="checked"': '' ?>>
+                        <label class="form-check-label"><?= $v ?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td >墙面</td>
+        <td colspan="7">
+            <?php
+                $parlour_wall_s = \Gini\ORM\Building::$parlour_wall_s;
+                foreach ($parlour_wall_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="parlour_wall" value="<?= $k ?>" <?= $building->parlour_wall == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td >顶棚</td>
+        <td colspan="7">
+            <?php
+                $parlour_platfond_s = \Gini\ORM\Building::$parlour_platfond_s;
+                foreach ($parlour_platfond_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="parlour_platfond" value="<?= $k ?>" <?= $building->parlour_platfond == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td >地面</td>
+        <td colspan="7">
+            <?php
+                $parlour_floor_s = \Gini\ORM\Building::$parlour_floor_s;
+                foreach ($parlour_floor_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="parlour_floor" value="<?= $k ?>" <?= $building->parlour_floor == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="3" class="align-middle">卧室</td>
+        <td >墙面</td>
+        <td colspan="7">
+            <?php
+                $parlour_wall_s = \Gini\ORM\Building::$parlour_wall_s;
+                foreach ($parlour_wall_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="room_wall" value="<?= $k ?>" <?= $building->room_wall == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td >顶棚</td>
+        <td colspan="7">
+            <?php
+                $parlour_platfond_s = \Gini\ORM\Building::$parlour_platfond_s;
+                foreach ($parlour_platfond_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="room_platfond" value="<?= $k ?>" <?= $building->room_platfond == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td >地面</td>
+        <td colspan="7">
+            <?php
+                $parlour_floor_s = \Gini\ORM\Building::$parlour_floor_s;
+                foreach ($parlour_floor_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="room_floor" value="<?= $k ?>" <?= $building->room_floor == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="4" class="align-middle">卫生间</td>
+        <td >墙面</td>
+        <td colspan="7">
+            <?php
+                $toilet_wall_s = \Gini\ORM\Building::$toilet_wall_s;
+                foreach ($toilet_wall_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="toilet_wall" value="<?= $k ?>" <?= $building->toilet_wall == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td >顶棚</td>
+        <td colspan="7">
+            <?php
+                $toilet_platfond_s = \Gini\ORM\Building::$toilet_platfond_s;
+                foreach ($toilet_platfond_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="toilet_platfond" value="<?= $k ?>" <?= $building->toilet_platfond == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td >地面</td>
+        <td colspan="7"> 
+            <?php
+                $toilet_floor_s = \Gini\ORM\Building::$toilet_floor_s;
+                foreach ($toilet_floor_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="toilet_floor" value="<?= $k ?>" <?= $building->toilet_floor == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td >设备</td>
+        <td colspan="7"> 
+            <?php
+                $toilet_appurtenance_s = \Gini\ORM\Building::$toilet_appurtenance_s;
+                foreach ($toilet_appurtenance_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="toilet_appurtenance[]" value="<?= $k ?>" <?= in_array($k, $building->toilet_appurtenance) ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="4" class="align-middle">厨房</td>
+        <td >墙面</td>
+        <td colspan="7">
+            <?php
+                $toilet_wall_s = \Gini\ORM\Building::$toilet_wall_s;
+                foreach ($toilet_wall_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="cook_wall" value="<?= $k ?>" <?= $building->cook_wall == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td >顶棚</td>
+        <td colspan="7">
+            <?php
+                $toilet_platfond_s = \Gini\ORM\Building::$toilet_platfond_s;
+                foreach ($toilet_platfond_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="cook_platfond" value="<?= $k ?>" <?= $building->cook_platfond == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td >地面</td>
+        <td colspan="7"> 
+            <?php
+                $toilet_floor_s = \Gini\ORM\Building::$toilet_floor_s;
+                foreach ($toilet_floor_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="cook_floor" value="<?= $k ?>" <?= $building->cook_floor == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td >设备</td>
+        <td colspan="7"> 
+            <?php
+                $cook_appurtenance_s = \Gini\ORM\Building::$cook_appurtenance_s;
+                foreach ($cook_appurtenance_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="cook_appurtenance[]" value="<?= $k ?>" <?= in_array($k, $building->cook_appurtenance) ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2" class="align-middle">阳台</td>
+        <td >墙面</td>
+        <td colspan="7">
+            <?php
+                $veranda_wall_s = \Gini\ORM\Building::$veranda_wall_s;
+                foreach ($veranda_wall_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="veranda_wall" value="<?= $k ?>" <?= $building->veranda_wall == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td >地面</td>
+        <td colspan="7"> 
+            <?php
+                $veranda_floor_s = \Gini\ORM\Building::$veranda_floor_s;
+                foreach ($veranda_floor_s as $k => $v):
+            ?>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="veranda_floor" value="<?= $k ?>" <?= $building->veranda_floor == $k ? 'checked="checked"': '' ?>>
+                    <label class="form-check-label"><?= $v ?></label>
+                </div>
+            <?php endforeach; ?>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="7" colspan="2" class="align-middle">设备设施</td>
+        <td >
+            <span>照明</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lighting" value="1" <?= $building->lighting == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lighting" value="2" <?= $building->lighting == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+        <td>
+            <span>一户一表</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ammeter" value="1" <?= $building->ammeter == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ammeter" value="2" <?= $building->ammeter == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="norwap">
+            <span>烟感报警系统</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="smoke_detector" value="1" <?= $building->smoke_detector == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="smoke_detector" value="2" <?= $building->smoke_detector == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+        <td>
+            <span>上下水</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="up_down_water" value="1" <?= $building->up_down_water == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="up_down_water" value="2" <?= $building->up_down_water == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span>有线电视</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="line_tv" value="1" <?= $building->line_tv == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="line_tv" value="2" <?= $building->line_tv == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+        <td class="norwap">
+            <span>自动喷淋系统</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="spray_system" value="1" <?= $building->spray_system == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="spray_system" value="2" <?= $building->spray_system == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span>暖气</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="heating" value="1" <?= $building->heating == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="heating" value="2" <?= $building->heating == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+        <td>
+            <span>电话预留</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="telephone_reservation" value="1" <?= $building->telephone_reservation == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="telephone_reservation" value="2" <?= $building->telephone_reservation == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span>中水</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="center_water" value="1" <?= $building->center_water == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="center_water" value="2" <?= $building->center_water == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+        <td>
+            <span>煤气</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gas" value="1" <?= $building->gas == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gas" value="2" <?= $building->gas == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span>电梯</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lift" value="1" <?= $building->lift == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="lift" value="2" <?= $building->lift == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+        <td>
+            <span>热水</span>
+        </td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hot_water" value="1" <?= $building->hot_water == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hot_water" value="2" <?= $building->hot_water == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span>对讲系统</span>
+        </td>
+        <td colspan="7">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="talk_back" value="1" <?= $building->talk_back == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">有</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="talk_back" value="2" <?= $building->talk_back == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">无</label>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">利用状况</td>
+        <td colspan="3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="use_status" value="1" <?= $building->use_status == 1 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio1">自用</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="use_status" value="2" <?= $building->use_status == 2 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">空置</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="use_status" value="3" <?= $building->use_status == 3 ? 'checked="checked"': '' ?> />
+                <label class="form-check-label" for="inlineRadio2">出租</label>
+            </div>
+        </td>
+        <td colspan="2">成新</td>
+        <td colspan="3">
+            <input name="percent_new" type="text" class="form-control" value="<?= $building->percent_new ?>" />
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2" colspan="2">四至</td>
+        <td colspan="4">
+            东:&#160;&#160;
+            <input name="east_front" type="text" class="form-control" value="<?= $building->east_front ?>" />
+        </td>
+        <td colspan="4">
+            南:&#160;&#160;
+            <input name="south_front" type="text" class="form-control" value="<?= $building->south_front ?>" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            西:&#160;&#160;
+            <input name="west_front" type="text" class="form-control" value="<?= $building->west_front ?>" />
+        </td>
+        <td colspan="4">
+            北:&#160;&#160;
+            <input name="north_front" type="text" class="form-control" value="<?= $building->north_front ?>" />
+        </td>
+    </tr>
+    <tr>
+        <td class="norwap" colspan="2">周围配套情况</td>
+        <td colspan="8">
+            <input name="around_appurtenance" type="text" class="form-control" value="<?= $building->around_appurtenance ?>" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">其他</td>
+        <td colspan="8">
+            <input name="another_desc" type="text" class="form-control" value="<?= $building->another_desc ?>" />
+        </td>
+    </tr>
+</tbody>
+</table>
+</form>
+<div class="hr_2"></div>
+<button class="btn btn-primary btn-raised" name="supply"><i class="fa fa-plus fa-fw"></i> <?= H(T('补充信息')) ?></button>
+<button class="btn btn-primary btn-raised" form="add-project-object" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
+<div class="hr_2"></div>
+<div class="hr_2"></div>

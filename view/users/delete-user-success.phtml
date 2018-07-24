@@ -1,0 +1,13 @@
+<script data-ajax="true">
+// user_id: 当前用户ID
+require(['main'], function($){
+
+    var user_id = <?= json_encode($user->id) ?>
+
+	var $tr = $('#user-table tr[data-user-id="'+user_id+'"]');
+	$tr.addClass('modified').fadeOut(function(){
+		$tr.remove()
+	})
+
+})
+</script>

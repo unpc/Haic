@@ -1,0 +1,45 @@
+<?php
+if (isset($GLOBALS['view/components/confirm'])) return;
+$GLOBALS['view/components/confirm'] = true;
+?>
+<div id="confirm-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><?= H(T('您确认吗?')) ?></h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary btn-confirm btn-normal" tabindex="2">
+                    <i class="fa fa-check fa-fw"></i><?= H(T('确认')) ?>
+                </a>
+                <a class="btn btn-dark btn-normal" tabindex="1" data-dismiss="modal"
+                   aria-hidden="true">
+                   <i class="fa fa-times fa-fw"></i> <?= H(T('取消')) ?>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require(['main'], function($) {
+        var $confirm = $('#confirm-modal');
+        $('body').off('click.comfirm');
+        $('.modal').on('shown.bs.modal', function () {
+        });
+
+        $('body').on('click.comfirm', 'a[data-confirm]', function(e){
+
+            var me = $(this);
+            $(this).data('delegated', 'true');
+            $confirm.find('.modal-header h6').text(me.data('confirm'));
+
+            $confirm.find('.modal-body').text(me.data('confirm-description') || me.data('confirm'));
+            $confirm.find('.modal-footer .btn-confirm')
+                .attr('href', me.data('gini-ajax') || me.attr('href'))
+                .on('click', function(){ $confirm.modal('hide'); });
+            $confirm.modal('show');
+            return false;
+        });
+    });
+</script>

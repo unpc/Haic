@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group mr-2" role="group">
+            <a class="btn btn-primary btn-raised" href="<?= URL('project')?>">
+                <i class="fa fa-arrow-left fa-fw"></i> <?= H(T('回到列表')) ?>
+            </a>
+        </div>
+        <div class="btn-group mr-2" role="group" >
+            <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/Project/Action/AddDispatcher/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派派件员') ?></button>
+            <button type="button" class="btn btn-secondary" href="gini-ajax:AJAX/Project/Action/AddAssessor/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派估价师') ?></button>
+            <button type="button" class="btn btn-secondary" href="gini-ajax:AJAX/Project/Action/AddSurveyor/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派查勘员') ?></button>
+            <button type="button" class="btn btn-danger"><i class="fa fa-check fa-fw"></i><?= T('提交审核') ?></button>
+        </div>
+        <div class="btn-group mr-2" role="group" >
+            <button type="button" class="btn btn-dark"><i class="fa fa-copy fa-fw"></i><?= T('克隆数据') ?></button>
+            <button type="button" class="btn btn-secondary"><i class="fa fa-save fa-fw"></i><?= T('生成报告') ?></button>
+            <button type="button" class="btn btn-dark"><i class="fa fa-print fa-fw"></i><?= T('打印报告') ?></button>
+        </div>
+    </div>
+    <div class="hr_2"></div>
+        <h5>项目编号: <?= strtr(\Gini\Config::get('project.number_template'), [
+            '%year' => date('Y', strtotime($project->ctime)),
+            '%number' => $project->number
+        ])?></h5>
+        <h5>项目名称: <?= T($project->title) ?></h5>
+        <h5>来源信息: </h5>
+        <div class="text-gray"><?= str_replace(["\r\n", "\n", "\r"], "<br/>", $project->source_description) ?></div>
+    <div class="hr_2"></div>
+    <ul class="nav nav-tabs nav-fill">
+        <li class="nav-item">
+            <a class="nav-link <?= $sub == 'user' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/user")?>">估价委托人</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?= $sub == 'target' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/target")?>">估价目的</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?= $sub == 'object' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/object")?>">估价对象</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?= $sub == 'result' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/result")?>">估价结果</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?= $sub == 'register' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/register")?>">注册估价师</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?= $sub == 'operation' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/operation")?>">估价作业期</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?= $sub == 'attachment' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/attachment")?>">附件信息</a>
+        </li>
+    </ul>
+    <?= V("projects/subtype/{$sub}", [
+        'project' => $project,
+        'subCat' => $subCat,
+        'form' => $form
+    ]) ?>
+</div>
+<script>
+require(['main'], function($){
+    $('body').bind('copy cut', function(e) {
+        e.preventDefault()
+    })
+})
+</script>

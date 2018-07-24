@@ -1,0 +1,58 @@
+<?php
+    if ($total > $per_page) :
+        $current_page = floor($start / $per_page) + 1;
+        $total_pages = ceil($total / $per_page);
+        $max_pages = 5;
+        $url = $this->url ?: '';
+        //st 是 start 的意思
+        $st = $this->query_key ?: 'st';
+        if ($total_pages > 1) :
+            $lamda_func = 'pagination_'.uniqid();
+?>
+<div class="container-fluid footer-pagination">
+<div class="row">
+    <div class="col-xs-6">
+    </div>
+    <div class="col-xs-6 ">
+    <ul class="pagination pull-right">
+        <?php
+            $f=$current_page - floor($max_pages/2);
+            $t=$current_page + floor($max_pages/2);
+            if ($f<1) {
+                $f=1;
+                $t=$f+$max_pages-1;
+            }
+            if ($t>$total_pages) {
+                $t=$total_pages;
+                $f=$t-$max_pages+1;
+                if($f<1)$f=1;
+            }
+            if ($current_page > 1):
+        ?>
+            <li>
+                <a href="<?= H(URL($url, array_merge(array($st=>($current_page - 2)*$per_page), array($params)))) ?>">
+                    <i class="fa fa-angle-double-left"></i>
+                </a>
+            </li>
+        <?php endif; ?>
+
+        <?php for ($i=$f;$i<=$t;$i++) :  ?>
+            <?php if ($i == $current_page) : ?>
+                <li><span class="current"><?= $i ?></span></li>
+            <?php else: ?>
+                <li><a href="<?= H(URL($url, array_merge(array($st=>($i - 1)*$per_page), array($params)))) ?>" ><?= $i ?></a></li>
+            <?php endif; ?>
+        <?php endfor;?>
+
+        <?php if ($current_page < $total_pages): ?>
+            <li>
+                <a href="<?= H(URL($url, array_merge(array($st=>($current_page)*$per_page), array($params))))?>">
+                    <i class="fa fa-angle-double-right"></i>
+                </a>
+            </li>
+        <?php endif; ?>
+    </ul>
+    </div>
+</div>
+</div>
+<?php endif; endif;?>

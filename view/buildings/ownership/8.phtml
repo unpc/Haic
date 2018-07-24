@@ -1,0 +1,93 @@
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="">证号</span>
+    </div>
+    <input name="number" type="text" class="form-control" value="<?= $building->ownership['number'] ?>" />
+</div>
+<div class="hr"></div>
+<table class="table table-sm table-bordered table-object">
+    <tbody>
+        <tr>
+            <td colspan="2"  class="disable">土地使用权人</td>
+            <td colspan="6">
+                <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"  class="disable">座落</td>
+            <td colspan="6">
+                <input name="fwzl" type="text" class="form-control" value="<?= $building->ownership['fwzl'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">地号</td>
+            <td colspan="2">
+                <input name="fwdh" type="text" class="form-control" value="<?= $building->ownership['fwdh'] ?>" />
+            </td>
+            <td colspan="2" class="disable">图号</td>
+            <td colspan="2">
+                <input name="fwth" type="text" class="form-control" value="<?= $building->ownership['fwth'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">地类(用途)</td>
+            <td colspan="2">
+                <input name="fwdlyt" type="text" class="form-control" value="<?= $building->ownership['fwdlyt'] ?>" />
+            </td>
+            <td colspan="2" class="disable">取得价格</td>
+            <td colspan="2">
+                <input name="fwqdjg" type="text" class="form-control" value="<?= $building->ownership['fwqdjg'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">使用权类型</td>
+            <td colspan="2">
+                <input name="syqlx" type="text" class="form-control" value="<?= $building->ownership['syqlx'] ?>" />
+            </td>
+            <td colspan="2" class="disable">终止日期</td>
+            <td colspan="2">
+                <input name="fwzzrq" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $building->ownership['fwzzrq'] ? strtotime($building->ownership['fwzzrq']) : time()) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" rowspan="2" class="disable">使用权面积</td>
+            <td colspan="2" rowspan="2">
+                <div class="form-inline">
+                    <input name="syqmj" type="text" class="form-control" value="<?= $building->ownership['syqmj'] ?>" />m²
+                </div>
+            </td>
+            <td rowspan="2" class="disable">其中</td>
+            <td class="disable">独用面积</td>
+            <td colspan="2">
+                <div class="form-inline">
+                    <input name="syqdymj" type="text" class="form-control" value="<?= $building->ownership['syqdymj'] ?>" />m²
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable">分摊面积</td>
+            <td colspan="2">
+                <div class="form-inline">
+                    <input name="syqftmj" type="text" class="form-control" value="<?= $building->ownership['syqftmj'] ?>" />m²
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">记事</td>
+            <td colspan="6">
+                <input name="jsdes" type="text" class="form-control" value="<?= $building->ownership['jsdes'] ?>" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script>
+require(['main'], function($){
+    require(['bootstrap-datepicker', 'locales/bootstrap-datepicker.zh-CN', 'css!../css/bootstrap-datepicker'], function(){
+        $('.date').datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'zh-CN',
+            minView: 'day'
+        }) 
+    })
+})
+</script>

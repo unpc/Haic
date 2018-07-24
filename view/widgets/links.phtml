@@ -1,0 +1,6 @@
+<?php foreach ($items as $k => $item): ?>
+	<a name="<?= $k ?>" class="btn" href="<?= $item['url']; ?>" <?= $item['extra']?> >
+		<i class="fa fa-<?= $item['class'] ?>"></i>
+		<?= $item['title']?>
+	</a>
+<?php endforeach; ?>

@@ -1,0 +1,13 @@
+<div class="hr"></div>
+<form id="add-project-form" method="POST" action="gini-ajax:ajax/project/addTarget/<?= $project->id ?>">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group form-group-lg">
+                <label class="control-label" for="target"><?= H('估价目的') ?></label>
+                <textarea placeholder="<?= \Gini\Config::get('project.target') ?>" id="target" name="target" type="text" class="form-control"><?= $project->target ?></textarea>
+            </div>
+        </div>
+    </div>
+</form>
+<button class="btn btn-primary btn-raised" name="supply"><i class="fa fa-plus fa-fw"></i> <?= H(T('补充信息')) ?></button>
+<button class="btn btn-primary btn-raised" form="add-project-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>

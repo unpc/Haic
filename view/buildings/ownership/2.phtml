@@ -1,0 +1,77 @@
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="">证号</span>
+    </div>
+    <input name="number" type="text" class="form-control" value="<?= $building->ownership['number'] ?>" />
+</div>
+<div class="hr"></div>
+<table class="table table-sm table-bordered table-object">
+    <tbody>
+        <tr>
+            <td colspan="2" class="disable">权利人</td>
+            <td colspan="6">
+                <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">共有情况</td>
+            <td colspan="6">
+                <input name="gyqk" type="text" class="form-control" value="<?= $building->ownership['gyqk'] ?: '共同共有' ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">坐落</td>
+            <td colspan="6">
+                <input name="zl" type="text" class="form-control" value="<?= $building->ownership['zl'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">不动产单元号</td>
+            <td colspan="6">
+                <input name="bdcdyh" type="text" class="form-control" value="<?= $building->ownership['bdcdyh'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">权利类型</td>
+            <td colspan="6">
+                <input name="qllx" type="text" class="form-control" value="<?= $building->ownership['qllx'] ?: '国有建设用地使用权/房屋（构筑物）所有权' ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">权利性质</td>
+            <td colspan="6">
+                <input name="qlxz" type="text" class="form-control" value="<?= $building->ownership['qlxz'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">用途</td>
+            <td colspan="6">
+                <input name="yt" type="text" class="form-control" value="<?= $building->ownership['yt'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">面积</td>
+            <td colspan="6">
+                <input name="mj" type="text" class="form-control" value="<?= $building->ownership['mj'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">使用期限</td>
+            <td colspan="6">
+                <input name="syqx" type="text" class="form-control" value="<?= $building->ownership['syqx'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">权利其他状况</td>
+            <td colspan="6">
+                <input name="qlqtzk" type="text" class="form-control" value="<?= $building->ownership['qlqtzk'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable">附记</td>
+            <td colspan="6">
+                <input name="fj" type="text" class="form-control" value="<?= $building->ownership['fj'] ?>" />
+            </td>
+        </tr>
+    </tbody>
+</table>

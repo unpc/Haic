@@ -1,0 +1,46 @@
+<div class="hr"></div>
+<form id="add-operation-form" method="POST" class="form-inline" action="gini-ajax:ajax/project/addOperation/<?= $project->id ?>">
+
+    <table class="table table-sm table-bordered table-object">
+        <tbody>
+            <tr>
+                <td>
+                    <div class="text-center form-control-plaintext">
+                        实地查勘日期
+                    </div>
+                </td>
+                <td>
+                    <input name="operation_date" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', strtotime($project->operation_date)) ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="text-center form-control-plaintext">
+                        估价作业期
+                    </div>
+                </td>
+                <td>
+                    <input name="operation_from" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', strtotime($project->operation_from)) ?>">
+                        ~
+                    <input name="operation_to" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', strtotime($project->operation_to)) ?>">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<div class="hr_2"></div>
+<button class="btn btn-primary btn-raised" name="supply"><i class="fa fa-plus fa-fw"></i> <?= H(T('补充信息')) ?></button>
+<button class="btn btn-primary btn-raised" form="add-operation-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
+<div class="hr_2"></div>
+<div class="hr_2"></div>
+<script>
+require(['main'], function($){
+    require(['bootstrap-datepicker', 'locales/bootstrap-datepicker.zh-CN', 'css!../css/bootstrap-datepicker'], function(){
+        $('.date').datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'zh-CN',
+            minView: 'day'
+        }) 
+    })
+})
+</script>

@@ -1,0 +1,67 @@
+<div class="hr"></div>
+<form id="add-register-form" method="POST" action="gini-ajax:ajax/project/addRegister/<?= $project->id ?>">
+<?php 
+    $registers = (array)$project->registers;
+?>
+<script id="register-item-template" type="text/template">
+    <?= V('projects/register/item', ['index'=>'$INDEX']) ?>
+</script>
+<table class="table table-sm table-bordered table-object">
+    <tbody>
+        <tr>
+            <td colspan="4">
+                <div class="text-center form-control-plaintext">
+                    注册房地产估价师
+                </div>
+            </td>
+            <td rowspan="2" width="35px">
+                <button class="btn btn-primary btn-raised float-left add-item">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-control-plaintext text-center">姓名</div>
+            </td>
+            <td class="text-center">注册号</td>
+            <td class="text-center">签名</td>
+            <td class="text-center">签名日期</td>
+        </tr>
+    </tbody>
+    <tbody class="register-items">
+        <?php foreach($registers as $index => $register): ?>
+            <?= V('projects/register/item', ['index' => $index, 'item' => $register ]) ?>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+</form>
+<div class="hr_2"></div>
+<button class="btn btn-primary btn-raised" name="supply"><i class="fa fa-plus fa-fw"></i> <?= H(T('补充信息')) ?></button>
+<button class="btn btn-primary btn-raised" form="add-register-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
+<div class="hr_2"></div>
+<div class="hr_2"></div>
+<script data-ajax="true">
+require(['main'], function($) {
+    var $form = $('#add-register-form')
+        , $items = $form.find('.register-items')
+        , template = $('#register-item-template').text()
+        , index = <?= count($registers) ?>;
+    $form
+    .on('click', '.add-item', function() {
+        var $tr = $(template)
+        $tr.find('[name*="$INDEX"]').each(function(){
+            var $el = $(this)
+            $el.attr('name', $el.attr('name').replace('$INDEX', index))
+        })
+
+        index++
+        $items.append($tr)
+        return false
+    })
+    .on('click', '.delete-item', function() {
+        $(this).parents('tr.register-item').remove()
+        return false
+    });
+});
+</script>

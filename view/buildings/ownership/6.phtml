@@ -1,0 +1,53 @@
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="">证号</span>
+    </div>
+    <input name="number" type="text" class="form-control" value="<?= $building->ownership['number'] ?>" />
+</div>
+<div class="hr"></div>
+<table class="table table-sm table-bordered table-object">
+    <tbody>
+        <tr>
+            <td colspan="3" class="disable">房屋共有权证</td>
+            <td colspan="6">
+                <input name="fwgyqz" type="text" class="form-control" value="<?= $building->ownership['fwgyqz'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable">房屋所有权证持证人</td>
+            <td colspan="6">
+                <input name="fwsyqczzr" type="text" class="form-control" value="<?= $building->ownership['fwsyqczzr'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable">房屋所有权证号</td>
+            <td colspan="6">
+                <input name="fwsyqzh" type="text" class="form-control" value="<?= $building->ownership['fwsyqzh'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable">房屋坐落</td>
+            <td colspan="6">
+                <input name="fwzl" type="text" class="form-control" value="<?= $building->ownership['fwzl'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable">房屋建筑面积（平方米）</td>
+            <td colspan="6">
+                <input name="fwjzmj" type="text" class="form-control" value="<?= $building->ownership['fwjzmj'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable">共有权人所占份额</td>
+            <td colspan="6">
+                <input name="gyqszfe" type="text" class="form-control" value="<?= $building->ownership['gyqszfe'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable">附记</td>
+            <td colspan="6">
+                <input name="fj" type="text" class="form-control" value="<?= $building->ownership['fj'] ?>" />
+            </td>
+        </tr>
+    </tbody>
+</table>

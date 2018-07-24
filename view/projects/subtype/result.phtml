@@ -1,0 +1,87 @@
+<div class="hr"></div>
+<form id="add-result-form" method="POST" action="gini-ajax:ajax/project/addResult/<?= $project->id ?>">
+<?php 
+    $building = $project->building ?: new StdClass();
+?>
+<table class="table table-sm table-bordered table-object">
+    <tbody>
+        <tr>
+            <td colspan="4">
+                <div class="text-right form-control-plaintext">
+                    币种: 人民币
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+            <div class="form-control-plaintext">项目及结果</div>
+            </td>
+            <td>估价对象</td>
+            <td>金额大写</td>
+        </tr>
+        <tr>
+            <td rowspan="2">
+            1.假定未设立法定优先受偿权下的价值
+            </td>
+            <td>总价（万元）</td>
+            <td><input name="amount" type="text" class="form-control" value="<?= $building->amount ?>" /></td>
+            <td><input name="upper_amount" type="text" class="form-control" value="<?= $building->upper_amount ?>" /></td>
+        </tr>
+        <tr>
+            <td>单价（元/㎡）</td>
+            <td><input name="unit" type="text" class="form-control" value="<?= $building->unit ?>" /></td>
+            <td><input name="upper_unit" type="text" class="form-control" value="<?= $building->upper_unit ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+            2.估价师知悉的法定优先受偿款
+            </td>
+            <td>总额（万元）</td>
+            <td><input name="yxsck_amount" type="text" class="form-control" value="<?= $building->yxsck_amount ?>" /></td>
+            <td><input name="upper_yxsck_amount" type="text" class="form-control" value="<?= $building->upper_yxsck_amount ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+            2.1已抵押担保的债权数额
+            </td>
+            <td>总额（万元）</td>
+            <td><input name="dyzq_amount" type="text" class="form-control" value="<?= $building->dyzq_amount ?>" /></td>
+            <td><input name="upper_dyzq_amount" type="text" class="form-control" value="<?= $building->upper_dyzq_amount ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+            2.2拖欠的建设工程价款
+            </td>
+            <td>总额（万元）</td>
+            <td><input name="tqk_amount" type="text" class="form-control" value="<?= $building->tqk_amount ?>" /></td>
+            <td><input name="upper_tqk_amount" type="text" class="form-control" value="<?= $building->upper_tqk_amount ?>" /></td>
+        </tr>
+        <tr>
+            <td>
+            2.3其他法定优先受偿款
+            </td>
+            <td>总额（万元）</td>
+            <td><input name="fdyxsck_amount" type="text" class="form-control" value="<?= $building->fdyxsck_amount ?>" /></td>
+            <td><input name="upper_fdyxsck_amount" type="text" class="form-control" value="<?= $building->upper_fdyxsck_amount ?>" /></td>
+        </tr>
+        <tr>
+            <td rowspan="2">
+            3.抵押价值
+            </td>
+            <td>总价（万元）</td>
+            <td><input name="dyjz_amount" type="text" class="form-control" value="<?= $building->dyjz_amount ?>" /></td>
+            <td><input name="upper_dyjz_amount" type="text" class="form-control" value="<?= $building->upper_dyjz_amount ?>" /></td>
+        </tr>
+        <tr>
+            <td>单价（元/㎡）</td>
+            <td><input name="dyjz_unit" type="text" class="form-control" value="<?= $building->dyjz_unit ?>" /></td>
+            <td><input name="upper_dyjz_unit" type="text" class="form-control" value="<?= $building->upper_dyjz_unit ?>" /></td>
+        </tr>
+    </tbody>
+</table>
+</form>
+<div class="hr_2"></div>
+<button class="btn btn-primary btn-raised" name="supply"><i class="fa fa-plus fa-fw"></i> <?= H(T('补充信息')) ?></button>
+<button class="btn btn-primary btn-raised" form="add-result-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
+<div class="hr_2"></div>
+<div class="hr_2"></div>
