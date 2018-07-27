@@ -24,6 +24,13 @@ class Action extends \Gini\Controller\CGI {
                 $project->dispatcher = a('user', (int)$form['id']);
                 $project->save();
 
+                $log = a('log');
+                $log->user = $me;
+                $log->project = $project;
+                $log->action = \Gini\ORM\Log::ACTION_DISPATCH;
+                $log->description = sprintf('%s 指派派件员为 %s。', $me->name, $project->dispatcher->name);
+                $log->save();
+
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
             }
             catch (\Gini\CGI\Validator\Exception $e) {
@@ -58,6 +65,13 @@ class Action extends \Gini\Controller\CGI {
                 $project->assessor = a('user', (int)$form['id']);
                 $project->save();
 
+                $log = a('log');
+                $log->user = $me;
+                $log->project = $project;
+                $log->action = \Gini\ORM\Log::ACTION_ASSESSOR;
+                $log->description = sprintf('%s 指派估价师为 %s。', $me->name, $project->assessor->name);
+                $log->save();
+
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
             }
             catch (\Gini\CGI\Validator\Exception $e) {
@@ -91,6 +105,13 @@ class Action extends \Gini\Controller\CGI {
                     ->done();
                 $project->surveyor = a('user', (int)$form['id']);
                 $project->save();
+
+                $log = a('log');
+                $log->user = $me;
+                $log->project = $project;
+                $log->action = \Gini\ORM\Log::ACTION_SURVEYOR;
+                $log->description = sprintf('%s 指派查勘员为 %s。', $me->name, $project->surveyor->name);
+                $log->save();
 
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
             }

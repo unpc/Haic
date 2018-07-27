@@ -32,6 +32,12 @@ class Project extends Object
         self::PUBLIC_BUSINESS => '对公业务'
     ];
 
+    public function delete()
+    {
+        those('log')->whose('project')->is($this)->deleteAll();
+        parent::delete();
+    }
+
     public function filePath($path='')
     {
         return APP_PATH.'/'.DATA_DIR.'/project/'.($this->id?:0).'/'.$path;

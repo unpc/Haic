@@ -27,6 +27,15 @@ class Project extends \Gini\Controller\CGI {
                 $project->source_description = $form['source_description'];
                 $project->save();
 
+                if ($project->id) {
+                    $log = a('log');
+                    $log->user = $me;
+                    $log->project = $project;
+                    $log->action = \Gini\ORM\Log::ACTION_ADD;
+                    $log->description = strtr("%user 创建项目。", ['%user' => $me->name]);
+                    $log->save();
+                }
+
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
             }
             catch (\Gini\CGI\Validator\Exception $e) {
@@ -74,6 +83,13 @@ class Project extends \Gini\Controller\CGI {
         $project->user_name = $form['user_name'];
         $project->user_address = $form['user_address'];
         $project->save();
+
+        $log = a('log');
+        $log->user = $me;
+        $log->project = $project;
+        $log->action = \Gini\ORM\Log::ACTION_EDIT;
+        $log->description = sprintf('%s 修改委托人信息。', $me->name);
+        $log->save();
     }
 
     public function actionAddTarget($id=0)
@@ -87,6 +103,13 @@ class Project extends \Gini\Controller\CGI {
         $form = $this->form();
         $project->target = $form['target'];
         $project->save();
+
+        $log = a('log');
+        $log->user = $me;
+        $log->project = $project;
+        $log->action = \Gini\ORM\Log::ACTION_EDIT;
+        $log->description = sprintf('%s 修改估价目的信息。', $me->name);
+        $log->save();
     }
 
     public function actionAddObject($id=0)
@@ -166,6 +189,13 @@ class Project extends \Gini\Controller\CGI {
             $project->building = $building;
             $project->save();
         }
+
+        $log = a('log');
+        $log->user = $me;
+        $log->project = $project;
+        $log->action = \Gini\ORM\Log::ACTION_EDIT;
+        $log->description = sprintf('%s 修改估价对象基础信息。', $me->name);
+        $log->save();
     }
 
     public function actionAddResult($id=0)
@@ -206,6 +236,13 @@ class Project extends \Gini\Controller\CGI {
             $project->building = $building;
             $project->save();
         }
+
+        $log = a('log');
+        $log->user = $me;
+        $log->project = $project;
+        $log->action = \Gini\ORM\Log::ACTION_EDIT;
+        $log->description = sprintf('%s 修改估价结果描述信息。', $me->name);
+        $log->save();
     }
 
     public function actionAddRegister($id=0)
@@ -226,10 +263,16 @@ class Project extends \Gini\Controller\CGI {
                     $items[] = $item;
                 }
             }
-    
-            $project->registers = $items;
-            $project->save();
         }
+        $project->registers = $items;
+        $project->save();
+
+        $log = a('log');
+        $log->user = $me;
+        $log->project = $project;
+        $log->action = \Gini\ORM\Log::ACTION_EDIT;
+        $log->description = sprintf('%s 修改注册房地产估价师信息。', $me->name);
+        $log->save();
     }
 
     public function actionAddOperation($id=0)
@@ -258,6 +301,13 @@ class Project extends \Gini\Controller\CGI {
         }
 
         $edit && $project->save();
+
+        $log = a('log');
+        $log->user = $me;
+        $log->project = $project;
+        $log->action = \Gini\ORM\Log::ACTION_EDIT;
+        $log->description = sprintf('%s 修改估价作业期信息。', $me->name);
+        $log->save();
     }
 
     public function actionUploadAttachment($id=0)
@@ -280,6 +330,12 @@ class Project extends \Gini\Controller\CGI {
                     'ok' => H(T('文件上传成功!')),
                     'file' => $fullPath
                 ]);
+                $log = a('log');
+                $log->user = $me;
+                $log->project = $project;
+                $log->action = \Gini\ORM\Log::ACTION_EDIT;
+                $log->description = sprintf('%s 上传附件信息 [%s]。', $me->name, $fileName);
+                $log->save();
             }
         }
         return \Gini\IoC::construct('\Gini\CGI\Response\JSON', [
@@ -307,6 +363,12 @@ class Project extends \Gini\Controller\CGI {
                     'ok' => H(T('文件删除成功!')),
                     'file' => $fullPath
                 ]);
+                $log = a('log');
+                $log->user = $me;
+                $log->project = $project;
+                $log->action = \Gini\ORM\Log::ACTION_EDIT;
+                $log->description = sprintf('%s 上传附件信息 [%s]。', $me->name, $path);
+                $log->save();
             }
         }
         return \Gini\IoC::construct('\Gini\CGI\Response\JSON', [
