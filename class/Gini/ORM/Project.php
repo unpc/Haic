@@ -40,7 +40,9 @@ class Project extends Object
 
     public function filePath($path='')
     {
-        return APP_PATH.'/'.DATA_DIR.'/project/'.($this->id?:0).'/'.$path;
+        $basePath = APP_PATH.'/'.DATA_DIR.'/project/'.($this->id?:0).'/';
+        \Gini\File::ensureDir($basePath);
+        return $basePath . $path;
     }
 
     public function attachments()

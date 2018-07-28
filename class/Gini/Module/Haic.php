@@ -2,7 +2,7 @@
 
 namespace Gini\Module {
 
-    class God {
+    class Haic {
 
         static function setup() {
 

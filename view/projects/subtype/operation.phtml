@@ -10,7 +10,7 @@
                     </div>
                 </td>
                 <td>
-                    <input name="operation_date" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', strtotime($project->operation_date)) ?>">
+                    <input name="operation_date" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->operation_date ? strtotime($project->operation_date) : time()) ?>">
                 </td>
             </tr>
             <tr>
@@ -20,9 +20,9 @@
                     </div>
                 </td>
                 <td>
-                    <input name="operation_from" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', strtotime($project->operation_from)) ?>">
+                    <input name="operation_from" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->operation_from ? strtotime($project->operation_from) : time()) ?>">
                         ~
-                    <input name="operation_to" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', strtotime($project->operation_to)) ?>">
+                    <input name="operation_to" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->operation_to ? strtotime($project->operation_to) : time()) ?>">
                 </td>
             </tr>
         </tbody>

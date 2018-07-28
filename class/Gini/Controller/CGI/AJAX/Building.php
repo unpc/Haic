@@ -9,9 +9,6 @@ class Building extends \Gini\Controller\CGI
     {
         $me = _G('ME');
         $building = a('building', $id);
-        if (!$building->id) {
-            $this->redirect('error/404');
-        }
 
         $form = $this->form();
         $type = $form['type'] ?: $building->ownership_cert;

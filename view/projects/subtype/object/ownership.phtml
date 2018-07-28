@@ -1,5 +1,5 @@
 <?php
-    $building = $project->building ?: new StdClass();
+    $building = $project->building ?: a('building');
 ?>
 <form id="add-project-ownership-type" method="POST" action="gini-ajax:ajax/building/addownership/<?= $project->id ?>">
 <div class="row">
@@ -20,9 +20,7 @@
             </div>
         </div>
         <div class="hr_2"></div>
-        <?php if ($building->ownership_cert > 0): ?>
-            <div id="ownership-cert-box"></div>
-        <?php endif; ?>
+        <div id="ownership-cert-box"></div>
         <button class="btn btn-primary btn-raised" form="add-project-ownership-type" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
         <div class="hr_2"></div>
     </div>
@@ -50,6 +48,6 @@ require(['main'], function($) {
         return false;
     })
 
-    if (<?= $building->ownership_cert > 0 ?>) _refreshBox(<?= $building->ownership_cert ?>)
+    if (<?= (int)$building->ownership_cert ?>) _refreshBox(<?= (int)$building->ownership_cert ?>)
 })
 </script>

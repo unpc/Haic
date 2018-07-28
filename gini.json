@@ -1,6 +1,6 @@
 {
-    "shortname": "God",
-    "name": "God SoftWare",
+    "shortname": "Haic",
+    "name": "Haic SoftWare",
     "author": "Cheng Liu",
     "description": "The assess for Tian Yuan Com",
     "version": "0.1.0",
@@ -10,7 +10,7 @@
         "auth": "^0.1.4",
 	"cache": "*"
     },
-    "id": "god",
+    "id": "Haic",
     "composer": {
 	"config": {
             "secure-http": false
