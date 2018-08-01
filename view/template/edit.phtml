@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group mr-2" role="group">
+            <a class="btn btn-primary btn-raised" href="<?= URL("/template")?>">
+                <i class="fa fa-arrow-left fa-fw"></i> <?= H(T('回到列表')) ?>
+            </a>
+        </div>
+        <div class="btn-group mr-2" role="group">
+            <?= V('components/confirm') ?>
+            <a class="btn btn-secondary btn-raised"
+                data-confirm="<?= H(T('您确认删除模板:template?', [':template'=>$template->title])) ?>"
+                data-confirm-description="<?= H(T('点击确认后会删除该用户信息, 请谨慎处理!')) ?>"
+                href="gini-ajax:AJAX/Template/Delete/<?= (int)$template->id ?>/1">
+                <i class="fa fa-trash-o fa-fw"></i> <?= T('删除模板') ?>
+            </a>
+            <button class="btn btn-dark btn-raised" form="edit-template-form" type="submit"><i class="fa fa-save fa-fw"></i> <?= H(T('保存模板')) ?></button>
+        </div>
+    </div>
+    <form id="edit-template-form" method="POST" action="gini-ajax:ajax/template/edit/<?= (int)$template->id ?>">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h5 class="text-center"><?= H($template->title) ?></h5>
+                <textarea id="editor" name="content"><?= $template->content ?></textarea>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </form>
+</div>
+<script>
+(function($){
+    KindEditor.ready(function(K) {
+        var $edit = K.create('#editor', {
+            filterMode: false,
+            width: '100%',
+            minHeight: 660,
+            items: [
+                'source', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|', 'fullscreen',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', '|', 'table', '|', 
+                // 'image', 'multiimage', 'insertfile', 
+                'link', 'unlink', 'media', 'flash'
+            ],
+            resizeType: 1,
+            uploadJson: 'ajax/template/uploadJson/' + <?= (int)$template->id ?>,
+            basePath: 'assets/',
+            themesPath: 'assets/css/',
+            fontSizeTable: ['9px', '10px', '12px', '14px', '16px', '18px', '22px', '24px', '32px', '48px']
+        })
+        $edit.sync()
+    })
+})(jQuery)
+</script>

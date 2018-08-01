@@ -1,0 +1,49 @@
+<div id="add-template-modal" class="modal fade in">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title"><?= H(T('添加新模板')) ?></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body" style="padding-top:20px;">
+            <form id="add-template-form" method="POST" action="gini-ajax:ajax/template/add">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['title'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['title']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="title"><?= H('模板名称') ?></label>
+                        <input id="title" name="title" type="text" class="form-control <?= isset($form['_errors']['title']) ? 'is-invalid' : '' ?>" value="<?= H($form['title']) ?>"/>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-raised" form="add-template-form" type="submit"><i class="fa fa-plus fa-fw"></i> <?= H(T('添加')) ?></button>
+            <button class="btn btn-secondary btn-raised" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-fw "></i><?= H(T('关闭')) ?></button>
+        </div>
+    </div>
+</div>
+</div>
+<script data-ajax="true">
+require(['main'], function($){
+
+    var $modal = $('#add-template-modal');
+    $modal
+    .on('hidden.bs.modal', function(){
+        $modal.remove();
+    })
+    .modal();
+
+    $('#add-template-form').on('ajax-success', function(){
+        $modal
+        .removeAttr('id').modal('hide')
+        .find('[id]').removeAttr('id');
+    });
+
+});
+</script>

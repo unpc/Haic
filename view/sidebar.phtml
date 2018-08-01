@@ -9,6 +9,11 @@
                 <i class="fa fa-sitemap"></i><span style="padding-left: 8px;"><?= H(T('项目管理'))?></span>
             </a>
         </li>
+        <li class="<?= $selected == 'template' ? 'active' : '' ?>">
+            <a href=<?= URL('/template') ?> class="text-white" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('模板信息'))?>">
+                <i class="fa fa-clone"></i><span style="padding-left: 8px;"><?= H(T('模板信息'))?></span>
+            </a>
+        </li>
         <li class="<?= $selected == 'record' ? 'active' : '' ?>">
             <a href=<?= URL('/record') ?> class="text-white userList" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('项目管理'))?>">
                 <i class="fa fa-folder"></i><span style="padding-left: 8px;"><?= H(T('档案管理'))?></span>
@@ -25,7 +30,7 @@
             </a>
         </li>
         <li class="<?= $selected == 'mine' ? 'active' : '' ?>">
-            <a href=<?= URL('/mine') ?> class="text-white userList" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('权限管理'))?>">
+            <a href=<?= URL('/mine') ?> class="text-white" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('权限管理'))?>">
                 <i class="fa fa-book"></i><span style="padding-left: 8px;"><?= H(T('机构信息'))?></span>
             </a>
         </li>

@@ -1,0 +1,13 @@
+<script data-ajax="true">
+// template_id: 当前用户ID
+require(['main'], function($){
+
+    var template_id = <?= json_encode($template->id) ?>
+
+	var $tr = $('#template-table tr[data-template-id="'+template_id+'"]');
+	$tr.addClass('modified').fadeOut(function(){
+		$tr.remove()
+	})
+
+})
+</script>

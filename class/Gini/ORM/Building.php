@@ -458,7 +458,7 @@ class Building extends Object
 
     static $ownership_cert_type = [
         self::OWNERSHIP_BDCQZS => '不动产权证书',
-        self::OWNERSHIP_BDCQZS_GY => '不动产权证书(公有)',
+        self::OWNERSHIP_BDCQZS_GY => '不动产权证书(共有)',
         self::OWNERSHIP_TJSFDCQZ => '天津市房地产权证',
         self::OWNERSHIP_TJSFDCGYQZ => '天津市房地产共有权证',
         self::OWNERSHIP_FDSYQZ => '房地所有权证',
