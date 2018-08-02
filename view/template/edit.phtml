@@ -18,7 +18,18 @@
     </div>
     <form id="edit-template-form" method="POST" action="gini-ajax:ajax/template/edit/<?= (int)$template->id ?>">
         <div class="row">
-            <div class="col-3"></div>
+            <div class="col-3">
+                <div class="hr_2"></div>
+                <p class="no-margin"><span class="description">*&#160;模板内容支持从外部复制粘贴</span></p>
+                <div class="hr"></div>
+                <p class="no-margin"><span class="description">*&#160;模板内需要替换数据可以通过 %xx% 形式来进行表达, xx 为项目中字段名称，比如：</span></p>
+                <p class="no-margin"><span class="description">&#160;&#160;%项目名称% 显示为估价对象中项目名称字段内容</span></p>
+                <p class="no-margin"><span class="description">&#160;&#160;%实地查勘日期% 显示为估价作业期中实地查勘日期字段内容</span></p>
+                <p class="no-margin"><span class="description">*&#160;由于委托人姓名和估价师姓名冲突，故此两栏信息中需要增加委托人、估价师等前缀，比如：</span></p>
+                <p class="no-margin"><span class="description">&#160;&#160;%委托人姓名% 显示为估价委托人中姓名字段内容</span></p>
+                <div class="hr"></div>
+                <p class="no-margin"><span class="description">*&#160;如若需要后续进行内容修改可用 %input% 代替空模板内容</span></p>
+            </div>
             <div class="col-6">
                 <h5 class="text-center"><?= H($template->title) ?></h5>
                 <textarea id="editor" name="content"><?= $template->content ?></textarea>
@@ -26,23 +37,24 @@
             <div class="col-3"></div>
         </div>
     </form>
+    <div class="hr_2"></div>
+    <div class="hr_2"></div>
 </div>
 <script>
 (function($){
     KindEditor.ready(function(K) {
         var $edit = K.create('#editor', {
             filterMode: false,
-            width: '100%',
             minHeight: 660,
             items: [
                 'source', '|', 'justifyleft', 'justifycenter', 'justifyright',
-                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|', 'fullscreen',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|',
                 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
                 'italic', 'underline', 'strikethrough', 'lineheight', '|', 'table', '|', 
                 // 'image', 'multiimage', 'insertfile', 
-                'link', 'unlink', 'media', 'flash'
+                'link', 'unlink', 'media', 'flash', '|', 'fullscreen'
             ],
-            resizeType: 1,
+            resizeType: 2,
             uploadJson: 'ajax/template/uploadJson/' + <?= (int)$template->id ?>,
             basePath: 'assets/',
             themesPath: 'assets/css/',
