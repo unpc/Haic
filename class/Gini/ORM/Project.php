@@ -21,7 +21,7 @@ class Project extends Object
 
     protected static $db_index = [
         'unique:number',
-        'identity', 'title', 'ctime', 'owner', 'type', 'building'
+        'identity', 'title', 'ctime', 'owner', 'type', 'building', 'approval'
     ];
 
     const PUBLIC_BUSINESS = 2;
