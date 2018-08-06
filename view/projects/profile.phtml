@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="btn-toolbar" role="toolbar">
         <div class="btn-group mr-2" role="group">
-            <a class="btn btn-primary btn-raised" href="<?= URL('project')?>">
+            <a class="btn btn-primary btn-raised" href="<?= URL('/project')?>">
                 <i class="fa fa-arrow-left fa-fw"></i> <?= H(T('回到列表')) ?>
             </a>
         </div>
@@ -9,7 +9,7 @@
             <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/Project/Action/AddDispatcher/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派派件员') ?></button>
             <button type="button" class="btn btn-secondary" href="gini-ajax:AJAX/Project/Action/AddAssessor/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派估价师') ?></button>
             <button type="button" class="btn btn-secondary" href="gini-ajax:AJAX/Project/Action/AddSurveyor/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派查勘员') ?></button>
-            <button type="button" class="btn btn-danger"><i class="fa fa-check fa-fw"></i><?= T('提交审核') ?></button>
+            <a class="btn btn-danger" href="<?= URL("/project/approval/{$project->id}")?>"><i class="fa fa-check fa-fw"></i><?= T('提交审核') ?></a>
         </div>
         <div class="btn-group mr-2" role="group" >
             <button type="button" class="btn btn-dark"><i class="fa fa-copy fa-fw"></i><?= T('克隆数据') ?></button>

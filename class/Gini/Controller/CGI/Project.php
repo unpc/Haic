@@ -56,4 +56,15 @@ class Project extends Layout\God {
         }
     }
 
+    public function actionApproval($id=0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) $this->redirect('error/401');
+        $this->view->body = V('projects/approval', [
+            'project' => $project,
+            'form' => $form
+        ]);
+    }
+
 }

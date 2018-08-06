@@ -1,0 +1,180 @@
+<div class="container-fluid">
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group mr-2" role="group">
+            <a class="btn btn-primary btn-raised" href="<?= URL("/project/profile/{$project->id}")?>">
+                <i class="fa fa-arrow-left fa-fw"></i> <?= H(T('回到详情页面')) ?>
+            </a>
+        </div>
+        <div class="btn-group mr-2" role="group">
+            <button class="btn btn-primary btn-raised" form="project-approval" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('提交审核')) ?></button>
+        </div>
+    </div>
+    <div class="hr_2"></div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <?php
+                $building = $project->building;
+                $approval = a('approval')->whose('project')->is($project);
+            ?>
+            <h4 class="text-center">
+                房地产评估业务审核表&#160;&#160;(<?= \Gini\ORM\Approval::$APPROVAL_STATUS[(int)$approval->status] ?>)
+            </h4>
+            <form id="project-approval" method="POST" action="<?= URL("/project/approval/<?= $project->id ?>") ?>">
+            <table class="table table-sm table-bordered table-object">
+                <tbody>
+                    <tr>
+                        <td colspan="1" class="disable">估价委托人</td>
+                        <td colspan="3">
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">报告编号</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="disable">房屋所有权人</td>
+                        <td colspan="3">
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">项目编号</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="disable">项目坐落</td>
+                        <td colspan="3">
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">项目名称</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="disable">联系人</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">联系电话</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">项目案名</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="disable">委托日期</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">价值时点</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">领勘人</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="disable">建筑面积（㎡）</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">土地面积（㎡）</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">估价目的</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="disable">建筑结构</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">建筑年代</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">土地来源</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="disable">业务来源</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">业务联系人</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">项目类型</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="disable">贷款银行</td>
+                        <td colspan="3">
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">评估类别</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="disable">估价结果（万元）</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">档案总页数</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                        <td class="disable">归档时间</td>
+                        <td >
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="disable">评估方法</td>
+                        <td colspan="5">
+                            <input name="owner" type="text" class="form-control" value="<?= $building->ownership['owner'] ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <div class="form-group form-group-sm">
+                                <label class="control-label" for="target">实地查勘人意见：</label>
+                                <textarea placeholder="" id="target" name="target" type="text" class="form-control"><?= '本估价报告估价目的为确定房地产已进行实地查勘，与《不动产权证书》证记载内容一致，核实无误。押贷款额度提供参考依据而评估房地产抵押价值。' ?></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <div class="form-group form-group-sm">
+                                <label class="control-label" for="target">评估思路：</label>
+                                <textarea placeholder="" id="target" name="target" type="text" class="form-control"><?= '此次估价对象为钢混结构、设定用途为非居住的建筑物，类似实例在市场上成交的较多，易于选取可比实例，故可采用比较法、收益法进行评估。' ?></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </form>
+            <div class="hr_2"></div>
+            <div class="hr_2"></div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
