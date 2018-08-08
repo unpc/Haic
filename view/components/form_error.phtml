@@ -1,7 +1,7 @@
 <?php if (isset($_SESSION['Alert.Message'])): ?>
 	<?php foreach((array) $_SESSION['Alert.Message'] as $alert): ?>
 		<?php foreach ($alert as $message): ?>
-		<div class="alert alert-danger fade in">
+		<div class="alert alert-danger in">
 			<?= $message; ?>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 		</div>

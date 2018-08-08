@@ -7,6 +7,7 @@ class Approval extends Object
     public $project     = 'object:project';
     public $ctime       = 'datetime';
     public $status      = 'int:1,default:0';
+    public $info        = 'array';
 
     protected static $db_index = [
         'unique:project',
