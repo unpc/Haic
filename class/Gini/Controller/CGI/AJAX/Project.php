@@ -408,9 +408,20 @@ class Project extends \Gini\Controller\CGI {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $form = $this->form();
-            
-        }
+            $description = a('description', [
+                'user' => $me,
+                'project' => $project
+            ]);
+            if (!$description->id) {
+                $description = a('description');
+                $description->user = $me;
+                $description->project = $project;
+            }
+            $description->description = H($form['description']);
+            $description->save();
 
+            return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
+        }
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('projects/add-project-description', [
             'project' => $project,
             'form' => $form
