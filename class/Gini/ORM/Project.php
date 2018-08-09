@@ -18,10 +18,12 @@ class Project extends Object
     public $assessor    = 'object:user';
     // 查勘员
     public $surveyor    = 'object:user';
+    // 归档时间
+    public $archive_time = 'datetime';
 
     protected static $db_index = [
         'unique:number',
-        'identity', 'title', 'ctime', 'owner', 'type', 'building', 'approval'
+        'identity', 'title', 'ctime', 'owner', 'type', 'building', 'approval', 'archive_time'
     ];
 
     const PUBLIC_BUSINESS = 2;
@@ -71,5 +73,10 @@ class Project extends Object
             }
         }
         return $config;
+    }
+
+    public function archived()
+    {
+        return $this->archive_time != '0000-00-00 00:00:00';
     }
 }

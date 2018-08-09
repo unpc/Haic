@@ -21,7 +21,9 @@
         </div>
         <div class="hr_2"></div>
         <div id="ownership-cert-box"></div>
+        <?php if(!$project->archived()): ?>
         <button class="btn btn-primary btn-raised" form="add-project-ownership-type" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
+        <?php endif; ?>
         <div class="hr_2"></div>
     </div>
     <div class="col-2"></div>

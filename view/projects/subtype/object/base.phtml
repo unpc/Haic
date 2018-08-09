@@ -666,7 +666,9 @@
 </table>
 </form>
 <div class="hr_2"></div>
+<?php if(!$project->archived()): ?>
 <button class="btn btn-primary btn-raised" name="supply"><i class="fa fa-plus fa-fw"></i> <?= H(T('补充信息')) ?></button>
 <button class="btn btn-primary btn-raised" form="add-project-object" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
+<?php endif; ?>
 <div class="hr_2"></div>
 <div class="hr_2"></div>

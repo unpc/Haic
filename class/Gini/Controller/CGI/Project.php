@@ -11,12 +11,15 @@ class Project extends Layout\God {
     function __index() {
         $form = $this->form();
         $step = 10;
-        $projects = those('project');
+        $projects = those('project')->whose('archive_time')->is('0000-00-00 00:00:00');
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //获取post参数 并校验
             $form = $this->form('post');
             $projects = $projects->whose('number')->contains($form['number']);
         }
+
+        $projects = $projects->orderBy('archive_time', 'desc');
+        
         $pagination = Help::pagination($projects, $form['st'], $step);
         $this->view->body = V('projects/index', [
             'projects' => $projects,

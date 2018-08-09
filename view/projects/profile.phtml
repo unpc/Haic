@@ -1,24 +1,30 @@
 <div class="container-fluid">
+    <?= V('components/confirm') ?>
     <div class="btn-toolbar" role="toolbar">
         <div class="btn-group mr-2" role="group">
-            <a class="btn btn-primary btn-raised" href="<?= URL('/project')?>">
+            <a class="btn btn-primary btn-raised" href="<?= $project->archived() ? URL('/record') : URL('/project')?>">
                 <i class="fa fa-arrow-left fa-fw"></i> <?= H(T('回到列表')) ?>
             </a>
         </div>
-        <div class="btn-group mr-2" role="group" >
-            <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/Project/Action/AddDispatcher/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派派件员') ?></button>
-            <button type="button" class="btn btn-secondary" href="gini-ajax:AJAX/Project/Action/AddAssessor/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派估价师') ?></button>
-            <button type="button" class="btn btn-secondary" href="gini-ajax:AJAX/Project/Action/AddSurveyor/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派查勘员') ?></button>
-            <a class="btn btn-danger" href="<?= URL("/project/approval/{$project->id}")?>"><i class="fa fa-check fa-fw"></i><?= T('提交审核') ?></a>
-        </div>
-        <div class="btn-group mr-2" role="group" >
-            <button type="button" class="btn btn-dark"><i class="fa fa-copy fa-fw"></i><?= T('克隆数据') ?></button>
-            <button type="button" class="btn btn-secondary"><i class="fa fa-save fa-fw"></i><?= T('生成报告') ?></button>
-            <button type="button" class="btn btn-dark"><i class="fa fa-print fa-fw"></i><?= T('打印报告') ?></button>
-        </div>
-        <div class="btn-group mr-2" role="group" >
-            <button type="button" class="btn btn-warning"><i class="fa fa-save fa-fw"></i><?= T('归档项目') ?></button>
-        </div>
+        <?php if(!$project->archived()): ?>
+            <div class="btn-group mr-2" role="group" >
+                <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/Project/Action/AddDispatcher/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派派件员') ?></button>
+                <button type="button" class="btn btn-secondary" href="gini-ajax:AJAX/Project/Action/AddAssessor/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派估价师') ?></button>
+                <button type="button" class="btn btn-secondary" href="gini-ajax:AJAX/Project/Action/AddSurveyor/<?= $project->id ?>"><i class="fa fa-hand-o-left fa-fw"></i><?= T('指派查勘员') ?></button>
+                <a class="btn btn-danger" href="<?= URL("/project/approval/{$project->id}")?>"><i class="fa fa-check fa-fw"></i><?= T('提交审核') ?></a>
+            </div>
+            <div class="btn-group mr-2" role="group" >
+                <button type="button" class="btn btn-dark"><i class="fa fa-copy fa-fw"></i><?= T('克隆数据') ?></button>
+                <button type="button" class="btn btn-dark"><i class="fa fa-print fa-fw"></i><?= T('打印报告') ?></button>
+            </div>
+            <div class="btn-group mr-2" role="group" >
+                <a class="btn btn-warning"
+                    data-confirm="<?= H(T('您确认归档此项目吗?')) ?>"
+                    data-confirm-description="<?= H(T('点击确认后会归档该项目信息, 请谨慎处理!')) ?>"
+                    href="gini-ajax:AJAX/Project/Archive/<?= (int)$project->id ?>"
+                    ><i class="fa fa-save fa-fw"></i><?= T('归档项目') ?></a>
+            </div>
+        <?php endif; ?>
     </div>
     <div class="hr_2"></div>
         <div class="row">
@@ -38,6 +44,14 @@
                 <h5>项目名称: <?= T($project->title) ?></h5>
                 <h5>来源信息: </h5>
                 <div class="text-gray"><?= str_replace(["\r\n", "\n", "\r"], "<br/>", $project->source_description) ?></div>
+                <div class="hr_2"></div>
+                <div class="btn-toolbar" role="toolbar">
+                    <div class="btn-group mr-2" role="group">
+                        <a class="btn btn-primary btn-raised" href="gini-ajax:ajax/project/description/<?= $project->id?>">
+                            <i class="fa fa-eye fa-fw"></i> <?= H(T('查看备注')) ?>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="col">
                 <h5 class="card-title">操作信息: </h5>

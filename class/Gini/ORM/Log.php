@@ -30,6 +30,7 @@ class Log extends Object
     CONST ACTION_CLONE = 8;
     CONST ACTION_CREATE_REPORT = 9;
     CONST ACTION_PRINT_REPORT = 10;
+    CONST ACTION_ARCHIVE = 11;
 
     static $actions = [
         self::ACTION_ADD => '创建',
@@ -41,7 +42,8 @@ class Log extends Object
         self::ACTION_APPROVAL => '提交审核',
         self::ACTION_CLONE => '克隆数据',
         self::ACTION_CREATE_REPORT => '生成报告',
-        self::ACTION_PRINT_REPORT => '打印报告'
+        self::ACTION_PRINT_REPORT => '打印报告',
+        self::ACTION_ARCHIVE => '归档项目'
     ];
 
 }

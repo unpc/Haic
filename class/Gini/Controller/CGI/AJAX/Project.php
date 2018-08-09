@@ -376,4 +376,44 @@ class Project extends \Gini\Controller\CGI {
             'file' => $fullPath
         ]);
     }
+
+    public function actionArchive($id=0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+
+        $project->archive_time = date('Y-m-d H:i:s');
+        $project->save();
+
+        $log = a('log');
+        $log->user = $me;
+        $log->project = $project;
+        $log->action = \Gini\ORM\Log::ACTION_ARCHIVE;
+        $log->description = strtr("%user 归档项目。", ['%user' => $me->name]);
+        $log->save();
+
+        return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.href="'.URL('/project').'"</script>');
+    }
+
+    public function actionDescription($id=0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $form = $this->form();
+            
+        }
+
+        return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('projects/add-project-description', [
+            'project' => $project,
+            'form' => $form
+        ]));
+    }
 }
