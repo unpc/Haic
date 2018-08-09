@@ -1,0 +1,56 @@
+<div id="clone-project-description" class="modal fade in">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <?php
+            $description = a('description', [
+                'user' => _G('ME'),
+                'project' => $project
+            ]);
+        ?>
+        <div class="modal-header">
+            <h4 class="modal-title"><?= H(T('克隆其他项目信息')) ?></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body" style="padding-top:20px;">
+            <form id="clone-project-description-form" method="POST" action="gini-ajax:ajax/project/clone/<?= $project->id ?>">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-group-lg">
+                            <?php if (isset($form['_errors']['number'])) { ?>
+                            <span class="badge badge-danger pull-right">
+                                <?= H($form['_errors']['number']) ?>
+                            </span>
+                            <?php } ?>
+                            <label class="control-label" for="description"><?= H('请输入项目编号匹配: ') ?></label>
+                            <input id="number" name="number" type="text" class="form-control <?= isset($form['_errors']['number']) ? 'is-invalid' : '' ?>" autocomplete="off" value="<?= H($form['number']) ?>" />
+                        </div>
+                        <span class="description red">* 请慎重克隆操作，如果您克隆成功的话您目前项目的二级信息将被全部覆盖.</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-raised" form="clone-project-description-form" type="submit"><i class="fa fa-save fa-fw"></i> <?= H(T('更新')) ?></button>
+            <button class="btn btn-secondary btn-raised" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-fw "></i><?= H(T('关闭')) ?></button>
+        </div>
+    </div>
+</div>
+</div>
+<script data-ajax="true">
+require(['main'], function($){
+
+    var $modal = $('#clone-project-description');
+    $modal
+    .on('hidden.bs.modal', function(){
+        $modal.remove();
+    })
+    .modal();
+
+    $('#clone-project-description-form').on('ajax-success', function(){
+        $modal
+        .removeAttr('id').modal('hide')
+        .find('[id]').removeAttr('id');
+    });
+
+});
+</script>

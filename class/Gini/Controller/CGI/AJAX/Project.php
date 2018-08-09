@@ -427,4 +427,68 @@ class Project extends \Gini\Controller\CGI {
             'form' => $form
         ]));
     }
+
+    public function actionClone($id=0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        $form = $this->form();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            $validator = new \Gini\CGI\Validator;
+
+            try {
+                $op = a('project', ['number' => $form['number']]);
+                $validator
+                    ->validate('number', $form['number'], T('项目编号不能为空!'))
+                    ->validate('number', $op->id, T('没找到对应的编号的项目进行克隆!'))
+                    ->done();
+                
+                // 克隆信息
+                $project->user_name = $op->user_name;
+                $project->user_address = $op->user_address;
+
+                $project->target = $op->target;
+
+                $project->registers = $op->registers;
+
+                $project->operation_date = $op->operation_date;
+                $project->operation_from = $op->operation_from;
+                $project->operation_to = $op->operation_to;
+
+                $project->save();
+                
+                $data = $op->building->getData();
+                $building = $project->building;
+                foreach ($data as $key => $v) {
+                    if ($key == 'id') continue;
+                    if ($key == '_extra') {
+                        foreach ((array)$v as $kk => $vv) {
+                            $building->$kk = $vv;
+                        }
+                    }
+                    else {
+                        $building->$key = $v;
+                    }
+                }
+                $building->save();
+
+                $project->building = $building;
+                $project->save();
+
+                return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
+            }
+            catch (\Gini\CGI\Validator\Exception $e) {
+                $form['_errors'] = $validator->errors();
+            }
+        }
+        return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('projects/clone-project-description', [
+            'project' => $project,
+            'form' => $form
+        ]));
+    }
 }
