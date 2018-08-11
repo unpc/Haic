@@ -5,6 +5,18 @@ namespace Gini\Controller\CGI\AJAX;
 class Approval extends \Gini\Controller\CGI 
 {
 
+    public function actionPass($id=0)
+    {
+        $me = _G('ME');
+        $approval = a('approval', $id);
+        if (!$approval->id) $this->redirect('error/404');
+
+        $approval->status = $approval->status + 1;
+        $approval->save();
+
+        return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
+    }
+
     public function actionReply($id=0)
     {
         $me = _G('ME');
