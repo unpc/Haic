@@ -79,4 +79,25 @@ class Template extends \Gini\Controller\CGI {
         ]));
 
     }
+
+    public function actionGetTemplates()
+    {
+        $me = _G('ME');
+        $form = $this->form();
+        $objects = [];
+
+        try {
+            $templates = those('template')->whose('title')->contains(H($form['query']));
+            foreach ($templates as $key => $template) {
+                $objects[$key] = [
+                    'name' => $template->title,
+                    'id' => $template->id
+                ];
+            }
+        } catch (\Gini\RPC\Exception $e) {
+            $objects = [];
+        }
+
+        return \Gini\IoC::construct('\Gini\CGI\Response\JSON', $objects);
+    }
 }

@@ -1,0 +1,81 @@
+<div id="print-project" class="modal fade in">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title"><?= H(T('打印报告')) ?></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body" style="padding-top:20px;">
+            <form id="print-project-form" method="POST" action="gini-ajax:ajax/project/print/<?= $project->id ?>">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-group-lg">
+                            <?php if (isset($form['_errors']['name'])) { ?>
+                            <span class="badge badge-danger pull-right">
+                                <?= H($form['_errors']['name']) ?>
+                            </span>
+                            <?php } ?>
+                            <label class="control-label" for="description"><?= H('请选择报告模板:') ?></label>
+                            <input id="name" name="name" type="text" class="autocomplete form-control <?= isset($form['_errors']['name']) ? 'is-invalid' : '' ?>" autocomplete="off" value="<?= H($form['name']) ?>" />
+                            <input id="id" name="id" hidden value="<?= $form['id']?>" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-raised" form="print-project-form" type="submit"><i class="fa fa-save fa-fw"></i> <?= H(T('确认打印')) ?></button>
+            <button class="btn btn-secondary btn-raised" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-fw "></i><?= H(T('关闭')) ?></button>
+        </div>
+    </div>
+</div>
+</div>
+<script data-ajax="true">
+require(['main', 'bootstrap.autocomplete'], function($){
+
+    var $modal = $('#print-project');
+    $modal
+    .on('hidden.bs.modal', function(){
+        $modal.remove();
+    })
+    .modal();
+
+    $('#print-project-form').on('ajax-success', function(){
+        $modal
+        .removeAttr('id').modal('hide')
+        .find('[id]').removeAttr('id');
+    });
+
+    $('input.autocomplete').autocomplete({
+        source: function(query, process){
+            $.ajax({
+                url: 'ajax/template/getTemplates',
+                method: 'POST',
+                data: {
+                    query: query
+                },
+                success: function(respData) {
+                    return process(respData)
+                }
+            })
+        },
+        formatItem: function(item){
+            return item["name"]
+        },
+        setValue: function(item){
+            return { 'data-value': item["name"], 'real-value': item["id"] }
+        },
+        select: function () {
+            var val = this.$menu.find('.active').attr('data-value'),
+                realVal = this.$menu.find('.active').attr('real-value')
+            this.$element
+            .val(this.updater(val))
+            .attr("real-value", realVal)
+            .change()
+            $('input#id').val(realVal)
+            return this.hide()
+        }
+    });
+
+});
+</script>

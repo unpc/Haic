@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1" />
+    <title><?= strtr(\Gini\Config::get('project.number_template'), [
+        '%year' => date('Y', strtotime($project->ctime)),
+        '%number' => $project->number
+    ])?></title>
+    <base href="<?= H(URL('/')) ?>">
+    <style media="print">
+        .buttons { display:none; }
+        input { display: inline; border: none; }
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <a href="#" onclick="window.print(); return false;"><?= T('打印'); ?></a>
+        <a href="#" onclick="window.close(); return false;"><?= T('关闭') ?></a>
+    </div>
+    <div class="container">
+        <?= strtr($template->content, array_merge(['%input%' => '<input size=10 />'], $project->getTemplateData())) ?>
+    </div>
+</body>
+</html>

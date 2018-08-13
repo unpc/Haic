@@ -136,4 +136,18 @@ class Project extends Layout\God {
         ]);
     }
 
+    public function actionPrint($id=0, $tid=0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        $template = a('template', $tid);
+        if (!$project->id) $this->redirect('error/404');
+        if (!$template->id) $this->redirect('error/404');
+
+        $this->view = V('projects/print', [
+            'project' => $project,
+            'template' => $template
+        ]);
+    }
+
 }
