@@ -10,8 +10,9 @@ class Template extends Layout\God {
         $step = 10;
         $templates = those('template');
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $form = $this->form('post');
-            $templates = $templates->whose('title')->contains($form['title']);
+            if ($form['title']) {
+                $templates = $templates->whose('title')->contains($form['title']);
+            }
         }
         $pagination = \Gini\Model\Help::pagination($templates, $form['st'], $step);
         $this->view->body = V('template/list', [

@@ -11,9 +11,13 @@ class Role extends Layout\God {
         if (!$role->id) $role = $roles->current();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!$role->id) $this->redirect('error/401');
-            if ($form['submit']) {
+            if ($form['submit'] == 'submit') {
                 $role->perms = $form['perms'];
                 $role->save();
+            }
+            else if ($form['submit'] == 'delete') {
+                $role->delete();
+                $this->redirect('/role');
             }
             else {
                 //获取post参数 并校验
