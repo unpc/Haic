@@ -4,9 +4,10 @@ namespace Gini\Controller\CGI;
 
 use \Gini\Model\Help;
 
-class Record extends Layout\God {
-    
-    function __index() {
+class Record extends Layout\God
+{
+    public function __index()
+    {
         $form = $this->form();
         $step = 10;
         $projects = those('project')->whose('archive_time')->isGreaterThan('0000-00-00 00:00:00');
@@ -21,5 +22,4 @@ class Record extends Layout\God {
             'form' => $form
         ]);
     }
-
 }

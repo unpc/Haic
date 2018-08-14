@@ -2,19 +2,23 @@
 
 namespace Gini\Controller\CGI\Layout;
 
-abstract class God extends \Gini\Controller\CGI\Layout {
-
+abstract class God extends \Gini\Controller\CGI\Layout
+{
     protected static $layout_name = 'layout/index';
     
-    function __postAction($action, &$params, $response) 
+    public function __postAction($action, &$params, $response)
     {
         if (!\Gini\Auth::isLoggedIn()) {
             $this->redirect('/login');
         }
 
         $route = \Gini\CGI::route();
-        if ($route) $args = explode('/', $route);
-        if (!$route || count($args) == 0) $args = ['God'];
+        if ($route) {
+            $args = explode('/', $route);
+        }
+        if (!$route || count($args) == 0) {
+            $args = ['God'];
+        }
 
 
         $this->view->title = '工作面板';

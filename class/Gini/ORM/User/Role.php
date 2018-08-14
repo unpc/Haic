@@ -11,5 +11,4 @@ class Role extends \Gini\ORM\Object
         'user',
         'role'
     ];
-
 }

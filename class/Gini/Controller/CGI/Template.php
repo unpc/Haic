@@ -2,9 +2,9 @@
 
 namespace Gini\Controller\CGI;
 
-class Template extends Layout\God {
-    
-    public function __index() 
+class Template extends Layout\God
+{
+    public function __index()
     {
         $form = $this->form();
         $step = 10;
@@ -37,6 +37,4 @@ class Template extends Layout\God {
             'form' => $form
         ]);
     }
-    
-
 }

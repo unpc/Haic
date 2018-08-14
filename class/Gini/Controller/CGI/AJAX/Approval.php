@@ -2,14 +2,15 @@
 
 namespace Gini\Controller\CGI\AJAX;
 
-class Approval extends \Gini\Controller\CGI 
+class Approval extends \Gini\Controller\CGI
 {
-
     public function actionPass($id=0)
     {
         $me = _G('ME');
         $approval = a('approval', $id);
-        if (!$approval->id) $this->redirect('error/404');
+        if (!$approval->id) {
+            $this->redirect('error/404');
+        }
 
         $approval->status = $approval->status + 1;
         $approval->save();
@@ -21,16 +22,16 @@ class Approval extends \Gini\Controller\CGI
     {
         $me = _G('ME');
         $approval = a('approval', $id);
-        if (!$approval->id) $this->redirect('error/404');
+        if (!$approval->id) {
+            $this->redirect('error/404');
+        }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $form = $this->form();
 
             $validator = new \Gini\CGI\Validator;
 
             try {
-
                 $validator
                     ->validate('reason', $form['reason'], T('驳回理由不能为空!'))
                     ->done();
@@ -42,11 +43,9 @@ class Approval extends \Gini\Controller\CGI
                 $approval->save();
 
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
-            }
-            catch (\Gini\CGI\Validator\Exception $e) {
+            } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
             }
-
         }
 
 
@@ -55,5 +54,4 @@ class Approval extends \Gini\Controller\CGI
             'form' => $form
         ]));
     }
-
 }

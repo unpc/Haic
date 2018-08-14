@@ -44,7 +44,7 @@ class Building extends Object
     
     public $room_wall            = 'int:1';
     public $room_platfond        = 'int:1';
-    public $room_floor           = 'int:1'; 
+    public $room_floor           = 'int:1';
 
     public $toilet_wall            = 'int:1';
     public $toilet_platfond        = 'int:1';
@@ -114,7 +114,7 @@ class Building extends Object
     const JYJG = 5;
     const QTJG = 6;
 
-    static $structure_s = [
+    public static $structure_s = [
         self::GHJG => '钢混结构',
         self::ZHJG => '砖混结构',
         self::ZMJG => '砖木结构',
@@ -133,7 +133,7 @@ class Building extends Object
     const NN = 8;
     const BB = 9;
 
-    static $front_s = [
+    public static $front_s = [
         self::NB => '南北',
         self::DN => '东南',
         self::DB => '东北',
@@ -151,7 +151,7 @@ class Building extends Object
     const USE_GY = 4;
     const USE_QT = 5;
 
-    static $use_s = [
+    public static $use_s = [
         self::USE_ZZ => '住宅',
         self::USE_BG => '办公',
         self::USE_SY => '商业',
@@ -166,7 +166,7 @@ class Building extends Object
     const TYPE_FIVE = 5;
     const TYPE_SIX = 6;
 
-    static $type_s = [
+    public static $type_s = [
         self::TYPE_ONE => '一室一厅',
         self::TYPE_TWO => '二室一厅',
         self::TYPE_THREE => '三室一厅',
@@ -181,7 +181,7 @@ class Building extends Object
     const APP_DXS = 4;
     const APP_CK = 5;
 
-    static $appurtenance_s = [
+    public static $appurtenance_s = [
         self::APP_XY => '小院',
         self::APP_GL => '阁楼',
         self::APP_LT => '露台',
@@ -200,7 +200,7 @@ class Building extends Object
     const OUT_ALL_TMQ = 9;
     const OUT_ALL_QT = 10;
 
-    static $out_wall_s = [
+    public static $out_wall_s = [
         self::OUT_ALL_DBQ => '大白墙',
         self::OUT_ALL_QSQ => '清水墙',
         self::OUT_ALL_SSS => '水刷石',
@@ -219,7 +219,7 @@ class Building extends Object
     const DOOR_OUTSIZE_FDM = 4;
     const DOOR_OUTSIZE_QT = 5;
 
-    static $door_outside_s = [
+    public static $door_outside_s = [
         self::DOOR_OUTSIZE_MZ => '木制',
         self::DOOR_OUTSIZE_LHJ => '铝合金',
         self::DOOR_OUTSIZE_SG => '塑钢',
@@ -234,7 +234,7 @@ class Building extends Object
     const DOOR_INSIZE_TLM = 5;
     const DOOR_INSIZE_QT = 6;
 
-    static $door_inside_s = [
+    public static $door_inside_s = [
         self::DOOR_INSIZE_MM => '木门',
         self::DOOR_INSIZE_LHJ => '铝合金',
         self::DOOR_INSIZE_GMM => '钢木门',
@@ -249,7 +249,7 @@ class Building extends Object
     const WINDOW_OUTSIZE_BLG = 4;
     const WINDOW_OUTSIZE_SG = 5;
 
-    static $window_outside_s = [
+    public static $window_outside_s = [
         self::WINDOW_OUTSIZE_MC => '木制',
         self::WINDOW_OUTSIZE_GC => '钢窗',
         self::WINDOW_OUTSIZE_LHJ => '铝合金',
@@ -263,7 +263,7 @@ class Building extends Object
     const WINDOW_INSIZE_BLG = 4;
     const WINDOW_INSIZE_QT = 5;
 
-    static $window_inside_s = [
+    public static $window_inside_s = [
         self::WINDOW_INSIZE_MC => '木制',
         self::WINDOW_INSIZE_GC => '钢窗',
         self::WINDOW_INSIZE_LHJ => '铝合金',
@@ -282,7 +282,7 @@ class Building extends Object
     const PARLOUR_WALL_NQZ = 8;
     const PARLOUR_WALL_QT = 9;
 
-    static $parlour_wall_s = [
+    public static $parlour_wall_s = [
         self::PARLOUR_WALL_MHQ => '抹灰墙',
         self::PARLOUR_WALL_SHJ => '石灰浆',
         self::PARLOUR_WALL_RJQ => '乳胶漆',
@@ -303,7 +303,7 @@ class Building extends Object
     const PARLOUR_PLATFOND_QT = 7;
 
     // 抹灰顶棚；板材顶棚；乳胶漆；石膏线；灯池；木棋格玻璃吊顶；其他
-    static $parlour_platfond_s = [
+    public static $parlour_platfond_s = [
         self::PARLOUR_PLATFOND_MHDP => '抹灰顶棚',
         self::PARLOUR_PLATFOND_BCDP => '板材顶棚',
         self::PARLOUR_PLATFOND_RJQ => '乳胶漆',
@@ -328,7 +328,7 @@ class Building extends Object
     const PARLOUR_FLOOR_QT = 13;
 
     // 水泥砂浆；水磨石；碎石；沥青混凝土；素土；瓷砖；大理石；花岗岩；木地板；复合地板；塑料地板砖；石英；其他
-    static $parlour_floor_s = [
+    public static $parlour_floor_s = [
         self::PARLOUR_FLOOR_SNSJ => '水泥砂浆',
         self::PARLOUR_FLOOR_SMS => '水磨石',
         self::PARLOUR_FLOOR_SS => '碎石',
@@ -351,7 +351,7 @@ class Building extends Object
     const TOILET_WALL_QT = 5;
 
     // 乳胶漆；抹灰；瓷砖半墙；瓷砖到顶；其他
-    static $toilet_wall_s = [
+    public static $toilet_wall_s = [
         self::TOILET_WALL_RJQ => '乳胶漆',
         self::TOILET_WALL_MH => '抹灰',
         self::TOILET_WALL_CZBQ => '瓷砖半墙',
@@ -366,7 +366,7 @@ class Building extends Object
     const TOILET_PLATFOND_QT = 5;
 
     // 无吊顶；PVC吊顶；铝制扣板；木棋格玻璃吊顶；其他
-    static $toilet_platfond_s = [
+    public static $toilet_platfond_s = [
         self::TOILET_PLATFOND_WDD => '无吊顶',
         self::TOILET_PLATFOND_PVCDD => 'PVC吊顶',
         self::TOILET_PLATFOND_LZKB => '铝制扣板',
@@ -380,7 +380,7 @@ class Building extends Object
     const TOILET_FLOOR_QT = 4;
 
     // 水泥；瓷砖；马赛克；其他
-    static $toilet_floor_s = [
+    public static $toilet_floor_s = [
         self::TOILET_FLOOR_SN => '水泥',
         self::TOILET_FLOOR_CZ => '瓷砖',
         self::TOILET_FLOOR_MSK => '马赛克',
@@ -396,7 +396,7 @@ class Building extends Object
     const TOILET_APP_QT = 7;
 
     // 蹲便器；坐便器；浴盆；洗手盆；化装台；吊柜；其他
-    static $toilet_appurtenance_s = [
+    public static $toilet_appurtenance_s = [
         self::TOILET_APP_DBQ => '蹲便器',
         self::TOILET_APP_ZBQ => '坐便器',
         self::TOILET_APP_YP => '浴盆',
@@ -413,7 +413,7 @@ class Building extends Object
     const COOK_APP_QT = 5;
 
     //菜盆；料理台；吊柜；消毒柜；其他
-    static $cook_appurtenance_s = [
+    public static $cook_appurtenance_s = [
         self::COOK_APP_CP => '菜盆',
         self::COOK_APP_LLT => '料理台',
         self::COOK_APP_DG => '吊柜',
@@ -428,7 +428,7 @@ class Building extends Object
     const VERANDA_WALL_QT = 5;
 
     //抹灰；乳胶漆；涂料；瓷砖；其他
-    static $veranda_wall_s = [
+    public static $veranda_wall_s = [
         self::VERANDA_WALL_MH => '抹灰',
         self::VERANDA_WALL_RJQ => '乳胶漆',
         self::VERANDA_WALL_TL => '涂料',
@@ -441,7 +441,7 @@ class Building extends Object
     const VERANDA_FLOOR_QT = 3;
 
     //水泥、瓷砖；其他
-    static $veranda_floor_s = [
+    public static $veranda_floor_s = [
         self::VERANDA_FLOOR_SN => '水泥',
         self::VERANDA_FLOOR_CZ => '瓷砖',
         self::VERANDA_FLOOR_QT => '其他'
@@ -456,7 +456,7 @@ class Building extends Object
     const OWNERSHIP_SXB_FWSYQZ = 7;
     const OWNERSHIP_GYTDSYQ = 8;
 
-    static $ownership_cert_type = [
+    public static $ownership_cert_type = [
         self::OWNERSHIP_BDCQZS => '不动产权证书',
         self::OWNERSHIP_BDCQZS_GY => '不动产权证书(共有)',
         self::OWNERSHIP_TJSFDCQZ => '天津市房地产权证',

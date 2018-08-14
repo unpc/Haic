@@ -6,9 +6,10 @@ use \Gini\Model\Alert;
 use \Gini\Model\Help;
 use \Gini\ORM\Approval;
 
-class Project extends Layout\God {
-    
-    function __index() {
+class Project extends Layout\God
+{
+    public function __index()
+    {
         $form = $this->form();
         $step = 10;
         $projects = those('project')->whose('archive_time')->is('0000-00-00 00:00:00');
@@ -31,7 +32,9 @@ class Project extends Layout\God {
     {
         $me = _G('ME');
         $project = a('project', $id);
-        if (!$project->id) $this->redirect('error/401');
+        if (!$project->id) {
+            $this->redirect('error/401');
+        }
         $this->view->body = V('projects/profile', [
             'project' => $project,
             'sub' => $sub,
@@ -67,7 +70,9 @@ class Project extends Layout\God {
     {
         $me = _G('ME');
         $project = a('project', $id);
-        if (!$project->id) $this->redirect('error/401');
+        if (!$project->id) {
+            $this->redirect('error/401');
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $approval = a('approval')->whose('project')->is($project);
             if (!$approval->id) {
@@ -82,7 +87,6 @@ class Project extends Layout\God {
             $form = $this->form();
 
             try {
-
                 $validator
                     ->validate('user_name', $form['user_name'], T('估价委托人不可为空!'))
                     ->validate('report_no', $form['report_no'], T('报告编号不能为空!'))
@@ -115,17 +119,15 @@ class Project extends Layout\God {
                     ->validate('appraisal_option', $form['appraisal_option'], T('评估思路不能为空!'))
                     ->done();
 
-                    $approval->info = (array)$form;
-                    $approval->status = Approval::APPROVAL_FIRST;
-                    if ($approval->save()) {
-                        $current_status = Approval::$APPROVAL_STATUS[$approval->status];
-                        Alert::setMessage("提交审核成功至{$current_status}!", Alert::TYPE_OK);
-                    }
-                    else {
-                        Alert::setMessage("提交审核失败!", Alert::TYPE_ERROR);
-                    }
-            }
-            catch (\Gini\CGI\Validator\Exception $e) {
+                $approval->info = (array)$form;
+                $approval->status = Approval::APPROVAL_FIRST;
+                if ($approval->save()) {
+                    $current_status = Approval::$APPROVAL_STATUS[$approval->status];
+                    Alert::setMessage("提交审核成功至{$current_status}!", Alert::TYPE_OK);
+                } else {
+                    Alert::setMessage("提交审核失败!", Alert::TYPE_ERROR);
+                }
+            } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
             }
         }
@@ -141,13 +143,16 @@ class Project extends Layout\God {
         $me = _G('ME');
         $project = a('project', $id);
         $template = a('template', $tid);
-        if (!$project->id) $this->redirect('error/404');
-        if (!$template->id) $this->redirect('error/404');
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        if (!$template->id) {
+            $this->redirect('error/404');
+        }
 
         $this->view = V('projects/print', [
             'project' => $project,
             'template' => $template
         ]);
     }
-
 }

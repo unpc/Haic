@@ -1,4 +1,14 @@
 ---
-user.isAllowedTo[管理]:
-- callback:\Gini\Module\Unpc::adminACL
+user.isAllowedTo[查看].user:
+- callback:\Gini\Model\Role::userACL
+user.isAllowedTo[添加].user:
+- callback:\Gini\Model\Role::userACL
+user.isAllowedTo[修改密码].user:
+- callback:\Gini\Model\Role::userACL
+user.isAllowedTo[修改基本信息].user:
+- callback:\Gini\Model\Role::userACL
+user.isAllowedTo[修改角色].user:
+- callback:\Gini\Model\Role::userACL
+user.isAllowedTo[删除用户].user:
+- callback:\Gini\Model\Role::userACL
 ...

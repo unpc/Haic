@@ -2,9 +2,10 @@
 
 namespace Gini\Controller\CGI;
 
-class Mine extends Layout\God {
-    
-    function __index($id=0) {
+class Mine extends Layout\God
+{
+    public function __index($id=0)
+    {
         $form = $this->form();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $group = [];
@@ -19,5 +20,4 @@ class Mine extends Layout\God {
             'form' => $form
         ]);
     }
-
 }

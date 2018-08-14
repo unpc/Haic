@@ -2,19 +2,17 @@
 
 namespace Gini\Controller\CGI\AJAX;
 
-class Template extends \Gini\Controller\CGI {
-
+class Template extends \Gini\Controller\CGI
+{
     public function actionAdd()
     {
         $me = _G('ME');
         $form = $this->form();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $validator = new \Gini\CGI\Validator;
 
             try {
-
                 $validator
                     ->validate('title', $form['title'], T('模板名称不能为空!'))
                     ->done();
@@ -26,11 +24,9 @@ class Template extends \Gini\Controller\CGI {
                 $template->save();
 
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
-            }
-            catch (\Gini\CGI\Validator\Exception $e) {
+            } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
             }
-
         }
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('template/add-template-modal', [
@@ -38,7 +34,7 @@ class Template extends \Gini\Controller\CGI {
         ]));
     }
 
-    public function actionEdit($id=0) 
+    public function actionEdit($id=0)
     {
         $me = _G('ME');
         $template = a('template', $id);
@@ -47,7 +43,6 @@ class Template extends \Gini\Controller\CGI {
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $form = $this->form();
 
             $validator = new \Gini\CGI\Validator;
@@ -59,7 +54,7 @@ class Template extends \Gini\Controller\CGI {
         }
     }
 
-    public function actionDelete($id=0, $refresh=false) 
+    public function actionDelete($id=0, $refresh=false)
     {
         $me = _G('ME');
         $template = a('template', $id);
@@ -77,7 +72,6 @@ class Template extends \Gini\Controller\CGI {
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('template/delete-template-success', [
             'template' => $template
         ]));
-
     }
 
     public function actionGetTemplates()

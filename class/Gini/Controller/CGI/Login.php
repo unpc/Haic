@@ -4,9 +4,10 @@ namespace Gini\Controller\CGI;
 
 use Gini\Model\Alert;
 
-class Login extends Layout\Login {
-
-    function __index() {
+class Login extends Layout\Login
+{
+    public function __index()
+    {
         if (\Gini\Auth::isLoggedIn()) {
             $this->redirect('/');
         }
@@ -15,7 +16,6 @@ class Login extends Layout\Login {
             $validator = new \Gini\CGI\Validator;
 
             try {
-
                 $validator
                     ->validate('AuthToken', $form['AuthToken'], T('登录名不能为空!'))
                     ->validate('AuthCode', $form['AuthCode'], T('密码不能为空!'))
@@ -28,7 +28,6 @@ class Login extends Layout\Login {
                 $auth = \Gini\IoC::construct('\Gini\Auth', $username);
                 $password = $form['AuthCode'];
                 if ($auth->verify($password)) {
-
                     \Gini\Auth::login($username);
 
                     if ($form['remember-me']) {
@@ -39,8 +38,7 @@ class Login extends Layout\Login {
                 }
 
                 $form['_errors']['*'] = T('用户名/密码错误!');
-            }
-            catch (\Gini\CGI\Validator\Exception $e) {
+            } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
             }
 
@@ -53,8 +51,5 @@ class Login extends Layout\Login {
         $this->view->body = V('login/body', [
             'form' => $form
         ]);
-
     }
-
-
 }

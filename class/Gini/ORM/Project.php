@@ -68,8 +68,8 @@ class Project extends Object
                 $config[] = [
                     'type' => $file->getExtension(),
                     'size' => $file->getSize(),
-                    'caption' => $file->getFileName(), 
-                    'url' => "ajax/project/deleteAttachment/{$this->id}/{$file->getFileName()}", 
+                    'caption' => $file->getFileName(),
+                    'url' => "ajax/project/deleteAttachment/{$this->id}/{$file->getFileName()}",
                     'key' => $file->getFileName()
                 ];
             }

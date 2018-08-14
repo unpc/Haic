@@ -2,24 +2,27 @@
 
 namespace Gini\Controller\CGI;
 
-class Role extends Layout\God {
-    
-    function __index($id=0) {
+class Role extends Layout\God
+{
+    public function __index($id=0)
+    {
         $form = $this->form();
         $roles = those('role');
         $role = a('role', $id);
-        if (!$role->id) $role = $roles->current();
+        if (!$role->id) {
+            $role = $roles->current();
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (!$role->id) $this->redirect('error/401');
+            if (!$role->id) {
+                $this->redirect('error/401');
+            }
             if ($form['submit'] == 'submit') {
                 $role->perms = $form['perms'];
                 $role->save();
-            }
-            else if ($form['submit'] == 'delete') {
+            } elseif ($form['submit'] == 'delete') {
                 $role->delete();
                 $this->redirect('/role');
-            }
-            else {
+            } else {
                 //获取post参数 并校验
                 $form = $this->form('post');
                 $r = a('role');
@@ -35,5 +38,4 @@ class Role extends Layout\God {
             'form' => $form
         ]);
     }
-
 }

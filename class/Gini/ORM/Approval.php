@@ -11,7 +11,7 @@ class Approval extends Object
 
     protected static $db_index = [
         'unique:project',
-        'status', 
+        'status',
     ];
 
     const APPROVAL_PENDING = 0;

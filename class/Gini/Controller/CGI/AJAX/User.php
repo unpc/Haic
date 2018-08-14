@@ -2,8 +2,8 @@
 
 namespace Gini\Controller\CGI\AJAX;
 
-class User extends \Gini\Controller\CGI {
-
+class User extends \Gini\Controller\CGI
+{
     public function actionGetUsers()
     {
         $me = _G('ME');
@@ -25,15 +25,14 @@ class User extends \Gini\Controller\CGI {
         return \Gini\IoC::construct('\Gini\CGI\Response\JSON', $objects);
     }
 
-	public function actionAdd() {
+    public function actionAdd()
+    {
         $me = _G('ME');
         $form = $this->form();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $validator = new \Gini\CGI\Validator;
 
             try {
-
                 $username = \Gini\Auth::makeUserName(H($form['username']), H($form['backend']));
 
                 $exist_user = a('user')
@@ -54,15 +53,13 @@ class User extends \Gini\Controller\CGI {
                 $user->phone = H($form['phone']);
                 $user->save();
 
-				$auth = \Gini\IoC::construct('\Gini\Auth', $username);
-        		$auth->create(H($form['password'] ?: '123456'));
+                $auth = \Gini\IoC::construct('\Gini\Auth', $username);
+                $auth->create(H($form['password'] ?: '123456'));
 
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
-            }
-            catch (\Gini\CGI\Validator\Exception $e) {
+            } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
             }
-
         }
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('users/add-user-modal', [
@@ -70,7 +67,7 @@ class User extends \Gini\Controller\CGI {
         ]));
     }
 
-    public function actionEdit($id=0) 
+    public function actionEdit($id=0)
     {
         $me = _G('ME');
         $user = a('user', $id);
@@ -94,21 +91,18 @@ class User extends \Gini\Controller\CGI {
                 $user->save();
 
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
-            }
-            catch (\Gini\CGI\Validator\Exception $e) {
+            } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
             }
-
         }
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('users/edit-user-modal', [
-            'form' => $form, 
+            'form' => $form,
             'user' => $user
         ]));
-
     }
 
-    public function actionEditPwd($id=0) 
+    public function actionEditPwd($id=0)
     {
         $me = _G('ME');
         $user = a('user', $id);
@@ -131,21 +125,18 @@ class User extends \Gini\Controller\CGI {
                 $auth->changePassword(H($form['password'] ?: 'Az123456'));
 
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
-            }
-            catch (\Gini\CGI\Validator\Exception $e) {
+            } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
             }
-
         }
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('users/edit-user-password-modal', [
-            'form' => $form, 
+            'form' => $form,
             'user' => $user
         ]));
-
     }
 
-    public function actionEditRole($id=0) 
+    public function actionEditRole($id=0)
     {
         $me = _G('ME');
         $user = a('user', $id);
@@ -173,13 +164,12 @@ class User extends \Gini\Controller\CGI {
         }
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('users/edit-user-role-modal', [
-            'form' => $form, 
+            'form' => $form,
             'user' => $user
         ]));
-
     }
 
-    function actionDelete($id=0) 
+    public function actionDelete($id=0)
     {
         $me = _G('ME');
         $user = a('user', $id);
@@ -193,6 +183,5 @@ class User extends \Gini\Controller\CGI {
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('users/delete-user-success', [
             'user' => $user
         ]));
-
     }
 }

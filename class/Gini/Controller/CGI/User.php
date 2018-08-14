@@ -2,9 +2,10 @@
 
 namespace Gini\Controller\CGI;
 
-class User extends Layout\God {
-    
-    function __index() {
+class User extends Layout\God
+{
+    public function __index()
+    {
         $form = $this->form();
         $step = 10;
         $users = those('user');
@@ -20,5 +21,4 @@ class User extends Layout\God {
             'form' => $form
         ]);
     }
-
 }

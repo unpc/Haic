@@ -2,17 +2,16 @@
 
 namespace Gini\Controller\CGI\AJAX;
 
-class Project extends \Gini\Controller\CGI {
-
-	public function actionAdd() {
+class Project extends \Gini\Controller\CGI
+{
+    public function actionAdd()
+    {
         $me = _G('ME');
         $form = $this->form();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $validator = new \Gini\CGI\Validator;
 
             try {
-
                 $validator
                     ->validate('title', $form['title'], T('项目名称不能为空!'))
                     ->validate('number', $form['number'], T('项目编号不能为空!'))
@@ -37,11 +36,9 @@ class Project extends \Gini\Controller\CGI {
                 }
 
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
-            }
-            catch (\Gini\CGI\Validator\Exception $e) {
+            } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
             }
-
         }
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('projects/add-project-modal', [
@@ -49,12 +46,11 @@ class Project extends \Gini\Controller\CGI {
         ]));
     }
 
-    public function actionEdit($id=0) 
+    public function actionEdit($id=0)
     {
-        
     }
 
-    public function actionDelete($id=0) 
+    public function actionDelete($id=0)
     {
         $me = _G('ME');
         $project = a('project', $id);
@@ -68,7 +64,6 @@ class Project extends \Gini\Controller\CGI {
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('projects/delete-project-success', [
             'project' => $project
         ]));
-
     }
 
     public function actionAddUser($id=0)
@@ -122,10 +117,10 @@ class Project extends \Gini\Controller\CGI {
 
         $form = $this->form();
         $building = $project->building;
-        $add = FALSE;
+        $add = false;
         if (!$building->id) {
             $building = a('building');
-            $add = TRUE;
+            $add = true;
         }
 
         $building->year = $form['year'];
@@ -208,10 +203,10 @@ class Project extends \Gini\Controller\CGI {
 
         $form = $this->form();
         $building = $project->building;
-        $add = FALSE;
+        $add = false;
         if (!$building->id) {
             $building = a('building');
-            $add = TRUE;
+            $add = true;
         }
         
         $building->amount = $form['amount'];
@@ -438,7 +433,6 @@ class Project extends \Gini\Controller\CGI {
         $form = $this->form();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
             $validator = new \Gini\CGI\Validator;
 
             try {
@@ -465,13 +459,14 @@ class Project extends \Gini\Controller\CGI {
                 $data = $op->building->getData();
                 $building = $project->building;
                 foreach ($data as $key => $v) {
-                    if ($key == 'id') continue;
+                    if ($key == 'id') {
+                        continue;
+                    }
                     if ($key == '_extra') {
                         foreach ((array)$v as $kk => $vv) {
                             $building->$kk = $vv;
                         }
-                    }
-                    else {
+                    } else {
                         $building->$key = $v;
                     }
                 }
@@ -481,8 +476,7 @@ class Project extends \Gini\Controller\CGI {
                 $project->save();
 
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
-            }
-            catch (\Gini\CGI\Validator\Exception $e) {
+            } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
             }
         }
@@ -503,7 +497,6 @@ class Project extends \Gini\Controller\CGI {
         $form = $this->form();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
             $validator = new \Gini\CGI\Validator;
 
             try {
@@ -517,9 +510,7 @@ class Project extends \Gini\Controller\CGI {
                 if ($template->id) {
                     return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.href="'.URL("/project/print/{$project->id}/{$template->id}").'"</script>');
                 }
-                
-            }
-            catch (\Gini\CGI\Validator\Exception $e) {
+            } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
             }
         }

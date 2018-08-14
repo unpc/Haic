@@ -2,17 +2,17 @@
 
 namespace Gini\Controller\CLI;
 
-class God extends \Gini\Controller\CLI {
-
-    function __index($args) 
+class God extends \Gini\Controller\CLI
+{
+    public function __index($args)
     {
         echo "Available commands:\n";
         echo "  gini God addUser\n";
     }
 
-    function actionAddUser($args) 
+    public function actionAddUser($args)
     {
-        if (count($args) == 0) {
+        if (0 == count($args)) {
             die("Usage: gini God addUser [username]\n");
         }
 
@@ -35,10 +35,7 @@ class God extends \Gini\Controller\CLI {
         $user->gender = 0;
         $user->save();
 
-
         $auth = \Gini\IoC::construct('\Gini\Auth', $username);
         $auth->create($password);
-
     }
-
 }

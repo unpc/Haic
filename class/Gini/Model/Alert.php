@@ -9,13 +9,14 @@ class Alert
     // 失败
     const TYPE_ERROR = 'alert-danger';
 
-    public static function setMessage($message, $type) {
+    public static function setMessage($message, $type)
+    {
         if (!in_array($type, [self::TYPE_OK, self::TYPE_ERROR])) {
             $type = self::TYPE_OK;
         }
         $messages = (array)$_SESSION['Alert.Message'];
 
-        $_PUSHMESSAGE = function($type, $message) use($messages) {
+        $_PUSHMESSAGE = function ($type, $message) use ($messages) {
             !is_array($messages[$type]) and $messages[$type] = [];
             $messages[$type][] = $message;
             $_SESSION['Alert.Message'] = $messages;
@@ -30,7 +31,8 @@ class Alert
             and $_PUSHMESSAGE($type, $message);
     }
 
-    public static function getMessage() {
+    public static function getMessage()
+    {
         if ($_SESSION['Alert.Message']) {
             $messages = $_SESSION['Alert.Message'];
             $_SESSION['Alert.Message'] = [];
@@ -40,8 +42,7 @@ class Alert
                     'type' => $key,
                     'value' => $message,
                 ]);
-        }
-        else {
+        } else {
             return '';
         }
     }

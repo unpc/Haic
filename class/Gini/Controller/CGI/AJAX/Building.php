@@ -2,9 +2,8 @@
 
 namespace Gini\Controller\CGI\AJAX;
 
-class Building extends \Gini\Controller\CGI 
+class Building extends \Gini\Controller\CGI
 {
-
     public function actionGetOwnershipView($id=0)
     {
         $me = _G('ME');
@@ -13,7 +12,9 @@ class Building extends \Gini\Controller\CGI
         $form = $this->form();
         $type = $form['type'] ?: $building->ownership_cert;
         if ($type) {
-            if ($type != $building->ownership_cert) $building->ownership = [];
+            if ($type != $building->ownership_cert) {
+                $building->ownership = [];
+            }
             return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V("buildings/ownership/{$type}", [
                 'building' => $building
             ]));
@@ -30,10 +31,10 @@ class Building extends \Gini\Controller\CGI
 
         $form = $this->form();
         $building = $project->building;
-        $add = FALSE;
+        $add = false;
         if (!$building->id) {
             $building = a('building');
-            $add = TRUE;
+            $add = true;
         }
 
         $ownership = (array)$form;
@@ -48,5 +49,4 @@ class Building extends \Gini\Controller\CGI
             $project->save();
         }
     }
-
 }

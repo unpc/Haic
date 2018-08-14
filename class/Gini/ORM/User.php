@@ -19,12 +19,17 @@ class User extends Object
         'ctime', 'number'
     ];
 
-    public function isAllowedTo($action, $object = null, $when = null, $where = null) {
-
+    public function isAllowedTo($action, $object = null, $when = null, $where = null)
+    {
         if ($object === null) {
             return \Gini\Event::trigger(
                 "user.isAllowedTo[$action]",
-                $this, $action, null, $when, $where);
+                $this,
+                $action,
+                null,
+                $when,
+                $where
+            );
         }
 
         $oname = is_string($object) ? $object : $object->name();
@@ -34,7 +39,12 @@ class User extends Object
                 "user.isAllowedTo[$action].$oname",
                 "user.isAllowedTo[$action].*"
             ],
-            $this, $action, $object, $when, $where);
+            $this,
+            $action,
+            $object,
+            $when,
+            $where
+        );
     }
 
     public function icon()
@@ -44,11 +54,13 @@ class User extends Object
 
     public function save()
     {
-        if ($this->ctime == '0000-00-00 00:00:00' || !$this->ctime) $this->ctime = date('Y-m-d H:i:s');
+        if ($this->ctime == '0000-00-00 00:00:00' || !$this->ctime) {
+            $this->ctime = date('Y-m-d H:i:s');
+        }
         return parent::save();
     }
 
-    public function roles() 
+    public function roles()
     {
         return those('user/role')->whose('user')->is($this);
     }
@@ -60,5 +72,4 @@ class User extends Object
 
         return parent::delete();
     }
-
 }
