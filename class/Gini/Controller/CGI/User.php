@@ -9,7 +9,7 @@ class User extends Layout\God
         $form = $this->form();
         $step = 10;
         $users = those('user');
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ('POST' == $_SERVER['REQUEST_METHOD']) {
             //获取post参数 并校验
             $form = $this->form('post');
             $users = $users->whose('name')->contains($form['name']);
@@ -18,7 +18,7 @@ class User extends Layout\God
         $this->view->body = V('users/index', [
             'users' => $users,
             'pagination' => $pagination,
-            'form' => $form
+            'form' => $form,
         ]);
     }
 }

@@ -1,11 +1,16 @@
 <div class="container-fluid">
     <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+        <?php 
+            $me = _G('ME');
+            if ($me->isAllowedTo('添加', 'user')): 
+        ?>
         <div class="btn-group" role="group" aria-label="First group">
             <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/User/Add">
                 <i class="fa fa-plus"></i>
                 新用户
             </button>
         </div>
+        <?php endif; ?>
         <form method="POST" action="<?= URL('/user')?>">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -51,21 +56,28 @@
                 ?></td>
                 <td style="vertical-align:middle">
                     <div class="pull-right">
+                        <?php if ($me->isAllowedTo('修改基本信息', $user)): ?>
                         <a class="btn no-padding"
                             href="gini-ajax:AJAX/User/Edit/<?= (int)$user->id ?>"
                             >
                             <i class="fa fa-edit fa-lg fa-fw"></i>
                         </a>
+                        <?php endif; ?>
+                        <?php if ($me->isAllowedTo('修改密码', $user)): ?>
                         <a class="btn no-padding"
                             href="gini-ajax:AJAX/User/EditPwd/<?= (int)$user->id ?>"
                             >
                             <i class="fa fa-key fa-fw"></i>
                         </a>
+                        <?php endif; ?>
+                        <?php if ($me->isAllowedTo('修改角色', $user)): ?>
                         <a class="btn no-padding"
                             href="gini-ajax:AJAX/User/EditRole/<?= (int)$user->id ?>"
                             >
                             <i class="fa fa-group fa-fw"></i>
                         </a>
+                        <?php endif; ?>
+                        <?php if ($me->isAllowedTo('删除用户', $user)): ?>
                         <a class="btn no-padding"
                             data-confirm="<?= H(T('您确认删除用户:user吗?', [':user'=>$user->name])) ?>"
                             data-confirm-description="<?= H(T('点击确认后会删除该用户信息, 请谨慎处理!')) ?>"
@@ -73,6 +85,7 @@
                             >
                             <i class="fa fa-trash-o fa-lg fa-fw"></i>
                         </a>
+                        <?php endif; ?>
                     </div>
                 </td>
             </tr>

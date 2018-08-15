@@ -1,8 +1,9 @@
 <sidebar class="navbar bg-dark" id="sidebar-nav" role="navigation">
+    <?php $me = _G('ME'); ?>
     <ul class="nav navbar-nav navbar-left sidebar-nav"  style="height: 100%">
         <li class="nav-open text-white text-center">
             <i class="fa fa-user fa-2x fa-fw"></i>
-            <h6><?= _G('ME')->name ?></h6>
+            <h6><?= $me->name ?></h6>
         </li>
         <li class="<?= $selected == 'project' ? 'active' : '' ?>">
             <a href="<?= URL('/project') ?>" class="text-white userList" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('项目管理'))?>">

@@ -15,7 +15,7 @@ class User extends \Gini\Controller\CGI
             foreach ($users as $key => $user) {
                 $objects[$key] = [
                     'name' => $user->name,
-                    'id' => $user->id
+                    'id' => $user->id,
                 ];
             }
         } catch (\Gini\RPC\Exception $e) {
@@ -28,9 +28,12 @@ class User extends \Gini\Controller\CGI
     public function actionAdd()
     {
         $me = _G('ME');
+        if (!$me->isAllowedTo('添加', 'user')) {
+            return;
+        }
         $form = $this->form();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $validator = new \Gini\CGI\Validator;
+        if ('POST' == $_SERVER['REQUEST_METHOD']) {
+            $validator = new \Gini\CGI\Validator();
 
             try {
                 $username = \Gini\Auth::makeUserName(H($form['username']), H($form['backend']));
@@ -63,21 +66,24 @@ class User extends \Gini\Controller\CGI
         }
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('users/add-user-modal', [
-            'form' => $form
+            'form' => $form,
         ]));
     }
 
-    public function actionEdit($id=0)
+    public function actionEdit($id = 0)
     {
         $me = _G('ME');
         $user = a('user', $id);
         if (!$user->id) {
             $this->redirect('error/404');
         }
+        if (!$me->isAllowedTo('修改基本信息', $user)) {
+            return;
+        }
 
         $form = $this->form();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $validator = new \Gini\CGI\Validator;
+        if ('POST' == $_SERVER['REQUEST_METHOD']) {
+            $validator = new \Gini\CGI\Validator();
 
             try {
                 $validator
@@ -98,21 +104,24 @@ class User extends \Gini\Controller\CGI
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('users/edit-user-modal', [
             'form' => $form,
-            'user' => $user
+            'user' => $user,
         ]));
     }
 
-    public function actionEditPwd($id=0)
+    public function actionEditPwd($id = 0)
     {
         $me = _G('ME');
         $user = a('user', $id);
         if (!$user->id) {
             $this->redirect('error/404');
         }
+        if (!$me->isAllowedTo('修改密码', $user)) {
+            return;
+        }
 
         $form = $this->form();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $validator = new \Gini\CGI\Validator;
+        if ('POST' == $_SERVER['REQUEST_METHOD']) {
+            $validator = new \Gini\CGI\Validator();
 
             try {
                 $validator
@@ -132,27 +141,29 @@ class User extends \Gini\Controller\CGI
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('users/edit-user-password-modal', [
             'form' => $form,
-            'user' => $user
+            'user' => $user,
         ]));
     }
 
-    public function actionEditRole($id=0)
+    public function actionEditRole($id = 0)
     {
         $me = _G('ME');
         $user = a('user', $id);
         if (!$user->id) {
             $this->redirect('error/404');
         }
+        if (!$me->isAllowedTo('修改角色', $user)) {
+            return;
+        }
 
         $form = $this->form();
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+        if ('POST' == $_SERVER['REQUEST_METHOD']) {
             // 删除之前的关联数据
             $user->roles()->deleteAll();
-            
+
             // 关联目前角色数据
-            foreach ((array)$form['role'] as $key => $val) {
-                if ($val == 'on') {
+            foreach ((array) $form['role'] as $key => $val) {
+                if ('on' == $val) {
                     $r = a('user/role');
                     $r->user = $user;
                     $r->role = a('role', $key);
@@ -165,23 +176,26 @@ class User extends \Gini\Controller\CGI
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('users/edit-user-role-modal', [
             'form' => $form,
-            'user' => $user
+            'user' => $user,
         ]));
     }
 
-    public function actionDelete($id=0)
+    public function actionDelete($id = 0)
     {
         $me = _G('ME');
         $user = a('user', $id);
         if (!$user->id) {
             $this->redirect('error/404');
         }
+        if (!$me->isAllowedTo('删除用户', $user)) {
+            return;
+        }
 
         //remove this user
         $user->delete();
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('users/delete-user-success', [
-            'user' => $user
+            'user' => $user,
         ]));
     }
 }
