@@ -1,4 +1,5 @@
 <div class="container-fluid">
+    <?php $me = _G('ME'); ?>
     <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group" role="group" aria-label="First group">
         </div>
@@ -31,11 +32,13 @@
                 <td><span class="badge badge-light"><?= \Gini\ORM\Project::$TYPES[$project->type] ?></span></td>
                 <td><?= H($project->title) ?></td>
                 <td style="vertical-align:middle">
+                    <?php if ($me->isAllowedTo('查看档案项目', 'project')): ?>
                     <div class="pull-right">
                         <a class="btn no-padding" href="<?= URL("/project/profile/{$project->id}") ?>">
                             <i class="fa fa-edit fa-lg fa-fw"></i>
                         </a>
                     </div>
+                    <?php endif; ?>
                 </td>
             </tr>
             <?php endforeach; else: ?>

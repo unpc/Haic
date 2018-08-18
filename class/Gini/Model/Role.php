@@ -76,4 +76,46 @@ class Role
                 break;
         }
     }
+
+    public static function groupACL($e, $user, $action, $object, $when, $where)
+    {
+        switch ($action) {
+            case '查看':
+                if ($user->access('查看机构管理')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '修改':
+                if ($user->access('修改机构信息')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            default:
+                $e->pass();
+                break;
+        }
+    }
+
+    public static function archiveACL($e, $user, $action, $object, $when, $where)
+    {
+        switch ($action) {
+            case '查看档案':
+                if ($user->access('查看档案模块')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '查看档案项目':
+                if ($user->access('查看档案项目内容')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            default:
+                $e->pass();
+                break;
+        }
+    }
 }

@@ -19,4 +19,12 @@ user.isAllowedTo[修改].role:
 - callback:\Gini\Model\Role::roleACL
 user.isAllowedTo[删除].role:
 - callback:\Gini\Model\Role::roleACL
+user.isAllowedTo[查看].group:
+- callback:\Gini\Model\Role::groupACL
+user.isAllowedTo[修改].group:
+- callback:\Gini\Model\Role::groupACL
+user.isAllowedTo[查看档案].project:
+- callback:\Gini\Model\Role::archiveACL
+user.isAllowedTo[查看档案项目].project:
+- callback:\Gini\Model\Role::archiveACL
 ...
