@@ -43,4 +43,37 @@ class Role
                 break;
         }
     }
+
+    public static function roleACL($e, $user, $action, $object, $when, $where)
+    {
+        switch ($action) {
+            case '查看':
+                if ($user->access('查看权限管理模块')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '添加':
+                if ($user->access('添加角色')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '修改':
+                if ($object->id && $user->access('修改角色权限')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '删除':
+                if ($object->id && $user->access('删除角色')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            default:
+                $e->pass();
+                break;
+        }
+    }
 }
