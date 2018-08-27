@@ -12,6 +12,9 @@ class Action extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
+        if (!$me->isAllowedTo('指派派件员', $project)) {
+            $this->redirect('error/401');
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $validator = new \Gini\CGI\Validator;
 
@@ -49,6 +52,9 @@ class Action extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
+        if (!$me->isAllowedTo('指派估价员', $project)) {
+            $this->redirect('error/401');
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $validator = new \Gini\CGI\Validator;
 
@@ -85,6 +91,9 @@ class Action extends \Gini\Controller\CGI
         $project = a('project', $id);
         if (!$project->id) {
             $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('指派查勘员', $project)) {
+            $this->redirect('error/401');
         }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $validator = new \Gini\CGI\Validator;

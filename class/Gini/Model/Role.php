@@ -173,4 +173,133 @@ class Role
                 break;
         }
     }
+
+    public static function projectACL($e, $user, $action, $object, $when, $where)
+    {
+        if ($action != '查看' && $object->id && $object->archived()) {
+            $e->pass();
+            return false;
+        }
+        switch($action) {
+            case '查看':
+                if ($user->access('查看项目模块')) {
+                    $e->abort();
+                    return true;
+                }
+                if ($object->id) {
+                    if ($object->owner->id == $user->id) {
+                        $e->abort();
+                        return true;
+                    }
+                    if ($object->dispatcher->id == $user->id) {
+                        $e->abort();
+                        return true;
+                    }
+                    if ($object->assessor->id == $user->id) {
+                        $e->abort();
+                        return true;
+                    }
+                    if ($object->surveyor->id == $user->id) {
+                        $e->abort();
+                        return true;
+                    }
+                }
+                break;
+            case '添加':
+                if ($user->access('添加新项目')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '修改':
+                if ($user->access('修改项目基础信息')) {
+                    $e->abort();
+                    return true;
+                }
+                if ($object->id) {
+                    if ($object->owner->id == $user->id) {
+                        $e->abort();
+                        return true;
+                    }
+                    if ($object->dispatcher->id == $user->id) {
+                        $e->abort();
+                        return true;
+                    }
+                    if ($object->assessor->id == $user->id) {
+                        $e->abort();
+                        return true;
+                    }
+                    if ($object->surveyor->id == $user->id) {
+                        $e->abort();
+                        return true;
+                    }
+                }
+                break;
+            case '删除':
+                if ($object->id && $object->owner->id == $user->id) {
+                    $e->abort();
+                    return true;
+                }
+                if ($user->access('删除项目')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '指派派件员':
+                if ($object->id && $object->owner->id == $user->id) {
+                    $e->abort();
+                    return true;
+                }
+                if ($user->access('指派派件员')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '指派估价员':
+                if ($object->id && $object->owner->id == $user->id) {
+                    $e->abort();
+                    return true;
+                }
+                if ($user->access('指派估价员')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '指派查勘员':
+                if ($object->id && $object->owner->id == $user->id) {
+                    $e->abort();
+                    return true;
+                }
+                if ($user->access('指派查勘员')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '克隆项目':
+                if ($user->access('克隆其他项目数据')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '打印报告':
+                if ($object->id && $object->owner->id == $user->id) {
+                    $e->abort();
+                    return true;
+                }
+                if ($user->access('打印项目报告')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '归档':
+                if ($user->access('归档项目')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            default:
+                $e->pass();
+                break;
+        }
+    }
 }

@@ -10,6 +10,9 @@ class Project extends Layout\God
 {
     public function __index()
     {
+        if (!_G('ME')->isAllowedTo('查看', 'project')) {
+            $this->redirect('error/401');
+        }
         $form = $this->form();
         $step = 10;
         $projects = those('project')->whose('archive_time')->is('0000-00-00 00:00:00');
@@ -35,6 +38,9 @@ class Project extends Layout\God
         if (!$project->id) {
             $this->redirect('error/401');
         }
+        if (!$me->isAllowedTo('查看', $project)) {
+            $this->redirect('error/401');
+        }
         $this->view->body = V('projects/profile', [
             'project' => $project,
             'sub' => $sub,
@@ -49,6 +55,9 @@ class Project extends Layout\God
         $project = a('project', $id);
         if (!$project->id) {
             $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
         }
 
         if ($path) {
@@ -148,6 +157,9 @@ class Project extends Layout\God
         }
         if (!$template->id) {
             $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('打印报告', $project)) {
+            $this->redirect('error/401');
         }
 
         $this->view = V('projects/print', [

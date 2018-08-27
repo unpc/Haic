@@ -15,7 +15,7 @@
         </div>
     </div>
 </form>
-<?php if(!$project->archived()): ?>
+<?php if(_G('ME')->isAllowedTo('修改', $project)): ?>
 <button class="btn btn-primary btn-raised" name="supply"><i class="fa fa-plus fa-fw"></i> <?= H(T('补充信息')) ?></button>
 <button class="btn btn-primary btn-raised" form="add-project-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
 <?php endif; ?>

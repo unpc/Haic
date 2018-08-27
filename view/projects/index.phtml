@@ -1,11 +1,16 @@
 <div class="container-fluid">
     <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+        <?php 
+            $me = _G('ME');
+            if ($me->isAllowedTo('添加', 'project')):
+        ?>
         <div class="btn-group" role="group" aria-label="First group">
             <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/Project/Add">
                 <i class="fa fa-plus"></i>
                 新项目
             </button>
         </div>
+        <?php endif; ?>
         <form method="POST" action="<?= URL('/project')?>">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -34,9 +39,11 @@
                 <td><?= H($project->title) ?></td>
                 <td style="vertical-align:middle">
                     <div class="pull-right">
+                        <?php if($me->isAllowedTo('修改', $project)): ?>
                         <a class="btn no-padding" href="<?= URL("/project/profile/{$project->id}") ?>">
                             <i class="fa fa-edit fa-lg fa-fw"></i>
                         </a>
+                        <?php endif; ?>
                         <a class="btn no-padding"
                             data-confirm="<?= H(T('您确认删除编号:project的项目?', [':project'=>$project->number])) ?>"
                             data-confirm-description="<?= H(T('点击确认后会删除项目信息, 请谨慎处理!')) ?>"

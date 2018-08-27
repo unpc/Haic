@@ -35,4 +35,24 @@ user.isAllowedTo[修改].template:
 - callback:\Gini\Model\Role::templateACL
 user.isAllowedTo[删除].template:
 - callback:\Gini\Model\Role::templateACL
+user.isAllowedTo[查看].project:
+- callback:\Gini\Model\Role::projectACL
+user.isAllowedTo[添加].project:
+- callback:\Gini\Model\Role::projectACL
+user.isAllowedTo[删除].project:
+- callback:\Gini\Model\Role::projectACL
+user.isAllowedTo[修改].project:
+- callback:\Gini\Model\Role::projectACL
+user.isAllowedTo[指派派件员].project:
+- callback:\Gini\Model\Role::projectACL
+user.isAllowedTo[指派估价员].project:
+- callback:\Gini\Model\Role::projectACL
+user.isAllowedTo[指派查勘员].project:
+- callback:\Gini\Model\Role::projectACL
+user.isAllowedTo[克隆项目].project:
+- callback:\Gini\Model\Role::projectACL
+user.isAllowedTo[打印报告].project:
+- callback:\Gini\Model\Role::projectACL
+user.isAllowedTo[归档].project:
+- callback:\Gini\Model\Role::projectACL
 ...

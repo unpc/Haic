@@ -8,6 +8,9 @@ class Project extends \Gini\Controller\CGI
     {
         $me = _G('ME');
         $form = $this->form();
+        if (!$me->isAllowedTo('添加', 'project')) {
+            $this->redirect('error/401');
+        }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $validator = new \Gini\CGI\Validator;
 
@@ -57,7 +60,9 @@ class Project extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
-
+        if (!$me->isAllowedTo('删除', $project)) {
+            $this->redirect('error/401');
+        }
         //remove this project
         $project->delete();
 
@@ -73,7 +78,9 @@ class Project extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
-
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
+        }
         $form = $this->form();
         $project->user_name = $form['user_name'];
         $project->user_address = $form['user_address'];
@@ -94,7 +101,9 @@ class Project extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
-
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
+        }
         $form = $this->form();
         $project->target = $form['target'];
         $project->save();
@@ -114,7 +123,9 @@ class Project extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
-
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
+        }
         $form = $this->form();
         $building = $project->building;
         $add = false;
@@ -200,7 +211,9 @@ class Project extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
-
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
+        }
         $form = $this->form();
         $building = $project->building;
         $add = false;
@@ -247,7 +260,9 @@ class Project extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
-
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
+        }
         $form = $this->form();
 
         $items = [];
@@ -277,7 +292,9 @@ class Project extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
-
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
+        }
         $form = $this->form();
 
         $edit = false;
@@ -311,6 +328,9 @@ class Project extends \Gini\Controller\CGI
         $project = a('project', $id);
         if (!$project->id) {
             $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
         }
         $form = $this->form('files');
         $file = $form['input'];
@@ -346,7 +366,9 @@ class Project extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
-
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
+        }
         $form = $this->form();
 
         $path = $form['key'];
@@ -379,7 +401,9 @@ class Project extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
-
+        if (!$me->isAllowedTo('归档', $project)) {
+            $this->redirect('error/401');
+        }
         $project->archive_time = date('Y-m-d H:i:s');
         $project->save();
 
@@ -429,6 +453,9 @@ class Project extends \Gini\Controller\CGI
         $project = a('project', $id);
         if (!$project->id) {
             $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('克隆项目', $project)) {
+            $this->redirect('error/401');
         }
         $form = $this->form();
 
@@ -493,7 +520,9 @@ class Project extends \Gini\Controller\CGI
         if (!$project->id) {
             $this->redirect('error/404');
         }
-
+        if (!$me->isAllowedTo('打印报告', $project)) {
+            $this->redirect('error/401');
+        }
         $form = $this->form();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
