@@ -6,6 +6,9 @@ class Template extends Layout\God
 {
     public function __index()
     {
+        if (!_G('ME')->isAllowedTo('查看', 'template')) {
+            $this->redirect('error/401');
+        }
         $form = $this->form();
         $step = 10;
         $templates = those('template');
@@ -28,6 +31,9 @@ class Template extends Layout\God
         $template = a('template', $id);
         if (!$template->id) {
             $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('修改', $template)) {
+            $this->redirect('error/401');
         }
 
         $form = $this->form();

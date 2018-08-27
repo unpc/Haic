@@ -27,4 +27,12 @@ user.isAllowedTo[查看档案].project:
 - callback:\Gini\Model\Role::archiveACL
 user.isAllowedTo[查看档案项目].project:
 - callback:\Gini\Model\Role::archiveACL
+user.isAllowedTo[查看].template:
+- callback:\Gini\Model\Role::templateACL
+user.isAllowedTo[添加].template:
+- callback:\Gini\Model\Role::templateACL
+user.isAllowedTo[修改].template:
+- callback:\Gini\Model\Role::templateACL
+user.isAllowedTo[删除].template:
+- callback:\Gini\Model\Role::templateACL
 ...

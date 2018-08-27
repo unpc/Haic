@@ -9,6 +9,10 @@ class Template extends \Gini\Controller\CGI
         $me = _G('ME');
         $form = $this->form();
 
+        if (!$me->isAllowedTo('添加', 'template')) {
+            $this->redirect('error/401');
+        }
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $validator = new \Gini\CGI\Validator;
 
@@ -41,6 +45,9 @@ class Template extends \Gini\Controller\CGI
         if (!$template->id) {
             $this->redirect('error/404');
         }
+        if (!$me->isAllowedTo('修改', $template)) {
+            $this->redirect('error/401');
+        }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $form = $this->form();
@@ -60,6 +67,9 @@ class Template extends \Gini\Controller\CGI
         $template = a('template', $id);
         if (!$template->id) {
             $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('删除', $template)) {
+            $this->redirect('error/401');
         }
 
         //remove this template
