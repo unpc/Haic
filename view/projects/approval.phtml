@@ -3,6 +3,7 @@
     <div class="btn-toolbar" role="toolbar">
         <?php
             $building = $project->building;
+            $me = _G('ME');
             $approval = a('approval')->whose('project')->is($project);
         ?>
         <div class="btn-group mr-2" role="group">
@@ -11,8 +12,38 @@
             </a>
         </div>
         <div class="btn-group mr-2" role="group">
-            <button class="btn btn-primary btn-raised" form="project-approval" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('生成审核表')) ?></button>
+            <?php if($me->isAllowedTo('提交', $approval)): ?>
+                <button class="btn btn-primary btn-raised" form="project-approval" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('生成审核表')) ?></button>
+            <?php endif; ?>
         </div>
+        <?php
+            $canAction = false;
+            switch($approval->status) {
+                case \Gini\ORM\Approval::APPROVAL_FIRST:
+                    if ($me->isAllowedTo('一审', $approval)) {
+                        $canAction = true;
+                    }
+                    break;
+                case \Gini\ORM\Approval::APPROVAL_SECOND:
+                    if ($me->isAllowedTo('二审', $approval)) {
+                        $canAction = true;
+                    }
+                    break;
+                case \Gini\ORM\Approval::APPROVAL_BILLING:
+                    if ($me->isAllowedTo('登记', $approval)) {
+                        $canAction = true;
+                    }
+                    break;
+                case \Gini\ORM\Approval::APPROVAL_PASS:
+                    if ($me->isAllowedTo('终审', $approval)) {
+                        $canAction = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            if ($canAction): 
+        ?>
         <div class="btn-group mr-2" role="group">
             <a class="btn btn-success btn-raised"
                 data-confirm="<?= H(T('您确认要审核通过该项目吗?')) ?>"
@@ -20,6 +51,7 @@
                 href="gini-ajax:ajax/approval/pass/<?= $approval->id ?>"><i class="fa fa-check fa-fw"></i> <?= H(T('通过审核')) ?></a>
             <button class="btn btn-danger btn-raised" type="button" href="gini-ajax:ajax/approval/reply/<?= $approval->id ?>"><i class="fa fa-reply fa-fw"></i> <?= H(T('驳回审核')) ?></button>
         </div>
+        <?php endif; ?>
     </div>
     <div class="hr_2"></div>
     <div class="row">

@@ -55,4 +55,16 @@ user.isAllowedTo[打印报告].project:
 - callback:\Gini\Model\Role::projectACL
 user.isAllowedTo[归档].project:
 - callback:\Gini\Model\Role::projectACL
+user.isAllowedTo[审核].project:
+- callback:\Gini\Model\Role::projectACL
+user.isAllowedTo[提交].approval:
+- callback:\Gini\Model\Role::approvalACL
+user.isAllowedTo[一审].approval:
+- callback:\Gini\Model\Role::approvalACL
+user.isAllowedTo[二审].approval:
+- callback:\Gini\Model\Role::approvalACL
+user.isAllowedTo[登记].approval:
+- callback:\Gini\Model\Role::approvalACL
+user.isAllowedTo[终审].approval:
+- callback:\Gini\Model\Role::approvalACL
 ...

@@ -297,6 +297,53 @@ class Role
                     return true;
                 }
                 break;
+            case '审核':
+                if ($user->access('提交审核')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            default:
+                $e->pass();
+                break;
+        }
+    }
+
+    public static function approvalACL($e, $user, $action, $object, $when, $where)
+    {
+        switch ($action) {
+            case '提交':
+                if ($object->status == \Gini\ORM\Approval::APPROVAL_PENDING) {
+                    if ($user->access('提交审核')) {
+                        $e->abort();
+                        return true;
+                    }
+                }
+                break;
+            case '一审':
+                if ($object->status == \Gini\ORM\Approval::APPROVAL_FIRST && $user->access('部门内审核（一审）')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '二审':
+                if ($object->status == \Gini\ORM\Approval::APPROVAL_SECOND && $user->access('审核部审核（二审）')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '登记':
+                if ($object->status == \Gini\ORM\Approval::APPROVAL_BILLING && $user->access('财务审核（登记）')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
+            case '终审':
+                if ($object->status == \Gini\ORM\Approval::APPROVAL_PASS && $user->access('办公室审核（终审）')) {
+                    $e->abort();
+                    return true;
+                }
+                break;
             default:
                 $e->pass();
                 break;

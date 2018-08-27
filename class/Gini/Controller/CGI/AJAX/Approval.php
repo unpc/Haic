@@ -11,6 +11,34 @@ class Approval extends \Gini\Controller\CGI
         if (!$approval->id) {
             $this->redirect('error/404');
         }
+        $canAction = false;
+        switch($approval->status) {
+            case \Gini\ORM\Approval::APPROVAL_FIRST:
+                if ($me->isAllowedTo('一审', $approval)) {
+                    $canAction = true;
+                }
+                break;
+            case \Gini\ORM\Approval::APPROVAL_SECOND:
+                if ($me->isAllowedTo('二审', $approval)) {
+                    $canAction = true;
+                }
+                break;
+            case \Gini\ORM\Approval::APPROVAL_BILLING:
+                if ($me->isAllowedTo('登记', $approval)) {
+                    $canAction = true;
+                }
+                break;
+            case \Gini\ORM\Approval::APPROVAL_PASS:
+                if ($me->isAllowedTo('终审', $approval)) {
+                    $canAction = true;
+                }
+                break;
+            default:
+                break;
+        }
+        if (!$canAction) {
+            $this->redirect('error/401');
+        }
 
         $approval->status = $approval->status + 1;
         $approval->save();
@@ -24,6 +52,34 @@ class Approval extends \Gini\Controller\CGI
         $approval = a('approval', $id);
         if (!$approval->id) {
             $this->redirect('error/404');
+        }
+        $canAction = false;
+        switch($approval->status) {
+            case \Gini\ORM\Approval::APPROVAL_FIRST:
+                if ($me->isAllowedTo('一审', $approval)) {
+                    $canAction = true;
+                }
+                break;
+            case \Gini\ORM\Approval::APPROVAL_SECOND:
+                if ($me->isAllowedTo('二审', $approval)) {
+                    $canAction = true;
+                }
+                break;
+            case \Gini\ORM\Approval::APPROVAL_BILLING:
+                if ($me->isAllowedTo('登记', $approval)) {
+                    $canAction = true;
+                }
+                break;
+            case \Gini\ORM\Approval::APPROVAL_PASS:
+                if ($me->isAllowedTo('终审', $approval)) {
+                    $canAction = true;
+                }
+                break;
+            default:
+                break;
+        }
+        if (!$canAction) {
+            $this->redirect('error/401');
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
