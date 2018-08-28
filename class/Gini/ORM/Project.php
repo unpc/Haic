@@ -12,6 +12,8 @@ class Project extends Object
     public $owner       = 'object:user';
     public $type        = 'int:1,default:0';
     public $source_description = 'string:250';
+    public $source_from = 'string:50';
+    public $bank_from   = 'string:50';
     public $ctime       = 'datetime';
     public $building    = 'object:building';
     // 派件员
@@ -162,7 +164,12 @@ class Project extends Object
             '%结果3估价对象单价%' => $building->dyjz_unit,
             '%结果3估价对象单价金额大写%' => $building->upper_dyjz_unit,
             '%实地查勘日期%' => $this->operation_date,
-            '%估价作业期' => $this->operation_from . ' ~ ' . $this->operation_to
+            '%估价作业期' => $this->operation_from . ' ~ ' . $this->operation_to,
+            '%业务来源%' => $this->source_from,
+            '%贷款银行%' => $this->bank_from,
+            '%估价结果视图%' => V('projects/template/view/result', ['project' => $this ]),
+            '%注册估价师视图%' => V('projects/template/view/register', ['project' => $this ]),
+            '%不动产权证书视图%' => V('projects/template/view/ownership', ['project' => $this ])
         ];
         return $data;
     }

@@ -36,9 +36,12 @@ class Role
                 }
                 break;
             case '删除用户':
+                if ($object->id && $object->id == $user->id) {
+                    $e->pass();
+                    return false;
+                }
                 if ($user->access('删除用户')) {
                     $e->abort();
-
                     return true;
                 }
                 break;

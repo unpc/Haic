@@ -5,9 +5,8 @@
             if ($me->isAllowedTo('添加', 'project')):
         ?>
         <div class="btn-group" role="group" aria-label="First group">
-            <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/Project/Add">
+            <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/Project/Add" style="border-radius: 40px;width: 40px;">
                 <i class="fa fa-plus"></i>
-                新项目
             </button>
         </div>
         <?php endif; ?>
@@ -25,18 +24,26 @@
     <table class="table table-light table-striped table-hover" id="project-table">
         <thead>
             <tr class="table-primary">
+                <th scope="col">序号</th>
                 <th scope="col">项目编号</th>
-                <th scope="col">项目类型</th>
                 <th scope="col">项目名称</th>
+                <th scope="col">项目类型</th>
+                <th scope="col">委托日期</th>
+                <th scope="col">业务来源</th>
+                <th scope="col">贷款银行</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
         <?php if (count($projects)): foreach($projects as $project): ?>
             <tr data-project-id="<?= intval($project->id) ?>">
-                <td><span class="badge badge-dark"><?= $project->number ?></span></td>
-                <td><span class="badge badge-light"><?= \Gini\ORM\Project::$TYPES[$project->type] ?></span></td>
+                <td><span class="badge badge-dark"><?= str_pad($project->id, 6, '0', STR_PAD_LEFT) ?></span></td>
+                <td><span class="badge badge-primary"><?= $project->number ?></span></td>
                 <td><?= H($project->title) ?></td>
+                <td><span class="badge <?= $project->type == 1 ? 'badge-dark' : 'badge-light' ?>"><?= \Gini\ORM\Project::$TYPES[$project->type] ?></span></td>
+                <td><?= H(date('Y-m-d', strtotime($project->ctime))) ?></td>
+                <td><?= H($project->source_from) ?></td>
+                <td><?= H($project->bank_from) ?></td>
                 <td style="vertical-align:middle">
                     <div class="pull-right">
                         <?php if($me->isAllowedTo('修改', $project)): ?>
@@ -56,7 +63,7 @@
             </tr>
             <?php endforeach; else: ?>
                 <tr>
-                    <td colspan="5" style="text-align: center;"><?= T('没有找到匹配的项目!') ?></td>
+                    <td colspan="8" style="text-align: center;"><?= T('没有找到匹配的项目!') ?></td>
                 </tr>
             <?php endif; ?>
         </tbody>

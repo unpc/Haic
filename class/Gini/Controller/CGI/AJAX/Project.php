@@ -19,14 +19,17 @@ class Project extends \Gini\Controller\CGI
                     ->validate('title', $form['title'], T('项目名称不能为空!'))
                     ->validate('number', $form['number'], T('项目编号不能为空!'))
                     ->validate('type', $form['type'], T('请选择项目类型!'))
+                    ->validate('source_from', $form['source_from'], T('请选择业务来源!'))
                     ->done();
                 $project = a('project');
                 $project->owner = $me;
-                $project->ctime = date('Y-m-d H:i:s');
+                $project->ctime = H($form['ctime']);
                 $project->number = $form['number'];
                 $project->title = $form['title'];
                 $project->type = (int)$form['type'];
                 $project->source_description = $form['source_description'];
+                $project->source_from = H($form['source_from']);
+                $project->bank_from = H($form['bank_from']);
                 $project->save();
 
                 if ($project->id) {

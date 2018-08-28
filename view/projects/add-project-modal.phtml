@@ -50,7 +50,40 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group form-group-lg">
-                        <label class="control-label" for="source_description"><?= H('来源信息') ?></label>
+                        <?php if (isset($form['_errors']['ctime'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['ctime']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="ctime"><?= H('委托时间') ?></label>
+                        <input name="ctime" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', time()) ?>">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['source_from'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['source_from']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="source_from"><?= H('业务来源') ?></label>
+                        <input name="source_from" type="text" class="form-control" value="<?= H($form['source_from']) ?>" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['bank_from'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['bank_from']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="bank_from"><?= H('贷款银行') ?></label>
+                        <input name="bank_from" type="text" class="form-control" value="<?= H($form['bank_from']) ?>" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group form-group-lg">
+                        <label class="control-label" for="source_description"><?= H('备注信息') ?></label>
                         <textarea name="source_description" class="form-control" rows="3" id="source_description"><?= $form['source_description'] ?></textarea>
                     </div>
                 </div>
@@ -65,7 +98,14 @@
 </div>
 </div>
 <script data-ajax="true">
-require(['main'], function($){
+require(['main'], function($) {
+    require(['bootstrap-datepicker', 'locales/bootstrap-datepicker.zh-CN', 'css!../css/bootstrap-datepicker'], function(){
+        $('.date').datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'zh-CN',
+            minView: 'Day'
+        }) 
+    })
 
     var $modal = $('#add-project-modal');
     $modal
