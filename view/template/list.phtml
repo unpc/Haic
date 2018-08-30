@@ -20,8 +20,16 @@
             </div>
         </form>
     </div>
-    <div class="hr_2"></div>
     <?= V('components/confirm') ?>
+    <div class="hr"></div>
+    <ul class="nav nav-tabs">
+        <?php foreach(\Gini\ORM\Template::$TYPES as $key => $value):?>
+            <li class="nav-item">
+                <a class="nav-link <?= $type == $key ? 'active' : '' ?>" href="<?= URL('/template/'.$key) ?>"><?= $value ?></a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <div class="hr"></div>
     <table class="table table-light table-striped table-hover table-sm" id="template-table">
         <thead>
             <tr class="table-primary">

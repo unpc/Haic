@@ -8,9 +8,19 @@ class Template extends Object
     public $title 	    = 'string:100';
     public $ctime       = 'datetime';
     public $content     = 'string:*';
+    public $type        = 'int:1,default:0';
 
     protected static $db_index = [
-        'user', 'title', 'ctime'
+        'user', 'title', 'ctime', 'type'
+    ];
+
+    const REPORT_BUSINESS = 1;
+    const READY_BUSINESS = 2;
+    
+
+    public static $TYPES = [
+        self::REPORT_BUSINESS => '预评模板',
+        self::READY_BUSINESS => '报告模板'
     ];
     
     public function save()

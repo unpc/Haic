@@ -4,14 +4,14 @@ namespace Gini\Controller\CGI;
 
 class Template extends Layout\God
 {
-    public function __index()
+    public function __index($type=1)
     {
         if (!_G('ME')->isAllowedTo('查看', 'template')) {
             $this->redirect('error/401');
         }
         $form = $this->form();
         $step = 10;
-        $templates = those('template');
+        $templates = those('template')->whose('type')->is($type);
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($form['title']) {
                 $templates = $templates->whose('title')->contains($form['title']);
@@ -21,6 +21,7 @@ class Template extends Layout\God
         $this->view->body = V('template/list', [
             'templates' => $templates,
             'pagination' => $pagination,
+            'type' => $type,
             'form' => $form
         ]);
     }

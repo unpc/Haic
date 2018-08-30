@@ -19,12 +19,14 @@ class Template extends \Gini\Controller\CGI
             try {
                 $validator
                     ->validate('title', $form['title'], T('模板名称不能为空!'))
+                    ->validate('type', $form['type'], T('请选择模板类型!'))
                     ->done();
                 $template = a('template');
                 $template->user = $me;
                 $template->ctime = date('Y-m-d H:i:s');
                 $template->title = $form['title'];
                 $template->content = $form['content'];
+                $template->type = (int)$form['type'];
                 $template->save();
 
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
