@@ -8,14 +8,17 @@ use \Gini\ORM\Approval;
 
 class Project extends Layout\God
 {
-    public function __index()
+    public function __index($type=1)
     {
         if (!_G('ME')->isAllowedTo('查看', 'project')) {
             $this->redirect('error/401');
         }
         $form = $this->form();
         $step = 10;
-        $projects = those('project')->whose('archive_time')->is('0000-00-00 00:00:00');
+        $projects = those('project')
+                        ->whose('archive_time')->is('0000-00-00 00:00:00')
+                        ->andWhose('type')->is($type);
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //获取post参数 并校验
             $form = $this->form('post');
@@ -26,6 +29,7 @@ class Project extends Layout\God
         
         $pagination = Help::pagination($projects, $form['st'], $step);
         $this->view->body = V('projects/index', [
+            'type' => $type,
             'projects' => $projects,
             'form' => $form
         ]);

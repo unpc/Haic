@@ -42,6 +42,15 @@ class Approval extends \Gini\Controller\CGI
 
         $approval->status = $approval->status + 1;
         $approval->save();
+        $log = a('log');
+        $log->user = $me;
+        $log->project = $approval->project;
+        $log->action = \Gini\ORM\Log::ACTION_APPROVAL;
+        $log->description = strtr("%user 审核项目通过。[%approval]", [
+            '%user' => $me->name,
+            '%approval%' => \Gini\ORM\Approval::APPROVAL_STATUS[$approval->status - 1]
+        ]);
+        $log->save();
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
     }
@@ -97,6 +106,15 @@ class Approval extends \Gini\Controller\CGI
                 $approval->reason = $reason;
                 $approval->status = $approval->status - 1;
                 $approval->save();
+                $log = a('log');
+                $log->user = $me;
+                $log->project = $approval->project;
+                $log->action = \Gini\ORM\Log::ACTION_APPROVAL;
+                $log->description = strtr("%user 项目驳回。[%approval]", [
+                    '%user' => $me->name,
+                    '%approval%' => \Gini\ORM\Approval::APPROVAL_STATUS[$approval->status + 1]
+                ]);
+                $log->save();
 
                 return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
             } catch (\Gini\CGI\Validator\Exception $e) {

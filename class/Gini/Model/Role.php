@@ -249,6 +249,10 @@ class Role
                 }
                 break;
             case '指派派件员':
+                if ($object->id && $object->type == \Gini\ORM\Project::PUBLIC_BUSINESS) {
+                    $e->pass();
+                    return false;
+                }
                 if ($object->id && $object->owner->id == $user->id) {
                     $e->abort();
                     return true;

@@ -87,6 +87,7 @@ class Project extends Object
     public function getTemplateData()
     {
         $building = $this->building;
+        error_log(print_r($building->appurtenance, true));
         $data = [
             '%委托人姓名%' => $this->user_name,
             '%委托人地址%' => $this->user_address,
@@ -169,7 +170,8 @@ class Project extends Object
             '%贷款银行%' => $this->bank_from,
             '%估价结果视图%' => V('projects/template/view/result', ['project' => $this ]),
             '%注册估价师视图%' => V('projects/template/view/register', ['project' => $this ]),
-            '%不动产权证书视图%' => V('projects/template/view/ownership', ['project' => $this ])
+            '%不动产权证书视图%' => V('projects/template/view/ownership', ['project' => $this ]),
+            '%估价机构信息视图%' => V('projects/template/view/group'),
         ];
         return $data;
     }

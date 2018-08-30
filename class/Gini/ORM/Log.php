@@ -41,7 +41,7 @@ class Log extends Object
         self::ACTION_DISPATCH => '指派派件员',
         self::ACTION_ASSESSOR => '指派估价师',
         self::ACTION_SURVEYOR => '指派查勘员',
-        self::ACTION_APPROVAL => '提交审核',
+        self::ACTION_APPROVAL => '审核',
         self::ACTION_CLONE => '克隆数据',
         self::ACTION_CREATE_REPORT => '生成报告',
         self::ACTION_PRINT_REPORT => '打印报告',
