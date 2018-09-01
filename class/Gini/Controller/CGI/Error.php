@@ -5,6 +5,7 @@ namespace Gini\Controller\CGI;
 class Error extends Layout\God {
 
     function __index($code = 404) {
+        
         switch ($code) {
         case 401:
             $title = "Unauthorized visit";
@@ -22,7 +23,7 @@ class Error extends Layout\God {
             $this->view = '';
             return;
         }
-
+        
         $this->view->title = $title;
         $this->view->body = V("error-{$code}");
     }

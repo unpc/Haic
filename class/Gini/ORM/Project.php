@@ -26,7 +26,7 @@ class Project extends Object
     public $archive_time = 'datetime';
 
     protected static $db_index = [
-        'unique:number',
+        'number', 'source_from', 'bank_from',
         'identity', 'title', 'ctime', 'owner', 'type', 'building', 'approval', 'archive_time'
     ];
 

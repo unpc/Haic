@@ -22,7 +22,18 @@ class Project extends Layout\God
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //获取post参数 并校验
             $form = $this->form('post');
-            $projects = $projects->whose('number')->contains($form['number']);
+            if ($form['number']) {
+                $projects = $projects->whose('number')->contains($form['number']);
+            }
+            if ($form['title']) {
+                $projects = $projects->whose('title')->contains($form['title']);
+            }
+            if ($form['source_from']) {
+                $projects = $projects->whose('source_from')->contains($form['source_from']);
+            }
+            if ($form['bank_from']) {
+                $projects = $projects->whose('bank_from')->contains($form['bank_from']);
+            }
         }
 
         $projects = $projects->orderBy('archive_time', 'desc');
@@ -31,7 +42,8 @@ class Project extends Layout\God
         $this->view->body = V('projects/index', [
             'type' => $type,
             'projects' => $projects,
-            'form' => $form
+            'form' => $form,
+            'pagination' => $pagination
         ]);
     }
 

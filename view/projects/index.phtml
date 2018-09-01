@@ -1,21 +1,47 @@
 <div class="container-fluid">
-    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <?php 
             $me = _G('ME');
             if ($me->isAllowedTo('添加', 'project')):
         ?>
-        <div class="btn-group" role="group" aria-label="First group">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
             <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/Project/Add">
                 <i class="fa fa-plus"></i> 添加项目
             </button>
         </div>
         <?php endif; ?>
-        <form method="POST" action="<?= URL('/project')?>">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text" id="btnGroupAddon2">编号</div>
+        <div class="btn-group mr-2" role="group">
+            <a class="btn btn-primary" data-toggle="collapse" href="#searchBox" role="button" aria-expanded="<?= count($form) > 0 ? 'true' : 'false'?>" aria-controls="searchBox">
+                <i class="fa fa-search"></i> 高级搜索
+            </a>
+        </div>
+    </div>
+    <div class="collapse multi-collapse <?= count($form) > 0 ? 'show' : ''?>" id="searchBox">
+        <div class="hr"></div>
+        <form method="POST" action="<?= URL('/project/'.$type) ?>">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" name="number" placeholder="请输入项目编号" value="<?= $form['number'] ?>" />
                 </div>
-                <input type="name" name="number" class="form-control" placeholder="请输入编号" aria-label="请输入编号" aria-describedby="btnGroupAddon2" value="<?= $form['number']?>">
+                <div class="col">
+                    <input type="text" class="form-control" name="title" placeholder="请输入项目名称" value="<?= $form['title'] ?>" />
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="source_from" placeholder="请输入业务来源" value="<?= $form['source_from'] ?>" />
+                </div>
+            </div>
+            <div class="hr"></div>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" name="bank_from" placeholder="请输入贷款银行" value="<?= $form['bank_from'] ?>" />
+                </div>
+                <div class="col"></div><div class="col"></div>
+            </div>
+            <div class="hr"></div>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary btn-raised" type="submit"><i class="fa fa-search fa-fw"></i> <?= H(T('搜索')) ?></button>
+                </div>
             </div>
         </form>
     </div>
@@ -29,13 +55,13 @@
         <?php endforeach; ?>
     </ul>
     <div class="hr"></div>
+    <?= $pagination ?>
     <table class="table table-light table-striped table-hover" id="project-table">
         <thead>
             <tr class="table-primary">
                 <th scope="col">序号</th>
                 <th scope="col">项目编号</th>
                 <th scope="col">项目名称</th>
-                <th scope="col">项目类型</th>
                 <th scope="col">委托日期</th>
                 <th scope="col">业务来源</th>
                 <th scope="col">贷款银行</th>
@@ -48,16 +74,15 @@
                 <td><span class="badge badge-dark"><?= str_pad($project->id, 6, '0', STR_PAD_LEFT) ?></span></td>
                 <td><span class="badge badge-primary"><?= $project->number ?></span></td>
                 <td><?= H($project->title) ?></td>
-                <td><span class="badge <?= $project->type == 1 ? 'badge-dark' : 'badge-light' ?>"><?= \Gini\ORM\Project::$TYPES[$project->type] ?></span></td>
                 <td><?= H(date('Y-m-d', strtotime($project->ctime))) ?></td>
                 <td><?= H($project->source_from) ?></td>
                 <td><?= H($project->bank_from) ?></td>
                 <td style="vertical-align:middle">
-                    <div class="pull-right">
+                    <div class="pull-right action-buttons">
                         <?php if($me->isAllowedTo('修改', $project)): ?>
-                        <a class="btn no-padding" href="<?= URL("/project/profile/{$project->id}") ?>">
-                            <i class="fa fa-edit fa-lg fa-fw"></i>
-                        </a>
+                            <a class="btn no-padding" href="<?= URL("/project/profile/{$project->id}") ?>">
+                                <i class="fa fa-edit fa-lg fa-fw"></i>
+                            </a>
                         <?php endif; ?>
                         <a class="btn no-padding"
                             data-confirm="<?= H(T('您确认删除编号:project的项目?', [':project'=>$project->number])) ?>"
