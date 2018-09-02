@@ -55,7 +55,7 @@
                     echo implode(', ', $r);
                 ?></td>
                 <td style="vertical-align:middle">
-                    <div class="pull-right">
+                    <div class="pull-right action-buttons">
                         <?php if ($me->isAllowedTo('修改基本信息', $user)): ?>
                         <a class="btn no-padding"
                             href="gini-ajax:AJAX/User/Edit/<?= (int)$user->id ?>"

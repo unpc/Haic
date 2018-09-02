@@ -46,7 +46,7 @@
                 <td><span class="badge badge-dark"><?= str_pad($template->id, 6, 0, STR_PAD_LEFT) ?></span></td>
                 <td><?= H($template->title) ?></td>
                 <td>
-                    <div class="pull-right">
+                    <div class="pull-right action-buttons">
                         <?php if ($me->isAllowedTo('修改', $template)): ?>
                         <a class="btn no-padding" href="<?= URL("/template/edit/{$template->id}")?>">
                             <i class="fa fa-edit fa-lg fa-fw"></i>

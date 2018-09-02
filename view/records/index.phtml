@@ -33,7 +33,7 @@
                 <td><?= H($project->title) ?></td>
                 <td style="vertical-align:middle">
                     <?php if ($me->isAllowedTo('查看档案项目', 'project')): ?>
-                    <div class="pull-right">
+                    <div class="pull-right action-buttons">
                         <a class="btn no-padding" href="<?= URL("/project/profile/{$project->id}") ?>">
                             <i class="fa fa-edit fa-lg fa-fw"></i>
                         </a>
