@@ -46,9 +46,9 @@ class Approval extends \Gini\Controller\CGI
         $log->user = $me;
         $log->project = $approval->project;
         $log->action = \Gini\ORM\Log::ACTION_APPROVAL;
-        $log->description = strtr("%user 审核项目通过。[%approval]", [
+        $log->description = strtr("%user 审核项目通过 => [%approval%]", [
             '%user' => $me->name,
-            '%approval%' => \Gini\ORM\Approval::APPROVAL_STATUS[$approval->status - 1]
+            '%approval%' => \Gini\ORM\Approval::$APPROVAL_STATUS[$approval->status - 1]
         ]);
         $log->save();
 

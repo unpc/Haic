@@ -2,11 +2,11 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title"><?= H(T('选择报告模板')) ?></h4>
+            <h4 class="modal-title"><?= H(T('选择预评模板')) ?></h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
         <div class="modal-body" style="padding-top:20px;">
-            <form id="print-project-form" method="POST" action="gini-ajax:ajax/project/selectTemplate/<?= $project->id ?>">
+            <form id="print-project-form" method="POST" action="gini-ajax:ajax/project/SelectPreEval/<?= $project->id ?>">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group form-group-lg">
@@ -15,9 +15,9 @@
                                 <?= H($form['_errors']['name']) ?>
                             </span>
                             <?php } ?>
-                            <label class="control-label" for="description"><?= H('请选择报告模板:') ?></label>
-                            <input id="name" name="name" type="text" class="autocomplete form-control <?= isset($form['_errors']['name']) ? 'is-invalid' : '' ?>" autocomplete="off" value="<?= H(isset($form['_errors']['name']) ? $form['name'] : $project->template->title) ?>" />
-                            <input id="id" name="id" hidden value="<?= isset($form['_errors']['name']) ? $form['id'] : $project->template->id ?>" />
+                            <label class="control-label" for="description"><?= H('请选择预评模板:') ?></label>
+                            <input id="name" name="name" type="text" class="autocomplete form-control <?= isset($form['_errors']['name']) ? 'is-invalid' : '' ?>" autocomplete="off" value="<?= H(isset($form['_errors']['name']) ? $form['name'] : $project->preeval->title) ?>" />
+                            <input id="id" name="id" hidden value="<?= isset($form['_errors']['name']) ? $form['id'] : $project->preeval->id ?>" />
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ require(['main', 'bootstrap.autocomplete'], function($){
     $('input.autocomplete').autocomplete({
         source: function(query, process){
             $.ajax({
-                url: '<?= URL("/ajax/template/getTemplates/2") ?>',
+                url: '<?= URL("/ajax/template/getTemplates/1") ?>',
                 method: 'POST',
                 data: {
                     query: query

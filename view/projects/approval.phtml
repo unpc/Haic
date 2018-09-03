@@ -52,6 +52,20 @@
             <button class="btn btn-danger btn-raised" type="button" href="gini-ajax:ajax/approval/reply/<?= $approval->id ?>"><i class="fa fa-reply fa-fw"></i> <?= H(T('驳回审核')) ?></button>
         </div>
         <?php endif; ?>
+        <div class="btn-group mr-2" role="group">
+            <a class="btn btn-dark" href=""><i class="fa fa-eye fa-fw"></i> <?= H(T('查看报告')) ?><a>
+            <a class="btn btn-secondary" href=""><i class="fa fa-eye fa-fw"></i> <?= H(T('查看预评')) ?><a>
+        </div>
+    </div>
+    <div class="hr_2"></div>
+    <div class="progress" style="height: 20px;">
+        <?php 
+            foreach (\Gini\ORM\Approval::$APPROVAL_STATUS as $key => $value):
+        ?>
+            <?php if ($approval->status == $key): ?>
+                <div class="progress-bar" role="progressbar" style="width: <?= $key * 20 ?>%;" aria-valuenow="<?= $key * 20 ?>" aria-valuemin="0" aria-valuemax="100"><?= $key ? $value : '' ?></div>
+            <?php endif; ?>
+        <?php endforeach; ?>
     </div>
     <div class="hr_2"></div>
     <div class="row">
@@ -153,7 +167,7 @@
                     <tr>
                         <td colspan="1" class="disable">业务来源</td>
                         <td >
-                            <input name="bus_source" type="text" class="form-control <?= isset($form['_errors']['bus_source']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['bus_source'] : ($approval->info['bus_source'] ?: $building->bus_source) ?>" />
+                            <input name="bus_source" type="text" class="form-control <?= isset($form['_errors']['source_from']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['source_from'] : ($approval->info['source_from'] ?: $project->source_from) ?>" />
                         </td>
                         <td class="disable">业务联系人</td>
                         <td >
@@ -167,7 +181,7 @@
                     <tr>
                         <td colspan="1" class="disable">贷款银行</td>
                         <td colspan="3">
-                            <input name="bank" type="text" class="form-control <?= isset($form['_errors']['bank']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['bank'] : ($approval->info['bank'] ?: $project->bank) ?>" />
+                            <input name="bank" type="text" class="form-control <?= isset($form['_errors']['bank_from']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['bank_from'] : ($approval->info['bank_from'] ?: $project->bank_from) ?>" />
                         </td>
                         <td class="disable">评估类别</td>
                         <td >

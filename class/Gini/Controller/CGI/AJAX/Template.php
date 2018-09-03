@@ -86,14 +86,15 @@ class Template extends \Gini\Controller\CGI
         ]));
     }
 
-    public function actionGetTemplates()
+    public function actionGetTemplates($type=2)
     {
         $me = _G('ME');
         $form = $this->form();
         $objects = [];
 
         try {
-            $templates = those('template')->whose('title')->contains(H($form['query']));
+            $templates = those('template')->whose('type')->is((int)$type)
+                        ->whose('title')->contains(H($form['query']));
             foreach ($templates as $key => $template) {
                 $objects[$key] = [
                     'name' => $template->title,

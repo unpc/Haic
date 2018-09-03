@@ -540,7 +540,7 @@ class Project extends \Gini\Controller\CGI
         ]));
     }
 
-    public function actionPrint($id=0)
+    public function actionSelectTemplate($id=0)
     {
         $me = _G('ME');
         $project = a('project', $id);
@@ -564,7 +564,9 @@ class Project extends \Gini\Controller\CGI
                 
 
                 if ($template->id) {
-                    return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.href="'.URL("/project/print/{$project->id}/{$template->id}").'"</script>');
+                    $project->template = $template;
+                    $project->save();
+                    return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
                 }
             } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
@@ -572,6 +574,45 @@ class Project extends \Gini\Controller\CGI
         }
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('projects/before-print-project', [
+            'project' => $project,
+            'form' => $form
+        ]));
+    }
+
+    public function actionSelectPreEval($id=0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('打印报告', $project)) {
+            $this->redirect('error/401');
+        }
+        $form = $this->form();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $validator = new \Gini\CGI\Validator;
+
+            try {
+                $template = a('template', (int)$form['id']);
+                $validator
+                    ->validate('name', $form['name'], T('预评模板不能为空!'))
+                    ->validate('name', $template->id, T('请按照自动提示栏重新选择!'))
+                    ->done();
+                
+
+                if ($template->id) {
+                    $project->preeval = $template;
+                    $project->save();
+                    return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
+                }
+            } catch (\Gini\CGI\Validator\Exception $e) {
+                $form['_errors'] = $validator->errors();
+            }
+        }
+
+        return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('projects/before-preeval-project', [
             'project' => $project,
             'form' => $form
         ]));

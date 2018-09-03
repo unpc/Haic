@@ -24,6 +24,10 @@ class Project extends Object
     public $surveyor    = 'object:user';
     // 归档时间
     public $archive_time = 'datetime';
+    // 报告模板
+    public $template    = 'object:template';
+    // 预评模板
+    public $preeval     = 'object:template';
 
     protected static $db_index = [
         'number', 'source_from', 'bank_from',
