@@ -107,4 +107,64 @@ class Template extends \Gini\Controller\CGI
 
         return \Gini\IoC::construct('\Gini\CGI\Response\JSON', $objects);
     }
+
+    public function actionUploadAttachment($id=0)
+    {
+        $me = _G('ME');
+        $template = a('template', $id);
+        if (!$template->id) {
+            $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('修改', $template)) {
+            $this->redirect('error/401');
+        }
+        $form = $this->form('files');
+        $file = $form['input'];
+
+        if ($file) {
+            $fileName = current($file['name']);
+            $fullPath = $template->filePath($fileName);
+            \Gini\File::ensureDir($template->filePath());
+            move_uploaded_file(current($file['tmp_name']), $fullPath);
+            if (is_file($fullPath)) {
+                return \Gini\IoC::construct('\Gini\CGI\Response\JSON', [
+                    'ok' => H(T('文件上传成功!')),
+                    'file' => $fullPath
+                ]);
+            }
+        }
+        return \Gini\IoC::construct('\Gini\CGI\Response\JSON', [
+            'error' => H(T('文件上传失败!')),
+            'file' => $fullPath
+        ]);
+    }
+
+    public function actionDeleteAttachment($id=0)
+    {
+        $me = _G('ME');
+        $template = a('template', $id);
+        if (!$template->id) {
+            $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('修改', $template)) {
+            $this->redirect('error/401');
+        }
+        $form = $this->form();
+
+        $path = $form['key'];
+        if ($path) {
+            $fullPath = $template->filePath($path);
+            if (is_file($fullPath)) {
+                \Gini\File::delete($fullPath);
+                return \Gini\IoC::construct('\Gini\CGI\Response\JSON', [
+                    'ok' => H(T('文件删除成功!')),
+                    'file' => $fullPath
+                ]);
+            }
+        }
+        return \Gini\IoC::construct('\Gini\CGI\Response\JSON', [
+            'error' => H(T('文件删除失败!')),
+            'file' => $fullPath
+        ]);
+    }
 }

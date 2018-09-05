@@ -30,4 +30,39 @@ class Template extends Object
         }
         return parent::save();
     }
+
+    public function filePath($path='')
+    {
+        $basePath = APP_PATH.'/'.DATA_DIR.'/template/'.($this->id?:0).'/';
+        \Gini\File::ensureDir($basePath);
+        return $basePath . $path;
+    }
+
+    public function attachments()
+    {
+        $attachments = [];
+        foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->filePath()), \RecursiveIteratorIterator::CHILD_FIRST) as $file) {
+            if (!preg_match("/^\./", $file->getFileName())) {
+                $attachments[] = $file->getFileName();
+            }
+        }
+        return $attachments;
+    }
+
+    public function attachmentsConfig()
+    {
+        $config = [];
+        foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->filePath()), \RecursiveIteratorIterator::CHILD_FIRST) as $file) {
+            if (!preg_match("/^\./", $file->getFileName())) {
+                $config[] = [
+                    'type' => $file->getExtension(),
+                    'size' => $file->getSize(),
+                    'caption' => $file->getFileName(),
+                    'url' => "ajax/template/deleteAttachment/{$this->id}/{$file->getFileName()}",
+                    'key' => $file->getFileName()
+                ];
+            }
+        }
+        return $config;
+    }
 }

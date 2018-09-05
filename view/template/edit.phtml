@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-3">
                 <div class="hr_2"></div>
-                <p class="no-margin"><span class="description">*&#160;模板内容支持从外部复制粘贴</span></p>
+                <p class="no-margin"><span class="description">*&#160;模板为固定的 Word 文档</span></p>
                 <div class="hr"></div>
                 <p class="no-margin"><span class="description">*&#160;模板内需要替换数据可以通过 %xx% 形式来进行表达, xx 为项目中字段名称，比如：</span></p>
                 <p class="no-margin"><span class="description">&#160;&#160;%项目名称% 显示为估价对象中项目名称字段内容</span></p>
@@ -32,7 +32,9 @@
             </div>
             <div class="col-6">
                 <h5 class="text-center"><?= H($template->title) ?></h5>
-                <textarea id="editor" name="content"><?= $template->content ?></textarea>
+                <div class="file-loading">
+                    <input id="template-attachment" name="input[]" type="file" multiple />
+                </div>
             </div>
             <div class="col-3"></div>
         </div>
@@ -40,6 +42,7 @@
     <div class="hr_2"></div>
     <div class="hr_2"></div>
 </div>
+<?php /* ?>
 <script>
 (function($){
     KindEditor.ready(function(K) {
@@ -63,4 +66,46 @@
         $edit.sync()
     })
 })(jQuery)
+</script>
+<?php */ ?>
+<script>
+require(['main'], function($) {
+    require(['fileinput', 'theme/fa/theme', 'locales/zh', 'css!../css/fileinput'], function() {
+        $("#template-attachment").fileinput({
+            dropZoneEnabled: true,
+            showClose: false,
+            language: "zh",
+            theme: "fa",
+            uploadUrl: "ajax/template/uploadAttachment/<?= $template->id ?>",
+            deleteUrl: "ajax/template/deleteAttachment/<?= $template->id ?>",
+            initialPreviewDownloadUrl: '<?= URL("template/downloadAttachment/{$template->id}")?>/{key}',
+            overwriteInitial: false,
+            initialPreview: JSON.parse('<?= json_encode($template->attachments()) ?>'),
+            initialPreviewConfig: JSON.parse('<?= json_encode($template->attachmentsConfig()) ?>'),
+            preferIconicPreview: true,
+            maxFileCount: 1,
+            allowedFileExtensions: ['doc', 'docx'],
+            dropZoneTitle: '请上传修改过标记的模板文件...',
+            previewFileIconSettings: {
+                'doc': '<i class="fa fa-file-word-o text-primary"></i>',
+                'txt': '<i class="fa fa-file-text-o text-info"></i>',
+                'xls': '<i class="fa fa-file-excel-o text-success"></i>'
+            },
+            previewFileExtSettings: {
+                'doc': function(ext) {
+                    return ext.match(/(doc|docx)$/i);
+                },
+                'xls': function(ext) {
+                    return ext.match(/(xls|xlsx)$/i);
+                },
+                'txt': function(ext) {
+                    return ext.match(/(txt|ini|csv|java|php|js|css|numbers|pages|md)$/i);
+                }
+            },
+            layoutTemplates: {
+                actionZoom: ''
+            }
+        })
+    })
+})
 </script>
