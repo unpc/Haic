@@ -63,4 +63,15 @@ class Help
     {
         return addcslashes($str, "\\\'\"&\n\r<>");
     }
+
+    public static function mergeArrayText($arr1=[], $arr2=[])
+    {
+        $new = [];
+        foreach ($arr1 as $key => $value) {
+            if ($arr2[$value]) {
+                $new[] = $arr2[$value];
+            }
+        }
+        return join(', ', $new);
+    }
 }

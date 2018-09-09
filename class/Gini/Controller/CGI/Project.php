@@ -2,13 +2,13 @@
 
 namespace Gini\Controller\CGI;
 
-use \Gini\Model\Alert;
-use \Gini\Model\Help;
-use \Gini\ORM\Approval;
+use Gini\Model\Alert;
+use Gini\Model\Help;
+use Gini\ORM\Approval;
 
 class Project extends Layout\God
 {
-    public function __index($type=1)
+    public function __index($type = 1)
     {
         if (!_G('ME')->isAllowedTo('查看', 'project')) {
             $this->redirect('error/401');
@@ -19,7 +19,7 @@ class Project extends Layout\God
                         ->whose('archive_time')->is('0000-00-00 00:00:00')
                         ->andWhose('type')->is($type);
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ('POST' == $_SERVER['REQUEST_METHOD']) {
             //获取post参数 并校验
             $form = $this->form('post');
             if ($form['number']) {
@@ -37,17 +37,17 @@ class Project extends Layout\God
         }
 
         $projects = $projects->orderBy('archive_time', 'desc');
-        
+
         $pagination = Help::pagination($projects, $form['st'], $step);
         $this->view->body = V('projects/index', [
             'type' => $type,
             'projects' => $projects,
             'form' => $form,
-            'pagination' => $pagination
+            'pagination' => $pagination,
         ]);
     }
 
-    public function actionProfile($id=0, $sub='user', $subCat='base')
+    public function actionProfile($id = 0, $sub = 'user', $subCat = 'base')
     {
         $me = _G('ME');
         $project = a('project', $id);
@@ -61,11 +61,11 @@ class Project extends Layout\God
             'project' => $project,
             'sub' => $sub,
             'subCat' => $subCat,
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
-    public function actionDownloadAttachment($id=0, $path='')
+    public function actionDownloadAttachment($id = 0, $path = '')
     {
         $me = _G('ME');
         $project = a('project', $id);
@@ -91,14 +91,14 @@ class Project extends Layout\God
         }
     }
 
-    public function actionApproval($id=0)
+    public function actionApproval($id = 0)
     {
         $me = _G('ME');
         $project = a('project', $id);
         if (!$project->id) {
             $this->redirect('error/401');
         }
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ('POST' == $_SERVER['REQUEST_METHOD']) {
             $approval = a('approval')->whose('project')->is($project);
             if (!$approval->id) {
                 $approval = a('approval');
@@ -107,7 +107,7 @@ class Project extends Layout\God
                 $approval->save();
             }
 
-            $validator = new \Gini\CGI\Validator;
+            $validator = new \Gini\CGI\Validator();
 
             $form = $this->form();
 
@@ -144,7 +144,7 @@ class Project extends Layout\God
                     ->validate('appraisal_option', $form['appraisal_option'], T('评估思路不能为空!'))
                     ->done();
 
-                $approval->info = (array)$form;
+                $approval->info = (array) $form;
                 $approval->status = Approval::APPROVAL_FIRST;
                 if ($approval->save()) {
                     $current_status = Approval::$APPROVAL_STATUS[$approval->status];
@@ -153,12 +153,12 @@ class Project extends Layout\God
                         $log->user = $me;
                         $log->project = $project;
                         $log->action = \Gini\ORM\Log::ACTION_APPROVAL;
-                        $log->description = strtr("%user 提交审核! ", ['%user' => $me->name]);
+                        $log->description = strtr('%user 提交审核! ', ['%user' => $me->name]);
                         $log->save();
                     }
                     Alert::setMessage("提交审核成功至{$current_status}!", Alert::TYPE_OK);
                 } else {
-                    Alert::setMessage("提交审核失败!", Alert::TYPE_ERROR);
+                    Alert::setMessage('提交审核失败!', Alert::TYPE_ERROR);
                 }
             } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();
@@ -167,11 +167,11 @@ class Project extends Layout\God
 
         $this->view->body = V('projects/approval', [
             'project' => $project,
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
-    public function actionPrint($id=0, $tid=0)
+    public function actionPrint($id = 0, $tid = 0)
     {
         $me = _G('ME');
         $project = a('project', $id);
@@ -188,7 +188,63 @@ class Project extends Layout\God
 
         $this->view = V('projects/print', [
             'project' => $project,
-            'template' => $template
+            'template' => $template,
+        ]);
+    }
+
+    public function actionTemplate($id = 0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        if (!$project->template->id) {
+            $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('打印报告', $project)) {
+            $this->redirect('error/401');
+        }
+        $t = $project->template;
+        $fullPath = $t->filePath($t->attachments()[0]);
+        if (!$fullPath || !$t->attachments()[0]) {
+            $this->redirect('error/404');
+        }
+
+        $word = \PhpOffice\PhpWord\IOFactory::load($fullPath);
+        $word->save($t->filePath('xx.phtml'), 'HTML');
+
+        $this->view->body = V('template/before-show', [
+            'view' => \Gini\IoC::construct('\Gini\VIEW\PHTML', $t->filePath('xx.phtml'), []),
+            'project' => $project
+        ]);
+    }
+
+    public function actionPreeval($id = 0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        if (!$project->preeval->id) {
+            $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('打印报告', $project)) {
+            $this->redirect('error/401');
+        }
+        $t = $project->preeval;
+        $fullPath = $t->filePath($t->attachments()[0]);
+        if (!$fullPath || !$t->attachments()[0]) {
+            $this->redirect('error/404');
+        }
+
+        $word = \PhpOffice\PhpWord\IOFactory::load($fullPath);
+        $word->save($t->filePath('xx.phtml'), 'HTML');
+
+        $this->view->body = V('template/before-show', [
+            'view' => \Gini\IoC::construct('\Gini\VIEW\PHTML', $t->filePath('xx.phtml'), []),
+            'project' => $project
         ]);
     }
 }

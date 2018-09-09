@@ -3,6 +3,7 @@
 namespace Gini\ORM;
 
 use \Gini\ORM\Building;
+use \Gini\Model\Help;
 
 class Project extends Object
 {
@@ -31,7 +32,7 @@ class Project extends Object
 
     protected static $db_index = [
         'number', 'source_from', 'bank_from',
-        'identity', 'title', 'ctime', 'owner', 'type', 'building', 'approval', 'archive_time'
+        'identity', 'title', 'ctime', 'owner', 'type', 'building', 'archive_time'
     ];
 
     const PUBLIC_BUSINESS = 2;
@@ -91,7 +92,7 @@ class Project extends Object
     public function getTemplateData()
     {
         $building = $this->building;
-        error_log(print_r($building->appurtenance, true));
+        $approval = a('approval', ['project' => $this]);
         $data = [
             '%委托人姓名%' => $this->user_name,
             '%委托人地址%' => $this->user_address,
@@ -109,12 +110,12 @@ class Project extends Object
             '%户型%' => Building::$type_s[$building->type],
             '%层高%' => $building->height,
             '%是否有抵押%' => $building->mortgage ? '有' : '无',
-            '%附属物%' => Building::$appurtenance_s[$building->appurtenance],
-            '%外墙%' => Building::$out_wall_s[$building->out_wall],
+            '%附属物%' => Help::mergeArrayText((array)$building->appurtenance, Building::$appurtenance_s),
+            '%外墙%' => Help::mergeArrayText((array)$building->out_wall, Building::$out_wall_s),
             '%装修部分厅门外%' => Building::$door_outside_s[$building->parlour_door_outside],
             '%装修部分厅门内%' => Building::$door_inside_s[$building->parlour_door_inside],
-            '%装修部分厅窗外%' => Building::$windows_outside_s[$building->parlour_window_outside],
-            '%装修部分厅窗内%' => Building::$windows_inside_s[$building->parlour_window_inside],
+            '%装修部分厅窗外%' => Building::$window_outside_s[$building->parlour_window_outside],
+            '%装修部分厅窗内%' => Building::$window_inside_s[$building->parlour_window_inside],
             '%装修部分厅墙面%' => Building::$parlour_wall_s[$building->parlour_wall],
             '%装修部分厅顶棚%' => Building::$parlour_platfond_s[$building->parlour_platfond],
             '%装修部分厅地面%' => Building::$parlour_floor_s[$building->parlour_floor],
@@ -124,11 +125,11 @@ class Project extends Object
             '%装修部分卫生间墙面%' => Building::$toilet_wall_s[$building->toilet_wall],
             '%装修部分卫生间顶棚%' => Building::$toilet_platfond_s[$building->toilet_platfond],
             '%装修部分卫生间地面%' => Building::$toilet_floor_s[$building->toilet_floor],
-            '%装修部分卫生间设备%' => Building::$toilet_appurtenance_s[$building->toilet_appurtenance],
+            '%装修部分卫生间设备%' => Help::mergeArrayText((array)$building->toilet_appurtenance, Building::$toilet_appurtenance_s),
             '%装修部分厨房墙面%' => Building::$toilet_wall_s[$building->cook_wall],
             '%装修部分厨房顶棚%' => Building::$toilet_platfond_s[$building->cook_platfond],
             '%装修部分厨房地面%' => Building::$toilet_floor_s[$building->cook_floor],
-            '%装修部分厨房设备%' => Building::$cook_appurtenance_s[$building->cook_appurtenance],
+            '%装修部分厨房设备%' => Help::mergeArrayText((array)$building->cook_appurtenance, Building::$cook_appurtenance_s),
             '%装修部分阳台墙面%' => Building::$veranda_wall_s[$building->veranda_wall],
             '%装修部分阳台地面%' => Building::$veranda_floor_s[$building->veranda_floor],
             '%设备设施照明%' => $building->lighting ? '有' : '无',
@@ -176,6 +177,11 @@ class Project extends Object
             '%注册估价师视图%' => V('projects/template/view/register', ['project' => $this ]),
             '%不动产权证书视图%' => V('projects/template/view/ownership', ['project' => $this ]),
             '%估价机构信息视图%' => V('projects/template/view/group'),
+            '%报告编号%' => $approval->info['report_no'],
+            '%估价委托人%' => $approval->info['user_name'],
+            '%联系人%' => $approval->info['contact'],
+            '%联系电话%' => $approval->info['contact_phone'],
+            '%领勘人%' => $approval->info['explor_user']
         ];
         return $data;
     }

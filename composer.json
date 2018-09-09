@@ -19,18 +19,16 @@
         "sabre/dav": "2.*",
         "doctrine/inflector": "@stable",
         "mtdowling/cron-expression": "@stable",
-        "twbs/bootstrap": "4.0.0"
+        "twbs/bootstrap": "4.0.0",
+        "phpoffice/phpword": "dev-master"
     },
     "require-dev": {
         "henrikbjorn/lurker": "1.*"
     },
-    "repositories": [
-        {
+    "repositories": {
+        "packagist": {
             "type": "composer",
-            "url": "http://satis.genee.cn"
-        },
-        {
-            "packagist": false
+            "url": "https://packagist.phpcomposer.com"
         }
-    ]
+    }
 }
