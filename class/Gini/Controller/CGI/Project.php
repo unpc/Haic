@@ -206,17 +206,21 @@ class Project extends Layout\God
             $this->redirect('error/401');
         }
         $t = $project->template;
-        $fullPath = $t->filePath($t->attachments()[0]);
-        if (!$fullPath || !$t->attachments()[0]) {
+        $fullPath = $t->filePath($t->attachments('docx')[0]);
+        if (!$fullPath || !$t->attachments('docx')[0]) {
             $this->redirect('error/404');
         }
 
         $word = \PhpOffice\PhpWord\IOFactory::load($fullPath);
-        $word->save($t->filePath('xx.phtml'), 'HTML');
+        $word->save($t->filePath('template.phtml'), 'HTML');
+
+        $content = file_get_contents($t->filePath('template.phtml'));
+        $content = strtr((string)$content, $project->getTemplateData());
+        file_put_contents($t->filePath('template.phtml'), $content);
 
         $this->view->body = V('template/before-show', [
-            'view' => \Gini\IoC::construct('\Gini\VIEW\PHTML', $t->filePath('xx.phtml'), []),
-            'project' => $project
+            'view' => \Gini\IoC::construct('\Gini\VIEW\PHTML', $t->filePath('template.phtml'), []),
+            'project' => $project,
         ]);
     }
 
@@ -234,17 +238,67 @@ class Project extends Layout\God
             $this->redirect('error/401');
         }
         $t = $project->preeval;
-        $fullPath = $t->filePath($t->attachments()[0]);
-        if (!$fullPath || !$t->attachments()[0]) {
+        $fullPath = $t->filePath($t->attachments('docx')[0]);
+        if (!$fullPath || !$t->attachments('docx')[0]) {
             $this->redirect('error/404');
         }
 
         $word = \PhpOffice\PhpWord\IOFactory::load($fullPath);
-        $word->save($t->filePath('xx.phtml'), 'HTML');
+        $word->save($t->filePath('template.phtml'), 'HTML');
+
+        $content = file_get_contents($t->filePath('template.phtml'));
+        $content = strtr((string)$content, $project->getTemplateData());
+        file_put_contents($t->filePath('template.phtml'), $content);
 
         $this->view->body = V('template/before-show', [
-            'view' => \Gini\IoC::construct('\Gini\VIEW\PHTML', $t->filePath('xx.phtml'), []),
-            'project' => $project
+            'view' => \Gini\IoC::construct('\Gini\VIEW\PHTML', $t->filePath('template.phtml'), []),
+            'project' => $project,
         ]);
+    }
+
+    public function actionDownloadTemplate($id = 0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        if (!$project->template->id) {
+            $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('打印报告', $project)) {
+            $this->redirect('error/401');
+        }
+        $t = $project->template;
+        $fullPath = $t->filePath('template.phtml');
+        if (!$fullPath) {
+            $this->redirect('error/404');
+        }
+
+        $word = \PhpOffice\PhpWord\IOFactory::load($fullPath, 'HTML');
+        $word->save($t->filePath('template.docx'), 'Word2007', true);
+    }
+
+    public function actionDownloadPreeval($id = 0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        if (!$project->preeval->id) {
+            $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('打印报告', $project)) {
+            $this->redirect('error/401');
+        }
+        $t = $project->preeval;
+        $fullPath = $t->filePath('template.phtml');
+        if (!$fullPath) {
+            $this->redirect('error/404');
+        }
+
+        $word = \PhpOffice\PhpWord\IOFactory::load($fullPath, 'HTML');
+        $word->save($t->filePath('template.docx'), 'Word2007', true);
     }
 }

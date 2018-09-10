@@ -19,7 +19,7 @@
             <?php endif; ?>
         </div>
         <div class="btn-group mr-2" role="group" >
-            <a class="btn btn-danger" href="<?= URL("/project/approval/{$project->id}")?>"><i class="fa fa-check fa-fw"></i><?= T('审核信息') ?></a>
+            <a class="btn btn-danger" href="<?= URL("/project/approval/{$project->id}")?>"><i class="fa fa-check fa-fw"></i><?= T('审核及模板信息') ?></a>
             <?php if ($me->isAllowedTo('打印报告', $project)): ?>
                 <a class="btn btn-dark" href="gini-ajax:AJAX/Project/SelectTemplate/<?= $project->id ?>"><i class="fa fa-check fa-fw"></i><?= T('选择报告模板') ?></a>
                 <a class="btn btn-secondary" href="gini-ajax:AJAX/Project/SelectPreEval/<?= $project->id ?>"><i class="fa fa-check fa-fw"></i><?= T('选择预评模板') ?></a>

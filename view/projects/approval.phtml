@@ -56,6 +56,10 @@
             <a class="btn btn-dark" href="<?= URL("/project/template/{$project->id}") ?>"><i class="fa fa-eye fa-fw"></i> <?= H(T('查看报告')) ?><a>
             <a class="btn btn-secondary" href="<?= URL("/project/preeval/{$project->id}") ?>"><i class="fa fa-eye fa-fw"></i> <?= H(T('查看预评')) ?><a>
         </div>
+        <div class="btn-group mr-2" role="group">
+            <a class="btn btn-dark" href="<?= URL("/project/downloadTemplate/{$project->id}") ?>"><i class="fa fa-eye fa-fw"></i> <?= H(T('下载 Word 报告')) ?><a>
+            <a class="btn btn-secondary" href="<?= URL("/project/downloadPreeval/{$project->id}") ?>"><i class="fa fa-eye fa-fw"></i> <?= H(T('下载 Word 预评')) ?><a>
+        </div>
     </div>
     <div class="hr_2"></div>
     <div class="progress" style="height: 20px;">
