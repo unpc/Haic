@@ -58,18 +58,31 @@ class Template extends Object
         return $attachments;
     }
 
-    public function attachmentsConfig()
+    public function attachmentsConfig($ext = '')
     {
         $config = [];
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->filePath()), \RecursiveIteratorIterator::CHILD_FIRST) as $file) {
             if (!preg_match("/^\./", $file->getFileName())) {
-                $config[] = [
-                    'type' => $file->getExtension(),
-                    'size' => $file->getSize(),
-                    'caption' => $file->getFileName(),
-                    'url' => "ajax/template/deleteAttachment/{$this->id}/{$file->getFileName()}",
-                    'key' => $file->getFileName(),
-                ];
+                if ($ext) {
+                    if ($ext == $file->getExtension()) {
+                        $config[] = [
+                            'type' => $file->getExtension(),
+                            'size' => $file->getSize(),
+                            'caption' => $file->getFileName(),
+                            'url' => "ajax/template/deleteAttachment/{$this->id}/{$file->getFileName()}",
+                            'key' => $file->getFileName()
+                        ];
+                    }
+                }
+                else {
+                    $config[] = [
+                        'type' => $file->getExtension(),
+                        'size' => $file->getSize(),
+                        'caption' => $file->getFileName(),
+                        'url' => "ajax/template/deleteAttachment/{$this->id}/{$file->getFileName()}",
+                        'key' => $file->getFileName()
+                    ];
+                }
             }
         }
 
