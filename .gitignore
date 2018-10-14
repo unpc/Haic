@@ -1,0 +1,16 @@
+web/
+cache/
+vendor/
+modules/
+modules/*
+reports/
+composer.lock
+composer.json
+phpunit.xml.dist
+raw/config/@development/
+/data
+.DS_Store
+.idea
+templet/
+gini/
+i18n/
