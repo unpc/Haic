@@ -16,10 +16,11 @@ class Project extends \Gini\Controller\CGI
 
             try {
                 $validator
-                    ->validate('title', $form['title'], T('项目名称不能为空!'))
+                    // ->validate('title', $form['title'], T('项目名称不能为空!'))
                     ->validate('number', $form['number'], T('项目编号不能为空!'))
                     ->validate('type', $form['type'], T('请选择项目类型!'))
-                    ->validate('source_from', $form['source_from'], T('请选择业务来源!'))
+                    ->validate('user_phone', $form['user_phone'], T('请填写委托人联系方式!'))
+                    // ->validate('source_from', $form['source_from'], T('请选择业务来源!'))
                     ->done();
                 $project = a('project');
                 $project->owner = $me;
@@ -30,6 +31,9 @@ class Project extends \Gini\Controller\CGI
                 $project->source_description = $form['source_description'];
                 $project->source_from = H($form['source_from']);
                 $project->bank_from = H($form['bank_from']);
+                $project->user_name = H($form['user_name']);
+                $project->user_phone = H($form['user_phone']);
+                $project->target = H($form['target']);
                 $project->save();
 
                 if ($project->id) {

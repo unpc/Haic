@@ -20,6 +20,9 @@
                             <input id="id" name="id" hidden value="<?= isset($form['_errors']['name']) ? $form['id'] : $project->template->id ?>" />
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <a class="red" href="<?= URL('/template/2') ?>"><?= T('您可以先添加报告模板 ->') ?></a>
+                    </div>
                 </div>
             </form>
         </div>

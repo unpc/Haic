@@ -62,21 +62,42 @@
                 <th scope="col">序号</th>
                 <th scope="col">项目编号</th>
                 <th scope="col">项目名称</th>
-                <th scope="col">委托日期</th>
+                <th scope="col">联系方式</th>
+                <th scope="col">估价目的</th>
                 <th scope="col">业务来源</th>
-                <th scope="col">贷款银行</th>
+                <th scope="col">估价师</th>
+                <th scope="col">状态</th>
                 <th scope="col"></th>
             </tr>
         </thead>
+        <?php 
+            $labels = [
+                0 => 'badge-secondary',
+                1 => 'badge-primary',
+                2 => 'badge-info',
+                3 => 'badge-dark',
+                4 => 'badge-warning',
+                5 => 'badge-success'
+            ];
+        ?>
         <tbody>
         <?php if (count($projects)): foreach($projects as $project): ?>
             <tr data-project-id="<?= intval($project->id) ?>">
                 <td><span class="badge badge-dark"><?= str_pad($project->id, 6, '0', STR_PAD_LEFT) ?></span></td>
                 <td><span class="badge badge-primary"><?= $project->number ?></span></td>
                 <td><?= H($project->title) ?></td>
-                <td><?= H(date('Y-m-d', strtotime($project->ctime))) ?></td>
+                <td><?= H($project->user_phone) ?></td>
+                <td><?= H($project->target) ?></td>
                 <td><?= H($project->source_from) ?></td>
-                <td><?= H($project->bank_from) ?></td>
+                <td><small><?= H($project->assessor->id ? $project->assessor->name : '未指定') ?></small></td>
+                <td>
+                    <?php
+                        $approval = a('approval')->whose('project')->is($project);
+                    ?>
+                    <span class="badge <?= $labels[(int)$approval->status] ?> white">
+                        <?= \Gini\ORM\Approval::$APPROVAL_STATUS[(int)$approval->status] ?>
+                    </span>
+                </td>
                 <td style="vertical-align:middle">
                     <div class="pull-right action-buttons">
                         <?php if($me->isAllowedTo('修改', $project)): ?>

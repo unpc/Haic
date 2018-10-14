@@ -461,9 +461,9 @@ class Building extends Object
         self::OWNERSHIP_BDCQZS_GY => '不动产权证书(共有)',
         self::OWNERSHIP_TJSFDCQZ => '天津市房地产权证',
         self::OWNERSHIP_TJSFDCGYQZ => '天津市房地产共有权证',
-        self::OWNERSHIP_FDSYQZ => '房地所有权证',
+        self::OWNERSHIP_FDSYQZ => '房屋所有权证',
         self::OWNERSHIP_FWGYQZ => '房屋共有权证',
         self::OWNERSHIP_SXB_FWSYQZ => '房屋共有权证(手写版)',
-        self::OWNERSHIP_GYTDSYQ => '国有土地使用权'
+        self::OWNERSHIP_GYTDSYQ => '国有土地使用使用证'
     ];
 }
