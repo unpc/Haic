@@ -415,19 +415,19 @@
         <tr>
             <td colspan="4" class="text-center disable">评估单价（ 元 / m²）</td>
             <td colspan="3">
-                <input name="pgdj" type="text" class="form-control " value="<?= $calculat_table['pgdj'] ?>" />
+                <input name="pgdj" type="text" class="form-control text-center" value="<?= $calculat_table['pgdj'] ?>" />
             </td>
         </tr>
         <tr>
             <td colspan="4" class="text-center disable">建筑面积（ m²）</td>
             <td colspan="3">
-                <input name="jzmj" type="text" class="form-control " value="<?= $calculat_table['jzmj'] ?>" />
+                <input name="jzmj" type="text" class="form-control  text-center" value="<?= $calculat_table['jzmj'] ?>" />
             </td>
         </tr>
         <tr>
             <td colspan="4" class="text-center disable">评估总值（ 万元 ）</td>
             <td colspan="3">
-                <input name="phjz" type="text" class="form-control " value="<?= $calculat_table['phjz'] ?>" />
+                <input name="phjz" type="text" class="form-control  text-center" value="<?= $calculat_table['phjz'] ?>" />
             </td>
         </tr>
     </tbody>
@@ -435,8 +435,66 @@
 </form>
 <div class="hr_2"></div>
 <?php if(_G('ME')->isAllowedTo('修改', $project)): ?>
-    <button class="btn btn-primary btn-raised" type="button" name="adjust-zhishu"><i class="fa fa-edit fa-fw"></i> <?= H(T('数据矫正')) ?></button>
+    <button class="btn btn-secondary btn-raised" type="button" name="adjust-zhishu" id="adjust-zhishu"><i class="fa fa-edit fa-fw"></i> <?= H(T('数据矫正')) ?></button>
+    <button class="btn btn-dark btn-raised" type="button" name="sync-zhishu" id="sync-zhishu"><i class="fa fa-edit fa-fw"></i> <?= H(T('数据同步')) ?></button>
     <button class="btn btn-primary btn-raised" form="add-report-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
 <?php endif; ?>
 <div class="hr_2"></div>
 <div class="hr_2"></div>
+<script data-ajax="true">
+require(['main'], function($){
+    $('body').on('click', '#sync-zhishu', function(e){
+        $('.compar_desc tr').each(function(k, v){
+            $first = $(v).find('input:eq(0)')
+            if ($first.length > 0 && $first.attr('value')) {
+                $('.compar_desc [name^=' + $first.attr('name') + ']').val($first.attr('value'))
+            }
+        })
+        $('.compar_zhishu tr').each(function(k, v){
+            $first = $(v).find('input:eq(0)')
+            if ($first.length > 0 && $first.attr('value')) {
+                $('.compar_zhishu [name^=' + $first.attr('name') + ']').val($first.attr('value'))
+            }
+        })
+        e.preventDefault();
+    })
+    $('body').on('click', '#adjust-zhishu', function(e){
+        var $xzhjgxs_1 = $xzhjgxs_2 = $xzhjgxs_3 = 1
+        var $one, $two, $three
+        $('.compar_zhishu tr').each(function(k, v){
+            $first = $(v).find('input:eq(0)')
+            $td = $(v).find('td.disable')
+            if ($first.length > 0 && $first.attr('value') && $first.attr('name') != 'business_price_1' && $td.length == 0) {
+                $one = $('.compar_zhishu [name^=' + $first.attr('name') + '_1]').attr('value')
+                $two = $('.compar_zhishu [name^=' + $first.attr('name') + '_2]').attr('value')
+                $three = $('.compar_zhishu [name^=' + $first.attr('name') + '_3]').attr('value')
+                $xzhjgxs_1 = $xzhjgxs_1 * ( $first.attr('value') / $one )
+                $xzhjgxs_2 = $xzhjgxs_2 * ( $first.attr('value') / $two )
+                $xzhjgxs_3 = $xzhjgxs_3 * ( $first.attr('value') / $three )
+            }
+        })
+
+        $('.compar_zhishu [name=xzhjgxs_1]').attr('value', $xzhjgxs_1.toFixed(4))
+        $('.compar_zhishu [name=xzhjgxs_2]').attr('value', $xzhjgxs_2.toFixed(4))
+        $('.compar_zhishu [name=xzhjgxs_3]').attr('value', $xzhjgxs_3.toFixed(4))
+
+        var business_1 = $('input[name=business_price_1]').attr('value') * $xzhjgxs_1
+            , business_2 = $('input[name=business_price_2]').attr('value') * $xzhjgxs_2
+            , business_3 = $('input[name=business_price_3]').attr('value') * $xzhjgxs_3
+        $('.compar_zhishu [name=xzhpgdj_1]').attr('value', parseInt(business_1))
+        $('.compar_zhishu [name=xzhpgdj_2]').attr('value', parseInt(business_2))
+        $('.compar_zhishu [name=xzhpgdj_3]').attr('value', parseInt(business_3))
+
+        var pgdj = Math.round((business_1 + business_2 + business_3) / 3)
+
+        $('.compar_zhishu [name=pgdj]').attr('value', pgdj)
+
+        var gbys_jzmj = $('[name=gbys_jzmj]').attr('value')
+
+        $('.compar_zhishu [name=jzmj]').attr('value', gbys_jzmj)
+
+        $('.compar_zhishu [name=phjz]').attr('value', Math.round(gbys_jzmj * pgdj / 10000) )
+        e.preventDefault();
+    })
+})
+</script>

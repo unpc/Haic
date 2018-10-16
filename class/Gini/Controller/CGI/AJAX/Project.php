@@ -353,6 +353,29 @@ class Project extends \Gini\Controller\CGI
         $log->save();
     }
 
+    public function actionAddReport($id=0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
+        }
+        $form = $this->form();
+
+        $project->calculat_table = (array)$form;
+        $project->save();
+
+        $log = a('log');
+        $log->user = $me;
+        $log->project = $project;
+        $log->action = \Gini\ORM\Log::ACTION_EDIT;
+        $log->description = sprintf('%s 修改技术报告信息。', $me->name);
+        $log->save();
+    }
+
     public function actionUploadAttachment($id=0)
     {
         $me = _G('ME');
