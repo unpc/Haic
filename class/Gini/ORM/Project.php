@@ -93,20 +93,24 @@ class Project extends Object
     {
         $building = $this->building;
         $approval = a('approval', ['project' => $this]);
+        $true_group = (array)Hub('template.group');
+        $group = (array)\Gini\Config::get('project.group');
         $data = [
+            '%估价机构名称%' => $true_group['name'] ?: $group['name'],
+            '%估价机构法定代表人%' => $true_group['owner'] ?: $group['owner'],
+            '%项目名称%' => $this->title,
             '%委托人姓名%' => $this->user_name,
             '%委托人地址%' => $this->user_address,
             '%估价目的%' => $this->target,
             '%坐落%' => $building->address,
             '%建造年代%' => $building->year,
             '%物业管理%' => $building->property ? '有' : '无',
-            '%坐落%' => $building->address,
             '%结构%' => Building::$structure_s[$building->structure],
             '%总层数%' => $building->total_floor,
             '%所在层数%' => $building->floor,
             '%朝向%' => Building::$front_s[$building->front],
             '%用途%' => Building::$use_s[$building->use],
-            '%建筑面积' => $building->area,
+            '%建筑面积%' => $building->area,
             '%户型%' => Building::$type_s[$building->type],
             '%层高%' => $building->height,
             '%是否有抵押%' => $building->mortgage ? '有' : '无',
@@ -175,13 +179,17 @@ class Project extends Object
             '%贷款银行%' => $this->bank_from,
             '%估价结果视图%' => V('projects/template/view/result', ['project' => $this ]),
             '%注册估价师视图%' => V('projects/template/view/register', ['project' => $this ]),
-            '%不动产权证书视图%' => V('projects/template/view/ownership', ['project' => $this ]),
-            '%估价机构信息视图%' => V('projects/template/view/group'),
+            '%产权证书视图%' => V('projects/template/view/ownership', ['project' => $this ]),
+            '%估价机构信息视图%' => V('projects/template/view/group', ['project' => $this]),
+            '%技术报告%' => V('projects/template/view/report', ['project' => $this]),
             '%报告编号%' => $approval->info['report_no'],
-            '%估价委托人%' => $approval->info['user_name'],
-            '%联系人%' => $approval->info['contact'],
-            '%联系电话%' => $approval->info['contact_phone'],
-            '%领勘人%' => $approval->info['explor_user']
+            '%估价委托人%' => $approval->info['user_name'] ?: $this->user_name,
+            '%联系人%' => $approval->info['contact'] ?: $this->user_name,
+            '%联系电话%' => $approval->info['contact_phone'] ?: $this->user_phone,
+            '%领勘人%' => $approval->info['explor_user'],
+            '%产权证名称%' => $building->ownership_cert ? Building::$ownership_cert_type[$building->ownership_cert] : '',
+            '%产权证用途%' => $building->ownership ? $building->ownership['yt'] : '', 
+            '%房龄%' => Date('Y') - $building->year,
         ];
         return $data;
     }

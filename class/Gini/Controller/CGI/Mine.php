@@ -15,13 +15,7 @@ class Mine extends Layout\God
             if (!$me->isAllowedTo('修改', 'group')) {
                 $this->redirect('error/401');
             }
-            $group = [];
-            $group['name'] = $form['name'];
-            $group['address'] = $form['address'];
-            $group['owner'] = $form['owner'];
-            $group['level'] = $form['level'];
-            $group['number'] = $form['number'];
-            Hub('template.group', $group);
+            Hub('template.group', (array)$form);
         }
         $this->view->body = V('mine/index', [
             'form' => $form,
