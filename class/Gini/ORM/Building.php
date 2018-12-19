@@ -100,7 +100,7 @@ class Building extends Object
     public $unit                = 'string:50';
     public $upper_amount        = 'string:50';
 
-    public $ownership_cert      = 'int:1';
+    public $ownership_cert      = 'array';
 
 
     protected static $db_index = [

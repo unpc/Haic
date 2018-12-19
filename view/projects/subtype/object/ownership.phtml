@@ -13,7 +13,7 @@
                     foreach ($ownership_cert_type as $k => $v):
                 ?>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="ownership_cert" value="<?= $k ?>" <?= $building->ownership_cert == $k ? 'checked="checked"': '' ?>>
+                        <input class="form-check-input" type="checkbox" name="ownership_cert[]" value="<?= $k ?>" <?= in_array($k, (array)$building->ownership_cert) ? 'checked="checked"': '' ?> />
                         <label class="form-check-label"><?= $v ?></label>
                     </div>
                 <?php endforeach; ?>
@@ -44,12 +44,16 @@ require(['main'], function($) {
                 }
             });
         }
-    $form.on('change', '[name=ownership_cert]', function(e){
+    $form.on('change', '[name*=ownership_cert]', function(e){
         e.preventDefault();
-        _refreshBox($(this).val())
+        let values = [];
+        $.each($form.find('[name*=ownership_cert]:checked'), function(k ,v) {
+            values.push($(v).val())
+        })
+        _refreshBox(values)
         return false;
     })
 
-    if (<?= (int)$building->ownership_cert ?>) _refreshBox(<?= (int)$building->ownership_cert ?>)
+    _refreshBox(<?= J((array)$building->ownership_cert) ?>)
 })
 </script>

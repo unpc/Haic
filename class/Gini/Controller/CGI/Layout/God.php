@@ -21,7 +21,7 @@ abstract class God extends \Gini\Controller\CGI\Layout
         }
 
 
-        $this->view->title = '工作面板';
+        $this->view->title = '天元房地产评估';
         $this->view->sidebar = V('sidebar', ['selected'=>$args[0]]);
         $this->view->nav    = V('nav');
         $this->view->footer = V('footer');

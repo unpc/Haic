@@ -10,13 +10,12 @@ class Building extends \Gini\Controller\CGI
         $building = a('building', $id);
 
         $form = $this->form();
-        $type = $form['type'] ?: $building->ownership_cert;
-        if ($type) {
-            if ($type != $building->ownership_cert) {
-                $building->ownership = [];
-            }
-            return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V("buildings/ownership/{$type}", [
-                'building' => $building
+
+        $type = (array)$form['type'];
+        if (count($type)) {
+            return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V("buildings/ownership/view", [
+                'building' => $building,
+                'type' => $type
             ]));
         }
     }
@@ -37,11 +36,8 @@ class Building extends \Gini\Controller\CGI
             $add = true;
         }
 
-        $ownership = (array)$form;
-        unset($ownership['ownership_cert']);
-
-        $building->ownership_cert = (int)$form['ownership_cert'];
-        $building->ownership = $ownership;
+        $building->ownership_cert = (array)$form['ownership_cert'];
+        $building->ownership = (array)$form['ownership'];
         $building->save();
 
         if ($add && $building->id) {
