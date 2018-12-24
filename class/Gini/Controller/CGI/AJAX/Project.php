@@ -220,6 +220,7 @@ class Project extends \Gini\Controller\CGI
         $building->north_front = $form['north_front'];
         $building->around_appurtenance = $form['around_appurtenance'];
         $building->another_desc = $form['another_desc'];
+        $building->plot = $form['plot'];
         $building->save();
 
         if ($add && $building->id) {
