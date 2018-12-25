@@ -1,0 +1,28 @@
+<div class="form-group <?= $form['_errors'] ? 'has-error' : ''?>" style="padding: 0px 15px;margin-top:0px;">
+    <textarea id="editor" name="<?= $name ?: 'content' ?>"><?= $content ?></textarea>
+</div>
+
+<script>
+(function($){
+    KindEditor.ready(function(K) {
+        var $edit = K.create('#editor', {
+            filterMode: false,
+            width: '100%',
+            height: '300px',
+            items: [
+                'source', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|', 'fullscreen',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', '|', 'table', '|', 'image', 'multiimage',
+                'insertfile', 'link', 'unlink', 'media', 'flash'
+            ],
+            resizeType: 1,
+            uploadJson: 'ajax/admin/post/editorUpload/' + <?= (int)$pid ?>,
+            basePath: 'assets/',
+            themesPath: 'assets/css/',
+            fontSizeTable: ['9px', '10px', '12px', '14px', '16px', '18px', '22px', '24px', '32px', '48px']
+        })
+        $edit.sync()
+    })
+})(jQuery)
+</script>

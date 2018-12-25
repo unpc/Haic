@@ -4,11 +4,16 @@
             $me = _G('ME');
             if ($me->isAllowedTo('添加', 'template')):
         ?>
-        <div class="btn-group" role="group" aria-label="First group">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
             <button type="button" class="btn btn-dark" href="gini-ajax:AJAX/Template/Add">
                 <i class="fa fa-plus"></i>
                 新模板
             </button>
+            &#160;&#160;
+            <a class="btn btn-danger" href="<?= URL('/template/data') ?>">
+                <i class="fa fa-eye"></i>
+                模板数据
+            </a>
         </div>
         <?php endif; ?>
         <form method="POST" action="<?= URL('/template')?>">

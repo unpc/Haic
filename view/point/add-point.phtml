@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group mr-2" role="group">
+            <a class="btn btn-primary btn-raised" href="<?= URL("/template/data")?>">
+                <i class="fa fa-arrow-left fa-fw"></i> <?= H(T('回到列表')) ?>
+            </a>
+        </div>
+    </div>
+    <div class="hr_1"></div>
+    <form id="add-point-form" method="POST" action="<?= URL("/template/point/{$point->id}") ?>">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group form-group-lg">
+                    <?php if (isset($form['_errors']['title'])) { ?>
+                    <span class="badge badge-danger pull-right">
+                        <?= H($form['_errors']['title']) ?>
+                    </span>
+                    <?php } ?>
+                    <label class="control-label" for="title"><?= H('数据名称') ?></label>
+                    <input id="title" name="title" type="text" class="form-control <?= isset($form['_errors']['title']) ? 'is-invalid' : '' ?>" value="<?= H($form['_errors'] ? $form['title'] : $point->title) ?>"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group form-group-lg">
+                    <?php if (isset($form['_errors']['identity'])) { ?>
+                    <span class="badge badge-danger pull-right">
+                        <?= H($form['_errors']['identity']) ?>
+                    </span>
+                    <?php } ?>
+                    <label class="control-label" for="identity"><?= H('数据标示') ?></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">#</span>
+                        </div>
+                        <input id="identity" name="identity" type="text" class="form-control <?= isset($form['_errors']['identity']) ? 'is-invalid' : '' ?>" value="<?= str_replace('#', '', H($form['_errors'] ? $form['identity'] : $point->identity)) ?>" aria-describedby="basic-addon1" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group form-group-lg">
+                    <textarea id="editor" name="content"><?= $form['_errors'] ? $form['content'] : $point->content ?></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button name="submit" value="保存" class="btn btn-primary btn-raised" form="add-point-form" type="submit"><i class="fa fa-plus fa-fw"></i> <?= H(T('保存')) ?></button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+(function($){
+    KindEditor.ready(function(K) {
+        var $edit = K.create('#editor', {
+            filterMode: false,
+            width: '100%',
+            minHeight: 300,
+            items: [
+                'source', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', '|', 'table', '|', 
+                // 'image', 'multiimage', 'insertfile', 
+                'link', 'unlink', 'media', 'flash', '|', 'fullscreen'
+            ],
+            resizeType: 2,
+            uploadJson: 'ajax/template/uploadJson/' + <?= (int)$template->id ?>,
+            basePath: 'assets/',
+            themesPath: 'assets/css/',
+            fontSizeTable: ['9px', '10px', '12px', '14px', '16px', '18px', '22px', '24px', '32px', '48px']
+        })
+        $edit.sync()
+    })
+})(jQuery)
+</script>

@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+            <a class="btn btn-dark" href="<?= URL('/template') ?>">
+                <i class="fa fa-arrow-left fa-fw"></i>
+                返回
+            </a>
+            &#160;&#160;
+            <a class="btn btn-primary" href="<?= URL('/template/point/0') ?>">
+                <i class="fa fa-plus"></i>
+                添加模板替换内容
+            </a>
+        </div>
+        <form method="POST" action="<?= URL('/template/data')?>">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text" id="btnGroupAddon2">标题</div>
+                </div>
+                <input type="title" name="title" class="form-control" placeholder="请输入替换标题查找" aria-label="请输入模板名称查找" aria-describedby="btnGroupAddon2" value="<?= $form['title']?>">
+            </div>
+        </form>
+    </div>
+    <?= V('components/confirm') ?>
+    <div class="hr"></div>
+    <table class="table table-light table-striped" id="template-table">
+        <thead>
+            <tr class="table-primary">
+                <th scope="col">编号标示</th>
+                <th scope="col">替换内容标题</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (count($points)):
+                foreach($points as $point):
+            ?>
+                <tr data-point-id="<?= intval($point->id) ?>">
+                    <td><span class="badge badge-dark"><?= H($point->identity) ?></span></td>
+                    <td><?= H($point->title) ?></td>
+                    <td>
+                        <div class="pull-right action-buttons">
+                            <?php if ($me->isAllowedTo('修改', 'template')): ?>
+                            <a class="btn no-padding" href="<?= URL("/template/point/{$point->id}")?>">
+                                <i class="fa fa-edit fa-lg fa-fw"></i>
+                            </a>
+                            <?php endif; ?>
+                            <?php if ($me->isAllowedTo('删除', 'template')): ?>
+                            <a class="btn no-padding"
+                                data-confirm="<?= H(T('您确认删除数据:point?', [':point'=>$point->identity])) ?>"
+                                data-confirm-description="<?= H(T('点击确认后会删除该用户信息, 请谨慎处理!')) ?>"
+                                href="gini-ajax:AJAX/Point/Delete/<?= (int)$point->id ?>"
+                                >
+                                <i class="fa fa-trash-o fa-lg fa-fw"></i>
+                            </a>
+                            <?php endif; ?>
+                        </div>
+                    </td>
+                </tr>
+            <?php endforeach; else: ?>
+                <tr>
+                    <td colspan="5" style="text-align: center;"><?= T('没有找到匹配的模板替换信息!') ?></td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>

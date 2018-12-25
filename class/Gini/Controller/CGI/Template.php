@@ -44,4 +44,64 @@ class Template extends Layout\God
             'form' => $form
         ]);
     }
+
+    public function actionData()
+    {
+        $me = _G('ME');
+        if (!$me->isAllowedTo('修改', 'template')) {
+            $this->redirect('error/401');
+        }
+
+        $form = $this->form();
+
+        $points = those('point');
+
+        $this->view->body = V('template/data-template', [
+            'me' => $me,
+            'form' => $form,
+            'points' => $points
+        ]);
+    }
+
+    public function actionPoint($id=0)
+    {
+        $me = _G('ME');
+        if (!$me->isAllowedTo('修改', 'template')) {
+            $this->redirect('error/401');
+        }
+
+        $point = a('point', $id);
+
+        $form = $this->form();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($form['submit']) {
+                $validator = new \Gini\CGI\Validator;
+
+                try {
+                    $validator
+                        ->validate('title', $form['title'], T('数据名称不能为空!'))
+                        ->validate('identity', $form['identity'], T('数据标示不能为空!'))
+                        ->done();
+                    $point->user = $me;
+                    $point->ctime = date('Y-m-d H:i:s');
+                    $point->title = $form['title'];
+                    $point->content = $form['content'];
+                    $point->identity = '#'.$form['identity'];
+                    $point->save();
+
+                } catch (\Gini\CGI\Validator\Exception $e) {
+                    $form['_errors'] = $validator->errors();
+                }
+
+                $this->redirect('/template/data');
+            }
+        }
+
+        $this->view->body = V('point/add-point', [
+            'me' => $me,
+            'form' => $form,
+            'point' => $point
+        ]);
+    }
 }
