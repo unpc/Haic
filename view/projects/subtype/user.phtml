@@ -2,13 +2,13 @@
 <form id="add-project-form" method="POST" action="gini-ajax:ajax/project/addUser/<?= $project->id ?>">
     <div class="row">
         <div class="col-md-6">
-            <div class="form-group form-group-lg">
+            <div class="form-group form-group-lg" data-toggle="tooltip" title="#004">
                 <label class="control-label" for="user_name"><?= H('姓名') ?></label>
                 <input id="user_name" name="user_name" type="text" class="form-control" value="<?= $project->user_name ?>" />
             </div>
         </div>
         <div class="col-md-6">
-            <div class="form-group form-group-lg">
+            <div class="form-group form-group-lg" data-toggle="tooltip" title="#005">
                 <label class="control-label" for="user_address"><?= H('地址') ?></label>
                 <input id="user_address" name="user_address" type="text" class="form-control" value="<?= $project->user_address ?>" />
             </div>

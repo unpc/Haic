@@ -41,7 +41,7 @@
     <div class="hr_2"></div>
         <div class="row">
             <div class="col">
-                <h5>
+                <h5 data-toggle="tooltip" title="#001">
                     项目编号: <?= strtr(\Gini\Config::get('project.number_template'), [
                         '%year' => date('Y', strtotime($project->ctime)),
                         '%number' => $project->number
@@ -53,9 +53,9 @@
                         <?= \Gini\ORM\Approval::$APPROVAL_STATUS[(int)$approval->status] ?>
                     </span>
                 </h5>
-                <h5>项目名称: <?= T($project->title) ?></h5>
-                <h5>备注信息: </h5>
-                <div class="text-gray"><?= str_replace(["\r\n", "\n", "\r"], "<br/>", H($project->source_description)) ?></div>
+                <h5 data-toggle="tooltip" title="#002">项目名称: <?= T($project->title) ?></h5>
+                <h5 data-toggle="tooltip" title="#003">备注信息: </h5>
+                <div class="text-gray" ><?= str_replace(["\r\n", "\n", "\r"], "<br/>", H($project->source_description)) ?></div>
                 <div class="hr_2"></div>
                 <div class="btn-toolbar" role="toolbar">
                     <div class="btn-group mr-2" role="group">

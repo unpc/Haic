@@ -6,15 +6,15 @@
 <table class="table table-sm table-bordered table-object">
 <tbody>
     <tr>
-        <td colspan="2">项目名称</td>
+        <td colspan="2"  data-toggle="tooltip" title="#002">项目名称</td>
         <td colspan="4">
             <input name="title" readonly type="text" class="form-control-plaintext" value="<?= $project->title ?>" />
         </td>
-        <td>建造年代</td>
+        <td data-toggle="tooltip" title="#007">建造年代</td>
         <td>
             <input name="year" type="text" class="form-control" value="<?= $building->year ?>" />
         </td>
-        <td>物业管理</td>
+        <td  data-toggle="tooltip" title="#008">物业管理</td>
         <td>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="property" value="1" <?= $building->property == 1 ? 'checked="checked"': '' ?> />
@@ -27,11 +27,11 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2">坐落</td>
+        <td colspan="2"  data-toggle="tooltip" title="#009">坐落</td>
         <td colspan="4">
             <input name="address" type="text" class="form-control" value="<?= $building->address ?>" />
         </td>
-        <td>结构</td>
+        <td  data-toggle="tooltip" title="#010">结构</td>
         <td colspan="3">
             <?php foreach($structure_s as $k => $v): ?>
                 <div class="form-check form-check-inline">
@@ -45,15 +45,15 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2">总层数</td>
+        <td colspan="2" data-toggle="tooltip" title="#011">总层数</td>
         <td colspan="2">
             <input name="total_floor" type="text" class="form-control" value="<?= $building->total_floor ?>" />
         </td>
-        <td>所在层数</td>
+        <td data-toggle="tooltip" title="#012">所在层数</td>
         <td>
             <input name="floor" type="text" class="form-control" value="<?= $building->floor ?>" />
         </td>
-        <td>朝向</td>
+        <td data-toggle="tooltip" title="#013">朝向</td>
         <td colspan="3">
             <?php
                 $front_s = \Gini\ORM\Building::$front_s;
@@ -67,7 +67,7 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2">用途</td>
+        <td colspan="2" data-toggle="tooltip" title="#014">用途</td>
         <td colspan="2">
             <?php
                 $use_s = \Gini\ORM\Building::$use_s;
@@ -82,11 +82,11 @@
                 <input type="text" class="form-control" placeholder="请输入其他用途" name="use_text" value="<?= $building->use_text ?>" />
             </div>
         </td>
-        <td>建筑面积</td>
+        <td data-toggle="tooltip" title="#015">建筑面积</td>
         <td>
             <input name="area" type="text" class="form-control" value="<?= $building->area ?>" />
         </td>
-        <td>户型</td>
+        <td data-toggle="tooltip" title="#016">户型</td>
         <td colspan="3">
             <?php
                 $type_s = \Gini\ORM\Building::$type_s;
@@ -103,11 +103,11 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2">层高</td>
+        <td colspan="2" data-toggle="tooltip" title="#017">层高</td>
         <td colspan="2">
             <input name="height" type="text" class="form-control" value="<?= $building->height ?>" />
         </td>
-        <td class="norwap">是否有抵押</td>
+        <td class="norwap" data-toggle="tooltip" title="#018">是否有抵押</td>
         <td>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="mortgage" value="1" <?= $building->mortgage == 1 ? 'checked="checked"': '' ?> />
@@ -118,7 +118,7 @@
                 <label class="form-check-label" >无</label>
             </div>
         </td>
-        <td>附属物</td>
+        <td data-toggle="tooltip" title="#019">附属物</td>
         <td colspan="3">
             <?php
                 $appurtenance_s = \Gini\ORM\Building::$appurtenance_s;
@@ -132,7 +132,7 @@
         </td>
     </tr>
     <tr>
-        <td colspan="3">外墙</td>
+        <td colspan="3" data-toggle="tooltip" title="#020">外墙</td>
         <td colspan="7">
             <?php
                 $out_wall_s = \Gini\ORM\Building::$out_wall_s;
@@ -151,9 +151,9 @@
     <tr>
         <td rowspan="18" class="align-middle">装修部分</td>
         <td rowspan="5" class="align-middle">厅</td>
-        <td >门</td>
+        <td data-toggle="tooltip" title="#021, #022">门</td>
         <td colspan="7">
-            <div>
+            <div data-toggle="tooltip" title="#021">
                 <span>外:&#160;&#160;</span>
                 <?php
                     $door_outside_s = \Gini\ORM\Building::$door_outside_s;
@@ -168,7 +168,7 @@
                     <input type="text" class="form-control" placeholder="请输入其他外门类型" name="parlour_door_outside_text" value="<?= $building->parlour_door_outside_text ?>" />
                 </div>
             </div>
-            <div>
+            <div data-toggle="tooltip" title="#022">
                 <span>内:&#160;&#160;</span>
                 <?php
                     $door_inside_s = \Gini\ORM\Building::$door_inside_s;
@@ -186,9 +186,9 @@
         </td>
     </tr>
     <tr>
-        <td >窗</td>
+        <td data-toggle="tooltip" title="#023, #024">窗</td>
         <td colspan="7">
-            <div>
+            <div data-toggle="tooltip" title="#023">
                 <span>外:&#160;&#160;</span>
                 <?php
                     $window_outside_s = \Gini\ORM\Building::$window_outside_s;
@@ -203,7 +203,7 @@
                     <input type="text" class="form-control" placeholder="请输入其他外窗类型" name="parlour_window_outside_text" value="<?= $building->parlour_window_outside_text ?>" />
                 </div>
             </div>
-            <div>
+            <div data-toggle="tooltip" title="#024">
                 <span>内:&#160;&#160;</span>
                 <?php
                     $window_inside_s = \Gini\ORM\Building::$window_inside_s;
@@ -221,7 +221,7 @@
         </td>
     </tr>
     <tr>
-        <td >墙面</td>
+        <td data-toggle="tooltip" title="#025">墙面</td>
         <td colspan="7">
             <?php
                 $parlour_wall_s = \Gini\ORM\Building::$parlour_wall_s;
@@ -238,7 +238,7 @@
         </td>
     </tr>
     <tr>
-        <td >顶棚</td>
+        <td data-toggle="tooltip" title="#026">顶棚</td>
         <td colspan="7">
             <?php
                 $parlour_platfond_s = \Gini\ORM\Building::$parlour_platfond_s;
@@ -255,7 +255,7 @@
         </td>
     </tr>
     <tr>
-        <td >地面</td>
+        <td data-toggle="tooltip" title="#027">地面</td>
         <td colspan="7">
             <?php
                 $parlour_floor_s = \Gini\ORM\Building::$parlour_floor_s;
@@ -273,7 +273,7 @@
     </tr>
     <tr>
         <td rowspan="3" class="align-middle">卧室</td>
-        <td >墙面</td>
+        <td data-toggle="tooltip" title="#028">墙面</td>
         <td colspan="7">
             <?php
                 $parlour_wall_s = \Gini\ORM\Building::$parlour_wall_s;
@@ -290,7 +290,7 @@
         </td>
     </tr>
     <tr>
-        <td >顶棚</td>
+        <td data-toggle="tooltip" title="#029">顶棚</td>
         <td colspan="7">
             <?php
                 $parlour_platfond_s = \Gini\ORM\Building::$parlour_platfond_s;
@@ -307,7 +307,7 @@
         </td>
     </tr>
     <tr>
-        <td >地面</td>
+        <td data-toggle="tooltip" title="#030">地面</td>
         <td colspan="7">
             <?php
                 $parlour_floor_s = \Gini\ORM\Building::$parlour_floor_s;
@@ -325,7 +325,7 @@
     </tr>
     <tr>
         <td rowspan="4" class="align-middle">卫生间</td>
-        <td >墙面</td>
+        <td data-toggle="tooltip" title="#031">墙面</td>
         <td colspan="7">
             <?php
                 $toilet_wall_s = \Gini\ORM\Building::$toilet_wall_s;
@@ -342,7 +342,7 @@
         </td>
     </tr>
     <tr>
-        <td >顶棚</td>
+        <td data-toggle="tooltip" title="#032">顶棚</td>
         <td colspan="7">
             <?php
                 $toilet_platfond_s = \Gini\ORM\Building::$toilet_platfond_s;
@@ -359,7 +359,7 @@
         </td>
     </tr>
     <tr>
-        <td >地面</td>
+        <td data-toggle="tooltip" title="#033">地面</td>
         <td colspan="7"> 
             <?php
                 $toilet_floor_s = \Gini\ORM\Building::$toilet_floor_s;
@@ -376,7 +376,7 @@
         </td>
     </tr>
     <tr>
-        <td >设备</td>
+        <td data-toggle="tooltip" title="#034">设备</td>
         <td colspan="7"> 
             <?php
                 $toilet_appurtenance_s = \Gini\ORM\Building::$toilet_appurtenance_s;
@@ -394,7 +394,7 @@
     </tr>
     <tr>
         <td rowspan="4" class="align-middle">厨房</td>
-        <td >墙面</td>
+        <td data-toggle="tooltip" title="#035">墙面</td>
         <td colspan="7">
             <?php
                 $toilet_wall_s = \Gini\ORM\Building::$toilet_wall_s;
@@ -411,7 +411,7 @@
         </td>
     </tr>
     <tr>
-        <td >顶棚</td>
+        <td data-toggle="tooltip" title="#036">顶棚</td>
         <td colspan="7">
             <?php
                 $toilet_platfond_s = \Gini\ORM\Building::$toilet_platfond_s;
@@ -428,7 +428,7 @@
         </td>
     </tr>
     <tr>
-        <td >地面</td>
+        <td data-toggle="tooltip" title="#037">地面</td>
         <td colspan="7"> 
             <?php
                 $toilet_floor_s = \Gini\ORM\Building::$toilet_floor_s;
@@ -445,7 +445,7 @@
         </td>
     </tr>
     <tr>
-        <td >设备</td>
+        <td data-toggle="tooltip" title="#038">设备</td>
         <td colspan="7"> 
             <?php
                 $cook_appurtenance_s = \Gini\ORM\Building::$cook_appurtenance_s;
@@ -463,7 +463,7 @@
     </tr>
     <tr>
         <td rowspan="2" class="align-middle">阳台</td>
-        <td >墙面</td>
+        <td data-toggle="tooltip" title="#039">墙面</td>
         <td colspan="7">
             <?php
                 $veranda_wall_s = \Gini\ORM\Building::$veranda_wall_s;
@@ -480,7 +480,7 @@
         </td>
     </tr>
     <tr>
-        <td >地面</td>
+        <td data-toggle="tooltip" title="#040">地面</td>
         <td colspan="7"> 
             <?php
                 $veranda_floor_s = \Gini\ORM\Building::$veranda_floor_s;
@@ -498,7 +498,7 @@
     </tr>
     <tr>
         <td rowspan="7" colspan="2" class="align-middle">设备设施</td>
-        <td >
+        <td data-toggle="tooltip" title="#041">
             <span>照明</span>
         </td>
         <td colspan="3">
@@ -511,7 +511,7 @@
                 <label class="form-check-label" for="inlineRadio2">无</label>
             </div>
         </td>
-        <td>
+        <td data-toggle="tooltip" title="#042">
             <span>一户一表</span>
         </td>
         <td colspan="3">
@@ -526,7 +526,7 @@
         </td>
     </tr>
     <tr>
-        <td class="norwap">
+        <td class="norwap" data-toggle="tooltip" title="#043">
             <span>烟感报警系统</span>
         </td>
         <td colspan="3">
@@ -539,7 +539,7 @@
                 <label class="form-check-label" for="inlineRadio2">无</label>
             </div>
         </td>
-        <td>
+        <td data-toggle="tooltip" title="#044">
             <span>上下水</span>
         </td>
         <td colspan="3">
@@ -554,7 +554,7 @@
         </td>
     </tr>
     <tr>
-        <td>
+        <td data-toggle="tooltip" title="#045">
             <span>有线电视</span>
         </td>
         <td colspan="3">
@@ -567,7 +567,7 @@
                 <label class="form-check-label" for="inlineRadio2">无</label>
             </div>
         </td>
-        <td class="norwap">
+        <td class="norwap" data-toggle="tooltip" title="#046">
             <span>自动喷淋系统</span>
         </td>
         <td colspan="3">
@@ -582,7 +582,7 @@
         </td>
     </tr>
     <tr>
-        <td>
+        <td data-toggle="tooltip" title="#047">
             <span>暖气</span>
         </td>
         <td colspan="3">
@@ -595,7 +595,7 @@
                 <label class="form-check-label" for="inlineRadio2">无</label>
             </div>
         </td>
-        <td>
+        <td data-toggle="tooltip" title="#048">
             <span>电话预留</span>
         </td>
         <td colspan="3">
@@ -610,7 +610,7 @@
         </td>
     </tr>
     <tr>
-        <td>
+        <td data-toggle="tooltip" title="#049">
             <span>中水</span>
         </td>
         <td colspan="3">
@@ -623,7 +623,7 @@
                 <label class="form-check-label" for="inlineRadio2">无</label>
             </div>
         </td>
-        <td>
+        <td data-toggle="tooltip" title="#050">
             <span>煤气</span>
         </td>
         <td colspan="3">
@@ -638,7 +638,7 @@
         </td>
     </tr>
     <tr>
-        <td>
+        <td data-toggle="tooltip" title="#051">
             <span>电梯</span>
         </td>
         <td colspan="3">
@@ -651,7 +651,7 @@
                 <label class="form-check-label" for="inlineRadio2">无</label>
             </div>
         </td>
-        <td>
+        <td data-toggle="tooltip" title="#052">
             <span>热水</span>
         </td>
         <td colspan="3">
@@ -666,7 +666,7 @@
         </td>
     </tr>
     <tr>
-        <td>
+        <td data-toggle="tooltip" title="#053">
             <span>对讲系统</span>
         </td>
         <td colspan="7">
@@ -681,7 +681,7 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2">利用状况</td>
+        <td colspan="2" data-toggle="tooltip" title="#054">利用状况</td>
         <td colspan="3">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="use_status" value="1" <?= $building->use_status == 1 ? 'checked="checked"': '' ?> />
@@ -696,46 +696,46 @@
                 <label class="form-check-label" for="inlineRadio2">出租</label>
             </div>
         </td>
-        <td colspan="2">成新</td>
+        <td colspan="2" data-toggle="tooltip" title="#055">成新</td>
         <td colspan="3">
             <input name="percent_new" type="text" class="form-control" value="<?= $building->percent_new ?>" />
         </td>
     </tr>
     <tr>
         <td rowspan="2" colspan="2">四至</td>
-        <td colspan="4">
+        <td colspan="4" data-toggle="tooltip" title="#056">
             东:&#160;&#160;
             <input name="east_front" type="text" class="form-control" value="<?= $building->east_front ?>" />
         </td>
-        <td colspan="4">
+        <td colspan="4" data-toggle="tooltip" title="#057">
             南:&#160;&#160;
             <input name="south_front" type="text" class="form-control" value="<?= $building->south_front ?>" />
         </td>
     </tr>
     <tr>
-        <td colspan="4">
+        <td colspan="4" data-toggle="tooltip" title="#058">
             西:&#160;&#160;
             <input name="west_front" type="text" class="form-control" value="<?= $building->west_front ?>" />
         </td>
-        <td colspan="4">
+        <td colspan="4" data-toggle="tooltip" title="#059">
             北:&#160;&#160;
             <input name="north_front" type="text" class="form-control" value="<?= $building->north_front ?>" />
         </td>
     </tr>
     <tr>
-        <td class="norwap" colspan="2">周围配套情况</td>
+        <td class="norwap" colspan="2" data-toggle="tooltip" title="#060">周围配套情况</td>
         <td colspan="8">
             <input name="around_appurtenance" type="text" class="form-control" value="<?= $building->around_appurtenance ?>" />
         </td>
     </tr>
     <tr>
-        <td colspan="2">其他</td>
+        <td colspan="2" data-toggle="tooltip" title="#061">其他</td>
         <td colspan="8">
             <input name="another_desc" type="text" class="form-control" value="<?= $building->another_desc ?>" />
         </td>
     </tr>
     <tr>
-        <td colspan="2">容积率</td>
+        <td colspan="2" data-toggle="tooltip" title="#062">容积率</td>
         <td colspan="3">
             <input name="plot" type="text" class="form-control" value="<?= $building->plot ?>" />
         </td>

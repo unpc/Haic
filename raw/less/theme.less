@@ -297,3 +297,30 @@ table.table-object {
 		}
 	}
 }
+
+.pagination-nav {
+	text-align: center;
+	.pagination {
+		margin: 0px;
+		display: flex;
+		justify-content: center;
+		a, span {
+			color: #777;
+			&.current {
+				color: #FFFFFF;
+				background-color: @mainColor;
+				border-color: @mainColor;
+				font-weight: 600;
+				border-radius: 20px;
+			}
+		}
+	}
+	.pagination > li > a, .pagination > li > span {
+		padding: 4px 8px;
+	}
+	.page-dec {
+		position: absolute;
+		padding: 4px 8px;
+		color: #777;
+	}
+}

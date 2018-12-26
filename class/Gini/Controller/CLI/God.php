@@ -38,4 +38,18 @@ class God extends \Gini\Controller\CLI
         $auth = \Gini\IoC::construct('\Gini\Auth', $username);
         $auth->create($password);
     }
+
+    public function actionUpdatePoints()
+    {
+        $points = (array)\Gini\Config::get('point');
+        foreach ($points as $key => $value) {
+            $identity = "#{$key}";
+            $point = a('point')->whose('identity')->is($identity);
+            if (!$point->id) {
+                $point->identity = $identity;
+            }
+            $point->title = $value;
+            echo $point->save() ? '.' : 'x';
+        }
+    }
 }

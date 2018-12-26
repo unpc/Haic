@@ -12,7 +12,7 @@ define('main', ['jquery', 'bootstrap'], function($, b){return $});
 
 require(['main'], function($) {
 
-    // $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip()
 
     //jquery1.9以后不支持$.browser
     //让ie支持 表单外按钮提交表单

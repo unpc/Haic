@@ -9,12 +9,8 @@
         if ($total_pages > 1) :
             $lamda_func = 'pagination_'.uniqid();
 ?>
-<div class="container-fluid footer-pagination">
-<div class="row">
-    <div class="col-xs-6">
-    </div>
-    <div class="col-xs-6 ">
-    <ul class="pagination pull-right">
+<nav aria-label="Page navigation" class="pagination-nav">
+    <ul class="pagination">
         <?php
             $f=$current_page - floor($max_pages/2);
             $t=$current_page + floor($max_pages/2);
@@ -31,7 +27,7 @@
         ?>
             <li>
                 <a href="<?= H(URL($url, array_merge(array($st=>($current_page - 2)*$per_page), array($params)))) ?>">
-                    <i class="fa fa-angle-double-left"></i>
+                    <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
         <?php endif; ?>
@@ -47,12 +43,10 @@
         <?php if ($current_page < $total_pages): ?>
             <li>
                 <a href="<?= H(URL($url, array_merge(array($st=>($current_page)*$per_page), array($params))))?>">
-                    <i class="fa fa-angle-double-right"></i>
+                    <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
         <?php endif; ?>
     </ul>
-    </div>
-</div>
-</div>
+</nav>
 <?php endif; endif;?>

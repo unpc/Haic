@@ -56,10 +56,15 @@ class Template extends Layout\God
 
         $points = those('point');
 
+        $step = 10;
+
+        $pagination = \Gini\Model\Help::pagination($points, $form['st'], $step);
+
         $this->view->body = V('template/data-template', [
             'me' => $me,
             'form' => $form,
-            'points' => $points
+            'points' => $points,
+            'pagination' => $pagination
         ]);
     }
 

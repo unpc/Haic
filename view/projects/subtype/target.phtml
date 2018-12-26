@@ -2,7 +2,7 @@
 <form id="add-project-form" method="POST" action="gini-ajax:ajax/project/addTarget/<?= $project->id ?>">
     <div class="row">
         <div class="col-md-12">
-            <div class="form-group form-group-lg">
+            <div class="form-group form-group-lg" data-toggle="tooltip" title="#006">
                 <label class="control-label" for="target"><?= H('估价目的') ?></label>
                 <textarea placeholder="<?= \Gini\Config::get('project.target') ?>" id="target" name="target" type="text" class="form-control"><?= $project->target ?></textarea>
             </div>
