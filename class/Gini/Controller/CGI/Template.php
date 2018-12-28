@@ -56,9 +56,14 @@ class Template extends Layout\God
 
         $points = those('point');
 
+        if ($form['title']) {
+            $points = $points->whose('title')->contains(H($form['title']))
+                ->orWhose('identity')->contains(H($form['title']));
+        }
+
         $step = 10;
 
-        $pagination = \Gini\Model\Help::pagination($points, $form['st'], $step);
+        $pagination = \Gini\Model\Help::pagination($points, $form['st'], $step, '', ['title' => $form['title']]);
 
         $this->view->body = V('template/data-template', [
             'me' => $me,

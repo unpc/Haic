@@ -3,7 +3,7 @@
         $current_page = floor($start / $per_page) + 1;
         $total_pages = ceil($total / $per_page);
         $max_pages = 5;
-        $url = $this->url ?: '';
+        $url = $url ?: '';
         //st 是 start 的意思
         $st = $this->query_key ?: 'st';
         if ($total_pages > 1) :
@@ -26,7 +26,7 @@
             if ($current_page > 1):
         ?>
             <li>
-                <a href="<?= H(URL($url, array_merge(array($st=>($current_page - 2)*$per_page), array($params)))) ?>">
+                <a href="<?= H(URL($url, array_merge(array($st=>($current_page - 2)*$per_page), $params))) ?>">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -36,13 +36,13 @@
             <?php if ($i == $current_page) : ?>
                 <li><span class="current"><?= $i ?></span></li>
             <?php else: ?>
-                <li><a href="<?= H(URL($url, array_merge(array($st=>($i - 1)*$per_page), array($params)))) ?>" ><?= $i ?></a></li>
+                <li><a href="<?= H(URL($url, array_merge(array($st=>($i - 1)*$per_page), $params))) ?>" ><?= $i ?></a></li>
             <?php endif; ?>
         <?php endfor;?>
 
         <?php if ($current_page < $total_pages): ?>
             <li>
-                <a href="<?= H(URL($url, array_merge(array($st=>($current_page)*$per_page), array($params))))?>">
+                <a href="<?= H(URL($url, array_merge(array($st=>($current_page)*$per_page), $params)))?>">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>

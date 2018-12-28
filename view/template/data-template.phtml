@@ -11,12 +11,12 @@
                 添加模板替换内容
             </a>
         </div>
-        <form method="POST" action="<?= URL('/template/data')?>">
+        <form method="GET" action="<?= URL('/template/data')?>">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <div class="input-group-text" id="btnGroupAddon2">标题</div>
+                    <div class="input-group-text" id="btnGroupAddon2">编号 / 标题</div>
                 </div>
-                <input type="title" name="title" class="form-control" placeholder="请输入替换标题查找" aria-label="请输入模板名称查找" aria-describedby="btnGroupAddon2" value="<?= $form['title']?>">
+                <input type="title" name="title" class="form-control" placeholder="请输入编号或者替换标题查找" aria-label="请输入编号或者替换标题查找" aria-describedby="btnGroupAddon2" value="<?= $form['title']?>">
             </div>
         </form>
     </div>
