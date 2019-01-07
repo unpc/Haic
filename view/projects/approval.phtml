@@ -83,73 +83,73 @@
             <table class="table table-sm table-bordered table-object">
                 <tbody>
                     <tr>
-                        <td colspan="1" class="disable">估价委托人</td>
+                        <td colspan="1" class="disable" data-toggle="tooltip" title="#088">估价委托人</td>
                         <td colspan="3">
                             <input name="user_name" type="text" class="form-control <?= isset($form['_errors']['user_name']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['user_name'] : ($approval->info['user_name'] ?: $project->user_name) ?>" />
                         </td>
-                        <td class="disable">报告编号</td>
+                        <td class="disable" data-toggle="tooltip" title="#089">报告编号</td>
                         <td >
                             <input name="report_no" type="text" class="form-control <?= isset($form['_errors']['report_no']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['report_no'] : ($approval->info['report_no'] ?: $project->report_no) ?>" />
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="1" class="disable">房屋所有权人</td>
+                        <td colspan="1" class="disable" data-toggle="tooltip" title="#090">房屋所有权人</td>
                         <td colspan="3">
                             <input name="owner" type="text" class="form-control <?= isset($form['_errors']['owner']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['owner'] : ($approval->info['owner'] ?: $building->ownership['owner']) ?>" />
                         </td>
-                        <td class="disable">项目编号</td>
+                        <td class="disable" data-toggle="tooltip" title="#001">项目编号</td>
                         <td >
                             <input name="number" type="text" class="form-control <?= isset($form['_errors']['number']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['number'] : ($approval->info['number'] ?: $project->number) ?>" />
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="1" class="disable">项目坐落</td>
+                        <td colspan="1" class="disable" data-toggle="tooltip" title="#091">项目坐落</td>
                         <td colspan="3">
                             <input name="address" type="text" class="form-control <?= isset($form['_errors']['address']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['address'] : ($approval->info['address'] ?: $building->address)?>" />
                         </td>
-                        <td class="disable">项目名称</td>
+                        <td class="disable" data-toggle="tooltip" title="#002">项目名称</td>
                         <td >
                             <input name="title" type="text" class="form-control <?= isset($form['_errors']['title']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['title'] : ($approval->info['title'] ?: $project->title) ?>" />
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="1" class="disable">联系人</td>
+                        <td colspan="1" class="disable" data-toggle="tooltip" title="#092">联系人</td>
                         <td >
                             <input name="contact" type="text" class="form-control <?= isset($form['_errors']['contact']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['contact'] : ($approval->info['contact'] ?: $project->user_name) ?>" />
                         </td>
-                        <td class="disable">联系电话</td>
+                        <td class="disable" data-toggle="tooltip" title="#093">联系电话</td>
                         <td >
                             <input name="contact_phone" type="text" class="form-control <?= isset($form['_errors']['contact_phone']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['contact_phone'] : ($approval->info['contact_phone'] ?: $project->user_phone) ?>" />
                         </td>
-                        <td class="disable">项目案名</td>
+                        <td class="disable" data-toggle="tooltip" title="#094">项目案名</td>
                         <td >
                             <input name="case_name" type="text" class="form-control <?= isset($form['_errors']['case_name']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['case_name'] : ($approval->info['case_name'] ?: $project->case_name) ?>" />
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="1" class="disable">委托日期</td>
+                        <td colspan="1" class="disable" data-toggle="tooltip" title="#095">委托日期</td>
                         <td >
                             <input name="stment_date" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->stment_date ? strtotime($project->stment_date) : time()) ?>">
                         </td>
-                        <td class="disable">价值时点</td>
+                        <td class="disable" data-toggle="tooltip" title="#096">价值时点</td>
                         <td >
                             <input name="explor_date" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->explor_date ? strtotime($project->explor_date) : time()) ?>">
                         </td>
-                        <td class="disable">领勘人</td>
+                        <td class="disable" data-toggle="tooltip" title="#097">领勘人</td>
                         <td >
                             <input name="explor_user" type="text" class="form-control  <?= isset($form['_errors']['explor_user']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['explor_user'] : ($approval->info['explor_user'] ?: $building->explor_user) ?>" />
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="1" class="disable">建筑面积（㎡）</td>
+                        <td colspan="1" class="disable" data-toggle="tooltip" title="#098">建筑面积（㎡）</td>
                         <td >
                             <input name="area" type="text" class="form-control <?= isset($form['_errors']['area']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['area'] : ($approval->info['area'] ?: $building->area) ?>" />
                         </td>
-                        <td class="disable norwap">土地面积（㎡）</td>
+                        <td class="disable norwap" data-toggle="tooltip" title="#099">土地面积（㎡）</td>
                         <td >
                             <input name="acreage" type="text" class="form-control <?= isset($form['_errors']['acreage']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['acreage'] : ($approval->info['acreage'] ?: $building->acreage) ?>" />
                         </td>
-                        <td class="disable">估价目的</td>
+                        <td class="disable" data-toggle="tooltip" title="#100">估价目的</td>
                         <td >
                             <input name="target" type="text" class="form-control <?= isset($form['_errors']['target']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['target'] : ($approval->info['target'] ?: $project->target) ?>" />
                         </td>

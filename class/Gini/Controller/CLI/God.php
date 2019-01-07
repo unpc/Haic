@@ -43,7 +43,7 @@ class God extends \Gini\Controller\CLI
     {
         $points = (array)\Gini\Config::get('point');
         foreach ($points as $key => $value) {
-            $identity = "#{$key}";
+            $identity = "#".$key;
             $point = a('point')->whose('identity')->is($identity);
             if (!$point->id) {
                 $point->identity = $identity;
