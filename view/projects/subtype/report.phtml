@@ -27,7 +27,7 @@
         <tr>
             <td colspan="3">
                 <div class="text-center form-control-plaintext">
-                    项目
+                    项目名称
                 </div>
             </td>
             <td><?= $project->title ?></td>
@@ -80,9 +80,10 @@
             <td><input name="business_desc_3" type="text" class="form-control " value="<?= $calculat_table['business_desc_3']?>" /></td>
         </tr>
         <tr>
-            <td rowspan="5" colspan="2">
+            <td rowspan="18">房地产状况</td>
+            <td rowspan="7">
                 <div class="text-center form-control-plaintext">
-                    区域因素（区位状况）
+                    区位状况
                 </div>
             </td>
             <td>交通通达度</td>
@@ -120,8 +121,21 @@
             <td><input name="business_ggsswbd_3" type="text" class="form-control " value="<?= $calculat_table['business_ggsswbd_3']?>" /></td>
         </tr>
         <tr>
-            <td rowspan="13">个别因素</td>
-            <td rowspan="11">实物状况</td>
+            <td>所在层/房屋总层数</td>
+            <td><input name="gbys_lcdc" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc'] ?: "{$building->floor}/{$building->total_floor}" ?>" /></td>
+            <td><input name="gbys_lcdc_1" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_1']?>" /></td>
+            <td><input name="gbys_lcdc_2" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_2']?>" /></td>
+            <td><input name="gbys_lcdc_3" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>朝向</td>
+            <td><input name="gbys_front" type="text" class="form-control " value="<?= $calculat_table['gbys_front'] ?: \Gini\ORM\Building::$front_s[$building->front] ?>" /></td>
+            <td><input name="gbys_front_1" type="text" class="form-control " value="<?= $calculat_table['gbys_front_1']?>" /></td>
+            <td><input name="gbys_front_2" type="text" class="form-control " value="<?= $calculat_table['gbys_front_2']?>" /></td>
+            <td><input name="gbys_front_3" type="text" class="form-control " value="<?= $calculat_table['gbys_front_3']?>" /></td>
+        </tr>
+        <tr>
+            <td rowspan="8">实物状况</td>
             <td>成新率</td>
             <td><input name="gbys_precent" type="text" class="form-control " value="<?= $calculat_table['gbys_precent'] ?: $project->building->percent_new ?>" /></td>
             <td><input name="gbys_precent_1" type="text" class="form-control " value="<?= $calculat_table['gbys_precent_1']?>" /></td>
@@ -136,25 +150,11 @@
             <td><input name="gbys_wygl_3" type="text" class="form-control " value="<?= $calculat_table['gbys_wygl_3']?>" /></td>
         </tr>
         <tr>
-            <td>公共部分或小区状况</td>
+            <td>小区状况</td>
             <td><input name="gbys_ggbf" type="text" class="form-control " value="<?= $calculat_table['gbys_ggbf'] ?>" /></td>
             <td><input name="gbys_ggbf_1" type="text" class="form-control " value="<?= $calculat_table['gbys_ggbf_1']?>" /></td>
             <td><input name="gbys_ggbf_2" type="text" class="form-control " value="<?= $calculat_table['gbys_ggbf_2']?>" /></td>
             <td><input name="gbys_ggbf_3" type="text" class="form-control " value="<?= $calculat_table['gbys_ggbf_3']?>" /></td>
-        </tr>
-        <tr>
-            <td>用途</td>
-            <td><input name="gbys_yt" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_3'] ?: ($building->use_text ?: (\Gini\ORM\Building::$use_s[$building->use])) ?>" /></td>
-            <td><input name="gbys_yt_1" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_1']?>" /></td>
-            <td><input name="gbys_yt_2" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_2']?>" /></td>
-            <td><input name="gbys_yt_3" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_3']?>" /></td>
-        </tr>
-        <tr>
-            <td>朝向</td>
-            <td><input name="gbys_front" type="text" class="form-control " value="<?= $calculat_table['gbys_front'] ?: \Gini\ORM\Building::$front_s[$building->front] ?>" /></td>
-            <td><input name="gbys_front_1" type="text" class="form-control " value="<?= $calculat_table['gbys_front_1']?>" /></td>
-            <td><input name="gbys_front_2" type="text" class="form-control " value="<?= $calculat_table['gbys_front_2']?>" /></td>
-            <td><input name="gbys_front_3" type="text" class="form-control " value="<?= $calculat_table['gbys_front_3']?>" /></td>
         </tr>
         <tr>
             <td>建筑结构</td>
@@ -171,13 +171,6 @@
             <td><input name="gbys_type_3" type="text" class="form-control " value="<?= $calculat_table['gbys_type_3']?>" /></td>
         </tr>
         <tr>
-            <td>楼层/顶层</td>
-            <td><input name="gbys_lcdc" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc'] ?: "{$building->floor}/{$building->total_floor}" ?>" /></td>
-            <td><input name="gbys_lcdc_1" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_1']?>" /></td>
-            <td><input name="gbys_lcdc_2" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_2']?>" /></td>
-            <td><input name="gbys_lcdc_3" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_3']?>" /></td>
-        </tr>
-        <tr>
             <td>建筑面积（m²）</td>
             <td><input name="gbys_jzmj" type="text" class="form-control " value="<?= $calculat_table['gbys_jzmj'] ?: $building->area ?>" /></td>
             <td><input name="gbys_jzmj_1" type="text" class="form-control " value="<?= $calculat_table['gbys_jzmj_1']?>" /></td>
@@ -192,19 +185,26 @@
             <td><input name="gbys_nbzx_3" type="text" class="form-control " value="<?= $calculat_table['gbys_nbzx_3']?>" /></td>
         </tr>
         <tr>
-            <td>附属设施状况</td>
+            <td>设施状况</td>
             <td><input name="gbys_fssszk" type="text" class="form-control " value="<?= $calculat_table['gbys_fssszk'] ?: \Gini\Model\Help::mergeArrayText((array)$building->appurtenance, \Gini\ORM\Building::$appurtenance_s) ?: '无' ?>" /></td>
             <td><input name="gbys_fssszk_1" type="text" class="form-control " value="<?= $calculat_table['gbys_fssszk_1']?>" /></td>
             <td><input name="gbys_fssszk_2" type="text" class="form-control " value="<?= $calculat_table['gbys_fssszk_2']?>" /></td>
             <td><input name="gbys_fssszk_3" type="text" class="form-control " value="<?= $calculat_table['gbys_fssszk_3']?>" /></td>
         </tr>
         <tr>
-            <td rowspan="2">权益</td>
+            <td rowspan="3">权益</td>
             <td>产别</td>
             <td><input name="gbys_qycb" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb'] ?: '私产' ?>" /></td>
             <td><input name="gbys_qycb_1" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_1']?>" /></td>
             <td><input name="gbys_qycb_2" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_2']?>" /></td>
             <td><input name="gbys_qycb_3" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>用途</td>
+            <td><input name="gbys_yt" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_3'] ?: ($building->use_text ?: (\Gini\ORM\Building::$use_s[$building->use])) ?>" /></td>
+            <td><input name="gbys_yt_1" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_1']?>" /></td>
+            <td><input name="gbys_yt_2" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_2']?>" /></td>
+            <td><input name="gbys_yt_3" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_3']?>" /></td>
         </tr>
         <tr>
             <td>其他</td>
@@ -252,8 +252,8 @@
             </td>
             <td><input name="business_date_zs" type="text" class="form-control " value="<?= $calculat_table['business_date_zs'] ?: 100  ?>" /></td>
             <td><input name="business_date_zs_1" type="text" class="form-control " value="<?= $calculat_table['business_date_zs_1'] ?>" /></td>
-            <td><input name="business_date_zs_2" type="text" class="form-control " value="<?= $calculat_table['business_date_zs_1'] ?>" /></td>
-            <td><input name="business_date_zs_3" type="text" class="form-control " value="<?= $calculat_table['business_date_zs_1'] ?>" /></td>
+            <td><input name="business_date_zs_2" type="text" class="form-control " value="<?= $calculat_table['business_date_zs_2'] ?>" /></td>
+            <td><input name="business_date_zs_3" type="text" class="form-control " value="<?= $calculat_table['business_date_zs_3'] ?>" /></td>
         </tr>
         <tr>
             <td colspan="3">
@@ -267,9 +267,10 @@
             <td><input name="business_desc_zs_3" type="text" class="form-control " value="<?= $calculat_table['business_desc_zs_3'] ?>" /></td>
         </tr>
         <tr>
-            <td rowspan="5" colspan="2">
+            <td rowspan="18">房地产状况</td>
+            <td rowspan="7">
                 <div class="text-center form-control-plaintext">
-                    区域因素（区位状况）
+                    区位状况
                 </div>
             </td>
             <td>交通通达度</td>
@@ -307,8 +308,21 @@
             <td><input name="business_ggsswbd_zs_3" type="text" class="form-control " value="<?= $calculat_table['business_ggsswbd_zs_3'] ?>" /></td>
         </tr>
         <tr>
-            <td rowspan="13">个别因素</td>
-            <td rowspan="11">实物状况</td>
+            <td>所在层/房屋总层数</td>
+            <td><input name="gbys_lcdc_zs" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_zs'] ?: 100 ?>" /></td>
+            <td><input name="gbys_lcdc_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_zs_1'] ?>" /></td>
+            <td><input name="gbys_lcdc_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_zs_2'] ?>" /></td>
+            <td><input name="gbys_lcdc_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_zs_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>朝向</td>
+            <td><input name="gbys_front_zs" type="text" class="form-control " value="<?= $calculat_table['gbys_front_zs'] ?: 100 ?>" /></td>
+            <td><input name="gbys_front_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_front_zs_1'] ?>" /></td>
+            <td><input name="gbys_front_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_front_zs_2'] ?>" /></td>
+            <td><input name="gbys_front_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_front_zs_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td rowspan="8">实物状况</td>
             <td>成新率</td>
             <td><input name="gbys_precent_zs" type="text" class="form-control " value="<?= $calculat_table['gbys_precent_zs'] ?: 100 ?>" /></td>
             <td><input name="gbys_precent_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_precent_zs_1'] ?>" /></td>
@@ -330,20 +344,6 @@
             <td><input name="gbys_ggbf_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_ggbf_zs_3'] ?>" /></td>
         </tr>
         <tr>
-            <td>用途</td>
-            <td><input name="gbys_yt_zs" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_zs'] ?: 100 ?>" /></td>
-            <td><input name="gbys_yt_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_zs_1'] ?>" /></td>
-            <td><input name="gbys_yt_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_zs_2'] ?>" /></td>
-            <td><input name="gbys_yt_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_zs_3'] ?>" /></td>
-        </tr>
-        <tr>
-            <td>朝向</td>
-            <td><input name="gbys_front_zs" type="text" class="form-control " value="<?= $calculat_table['gbys_front_zs'] ?: 100 ?>" /></td>
-            <td><input name="gbys_front_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_front_zs_1'] ?>" /></td>
-            <td><input name="gbys_front_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_front_zs_2'] ?>" /></td>
-            <td><input name="gbys_front_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_front_zs_3'] ?>" /></td>
-        </tr>
-        <tr>
             <td>建筑结构</td>
             <td><input name="gbys_structure_zs" type="text" class="form-control " value="<?= $calculat_table['gbys_structure_zs'] ?: 100 ?>" /></td>
             <td><input name="gbys_structure_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_structure_zs_1'] ?>" /></td>
@@ -356,13 +356,6 @@
             <td><input name="gbys_type_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_type_zs_1'] ?>" /></td>
             <td><input name="gbys_type_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_type_zs_2'] ?>" /></td>
             <td><input name="gbys_type_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_type_zs_3'] ?>" /></td>
-        </tr>
-        <tr>
-            <td>楼层/顶层</td>
-            <td><input name="gbys_lcdc_zs" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_zs'] ?: 100 ?>" /></td>
-            <td><input name="gbys_lcdc_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_zs_1'] ?>" /></td>
-            <td><input name="gbys_lcdc_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_zs_2'] ?>" /></td>
-            <td><input name="gbys_lcdc_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_zs_3'] ?>" /></td>
         </tr>
         <tr>
             <td>建筑面积（m²）</td>
@@ -386,12 +379,19 @@
             <td><input name="gbys_fssszk_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_fssszk_zs_3'] ?>" /></td>
         </tr>
         <tr>
-            <td rowspan="2">权益</td>
+            <td rowspan="3">权益</td>
             <td>产别</td>
             <td><input name="gbys_qycb_zs" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_zs'] ?: 100 ?>" /></td>
             <td><input name="gbys_qycb_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_zs_1'] ?>" /></td>
             <td><input name="gbys_qycb_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_zs_2'] ?>" /></td>
             <td><input name="gbys_qycb_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_zs_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>用途</td>
+            <td><input name="gbys_yt_zs" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_zs'] ?: 100 ?>" /></td>
+            <td><input name="gbys_yt_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_zs_1'] ?>" /></td>
+            <td><input name="gbys_yt_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_zs_2'] ?>" /></td>
+            <td><input name="gbys_yt_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_zs_3'] ?>" /></td>
         </tr>
         <tr>
             <td>其他</td>
@@ -400,6 +400,7 @@
             <td><input name="gbys_qyqt_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_qyqt_zs_2'] ?>" /></td>
             <td><input name="gbys_qyqt_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_qyqt_zs_3'] ?>" /></td>
         </tr>
+        <!--
         <tr>
             <td colspan="4" class="text-center disable">修正后结果系数</td>
             <td><input name="xzhjgxs_1" type="text" class="form-control " value="<?= $calculat_table['xzhjgxs_1'] ?>" /></td>
@@ -430,8 +431,9 @@
                 <input name="phjz" type="text" class="form-control  text-center" value="<?= $calculat_table['phjz'] ?>" />
             </td>
         </tr>
+        -->
     </tbody>
-    <tbody class="compar_zhishu_adjust" data-toggle="tooltip" title="#085（表3-比较因素条件修正系数表）">
+    <tbody class="adjust_zhishu" data-toggle="tooltip" title="#085（表3-比较因素条件修正系数表）">
         <tr>
             <td colspan="7">
                 <div class="text-center form-control-plaintext">
@@ -465,9 +467,9 @@
                     交易日期
                 </div>
             </td>
-            <td><input name="business_date_zs_1" type="text" class="form-control " value="<?= $calculat_table['business_date_zs_1'] ?>" /></td>
-            <td><input name="business_date_zs_2" type="text" class="form-control " value="<?= $calculat_table['business_date_zs_1'] ?>" /></td>
-            <td><input name="business_date_zs_3" type="text" class="form-control " value="<?= $calculat_table['business_date_zs_1'] ?>" /></td>
+            <td><input name="business_date_adjust_1" type="text" class="form-control " value="<?= $calculat_table['business_date_adjust_1'] ?>" /></td>
+            <td><input name="business_date_adjust_2" type="text" class="form-control " value="<?= $calculat_table['business_date_adjust_2'] ?>" /></td>
+            <td><input name="business_date_adjust_3" type="text" class="form-control " value="<?= $calculat_table['business_date_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td colspan="4">
@@ -475,125 +477,131 @@
                     交易情况
                 </div>
             </td>
-            <td><input name="business_desc_zs_1" type="text" class="form-control " value="<?= $calculat_table['business_desc_zs_1'] ?>" /></td>
-            <td><input name="business_desc_zs_2" type="text" class="form-control " value="<?= $calculat_table['business_desc_zs_2'] ?>" /></td>
-            <td><input name="business_desc_zs_3" type="text" class="form-control " value="<?= $calculat_table['business_desc_zs_3'] ?>" /></td>
+            <td><input name="business_desc_adjust_1" type="text" class="form-control " value="<?= $calculat_table['business_desc_adjust_1'] ?>" /></td>
+            <td><input name="business_desc_adjust_2" type="text" class="form-control " value="<?= $calculat_table['business_desc_adjust_2'] ?>" /></td>
+            <td><input name="business_desc_adjust_3" type="text" class="form-control " value="<?= $calculat_table['business_desc_adjust_3'] ?>" /></td>
         </tr>
         <tr>
-            <td rowspan="5" colspan="3">
+            <td rowspan="18" colspan="2">房地产状况</td>
+            <td rowspan="7">
                 <div class="text-center form-control-plaintext">
-                    区域因素（区位状况）
+                    区位状况
                 </div>
             </td>
             <td>交通通达度</td>
-            <td><input name="business_jttdd_zs_1" type="text" class="form-control " value="<?= $calculat_table['business_jttdd_zs_1'] ?>" /></td>
-            <td><input name="business_jttdd_zs_2" type="text" class="form-control " value="<?= $calculat_table['business_jttdd_zs_2'] ?>" /></td>
-            <td><input name="business_jttdd_zs_3" type="text" class="form-control " value="<?= $calculat_table['business_jttdd_zs_3'] ?>" /></td>
+            <td><input name="business_jttdd_adjust_1" type="text" class="form-control " value="<?= $calculat_table['business_jttdd_adjust_1'] ?>" /></td>
+            <td><input name="business_jttdd_adjust_2" type="text" class="form-control " value="<?= $calculat_table['business_jttdd_adjust_2'] ?>" /></td>
+            <td><input name="business_jttdd_adjust_3" type="text" class="form-control " value="<?= $calculat_table['business_jttdd_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td>商业繁华度</td>
-            <td><input name="business_syfhd_zs_1" type="text" class="form-control " value="<?= $calculat_table['business_syfhd_zs_1'] ?>" /></td>
-            <td><input name="business_syfhd_zs_2" type="text" class="form-control " value="<?= $calculat_table['business_syfhd_zs_2'] ?>" /></td>
-            <td><input name="business_syfhd_zs_3" type="text" class="form-control " value="<?= $calculat_table['business_syfhd_zs_3'] ?>" /></td>
+            <td><input name="business_syfhd_adjust_1" type="text" class="form-control " value="<?= $calculat_table['business_syfhd_adjust_1'] ?>" /></td>
+            <td><input name="business_syfhd_adjust_2" type="text" class="form-control " value="<?= $calculat_table['business_syfhd_adjust_2'] ?>" /></td>
+            <td><input name="business_syfhd_adjust_3" type="text" class="form-control " value="<?= $calculat_table['business_syfhd_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td>环境条件（自然、人文、景观）</td>
-            <td><input name="business_hjtj_zs_1" type="text" class="form-control " value="<?= $calculat_table['business_hjtj_zs_1'] ?>" /></td>
-            <td><input name="business_hjtj_zs_2" type="text" class="form-control " value="<?= $calculat_table['business_hjtj_zs_2'] ?>" /></td>
-            <td><input name="business_hjtj_zs_3" type="text" class="form-control " value="<?= $calculat_table['business_hjtj_zs_3'] ?>" /></td>
+            <td><input name="business_hjtj_adjust_1" type="text" class="form-control " value="<?= $calculat_table['business_hjtj_adjust_1'] ?>" /></td>
+            <td><input name="business_hjtj_adjust_2" type="text" class="form-control " value="<?= $calculat_table['business_hjtj_adjust_2'] ?>" /></td>
+            <td><input name="business_hjtj_adjust_3" type="text" class="form-control " value="<?= $calculat_table['business_hjtj_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td>基础设施完备度</td>
-            <td><input name="business_jcsswbd_zs_1" type="text" class="form-control " value="<?= $calculat_table['business_jcsswbd_zs_1'] ?>" /></td>
-            <td><input name="business_jcsswbd_zs_2" type="text" class="form-control " value="<?= $calculat_table['business_jcsswbd_zs_2'] ?>" /></td>
-            <td><input name="business_jcsswbd_zs_3" type="text" class="form-control " value="<?= $calculat_table['business_jcsswbd_zs_3'] ?>" /></td>
+            <td><input name="business_jcsswbd_adjust_1" type="text" class="form-control " value="<?= $calculat_table['business_jcsswbd_adjust_1'] ?>" /></td>
+            <td><input name="business_jcsswbd_adjust_2" type="text" class="form-control " value="<?= $calculat_table['business_jcsswbd_adjust_2'] ?>" /></td>
+            <td><input name="business_jcsswbd_adjust_3" type="text" class="form-control " value="<?= $calculat_table['business_jcsswbd_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td>公共设施完备度</td>
-            <td><input name="business_ggsswbd_zs_1" type="text" class="form-control " value="<?= $calculat_table['business_ggsswbd_zs_1'] ?>" /></td>
-            <td><input name="business_ggsswbd_zs_2" type="text" class="form-control " value="<?= $calculat_table['business_ggsswbd_zs_2'] ?>" /></td>
-            <td><input name="business_ggsswbd_zs_3" type="text" class="form-control " value="<?= $calculat_table['business_ggsswbd_zs_3'] ?>" /></td>
+            <td><input name="business_ggsswbd_adjust_1" type="text" class="form-control " value="<?= $calculat_table['business_ggsswbd_adjust_1'] ?>" /></td>
+            <td><input name="business_ggsswbd_adjust_2" type="text" class="form-control " value="<?= $calculat_table['business_ggsswbd_adjust_2'] ?>" /></td>
+            <td><input name="business_ggsswbd_adjust_3" type="text" class="form-control " value="<?= $calculat_table['business_ggsswbd_adjust_3'] ?>" /></td>
         </tr>
         <tr>
-            <td rowspan="13">个别因素</td>
-            <td rowspan="11" colspan="2">实物状况</td>
-            <td>成新率</td>
-            <td><input name="gbys_precent_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_precent_zs_1'] ?>" /></td>
-            <td><input name="gbys_precent_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_precent_zs_2'] ?>" /></td>
-            <td><input name="gbys_precent_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_precent_zs_3'] ?>" /></td>
-        </tr>
-        <tr>
-            <td>物业管理</td>
-            <td><input name="gbys_wygl_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_wygl_zs_1'] ?>" /></td>
-            <td><input name="gbys_wygl_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_wygl_zs_2'] ?>" /></td>
-            <td><input name="gbys_wygl_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_wygl_zs_3'] ?>" /></td>
-        </tr>
-        <tr>
-            <td>公共部分或小区状况</td>
-            <td><input name="gbys_ggbf_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_ggbf_zs_1'] ?>" /></td>
-            <td><input name="gbys_ggbf_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_ggbf_zs_2'] ?>" /></td>
-            <td><input name="gbys_ggbf_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_ggbf_zs_3'] ?>" /></td>
-        </tr>
-        <tr>
-            <td>用途</td>
-            <td><input name="gbys_yt_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_zs_1'] ?>" /></td>
-            <td><input name="gbys_yt_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_zs_2'] ?>" /></td>
-            <td><input name="gbys_yt_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_zs_3'] ?>" /></td>
+            <td>所在层/房屋总层数</td>
+            <td><input name="gbys_lcdc_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_adjust_1'] ?>" /></td>
+            <td><input name="gbys_lcdc_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_adjust_2'] ?>" /></td>
+            <td><input name="gbys_lcdc_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td>朝向</td>
-            <td><input name="gbys_front_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_front_zs_1'] ?>" /></td>
-            <td><input name="gbys_front_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_front_zs_2'] ?>" /></td>
-            <td><input name="gbys_front_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_front_zs_3'] ?>" /></td>
+            <td><input name="gbys_front_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_front_adjust_1'] ?>" /></td>
+            <td><input name="gbys_front_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_front_adjust_2'] ?>" /></td>
+            <td><input name="gbys_front_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_front_adjust_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td rowspan="8">实物状况</td>
+            <td>成新率</td>
+            <td><input name="gbys_precent_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_precent_adjust_1'] ?>" /></td>
+            <td><input name="gbys_precent_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_precent_adjust_2'] ?>" /></td>
+            <td><input name="gbys_precent_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_precent_adjust_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>物业管理</td>
+            <td><input name="gbys_wygl_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_wygl_adjust_1'] ?>" /></td>
+            <td><input name="gbys_wygl_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_wygl_adjust_2'] ?>" /></td>
+            <td><input name="gbys_wygl_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_wygl_adjust_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>公共部分或小区状况</td>
+            <td><input name="gbys_ggbf_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_ggbf_adjust_1'] ?>" /></td>
+            <td><input name="gbys_ggbf_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_ggbf_adjust_2'] ?>" /></td>
+            <td><input name="gbys_ggbf_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_ggbf_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td>建筑结构</td>
-            <td><input name="gbys_structure_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_structure_zs_1'] ?>" /></td>
-            <td><input name="gbys_structure_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_structure_zs_2'] ?>" /></td>
-            <td><input name="gbys_structure_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_structure_zs_3'] ?>" /></td>
+            <td><input name="gbys_structure_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_structure_adjust_1'] ?>" /></td>
+            <td><input name="gbys_structure_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_structure_adjust_2'] ?>" /></td>
+            <td><input name="gbys_structure_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_structure_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td>房型</td>
-            <td><input name="gbys_type_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_type_zs_1'] ?>" /></td>
-            <td><input name="gbys_type_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_type_zs_2'] ?>" /></td>
-            <td><input name="gbys_type_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_type_zs_3'] ?>" /></td>
-        </tr>
-        <tr>
-            <td>楼层/顶层</td>
-            <td><input name="gbys_lcdc_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_zs_1'] ?>" /></td>
-            <td><input name="gbys_lcdc_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_zs_2'] ?>" /></td>
-            <td><input name="gbys_lcdc_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_lcdc_zs_3'] ?>" /></td>
+            <td><input name="gbys_type_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_type_adjust_1'] ?>" /></td>
+            <td><input name="gbys_type_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_type_adjust_2'] ?>" /></td>
+            <td><input name="gbys_type_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_type_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td>建筑面积（m²）</td>
-            <td><input name="gbys_jzmj_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_jzmj_zs_1'] ?>" /></td>
-            <td><input name="gbys_jzmj_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_jzmj_zs_2'] ?>" /></td>
-            <td><input name="gbys_jzmj_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_jzmj_zs_3'] ?>" /></td>
+            <td><input name="gbys_jzmj_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_jzmj_adjust_1'] ?>" /></td>
+            <td><input name="gbys_jzmj_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_jzmj_adjust_2'] ?>" /></td>
+            <td><input name="gbys_jzmj_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_jzmj_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td>内部装修</td>
-            <td><input name="gbys_nbzx_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_nbzx_zs_1'] ?>" /></td>
-            <td><input name="gbys_nbzx_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_nbzx_zs_2'] ?>" /></td>
-            <td><input name="gbys_nbzx_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_nbzx_zs_3'] ?>" /></td>
+            <td><input name="gbys_nbzx_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_nbzx_adjust_1'] ?>" /></td>
+            <td><input name="gbys_nbzx_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_nbzx_adjust_2'] ?>" /></td>
+            <td><input name="gbys_nbzx_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_nbzx_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td>附属设施状况</td>
-            <td><input name="gbys_fssszk_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_fssszk_zs_1'] ?>" /></td>
-            <td><input name="gbys_fssszk_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_fssszk_zs_2'] ?>" /></td>
-            <td><input name="gbys_fssszk_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_fssszk_zs_3'] ?>" /></td>
+            <td><input name="gbys_fssszk_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_fssszk_adjust_1'] ?>" /></td>
+            <td><input name="gbys_fssszk_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_fssszk_adjust_2'] ?>" /></td>
+            <td><input name="gbys_fssszk_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_fssszk_adjust_3'] ?>" /></td>
         </tr>
         <tr>
-            <td rowspan="2" colspan="2">权益</td>
+            <td rowspan="3">权益</td>
             <td>产别</td>
-            <td><input name="gbys_qycb_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_zs_1'] ?>" /></td>
-            <td><input name="gbys_qycb_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_zs_2'] ?>" /></td>
-            <td><input name="gbys_qycb_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_zs_3'] ?>" /></td>
+            <td><input name="gbys_qycb_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_adjust_1'] ?>" /></td>
+            <td><input name="gbys_qycb_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_adjust_2'] ?>" /></td>
+            <td><input name="gbys_qycb_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_qycb_adjust_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>用途</td>
+            <td><input name="gbys_yt_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_adjust_1'] ?>" /></td>
+            <td><input name="gbys_yt_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_adjust_2'] ?>" /></td>
+            <td><input name="gbys_yt_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_yt_adjust_3'] ?>" /></td>
         </tr>
         <tr>
             <td>其他</td>
-            <td><input name="gbys_qyqt_zs_1" type="text" class="form-control " value="<?= $calculat_table['gbys_qyqt_zs_1'] ?>" /></td>
-            <td><input name="gbys_qyqt_zs_2" type="text" class="form-control " value="<?= $calculat_table['gbys_qyqt_zs_2'] ?>" /></td>
-            <td><input name="gbys_qyqt_zs_3" type="text" class="form-control " value="<?= $calculat_table['gbys_qyqt_zs_3'] ?>" /></td>
+            <td><input name="gbys_qyqt_adjust_1" type="text" class="form-control " value="<?= $calculat_table['gbys_qyqt_adjust_1'] ?>" /></td>
+            <td><input name="gbys_qyqt_adjust_2" type="text" class="form-control " value="<?= $calculat_table['gbys_qyqt_adjust_2'] ?>" /></td>
+            <td><input name="gbys_qyqt_adjust_3" type="text" class="form-control " value="<?= $calculat_table['gbys_qyqt_adjust_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td colspan="4" class="text-center disable">比较价值（ 元/m² ）</td>
+            <td><input name="xzhpgdj_1" type="text" class="form-control  text-center" value="<?= $calculat_table['xzhpgdj_1'] ?>" /></td>
+            <td><input name="xzhpgdj_2" type="text" class="form-control  text-center" value="<?= $calculat_table['xzhpgdj_2'] ?>" /></td>
+            <td><input name="xzhpgdj_3" type="text" class="form-control  text-center" value="<?= $calculat_table['xzhpgdj_3'] ?>" /></td>
         </tr>
     </tbody>
 </table>
@@ -601,8 +609,8 @@
 <div class="hr_2"></div>
 <?php if(_G('ME')->isAllowedTo('修改', $project)): ?>
     <button class="btn btn-secondary btn-raised" type="button" name="adjust-zhishu" id="adjust-zhishu"><i class="fa fa-edit fa-fw"></i> <?= H(T('数据矫正')) ?></button>
-    <button class="btn btn-dark btn-raised" type="button" name="sync-zhishu" id="sync-zhishu"><i class="fa fa-edit fa-fw"></i> <?= H(T('数据同步')) ?></button>
-    <button class="btn btn-primary btn-raised" form="add-report-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
+    <button class="btn btn-dark btn-raised" type="button" name="sync-zhishu" id="sync-zhishu"><i class="fa fa-edit fa-fw"></i> <?= H(T('数据复制')) ?></button>
+    <button class="btn btn-primary btn-raised" form="add-report-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('保存信息')) ?></button>
 <?php endif; ?>
 <div class="hr_2"></div>
 <div class="hr_2"></div>
@@ -636,6 +644,11 @@ require(['main'], function($){
                 $xzhjgxs_1 = $xzhjgxs_1 * ( $first.attr('value') / $one )
                 $xzhjgxs_2 = $xzhjgxs_2 * ( $first.attr('value') / $two )
                 $xzhjgxs_3 = $xzhjgxs_3 * ( $first.attr('value') / $three )
+                let name = $first.attr('name')
+                name = name.split("_", 2).join('_') + '_adjust'
+                $('.adjust_zhishu [name=' + name + '_1]').val($first.attr('value') + ' / ' + $one)
+                $('.adjust_zhishu [name=' + name + '_2]').val($first.attr('value') + ' / ' + $two)
+                $('.adjust_zhishu [name=' + name + '_3]').val($first.attr('value') + ' / ' + $three)
             }
         })
 
@@ -650,14 +663,16 @@ require(['main'], function($){
         $('.compar_zhishu [name=xzhpgdj_2]').attr('value', parseInt(business_2))
         $('.compar_zhishu [name=xzhpgdj_3]').attr('value', parseInt(business_3))
 
+        $('.adjust_zhishu [name=xzhpgdj_1]').attr('value', parseInt(business_1))
+        $('.adjust_zhishu [name=xzhpgdj_2]').attr('value', parseInt(business_2))
+        $('.adjust_zhishu [name=xzhpgdj_3]').attr('value', parseInt(business_3))
+
         var pgdj = Math.round((business_1 + business_2 + business_3) / 3)
 
         $('.compar_zhishu [name=pgdj]').attr('value', pgdj)
 
         var gbys_jzmj = $('[name=gbys_jzmj]').attr('value')
-
         $('.compar_zhishu [name=jzmj]').attr('value', gbys_jzmj)
-
         $('.compar_zhishu [name=phjz]').attr('value', Math.round(gbys_jzmj * pgdj / 10000) )
         e.preventDefault();
     })

@@ -375,6 +375,8 @@ class Project extends \Gini\Controller\CGI
         $log->action = \Gini\ORM\Log::ACTION_EDIT;
         $log->description = sprintf('%s 修改技术报告信息。', $me->name);
         $log->save();
+
+        return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
     }
 
     public function actionUploadAttachment($id=0)
