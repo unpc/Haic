@@ -96,6 +96,8 @@ class Project extends Object
         $project = $this;
         $true_group = (array)Hub('template.group');
         $group = (array)\Gini\Config::get('project.group');
+        $calculat_table = (array)$project->calculat_table;
+        $ownership = (array)current((array)$building->ownership);
         $data = [
             '#001' => strtr(\Gini\Config::get('project.number_template'), [
                 '%year' => date('Y', strtotime($project->ctime)),
@@ -179,7 +181,7 @@ class Project extends Object
             '#077' => $building->upper_dyjz_amount,
             '#078' => $building->dyjz_unit,
             '#079' => $building->upper_dyjz_unit,
-            '#080' => '注册估价师视图',
+            '#080' => (string)V('projects/template/view/result', ['project' => $project]),
             '#081' => $project->operation_date,
             '#082' => $project->operation_from . ' ~ ' . $project->operation_to,
             '#083' => '表1-比较因素条件说明表',
@@ -199,8 +201,26 @@ class Project extends Object
             '#097' => $approval->info['explor_user'] ?: $building->explor_user,
             '#098' => $approval->info['area'] ?: $building->area,
             '#099' => $approval->info['acreage'] ?: $building->acreage,
-            '#100' => $approval->info['target'] ?: $project->target,
-            "#101" => $building->year ? Date('Y') - $building->year : 0
+            '#0100' => $approval->info['target'] ?: $project->target,
+            "#0101" => $building->year ? Date('Y') - $building->year : 0,
+            "#0102" => $calculat_table['business_desc'],
+            '#0103' => $calculat_table['business_jttdd'],
+            '#0104' => $calculat_table['business_syfhd'],
+            '#0105' => $calculat_table['business_hjtj'],
+            '#0106' => $calculat_table['business_jcsswbd'],
+            '#0107' => $calculat_table['business_ggsswbd'],
+            '#0108' => $calculat_table['gbys_ggbf'],
+            '#0109' => $calculat_table['gbys_nbzx'],
+            '#0110' => $calculat_table['gbys_fssszk'],
+            '#0111' => $true_group['name'],
+            '#0112' => $true_group['owner'],
+            '#0113' => $true_group['address'],
+            '#0114' => $true_group['code'],
+            '#0115' => $true_group['level'],
+            '#0116' => $true_group['number'],
+            '#0117' => $true_group['time_limit'],
+            '#0120' => $ownership['number'],
+            '#0121' => '产权证视图'
         ];
         return $data;
     }

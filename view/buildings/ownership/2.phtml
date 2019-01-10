@@ -1,6 +1,6 @@
-<div class="ownership_box">
+<div class="ownership_box" data-toggle="tooltip" title="#0121（房产证视图）">
     <h4 class="text-center"><?= \Gini\ORM\Building::$ownership_cert_type[2] ?></h4>
-    <div class="input-group">
+    <div class="input-group" data-toggle="tooltip" title="#0120">
         <div class="input-group-prepend">
             <span class="input-group-text" id="">证号</span>
         </div>
@@ -78,4 +78,9 @@
             </tr>
         </tbody>
     </table>
+    <script>
+    require(['main'], function($) {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+    </script>
 </div>

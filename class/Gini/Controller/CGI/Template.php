@@ -61,7 +61,7 @@ class Template extends Layout\God
                 ->orWhose('identity')->contains(H($form['title']));
         }
 
-        $step = 10;
+        $step = 15;
 
         $pagination = \Gini\Model\Help::pagination($points, $form['st'], $step, '', ['title' => $form['title']]);
 
