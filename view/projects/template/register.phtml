@@ -1,0 +1,42 @@
+<table style="border: 1px solid black;border-spacing: 0px;width: 100%;">
+    <tbody>
+        <tr>
+            <td colspan="4">
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #000000;">注册房地产估价师</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #000000;">姓名</span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #000000;">注册号</span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #000000;">签名</span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #000000;">签名日期</span></p>
+            </td>
+        </tr>
+        <?php
+            $registers = (array)$project->registers;
+            foreach($registers as $index => $register):
+        ?>
+        <tr>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #000000;"><?= $register['name'] ?></span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #000000;"><?= $register['number'] ?></span></p>
+            </td>
+            <td>
+                <p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #000000;">　</span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #FF0000;"><?= Date('Y年m月d日')?></span></p>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

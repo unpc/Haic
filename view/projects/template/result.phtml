@@ -1,0 +1,130 @@
+<table style="border: 1px solid black;border-spacing: 0px;width: 100%;">
+    <?php $building = $project->building ?: new StdClass(); ?>
+    <tbody>
+        <tr>
+            <td colspan="4">
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">币种：人民币</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">估价对象</span></p>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">项目及结果</span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">估价对象</span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">金额大写</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">1.假定未设立法定优先受偿权下的价值</span></p>
+                <p>&nbsp;</p>
+            </td>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">总价（万元）</span></p>
+            </td>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->amount ?></span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->upper_amount ?></span></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">单价（元/㎡）</span></p>
+            </td>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->unit ?></span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->upper_unit ?></span></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #0000FF;">2.注册房地产估价师知悉的法定优先受偿款</span></p>
+            </td>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #0000FF;">总额（万元）</span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->yxsck_amount ?></span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->upper_yxsck_amount ?></span></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #0000FF;">2.1已抵押担保的债权数额</span></p>
+            </td>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 14pt; color: #0000FF;">总额（万元）</span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->dyzq_amount ?></span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->upper_dyzq_amount ?></span></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">2.2拖欠的建设工程价款</span></p>
+            </td>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">总额（万元）</span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->tqk_amount ?></span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->upper_tqk_amount ?></span></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">2.3其他法定优先受偿款</span></p>
+            </td>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">总额（万元）</span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->fdyxsck_amount ?></span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->upper_fdyxsck_amount ?></span></p>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">3.抵押价值</span></p>
+                <p>&nbsp;</p>
+            </td>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">总价（万元）</span></p>
+            </td>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->dyjz_amount ?></span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->upper_dyjz_amount ?></span></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;">单价（元/㎡）</span></p>
+            </td>
+            <td>
+                <p style="margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->dyjz_unit ?></span></p>
+            </td>
+            <td>
+                <p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10.5pt; color: #0000FF;"><?= $building->upper_dyjz_unit ?></span></p>
+            </td>
+        </tr>
+    </tbody>
+</table>

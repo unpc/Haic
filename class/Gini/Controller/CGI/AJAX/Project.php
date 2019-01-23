@@ -354,6 +354,31 @@ class Project extends \Gini\Controller\CGI
         $log->save();
     }
 
+    public function actionAddIncomeReport($id=0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
+        }
+        $form = $this->form();
+
+        $project->income_table = (array)$form;
+        $project->save();
+
+        $log = a('log');
+        $log->user = $me;
+        $log->project = $project;
+        $log->action = \Gini\ORM\Log::ACTION_EDIT;
+        $log->description = sprintf('%s 修改技术报告收益法信息。', $me->name);
+        $log->save();
+
+        return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
+    }
+
     public function actionAddReport($id=0)
     {
         $me = _G('ME');
@@ -373,10 +398,10 @@ class Project extends \Gini\Controller\CGI
         $log->user = $me;
         $log->project = $project;
         $log->action = \Gini\ORM\Log::ACTION_EDIT;
-        $log->description = sprintf('%s 修改技术报告信息。', $me->name);
+        $log->description = sprintf('%s 修改技术报告比较法信息。', $me->name);
         $log->save();
 
-        return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
+        // return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
     }
 
     public function actionUploadAttachment($id=0)

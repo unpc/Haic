@@ -1,0 +1,551 @@
+<div class="hr"></div>
+<form id="add-income-report-form" method="POST" action="gini-ajax:ajax/project/addIncomeReport/<?= $project->id ?>">
+<?php 
+    $building = $project->building;
+    $income_table = (array)$project->income_table;
+    $calculat_table = (array)$project->calculat_table; 
+?>
+<table class="table table-sm table-bordered table-object">
+    <tbody class="example_desc" data-toggle="tooltip" title="#0122（租赁实例说明表视图）">
+        <tr>
+            <td colspan="4">
+                <div class="text-center form-control-plaintext">
+                    租赁实例说明表
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>可比实例1</td>
+            <td>可比实例2</td>
+            <td>可比实例3</td>
+        </tr>
+        <tr>
+            <td>来源</td>
+            <td><input name="project_source_1" type="text" class="form-control " value="<?= $income_table['project_source_1']?>" /></td>
+            <td><input name="project_source_2" type="text" class="form-control " value="<?= $income_table['project_source_2']?>" /></td>
+            <td><input name="project_source_3" type="text" class="form-control " value="<?= $income_table['project_source_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>项目名称</td>
+            <td><input name="project_title_1" type="text" class="form-control " value="<?= $income_table['project_title_1'] ?: $calculat_table['project_title_1'] ?>" /></td>
+            <td><input name="project_title_2" type="text" class="form-control " value="<?= $income_table['project_title_2'] ?: $calculat_table['project_title_2'] ?>" /></td>
+            <td><input name="project_title_3" type="text" class="form-control " value="<?= $income_table['project_title_3'] ?: $calculat_table['project_title_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>坐落</td>
+            <td><input name="project_address_1" type="text" class="form-control " value="<?= $income_table['project_address_1'] ?: $calculat_table['project_address_1'] ?>" /></td>
+            <td><input name="project_address_2" type="text" class="form-control " value="<?= $income_table['project_address_2'] ?: $calculat_table['project_address_2']?>" /></td>
+            <td><input name="project_address_3" type="text" class="form-control " value="<?= $income_table['project_address_3'] ?: $calculat_table['project_address_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>租金内涵</td>
+            <td colspan="3">
+                <textarea rows="3" name="project_rent" type="text" class="form-control "><?= $income_table['project_rent'] ?: '出租面积为建筑面积，租金于每季度期初支付，押金为三个月租金，租赁期间出租人负责房屋出租税费、维修费、保险费、管理费等；承租人负责水电费、供暖费、燃气费、物业费等；'?></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>面积（m²）</td>
+            <td><input name="project_jzmj_1" type="text" class="form-control " value="<?= $income_table['project_jzmj_1'] ?: $calculat_table['gbys_jzmj_1'] ?>" /></td>
+            <td><input name="project_jzmj_2" type="text" class="form-control " value="<?= $income_table['project_jzmj_2'] ?: $calculat_table['gbys_jzmj_2'] ?>" /></td>
+            <td><input name="project_jzmj_3" type="text" class="form-control " value="<?= $income_table['project_jzmj_3'] ?: $calculat_table['gbys_jzmj_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>用途</td>
+            <td><input name="project_yt_1" type="text" class="form-control " value="<?= $income_table['project_yt_1'] ?: $calculat_table['gbys_yt'] ?>" /></td>
+            <td><input name="project_yt_2" type="text" class="form-control " value="<?= $income_table['project_yt_2'] ?: $calculat_table['gbys_yt'] ?>" /></td>
+            <td><input name="project_yt_3" type="text" class="form-control " value="<?= $income_table['project_yt_3'] ?: $calculat_table['gbys_yt'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>成新率</td>
+            <td><input name="project_precent_1" type="text" class="form-control " value="<?= $income_table['project_precent_1'] ?: $calculat_table['gbys_precent_1'] ?>" /></td>
+            <td><input name="project_precent_2" type="text" class="form-control " value="<?= $income_table['project_precent_2'] ?: $calculat_table['gbys_precent_2'] ?>" /></td>
+            <td><input name="project_precent_3" type="text" class="form-control " value="<?= $income_table['project_precent_3'] ?: $calculat_table['gbys_precent_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>所在楼层/房屋总层数</td>
+            <td><input name="project_lcdc_1" type="text" class="form-control " value="<?= $income_table['project_lcdc_1'] ?: $calculat_table['gbys_lcdc_1'] ?>" /></td>
+            <td><input name="project_lcdc_2" type="text" class="form-control " value="<?= $income_table['project_lcdc_2'] ?: $calculat_table['gbys_lcdc_2'] ?>" /></td>
+            <td><input name="project_lcdc_3" type="text" class="form-control " value="<?= $income_table['project_lcdc_3'] ?: $calculat_table['gbys_lcdc_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>内部装修</td>
+            <td><input name="project_nbzx_1" type="text" class="form-control " value="<?= $income_table['project_nbzx_1'] ?: $calculat_table['gbys_nbzx_1'] ?>" /></td>
+            <td><input name="project_nbzx_2" type="text" class="form-control " value="<?= $income_table['project_nbzx_2'] ?: $calculat_table['gbys_nbzx_2'] ?>" /></td>
+            <td><input name="project_nbzx_3" type="text" class="form-control " value="<?= $income_table['project_nbzx_3'] ?: $calculat_table['gbys_nbzx_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>成交日期</td>
+            <td><input name="project_cjrq_1" type="text" class="form-control " value="<?= $income_table['project_cjrq_1'] ?: $calculat_table['business_date_1'] ?>" /></td>
+            <td><input name="project_cjrq_2" type="text" class="form-control " value="<?= $income_table['project_cjrq_2'] ?: $calculat_table['business_date_2'] ?>" /></td>
+            <td><input name="project_cjrq_3" type="text" class="form-control " value="<?= $income_table['project_cjrq_3'] ?: $calculat_table['business_date_3'] ?>" /></td>
+        </tr>
+        <tr>
+            <td>单价（元/平方米·天）</td>
+            <td><input name="project_unit_1" type="text" class="form-control " value="<?= $income_table['project_unit_1']?>" /></td>
+            <td><input name="project_unit_2" type="text" class="form-control " value="<?= $income_table['project_unit_2']?>" /></td>
+            <td><input name="project_unit_3" type="text" class="form-control " value="<?= $income_table['project_unit_3']?>" /></td>
+        </tr>
+    </tbody>
+</table>
+<table class="table table-sm table-bordered table-object">
+    <tbody class="example_object_desc" data-toggle="tooltip" title="#0123（估价对象与可比实例对比分析表视图）">
+        <tr>
+            <td colspan="9">
+                <div class="text-center form-control-plaintext">
+                    估价对象与可比实例对比分析表
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>序号</td>
+            <td>比较项目</td>
+            <td>估价对象</td>
+            <td>可比实例1</td>
+            <td>修正系数</td>
+            <td>可比实例2</td>
+            <td>修正系数</td>
+            <td>可比实例3</td>
+            <td>修正系数</td>
+        </tr>
+        <tr>
+            <td colspan="2">项目名称</td>
+            <td><input name="project_title" type="text" class="form-control " value="<?= $income_table['project_title'] ?: $project->title ?>" /></td>
+            <td><input name="project_title_1" type="text" class="form-control " value="<?= $income_table['project_title_1'] ?: $calculat_table['project_title_1']?>" /></td>
+            <td><input name="project_title_compensation_1" type="text" class="form-control " value="<?= $income_table['project_title_compensation_1']?>" /></td>
+            <td><input name="project_title_1" type="text" class="form-control " value="<?= $income_table['project_title_2'] ?: $calculat_table['project_title_2']?>" /></td>
+            <td><input name="project_title_compensation_2" type="text" class="form-control " value="<?= $income_table['project_title_compensation_2']?>" /></td>
+            <td><input name="project_title_1" type="text" class="form-control " value="<?= $income_table['project_title_3'] ?: $calculat_table['project_title_3']?>" /></td>
+            <td><input name="project_title_compensation_3" type="text" class="form-control " value="<?= $income_table['project_title_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">坐落</td>
+            <td><input name="project_address" type="text" class="form-control " value="<?= $income_table['project_address'] ?: $building->address ?>" /></td>
+            <td><input name="project_address_1" type="text" class="form-control " value="<?= $income_table['project_address_1'] ?: $calculat_table['project_address_1'] ?>" /></td>
+            <td><input name="project_address_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_address_compensation_1']?>" /></td>
+            <td><input name="project_address_2" type="text" class="form-control " value="<?= $income_table['project_address_2'] ?: $calculat_table['project_address_2'] ?>" /></td>
+            <td><input name="project_address_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_address_compensation_2']?>" /></td>
+            <td><input name="project_address_3" type="text" class="form-control " value="<?= $income_table['project_address_3'] ?: $calculat_table['project_address_3'] ?>" /></td>
+            <td><input name="project_address_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_address_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td rowspan="8">一、区位状况</td>
+            <td>交通便捷度</td>
+            <td><input name="project_jttdd" type="text" class="form-control " value="<?= $income_table['project_jttdd'] ?: $calculat_table['business_jttdd'] ?>" /></td>
+            <td><input name="project_jttdd_1" type="text" class="form-control " value="<?= $income_table['project_jttdd_1'] ?: $calculat_table['business_jttdd_1'] ?>" /></td>
+            <td><input name="project_jttdd_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_jttdd_compensation_1']?>" /></td>
+            <td><input name="project_jttdd_2" type="text" class="form-control " value="<?= $income_table['project_jttdd_2'] ?: $calculat_table['business_jttdd_2'] ?>" /></td>
+            <td><input name="project_jttdd_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_jttdd_compensation_2']?>" /></td>
+            <td><input name="project_jttdd_3" type="text" class="form-control " value="<?= $income_table['project_jttdd_3'] ?: $calculat_table['business_jttdd_3'] ?>" /></td>
+            <td><input name="project_jttdd_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_jttdd_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>商业繁华度</td>
+            <td><input name="project_syfhd" type="text" class="form-control " value="<?= $income_table['project_syfhd'] ?: $calculat_table['business_syfhd'] ?>" /></td>
+            <td><input name="project_syfhd_1" type="text" class="form-control " value="<?= $income_table['project_syfhd_1'] ?: $calculat_table['business_syfhd_1'] ?>" /></td>
+            <td><input name="project_syfhd_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_syfhd_compensation_1']?>" /></td>
+            <td><input name="project_syfhd_2" type="text" class="form-control " value="<?= $income_table['project_syfhd_2'] ?: $calculat_table['business_syfhd_2'] ?>" /></td>
+            <td><input name="project_syfhd_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_syfhd_compensation_2']?>" /></td>
+            <td><input name="project_syfhd_3" type="text" class="form-control " value="<?= $income_table['project_syfhd_3'] ?: $calculat_table['business_syfhd_3'] ?>" /></td>
+            <td><input name="project_syfhd_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_syfhd_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>环境</td>
+            <td><input name="project_hj" type="text" class="form-control " value="<?= $income_table['project_hj'] ?: $calculat_table['business_hjtj'] ?>" /></td>
+            <td><input name="project_hj_1" type="text" class="form-control " value="<?= $income_table['project_hj_1'] ?: $calculat_table['business_hjtj_1'] ?>" /></td>
+            <td><input name="project_hj_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_hj_compensation_1']?>" /></td>
+            <td><input name="project_hj_2" type="text" class="form-control " value="<?= $income_table['project_hj_2'] ?: $calculat_table['business_hjtj_2'] ?>" /></td>
+            <td><input name="project_hj_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_hj_compensation_2']?>" /></td>
+            <td><input name="project_hj_3" type="text" class="form-control " value="<?= $income_table['project_hj_3'] ?: $calculat_table['business_hjtj_3'] ?>" /></td>
+            <td><input name="project_hj_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_hj_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>景观</td>
+            <td><input name="project_jg" type="text" class="form-control " value="<?= $income_table['project_jg']?>" /></td>
+            <td><input name="project_jg_1" type="text" class="form-control " value="<?= $income_table['project_jg_1']?>" /></td>
+            <td><input name="project_jg_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_jg_compensation_1']?>" /></td>
+            <td><input name="project_jg_2" type="text" class="form-control " value="<?= $income_table['project_jg_2']?>" /></td>
+            <td><input name="project_jg_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_jg_compensation_1']?>" /></td>
+            <td><input name="project_jg_3" type="text" class="form-control " value="<?= $income_table['project_jg_3']?>" /></td>
+            <td><input name="project_jg_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_jg_compensation_1']?>" /></td>
+        </tr>
+        <tr>
+            <td>公共配套设施</td>
+            <td><input name="project_ggptss" type="text" class="form-control " value="<?= $income_table['project_ggptss'] ?: $calculat_table['business_ggsswbd'] ?>" /></td>
+            <td><input name="project_ggptss_1" type="text" class="form-control " value="<?= $income_table['project_ggptss_1'] ?: $calculat_table['business_ggsswbd_1'] ?>" /></td>
+            <td><input name="project_ggptss_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_ggptss_compensation_1']?>" /></td>
+            <td><input name="project_ggptss_2" type="text" class="form-control " value="<?= $income_table['project_ggptss_2'] ?: $calculat_table['business_ggsswbd_2'] ?>" /></td>
+            <td><input name="project_ggptss_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_ggptss_compensation_2']?>" /></td>
+            <td><input name="project_ggptss_3" type="text" class="form-control " value="<?= $income_table['project_ggptss_3'] ?: $calculat_table['business_ggsswbd_3'] ?>" /></td>
+            <td><input name="project_ggptss_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_ggptss_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>所在层/房屋总层数</td>
+            <td><input name="project_lcdc" type="text" class="form-control " value="<?= $income_table['project_lcdc'] ?: $calculat_table['gbys_lcdc'] ?>" /></td>
+            <td><input name="project_lcdc_1" type="text" class="form-control " value="<?= $income_table['project_lcdc_1'] ?: $calculat_table['gbys_lcdc_1'] ?>" /></td>
+            <td><input name="project_lcdc_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_lcdc_compensation_1']?>" /></td>
+            <td><input name="project_lcdc_2" type="text" class="form-control " value="<?= $income_table['project_lcdc_2'] ?: $calculat_table['gbys_lcdc_2'] ?>" /></td>
+            <td><input name="project_lcdc_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_lcdc_compensation_2']?>" /></td>
+            <td><input name="project_lcdc_3" type="text" class="form-control " value="<?= $income_table['project_lcdc_3'] ?: $calculat_table['gbys_lcdc_3'] ?>" /></td>
+            <td><input name="project_lcdc_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_lcdc_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>朝向</td>
+            <td><input name="project_front" type="text" class="form-control " value="<?= $income_table['project_front'] ?: $calculat_table['gbys_front'] ?>" /></td>
+            <td><input name="project_front_1" type="text" class="form-control " value="<?= $income_table['project_front_1'] ?: $calculat_table['gbys_front_1'] ?>" /></td>
+            <td><input name="project_front_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_front_compensation_1']?>" /></td>
+            <td><input name="project_front_2" type="text" class="form-control " value="<?= $income_table['project_front_2'] ?: $calculat_table['gbys_front_2'] ?>" /></td>
+            <td><input name="project_front_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_front_compensation_2']?>" /></td>
+            <td><input name="project_front_3" type="text" class="form-control " value="<?= $income_table['project_front_3'] ?: $calculat_table['gbys_front_3'] ?>" /></td>
+            <td><input name="project_front_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_front_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>城市规划限制</td>
+            <td><input name="project_csghxz" type="text" class="form-control " value="<?= $income_table['project_csghxz']?>" /></td>
+            <td><input name="project_csghxz_1" type="text" class="form-control " value="<?= $income_table['project_csghxz_1']?>" /></td>
+            <td><input name="project_csghxz_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_csghxz_compensation_1']?>" /></td>
+            <td><input name="project_csghxz_2" type="text" class="form-control " value="<?= $income_table['project_csghxz_2']?>" /></td>
+            <td><input name="project_csghxz_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_csghxz_compensation_2']?>" /></td>
+            <td><input name="project_csghxz_3" type="text" class="form-control " value="<?= $income_table['project_csghxz_3']?>" /></td>
+            <td><input name="project_csghxz_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_csghxz_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">区位状况调整系数</td>
+            <td></td>
+            <td></td>
+            <td><input name="project_area_total_compensation_1" type="text" class="form-control " value="<?= $income_table['project_area_total_compensation_1']?>" /></td>
+            <td></td>
+            <td><input name="project_area_total_compensation_2" type="text" class="form-control " value="<?= $income_table['project_area_total_compensation_2']?>" /></td>
+            <td></td>
+            <td><input name="project_area_total_compensation_3" type="text" class="form-control " value="<?= $income_table['project_area_total_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">二、市场状况</td>
+            <td><input name="project_market" type="text" class="form-control " value="<?= $income_table['project_market']?>" /></td>
+            <td><input name="project_market_1" type="text" class="form-control " value="<?= $income_table['project_market_1']?>" /></td>
+            <td><input name="project_market_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_market_compensation_1']?>" /></td>
+            <td><input name="project_market_2" type="text" class="form-control " value="<?= $income_table['project_market_2']?>" /></td>
+            <td><input name="project_market_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_market_compensation_2']?>" /></td>
+            <td><input name="project_market_3" type="text" class="form-control " value="<?= $income_table['project_market_3']?>" /></td>
+            <td><input name="project_market_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_market_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">市场状况修正系数</td>
+            <td></td>
+            <td></td>
+            <td><input name="project_market_total_compensation_1" type="text" class="form-control " value="<?= $income_table['project_market_total_compensation_1']?>" /></td>
+            <td></td>
+            <td><input name="project_market_total_compensation_2" type="text" class="form-control " value="<?= $income_table['project_market_total_compensation_2']?>" /></td>
+            <td></td>
+            <td><input name="project_market_total_compensation_3" type="text" class="form-control " value="<?= $income_table['project_market_total_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">三、交易情况</td>
+            <td><input name="project_transaction" type="text" class="form-control " value="<?= $income_table['project_transaction']?>" /></td>
+            <td><input name="project_transaction_1" type="text" class="form-control " value="<?= $income_table['project_transaction_1']?>" /></td>
+            <td><input name="project_transaction_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_transaction_compensation_1']?>" /></td>
+            <td><input name="project_transaction_2" type="text" class="form-control " value="<?= $income_table['project_transaction_2']?>" /></td>
+            <td><input name="project_transaction_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_transaction_compensation_2']?>" /></td>
+            <td><input name="project_transaction_3" type="text" class="form-control " value="<?= $income_table['project_transaction_3']?>" /></td>
+            <td><input name="project_transaction_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_transaction_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">交易情况修正系数</td>
+            <td></td>
+            <td></td>
+            <td><input name="project_transaction_total_compensation_1" type="text" class="form-control " value="<?= $income_table['project_transaction_total_compensation_1']?>" /></td>
+            <td></td>
+            <td><input name="project_transaction_total_compensation_2" type="text" class="form-control " value="<?= $income_table['project_transaction_total_compensation_2']?>" /></td>
+            <td></td>
+            <td><input name="project_transaction_total_compensation_3" type="text" class="form-control " value="<?= $income_table['project_transaction_total_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td rowspan="6">四、个别因素</td>
+            <td>建筑结构</td>
+            <td><input name="project_structure" type="text" class="form-control " value="<?= $income_table['project_structure'] ?: $calculat_table['gbys_structure'] ?>" /></td>
+            <td><input name="project_structure_1" type="text" class="form-control " value="<?= $income_table['project_structure_1'] ?: $calculat_table['gbys_structure_1'] ?>" /></td>
+            <td><input name="project_structure_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_structure_compensation_1']?>" /></td>
+            <td><input name="project_structure_2" type="text" class="form-control " value="<?= $income_table['project_structure_2'] ?: $calculat_table['gbys_structure_2'] ?>" /></td>
+            <td><input name="project_structure_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_structure_compensation_2']?>" /></td>
+            <td><input name="project_structure_3" type="text" class="form-control " value="<?= $income_table['project_structure_3'] ?: $calculat_table['gbys_structure_3'] ?>" /></td>
+            <td><input name="project_structure_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_structure_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>成新率</td>
+            <td><input name="project_precent" type="text" class="form-control " value="<?= $income_table['project_precent'] ?: $calculat_table['gbys_precent'] ?>" /></td>
+            <td><input name="project_precent_1" type="text" class="form-control " value="<?= $income_table['project_precent_1'] ?: $calculat_table['gbys_precent_1'] ?>" /></td>
+            <td><input name="project_precent_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_precent_compensation_1']?>" /></td>
+            <td><input name="project_precent_2" type="text" class="form-control " value="<?= $income_table['project_precent_2'] ?: $calculat_table['gbys_precent_2'] ?>" /></td>
+            <td><input name="project_precent_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_precent_compensation_2']?>" /></td>
+            <td><input name="project_precent_3" type="text" class="form-control " value="<?= $income_table['project_precent_3'] ?: $calculat_table['gbys_precent_3'] ?>" /></td>
+            <td><input name="project_precent_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_precent_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>内部装修</td>
+            <td><input name="project_nbzx" type="text" class="form-control " value="<?= $income_table['project_nbzx'] ?: $calculat_table['gbys_nbzx'] ?>" /></td>
+            <td><input name="project_nbzx_1" type="text" class="form-control " value="<?= $income_table['project_nbzx_1'] ?: $calculat_table['gbys_nbzx_1'] ?>" /></td>
+            <td><input name="project_nbzx_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_nbzx_compensation_1']?>" /></td>
+            <td><input name="project_nbzx_2" type="text" class="form-control " value="<?= $income_table['project_nbzx_2'] ?: $calculat_table['gbys_nbzx_2'] ?>" /></td>
+            <td><input name="project_nbzx_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_nbzx_compensation_2']?>" /></td>
+            <td><input name="project_nbzx_3" type="text" class="form-control " value="<?= $income_table['project_nbzx_3'] ?: $calculat_table['gbys_nbzx_3'] ?>" /></td>
+            <td><input name="project_nbzx_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_nbzx_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>设施设备</td>
+            <td><input name="project_shsb" type="text" class="form-control " value="<?= $income_table['project_shsb'] ?: $calculat_table['gbys_fssszk'] ?>" /></td>
+            <td><input name="project_shsb_1" type="text" class="form-control " value="<?= $income_table['project_shsb_1'] ?: $calculat_table['gbys_fssszk_1'] ?>" /></td>
+            <td><input name="project_shsb_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_shsb_compensation_1']?>" /></td>
+            <td><input name="project_shsb_2" type="text" class="form-control " value="<?= $income_table['project_shsb_2'] ?: $calculat_table['gbys_fssszk_2'] ?>" /></td>
+            <td><input name="project_shsb_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_shsb_compensation_2']?>" /></td>
+            <td><input name="project_shsb_3" type="text" class="form-control " value="<?= $income_table['project_shsb_3'] ?: $calculat_table['gbys_fssszk_3'] ?>" /></td>
+            <td><input name="project_shsb_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_shsb_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>产别</td>
+            <td><input name="project_qycb" type="text" class="form-control " value="<?= $income_table['project_qycb'] ?: $calculat_table['gbys_qycb'] ?>" /></td>
+            <td><input name="project_qycb_1" type="text" class="form-control " value="<?= $income_table['project_qycb_1'] ?: $calculat_table['gbys_qycb_1'] ?>" /></td>
+            <td><input name="project_qycb_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_qycb_compensation_1']?>" /></td>
+            <td><input name="project_qycb_2" type="text" class="form-control " value="<?= $income_table['project_qycb_2'] ?: $calculat_table['gbys_qycb_2'] ?>" /></td>
+            <td><input name="project_qycb_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_qycb_compensation_2']?>" /></td>
+            <td><input name="project_qycb_3" type="text" class="form-control " value="<?= $income_table['project_qycb_3'] ?: $calculat_table['gbys_qycb_3'] ?>" /></td>
+            <td><input name="project_qycb_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_qycb_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td>面积（m²）</td>
+            <td><input name="project_jzmj" type="text" class="form-control " value="<?= $income_table['project_jzmj'] ?: $calculat_table['gbys_jzmj'] ?>" /></td>
+            <td><input name="project_jzmj_1" type="text" class="form-control " value="<?= $income_table['project_jzmj_1'] ?: $calculat_table['gbys_jzmj_1'] ?>" /></td>
+            <td><input name="project_jzmj_compensation_1" type="text" class="form-control " value="<?= (int)$income_table['project_jzmj_compensation_1']?>" /></td>
+            <td><input name="project_jzmj_2" type="text" class="form-control " value="<?= $income_table['project_jzmj_2'] ?: $calculat_table['gbys_jzmj_2'] ?>" /></td>
+            <td><input name="project_jzmj_compensation_2" type="text" class="form-control " value="<?= (int)$income_table['project_jzmj_compensation_2']?>" /></td>
+            <td><input name="project_jzmj_3" type="text" class="form-control " value="<?= $income_table['project_jzmj_3'] ?: $calculat_table['gbys_jzmj_3'] ?>" /></td>
+            <td><input name="project_jzmj_compensation_3" type="text" class="form-control " value="<?= (int)$income_table['project_jzmj_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">个别因素调整系数</td>
+            <td></td>
+            <td></td>
+            <td><input name="project_gbys_total_compensation_1" type="text" class="form-control " value="<?= $income_table['project_gbys_total_compensation_1']?>" /></td>
+            <td></td>
+            <td><input name="project_gbys_total_compensation_2" type="text" class="form-control " value="<?= $income_table['project_gbys_total_compensation_2']?>" /></td>
+            <td></td>
+            <td><input name="project_gbys_total_compensation_3" type="text" class="form-control " value="<?= $income_table['project_gbys_total_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">五、综合修正系数</td>
+            <td></td>
+            <td></td>
+            <td data-toggle="tooltip" title="#0125"><input name="project_total_compensation_1" type="text" class="form-control " value="<?= $income_table['project_total_compensation_1']?>" /></td>
+            <td></td>
+            <td data-toggle="tooltip" title="#0126"><input name="project_total_compensation_2" type="text" class="form-control " value="<?= $income_table['project_total_compensation_2']?>" /></td>
+            <td></td>
+            <td data-toggle="tooltip" title="#0127"><input name="project_total_compensation_3" type="text" class="form-control " value="<?= $income_table['project_total_compensation_3']?>" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">六、交易租金(元/m².天)</td>
+            <td></td>
+            <td data-toggle="tooltip" title="#0128"><input name="project_unit_1" type="text" class="form-control " value="<?= $income_table['project_unit_1']?>" /></td>
+            <td></td>
+            <td data-toggle="tooltip" title="#0129"><input name="project_unit_2" type="text" class="form-control " value="<?= $income_table['project_unit_2']?>" /></td>
+            <td></td>
+            <td data-toggle="tooltip" title="#0130"><input name="project_unit_3" type="text" class="form-control " value="<?= $income_table['project_unit_3']?>" /></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="2">七、修正后租金(元/m².天)</td>
+            <td data-toggle="tooltip" title="#0131"><input name="project_unit" type="text" class="form-control " value="<?= $income_table['project_unit']?>" /></td>
+            <td data-toggle="tooltip" title="#0132"><input name="project_adjust_unit_1" type="text" class="form-control " value="<?= $income_table['project_adjust_unit_1']?>" /></td>
+            <td></td>
+            <td data-toggle="tooltip" title="#0133"><input name="project_adjust_unit_2" type="text" class="form-control " value="<?= $income_table['project_adjust_unit_2']?>" /></td>
+            <td></td>
+            <td data-toggle="tooltip" title="#0134"><input name="project_adjust_unit_3" type="text" class="form-control " value="<?= $income_table['project_adjust_unit_3']?>" /></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<table class="table table-sm table-bordered table-object">
+    <tr>
+        <td class="disable" data-toggle="tooltip" title="#0135">有效出租面积（%）</td>
+        <td><input name="project_income_yxczmj" type="text" class="form-control " value="<?= $income_table['project_income_yxczmj'] ?>" /></td>
+        <td data-toggle="tooltip" title="#0136">年潜在毛收入（元/㎡）</td>
+        <td><input name="project_income_nqzmsr" type="text" class="form-control " value="<?= $income_table['project_income_nqzmsr'] ?>" /></td>
+    </tr>
+    <tr>
+        <td class="disable" data-toggle="tooltip" title="#0137">银行存款利率（%）</td>
+        <td><input name="project_income_yhckll" type="text" class="form-control " value="<?= $income_table['project_income_yhckll'] ?>" /></td>
+        <td data-toggle="tooltip" title="#0138">其他收入（元/㎡）</td>
+        <td><input name="project_income_qtsr" type="text" class="form-control " value="<?= $income_table['project_income_qtsr'] ?>" /></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td data-toggle="tooltip" title="#0139">年有效毛收入（元/㎡）</td>
+        <td><input name="project_income_nyxmsr" type="text" class="form-control " value="<?= $income_table['project_income_nyxmsr'] ?>" /></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td data-toggle="tooltip" title="#0140">管理费（元/㎡）</td>
+        <td><input name="project_income_glf" type="text" class="form-control " value="<?= $income_table['project_income_glf'] ?>" /></td>
+    </tr>
+    <tr>
+        <td class="disable" data-toggle="tooltip" title="#0141">建筑物重置成本（元/㎡）</td>
+        <td><input name="project_income_jzwczcb" type="text" class="form-control " value="<?= $income_table['project_income_jzwczcb'] ?>" /></td>
+        <td data-toggle="tooltip" title="#0142">维修费（元/㎡）</td>
+        <td><input name="project_income_wxf" type="text" class="form-control " value="<?= $income_table['project_income_wxf'] ?>" /></td>
+    </tr>
+    <tr>
+        <td data-toggle="tooltip" title="#0143">保险费（元/㎡）</td>
+        <td><input name="project_income_bxf" type="text" class="form-control " value="<?= $income_table['project_income_bxf'] ?>" /></td>
+        <td data-toggle="tooltip" title="#0144">税金（元/㎡）</td>
+        <td><input name="project_income_sj" type="text" class="form-control " value="<?= $income_table['project_income_sj'] ?>" /></td>
+    </tr>
+    <tr>
+        <td data-toggle="tooltip" title="#0145">运营费用（元/㎡）</td>
+        <td><input name="project_income_yxfy" type="text" class="form-control " value="<?= $income_table['project_income_yxfy'] ?>" /></td>
+        <td data-toggle="tooltip" title="#0146">净收益（元/㎡）</td>
+        <td><input name="project_income_jsy" type="text" class="form-control " value="<?= $income_table['project_income_jsy'] ?>" /></td>
+    </tr>
+    <tr>
+        <td class="disable" data-toggle="tooltip" title="#0147">投资优惠率（%）</td>
+        <td><input name="project_income_tzyhl" type="text" class="form-control " value="<?= $income_table['project_income_tzyhl'] ?>" /></td>
+        <td data-toggle="tooltip" title="#0148">报酬率（%）</td>
+        <td><input name="project_income_bcl" type="text" class="form-control " value="<?= $income_table['project_income_bcl'] ?>" /></td>
+    </tr>
+    <tr>
+        <td class="disable" data-toggle="tooltip" title="#0149">估价对象持有期</td>
+        <td><input name="project_income_gjdxcyq" type="text" class="form-control " value="<?= $income_table['project_income_gjdxcyq'] ?>" /></td>
+        <td data-toggle="tooltip" title="#0150">持有期间房地产价值</td>
+        <td><input name="project_income_cyqjfdcjz" type="text" class="form-control " value="<?= $income_table['project_income_cyqjfdcjz'] ?>" /></td>
+    </tr>
+    <tr>
+        <td class="disable" data-toggle="tooltip" title="#0151">房价增长率（%）</td>
+        <td><input name="project_income_fjzzl" type="text" class="form-control " value="<?= $income_table['project_income_fjzzl'] ?>" /></td>
+        <td  data-toggle="tooltip" title="#0152">收益法折合单价（元/㎡）</td>
+        <td><input name="project_income_zhdj" type="text" class="form-control " value="<?= $income_table['project_income_zhdj'] ?>" /></td>
+    </tr>
+    <tr>
+        <td  data-toggle="tooltip" title="#0153">单价（元/㎡）</td>
+        <td><input name="project_income_dj" type="text" class="form-control " value="<?= $income_table['project_income_dj'] ?>" /></td>
+        <td  data-toggle="tooltip" title="#0154">总价值（元）</td>
+        <td><input name="project_income_zjz" type="text" class="form-control " value="<?= $income_table['project_income_zjz'] ?>" /></td>
+    </tr>
+</table>
+<div class="hr_2"></div>
+<?php if(_G('ME')->isAllowedTo('修改', $project)): ?>
+    <button class="btn btn-secondary btn-raised" type="button" name="adjust-income" id="adjust-income"><i class="fa fa-edit fa-fw"></i> <?= H(T('数据矫正')) ?></button>
+    <button class="btn btn-primary btn-raised" form="add-income-report-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('保存信息')) ?></button>
+<?php endif; ?>
+<div class="hr_2"></div>
+<div class="hr_2"></div>
+</form>
+<script data-ajax="true">
+require(['main'], function($){
+    $('body').on('click', '#adjust-income', function(e){
+        var $ones = $('[name$="total_compensation_1"]'),
+            $twos = $('[name$="total_compensation_2"]'),
+            $threes = $('[name$="total_compensation_3"]');
+        var one = 1;
+        $ones.each(function(k, v){
+            let me = $(v)
+            if (me.attr('name') != 'project_total_compensation_1') {
+                one = one * (me.val() ? me.val() : 1)
+            }
+        });
+        one = one.toFixed(2);
+        $('[name="project_total_compensation_1"]').val(one);
+        var onezj = (one * $('[name="project_unit_1"]:eq(1)').val()).toFixed(2);
+        $('[name="project_adjust_unit_1"]').val(onezj);
+
+        var two = 1;
+        $twos.each(function(k, v){
+            let me = $(v)
+            if (me.attr('name') != 'project_total_compensation_2') {
+                two = two * (me.val() ? me.val() : 1)
+            }
+        });
+        two = two.toFixed(2);
+        $('[name="project_total_compensation_2"]').val(two);
+        var twozj = (two * $('[name="project_unit_2"]:eq(1)').val()).toFixed(2);
+        $('[name="project_adjust_unit_2"]').val(twozj);
+
+        var three = 1;
+        $threes.each(function(k, v){
+            let me = $(v)
+            if (me.attr('name') != 'project_total_compensation_3') {
+                three = three * (me.val() ? me.val() : 1)
+            }
+        });
+        three = three.toFixed(2);
+        $('[name="project_total_compensation_3"]').val(three);
+        var threezj = (three * $('[name="project_unit_3"]:eq(1)').val()).toFixed(2);
+        $('[name="project_adjust_unit_3"]').val(threezj);
+        $('[name="project_unit"]').val(((parseFloat(onezj) + parseFloat(twozj) + parseFloat(threezj)) / 3).toFixed(2));
+
+        // 潜在毛收入
+        var yxczmj = $('[name="project_income_yxczmj"]').val() || 100
+            , unit = $('[name="project_unit"]').val()
+            , nqzmsr = 0;
+        nqzmsr = (parseFloat(unit) * (yxczmj / 100) * 365).toFixed(2);
+        $('[name="project_income_nqzmsr"]').val(nqzmsr)
+
+        // 其他收入 年有效毛收入
+        var yhckll = $('[name="project_income_yhckll"]').val() || 1.5
+            , qtsr = nyxmsr = 0
+        qtsr = (parseFloat(unit) * 365 * 3 / 12 * (yhckll / 100)).toFixed(2);
+        $('[name="project_income_qtsr"]').val(qtsr)
+        nyxmsr = (parseFloat(nqzmsr) * (1 - 0.02) + parseFloat(qtsr)).toFixed(2);
+        $('[name="project_income_nyxmsr"]').val(nyxmsr);
+
+        // 运营费用、管理费 、 保险费、维修费、税金
+        var glf = wxf = bxf = sj = yxfy = 0
+            , jzwczcb = $('[name="project_income_jzwczcb"]').val() || 3000
+        glf = (nyxmsr * 0.03).toFixed(2);
+        $('[name="project_income_glf"]').val(glf);
+        wxf = (parseFloat(jzwczcb) * 0.01).toFixed(2);
+        $('[name="project_income_wxf"]').val(wxf);
+        bxf = (parseFloat(jzwczcb) * 0.002).toFixed(2);
+        $('[name="project_income_bxf"]').val(bxf);
+        sj = (nyxmsr * 0.12 + nyxmsr / 1.05 * 0.015 * 1.13).toFixed(2);
+        $('[name="project_income_sj"]').val(sj);
+        yxfy = (parseFloat(glf) + parseFloat(wxf) + parseFloat(bxf) + parseFloat(sj)).toFixed(2);
+        $('[name="project_income_yxfy"]').val(yxfy);
+
+        // 净收益
+        var jsy = 0
+        jsy = (parseFloat(nyxmsr) - parseFloat(yxfy)).toFixed(2);
+        $('[name="project_income_jsy"]').val(jsy);
+
+        // 报酬率
+        var tzyhl = $('[name="project_income_tzyhl"]').val() || 0.38
+            , bcl = 0
+        bcl = (1.5 + 3.5 + 1 + 1 - parseFloat(tzyhl)).toFixed(2);
+        $('[name="project_income_bcl"]').val(bcl);
+
+        // 持有期间房地产价值
+        var gjdxcyq = $('[name="project_income_gjdxcyq"]').val() || 5
+            , cyqjfdcjz = 0
+        for (let i = parseInt(gjdxcyq); i > 0; i--) {
+            cyqjfdcjz = cyqjfdcjz + jsy / Math.pow(1 + parseFloat(bcl) / 100, i) 
+        }
+        cyqjfdcjz = parseInt(cyqjfdcjz);
+        cyqjfdcjz = (cyqjfdcjz * parseFloat($('[name="project_jzmj"]').val())).toFixed(0);
+        $('[name="project_income_cyqjfdcjz"]').val(cyqjfdcjz)
+
+        // 收益法折合单价
+        var fjzzl = $('[name="project_income_fjzzl"]').val()
+            , zhdj = 0
+        zhdj = (parseInt(cyqjfdcjz) * (Math.pow(1 + parseFloat(bcl) / 100, parseInt(gjdxcyq)) / (
+            Math.pow(1 + parseFloat(bcl) / 100, parseInt(gjdxcyq)) - Math.pow(1 + parseFloat(fjzzl) / 100, parseInt(gjdxcyq))
+        )) / 10000).toFixed(0);
+        zhdj = (zhdj * 10000 / parseFloat($('[name="project_jzmj"]').val())).toFixed(0);
+        $('[name="project_income_zhdj"]').val(zhdj);
+
+        var dj = parseInt(<?= $calculat_table['pgdj'] ?: 0 ?>)
+            , zjz = 0
+        dj = ((dj + parseInt(zhdj)) / 2 ).toFixed(0);
+        $('[name="project_income_dj"]').val(dj);
+        zjz = (parseInt(dj) * parseFloat($('[name="project_jzmj"]').val())).toFixed(0);
+        $('[name="project_income_zjz"]').val(zjz);
+    });
+})
+</script>
