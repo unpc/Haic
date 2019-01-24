@@ -89,8 +89,10 @@ class Project extends \Gini\Controller\CGI
             $this->redirect('error/401');
         }
         $form = $this->form();
-        $project->user_name = $form['user_name'];
-        $project->user_address = $form['user_address'];
+        $project->user_name = H($form['user_name']);
+        $project->user_address = H($form['user_address']);
+        $project->company_titile = H($form['company_titile']);
+        $project->company_address = H($form['company_address']);
         $project->save();
 
         $log = a('log');

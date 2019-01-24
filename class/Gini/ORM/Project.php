@@ -259,7 +259,9 @@ class Project extends Object
             "#0152" => $income_table['project_income_zhdj'],
             "#0153" => $income_table['project_income_dj'],
             "#0154" => $income_table['project_income_zjz'],
-            "#0155" => $project->operation_dur
+            "#0155" => $project->operation_dur,
+            "#0156" => $project->company_title,
+            "#0157" => $project->company_address
         ];
         return $data;
     }
