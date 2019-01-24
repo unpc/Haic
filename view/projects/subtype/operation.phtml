@@ -25,6 +25,16 @@
                     <input name="operation_to" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->operation_to ? strtotime($project->operation_to) : time()) ?>">
                 </td>
             </tr>
+            <tr>
+                <td data-toggle="tooltip" title="#0155">
+                    <div class="text-center form-control-plaintext">
+                        估价有效期限（年）
+                    </div>
+                </td>
+                <td>
+                    <input name="operation_dur" type="text" class="form-control"  value="<?= (int)$project->operation_dur ?>">
+                </td>
+            </tr>
         </tbody>
     </table>
 </form>

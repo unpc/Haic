@@ -344,6 +344,11 @@ class Project extends \Gini\Controller\CGI
             $edit = true;
         }
 
+        if ($form['operation_dur']) {
+            $project->operation_dur = $form['operation_dur'];
+            $edit = true;
+        }
+
         $edit && $project->save();
 
         $log = a('log');
