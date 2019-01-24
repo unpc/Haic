@@ -163,7 +163,6 @@ class Building extends Object
     const TYPE_TWO = 2;
     const TYPE_THREE = 3;
     const TYPE_FOUR = 4;
-    const TYPE_FIVE = 5;
     const TYPE_SIX = 6;
 
     public static $type_s = [
@@ -171,7 +170,6 @@ class Building extends Object
         self::TYPE_TWO => '二室一厅',
         self::TYPE_THREE => '三室一厅',
         self::TYPE_FOUR => '三室二厅',
-        self::TYPE_FIVE => '一梯户',
         self::TYPE_SIX => '其他'
     ];
 

@@ -118,7 +118,11 @@ class Project extends Object
             '#013' => Building::$front_s[$building->front],
             '#014' => $building->use_text ?: Building::$use_s[$building->use],
             '#015' => $building->area,
-            '#016' => $building->type_text ?: Building::$type_s[$building->type],
+            '#016' => $building->type_text ?: ($building->type_door ? 
+                "{$building->type_stairs}梯{$building->type_door}户"
+                :
+                Building::$type_s[$building->type]
+            ),
             '#017' => $building->height,
             '#018' => $building->mortgage ? '有' : '无',
             '#019' => Help::mergeArrayText((array)$building->appurtenance, Building::$appurtenance_s),
