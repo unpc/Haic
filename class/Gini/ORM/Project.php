@@ -97,6 +97,7 @@ class Project extends Object
         $true_group = (array)Hub('template.group');
         $group = (array)\Gini\Config::get('project.group');
         $calculat_table = (array)$project->calculat_table;
+        $income_table = (array)$project->income_table;
         $ownership = (array)current((array)$building->ownership);
         $data = [
             '#001' => strtr(\Gini\Config::get('project.number_template'), [
@@ -220,7 +221,40 @@ class Project extends Object
             '#0116' => $true_group['number'],
             '#0117' => $true_group['time_limit'],
             '#0120' => $ownership['number'],
-            '#0121' => '产权证视图'
+            '#0121' => '产权证视图',
+            "#0122" => "租赁实例说明表视图",
+            "#0123" => "估价对象与可比实例对比分析表视图",
+            "#0124" => $calculat_table['pgdj'],
+            "#0125" => $income_table['project_total_compensation_1'],
+            "#0126" => $income_table['project_total_compensation_2'],
+            "#0127" => $income_table['project_total_compensation_3'],
+            "#0128" => $income_table['project_unit_1'],
+            "#0129" => $income_table['project_unit_2'],
+            "#0130" => $income_table['project_unit_3'],
+            "#0131" => $income_table['project_unit'],
+            "#0132" => $income_table['project_adjust_unit_1'],
+            "#0133" => $income_table['project_adjust_unit_2'],
+            "#0134" => $income_table['project_adjust_unit_3'],
+            "#0135" => $income_table['project_income_yxczmj'] . "%",
+            "#0136" => $income_table['project_income_nqzmsr'],
+            "#0137" => $income_table['project_income_yhckll'] . "%",
+            "#0138" => $income_table['project_income_qtsr'],
+            "#0139" => $income_table['project_income_nyxmsr'],
+            "#0140" => $income_table['project_income_glf'],
+            "#0141" => $income_table['project_income_jzwczcb'],
+            "#0142" => $income_table['project_income_wxf'],
+            "#0143" => $income_table['project_income_bxf'],
+            "#0144" => $income_table['project_income_sj'],
+            "#0145" => $income_table['project_income_yxfy'],
+            "#0146" => $income_table['project_income_jsy'],
+            "#0147" => $income_table['project_income_tzyhl'] . "%",
+            "#0148" => $income_table['project_income_bcl'] . "%",
+            "#0149" => $income_table['project_income_gjdxcyq'],
+            "#0150" => $income_table['project_income_cyqjfdcjz'],
+            "#0151" => $income_table['project_income_fjzzl'] . "%",
+            "#0152" => $income_table['project_income_zhdj'],
+            "#0153" => $income_table['project_income_dj'],
+            "#0154" => $income_table['project_income_zjz']
         ];
         return $data;
     }
