@@ -16,6 +16,7 @@ class User extends \Gini\Controller\CGI
                 $objects[$key] = [
                     'name' => $user->name,
                     'id' => $user->id,
+                    'number' => $user->number
                 ];
             }
         } catch (\Gini\RPC\Exception $e) {
