@@ -2,6 +2,7 @@
 <form id="add-result-form" method="POST" action="gini-ajax:ajax/project/addResult/<?= $project->id ?>">
 <?php 
     $building = $project->building ?: new StdClass();
+    $area = $building->area;
 ?>
 <table class="table table-sm table-bordered table-object">
     <tbody data-toggle="tooltip" title="#063（估价结果视图）">
@@ -23,7 +24,7 @@
             <td rowspan="2">
             1.假定未设立法定优先受偿权下的价值
             </td>
-            <td>总价（万元）</td>
+            <td class="disable">总价（万元）</td>
             <td data-toggle="tooltip" title="#064"><input name="amount" type="text" class="form-control" value="<?= $building->amount ?>" /></td>
             <td data-toggle="tooltip" title="#065"><input name="upper_amount" type="text" class="form-control" value="<?= $building->upper_amount ?>" /></td>
         </tr>
@@ -37,32 +38,32 @@
             2.估价师知悉的法定优先受偿款
             </td>
             <td>总额（万元）</td>
-            <td data-toggle="tooltip" title="#068"><input name="yxsck_amount" type="text" class="form-control" value="<?= $building->yxsck_amount ?>" /></td>
-            <td data-toggle="tooltip" title="#069"><input name="upper_yxsck_amount" type="text" class="form-control" value="<?= $building->upper_yxsck_amount ?>" /></td>
+            <td data-toggle="tooltip" title="#068"><input name="yxsck_amount" type="text" class="form-control" value="<?= (int)$building->yxsck_amount ?>" /></td>
+            <td data-toggle="tooltip" title="#069"><input name="upper_yxsck_amount" type="text" class="form-control" value="<?= $building->upper_yxsck_amount  ?: 0 ?>" /></td>
         </tr>
         <tr>
             <td>
             2.1已抵押担保的债权数额
             </td>
-            <td>总额（万元）</td>
-            <td data-toggle="tooltip" title="#070"><input name="dyzq_amount" type="text" class="form-control" value="<?= $building->dyzq_amount ?>" /></td>
-            <td data-toggle="tooltip" title="#071"><input name="upper_dyzq_amount" type="text" class="form-control" value="<?= $building->upper_dyzq_amount ?>" /></td>
+            <td class="disable">总额（万元）</td>
+            <td data-toggle="tooltip" title="#070"><input name="dyzq_amount" type="text" class="form-control" value="<?= (int)$building->dyzq_amount ?>" /></td>
+            <td data-toggle="tooltip" title="#071"><input name="upper_dyzq_amount" type="text" class="form-control" value="<?= $building->upper_dyzq_amount ?: 0 ?>" /></td>
         </tr>
         <tr>
             <td>
             2.2拖欠的建设工程价款
             </td>
-            <td>总额（万元）</td>
-            <td data-toggle="tooltip" title="#072"><input name="tqk_amount" type="text" class="form-control" value="<?= $building->tqk_amount ?>" /></td>
-            <td data-toggle="tooltip" title="#073"><input name="upper_tqk_amount" type="text" class="form-control" value="<?= $building->upper_tqk_amount ?>" /></td>
+            <td class="disable">总额（万元）</td>
+            <td data-toggle="tooltip" title="#072"><input name="tqk_amount" type="text" class="form-control" value="<?= (int)$building->tqk_amount ?>" /></td>
+            <td data-toggle="tooltip" title="#073"><input name="upper_tqk_amount" type="text" class="form-control" value="<?= $building->upper_tqk_amount ?: 0?>" /></td>
         </tr>
         <tr>
             <td>
             2.3其他法定优先受偿款
             </td>
-            <td>总额（万元）</td>
-            <td data-toggle="tooltip" title="#074"><input name="fdyxsck_amount" type="text" class="form-control" value="<?= $building->fdyxsck_amount ?>" /></td>
-            <td data-toggle="tooltip" title="#075"><input name="upper_fdyxsck_amount" type="text" class="form-control" value="<?= $building->upper_fdyxsck_amount ?>" /></td>
+            <td class="disable">总额（万元）</td>
+            <td data-toggle="tooltip" title="#074"><input name="fdyxsck_amount" type="text" class="form-control" value="<?= (int)$building->fdyxsck_amount ?>" /></td>
+            <td data-toggle="tooltip" title="#075"><input name="upper_fdyxsck_amount" type="text" class="form-control" value="<?= $building->upper_fdyxsck_amount ?: 0 ?>" /></td>
         </tr>
         <tr>
             <td rowspan="2">
@@ -87,3 +88,84 @@
 <?php endif; ?>
 <div class="hr_2"></div>
 <div class="hr_2"></div>
+<script>
+require(['main'], function($) {
+    var form = $('#add-result-form')
+        , smalltobig = function(n) {
+            var fraction = ['角', '分'];    
+            var digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];    
+            var unit = [ ['元', '万', '亿'], ['', '拾', '佰', '仟']  ];    
+            var head = n < 0 ? '欠': '';    
+            n = Math.abs(n);    
+        
+            var s = '';    
+        
+            for (var i = 0; i < fraction.length; i++)     
+            {    
+                s += (digit[Math.floor(n * 10 * Math.pow(10, i)) % 10] + fraction[i]).replace(/零./, '');    
+            }    
+            s = s || '整';    
+            n = Math.floor(n);    
+        
+            for (var i = 0; i < unit[0].length && n > 0; i++)     
+            {    
+                var p = '';    
+                for (var j = 0; j < unit[1].length && n > 0; j++)     
+                {    
+                    p = digit[n % 10] + unit[1][j] + p;    
+                    n = Math.floor(n / 10);    
+                }    
+                s = p.replace(/(零.)*零$/, '').replace(/^$/, '零')  + unit[0][i] + s;    
+            }    
+            return head + s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整');    
+        },
+        updateAmount = function() {
+            let amount = parseInt($('input[name=amount]').val())
+                , sub_amount = parseInt($('input[name=yxsck_amount]').val())
+            amount = parseInt(amount) - parseInt(sub_amount)
+            form.find('input[name=dyjz_amount]').val(amount)
+            form.find('input[name=upper_dyjz_amount]').val(smalltobig(amount * 10000))
+            let unit = (parseFloat(amount) * 10000 / parseFloat('<?= $area ?>')).toFixed(0)
+            form.find('input[name=dyjz_unit]').val(unit)
+        }
+    form
+    .on('input propertychange', 'input[name=amount]', function(){
+        let amount = $(this).val()
+        amount = parseInt(amount) * 10000
+        form.find('input[name=upper_amount]').val(smalltobig(amount))
+        let unit = (parseFloat(amount) / parseFloat('<?= $area ?>')).toFixed(0)
+        form.find('input[name=unit]').val(unit)
+        updateAmount()
+    })
+    .on('input propertychange', 'input[name=dyzq_amount]', function(){
+        let amount = $(this).val()
+            , tqk = form.find('input[name=tqk_amount]')
+            , fdy = form.find('input[name=fdyxsck_amount]')
+        form.find('input[name=upper_dyzq_amount]').val(parseInt(amount) ? smalltobig(parseInt(amount) * 10000) : 0)
+        let total = parseInt(amount) + parseInt(tqk.val()) + parseInt(fdy.val())
+        form.find('input[name=yxsck_amount]').val(total ? total : 0)
+        form.find('input[name=upper_yxsck_amount]').val(parseInt(total) > 0 ? smalltobig(parseInt(total) * 10000) : 0)
+        updateAmount()
+    })
+    .on('input propertychange', 'input[name=tqk_amount]', function(){
+        let amount = $(this).val()
+            , tqk = form.find('input[name=dyzq_amount]')
+            , fdy = form.find('input[name=fdyxsck_amount]')
+        form.find('input[name=upper_tqk_amount]').val(parseInt(amount) ? smalltobig(parseInt(amount) * 10000) : 0)
+        let total = parseInt(amount) + parseInt(tqk.val()) + parseInt(fdy.val())
+        form.find('input[name=yxsck_amount]').val(total ? total : 0)
+        form.find('input[name=upper_yxsck_amount]').val(parseInt(total) > 0 ? smalltobig(parseInt(total) * 10000) : 0)
+        updateAmount()
+    })
+    .on('input propertychange', 'input[name=fdyxsck_amount]', function(){
+        let amount = $(this).val()
+            , tqk = form.find('input[name=tqk_amount]')
+            , fdy = form.find('input[name=dyzq_amount]')
+        form.find('input[name=upper_fdyxsck_amount]').val(parseInt(amount) ? smalltobig(parseInt(amount) * 10000) : 0)
+        let total = parseInt(amount) + parseInt(tqk.val()) + parseInt(fdy.val())
+        form.find('input[name=yxsck_amount]').val(total ? total : 0)
+        form.find('input[name=upper_yxsck_amount]').val(parseInt(total) > 0 ? smalltobig(parseInt(total) * 10000) : 0)
+        updateAmount()
+    })
+})
+</script>
