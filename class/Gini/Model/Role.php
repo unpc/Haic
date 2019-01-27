@@ -253,6 +253,10 @@ class Role
                     $e->pass();
                     return false;
                 }
+                if ($object->isPreparation) {
+                    $e->pass();
+                    return false;
+                }
                 if ($object->id && $object->owner->id == $user->id) {
                     $e->abort();
                     return true;

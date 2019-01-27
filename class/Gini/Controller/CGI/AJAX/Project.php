@@ -34,6 +34,7 @@ class Project extends \Gini\Controller\CGI
                 $project->user_name = H($form['user_name']);
                 $project->user_phone = H($form['user_phone']);
                 $project->target = H($form['target']);
+                $project->isPreparation = (int)$form['isPreparation'];
                 $project->save();
 
                 if ($project->id) {

@@ -19,9 +19,11 @@
             <?php endif; ?>
         </div>
         <div class="btn-group mr-2" role="group" >
-            <a class="btn btn-danger" href="<?= URL("/project/approval/{$project->id}")?>"><i class="fa fa-check fa-fw"></i><?= T('审核及模板信息') ?></a>
+            <a class="btn btn-danger" href="<?= URL("/project/approval/{$project->id}")?>"><i class="fa fa-check fa-fw"></i><?= T("审核及模板信息") ?></a>
             <?php if ($me->isAllowedTo('打印报告', $project)): ?>
-                <a class="btn btn-dark" href="gini-ajax:AJAX/Project/SelectTemplate/<?= $project->id ?>"><i class="fa fa-check fa-fw"></i><?= T('选择报告模板') ?></a>
+                <?php if(!$project->isPreparation): ?>
+                    <a class="btn btn-dark" href="gini-ajax:AJAX/Project/SelectTemplate/<?= $project->id ?>"><i class="fa fa-check fa-fw"></i><?= T('选择报告模板') ?></a>
+                <?php endif; ?>
                 <a class="btn btn-secondary" href="gini-ajax:AJAX/Project/SelectPreEval/<?= $project->id ?>"><i class="fa fa-check fa-fw"></i><?= T('选择预评模板') ?></a>
             <?php endif; ?>
         </div>
@@ -47,11 +49,17 @@
                         '%number' => $project->number
                     ])?>
                     <?php
-                        $approval = a('approval')->whose('project')->is($project);
+                        if (!$project->isPreparation):
+                            $approval = a('approval')->whose('project')->is($project);
                     ?>
-                    <span class="badge badge-warning white">
-                        <?= \Gini\ORM\Approval::$APPROVAL_STATUS[(int)$approval->status] ?>
-                    </span>
+                        <span class="badge badge-warning white">
+                            <?= \Gini\ORM\Approval::$APPROVAL_STATUS[(int)$approval->status] ?>
+                        </span>
+                    <?php else: ?>
+                        <span class="badge badge-success white">
+                            <?= T('预评') ?>
+                        </span>   
+                    <?php endif; ?>
                 </h5>
                 <h5 data-toggle="tooltip" title="#002">项目名称: <?= T($project->title) ?></h5>
                 <h5 data-toggle="tooltip" title="#003">备注信息: </h5>

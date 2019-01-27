@@ -85,10 +85,15 @@
             <tr data-project-id="<?= intval($project->id) ?>">
                 <td><span class="badge badge-dark"><?= str_pad($project->id, 6, '0', STR_PAD_LEFT) ?></span></td>
                 <td><span class="badge badge-primary"><?= $project->number ?></span></td>
-                <td><?= H($project->title) ?></td>
-                <td><?= H($project->user_phone) ?></td>
-                <td><?= H($project->target) ?></td>
-                <td><?= H($project->source_from) ?></td>
+                <td style="position: relative;">
+                    <?= H($project->title ?: '--') ?>
+                    <?php if ($project->isPreparation): ?>
+                        <span class="pre_eval">预评</span>
+                    <?php endif; ?>
+                </td>
+                <td><?= H($project->user_phone ?: '--') ?></td>
+                <td><?= H($project->target ?: '--') ?></td>
+                <td><?= H($project->source_from ?: '--') ?></td>
                 <td><small><?= H($project->assessor->id ? $project->assessor->name : '未指定') ?></small></td>
                 <td>
                     <?php

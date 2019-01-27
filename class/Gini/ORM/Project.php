@@ -29,10 +29,12 @@ class Project extends Object
     public $template    = 'object:template';
     // 预评模板
     public $preeval     = 'object:template';
+    // 预评项目
+    public $isPreparation = 'int:1,default:0';
 
     protected static $db_index = [
         'number', 'source_from', 'bank_from',
-        'identity', 'title', 'ctime', 'owner', 'type', 'building', 'archive_time'
+        'identity', 'title', 'ctime', 'owner', 'type', 'building', 'archive_time', 'isPreparation'
     ];
 
     const PUBLIC_BUSINESS = 2;
