@@ -1,0 +1,464 @@
+<table style="border: 1px solid black;border-spacing: 0px;width: 100%;">
+    <?php
+        $building = $project->building;
+        $calculat_table = (array)$project->calculat_table; 
+    ?>
+    <tbody>
+        <tr>
+<td colspan="7">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; font-weight: bold;">表1-比较因素条件说明表</span></p>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">影响因素</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">估价对象</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">实例一</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">实例二</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">实例三</span></p>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">项目名称</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $project->title ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['project_title_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['project_title_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['project_title_3'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">坐落</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: 有000;"><?= $building->address ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['project_address_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['project_address_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['project_address_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">交易价格（元/㎡）</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">待定</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_price_1']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_price_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_price_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">交易日期</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= date('Y年m月d日') ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_date_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_date_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_date_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">交易情况</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_desc']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_desc_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_desc_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_desc_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td rowspan="18">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">房地产状况</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</td>
+<td rowspan="7">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">区位状况</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">交通通达度</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_jttdd']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_jttdd_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_jttdd_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_jttdd_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">商业繁华度</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_syfhd']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_syfhd_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_syfhd_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_syfhd_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">环境条件（自然、人文、景观）</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_hjtj']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_hjtj_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_hjtj_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_hjtj_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">基础设施完备度</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: 有000;"><?= $calculat_table['business_jcsswbd']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_jcsswbd_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_jcsswbd_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['business_jcsswbd_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">公共配套设施完备度</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_ggsswbd']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_ggsswbd_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_ggsswbd_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['business_ggsswbd_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">所在层/房屋总层数</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_lcdc']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #FF00FF;"><?= $calculat_table['gbys_lcdc_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #FF00FF;"><?= $calculat_table['gbys_lcdc_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #FF00FF;"><?= $calculat_table['gbys_lcdc_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">朝向</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_front']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_front_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_front_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_front_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td rowspan="8">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">实物状况</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">成新率</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_precent']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_precent_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_precent_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_precent_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">物业管理</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_wygl']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_wygl_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_wygl_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_wygl_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">小区状况</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_ggbf'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_ggbf_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_ggbf_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_ggbf_3'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">建筑结构</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: 有000;"><?= $calculat_table['gbys_structure']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['gbys_structure_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['gbys_structure_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['gbys_structure_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">房型</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_type']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_type_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_type_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_type_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">建筑面积（㎡）</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: 有000;"><?= $calculat_table['gbys_jzmj']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['gbys_jzmj_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['gbys_jzmj_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['gbys_jzmj_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">内部装修</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_nbzx']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #FF00FF;"><?= $calculat_table['gbys_nbzx_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #FF00FF;"><?= $calculat_table['gbys_nbzx_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #FF00FF;"><?= $calculat_table['gbys_nbzx_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">设施状况</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_fssszk']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_fssszk_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_fssszk_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_fssszk_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td rowspan="3">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">权益状况</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">产别</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_qycb']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_qycb_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_qycb_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $calculat_table['gbys_qycb_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">用途</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: 有000;"><?= $calculat_table['gbys_yt']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: 有000;"><?= $calculat_table['gbys_yt_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: 有000;"><?= $calculat_table['gbys_yt_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: 有000;"><?= $calculat_table['gbys_yt_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">其他</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['gbys_qyqt']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['gbys_qyqt_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['gbys_qyqt_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $calculat_table['gbys_qyqt_3']?></span></p>
+</td>
+</tr>
+</tbody></table>

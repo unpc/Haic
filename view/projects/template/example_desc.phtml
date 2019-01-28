@@ -1,0 +1,173 @@
+<table style="border: 1px solid black;border-spacing: 0px;width: 100%;">
+    <?php
+        $building = $project->building;
+        $income_table = (array)$project->income_table;
+    ?>
+<tbody><tr>
+<td colspan="4">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">租赁实例说明表</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">可比实例1</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">可比实例2</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">可比实例3</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">来源</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_source_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_source_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_source_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">项目名称</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_title_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_title_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_title_3'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">坐落</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_address_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_address_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_address_3'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #CC00FF;">租金内涵</span></p>
+</td>
+<td colspan="3">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_rent'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">面积（㎡）</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_jzmj_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_jzmj_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_jzmj_3'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">用 途</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_yt_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_yt_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_yt_3'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">成新率</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_precent_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_precent_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_precent_3'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">所在层/房屋总层数</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_lcdc_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_lcdc_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_lcdc_3'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">内部装修</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_nbzx_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_nbzx_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt; color: #0000FF;"><?= $income_table['project_nbzx_3'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">成交日期</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_cjrq_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_cjrq_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_cjrq_3'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;">单价（元/平方米·天）</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_unit_1']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_unit_2']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 12pt;"><?= $income_table['project_unit_3']?> </span></p>
+</td>
+</tr>
+</tbody></table>

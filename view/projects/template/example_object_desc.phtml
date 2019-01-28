@@ -1,0 +1,708 @@
+<table style="border: 1px solid black;border-spacing: 0px;width: 100%;">
+    <?php
+        $building = $project->building;
+        $income_table = (array)$project->income_table;
+    ?>
+<tbody><tr>
+<td colspan="9">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">估价对象与可比实例对比分析表</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">序号</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">比较项目</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">估价对象</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">可比实例1</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">修正系数</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">可比实例2</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">修正系数</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">可比实例3</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">修正系数</span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">项目名称</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_title'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_title_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_title_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_title_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_title_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_title_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_title_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">坐落</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_address'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_address_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_address_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_address_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_address_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_address_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_address_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td rowspan="8">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">一、区位状况</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">交通便捷度</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jttdd'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jttdd_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_jttdd_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jttdd_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_jttdd_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jttdd_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_jttdd_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">商业繁华度</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_syfhd'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_syfhd_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_syfhd_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_syfhd_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_syfhd_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_syfhd_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_syfhd_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">环境</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_hj'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_hj_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_hj_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_hj_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_hj_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_hj_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_hj_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">景观</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jg']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jg_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_jg_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jg_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_jg_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jg_3']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_jg_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">公共配套设施</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_ggptss'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_ggptss_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_ggptss_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_ggptss_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_ggptss_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_ggptss_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_ggptss_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;">所在层/房屋总层数</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= $income_table['project_lcdc'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= $income_table['project_lcdc_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= (int)$income_table['project_lcdc_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= $income_table['project_lcdc_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= (int)$income_table['project_lcdc_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= $income_table['project_lcdc_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= (int)$income_table['project_lcdc_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">朝向</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_front'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_front_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_front_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_front_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_front_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_front_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_front_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">城市规划限制</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_csghxz']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_csghxz_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_csghxz_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_csghxz_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_csghxz_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_csghxz_3']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_csghxz_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">区位状况调整系数</span></p>
+</td>
+<td>
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #D735FF;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #D735FF;"><?= $income_table['project_area_total_compensation_1']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #D735FF;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #D735FF;"><?= $income_table['project_area_total_compensation_2']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #D735FF;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #D735FF;"><?= $income_table['project_area_total_compensation_3']?> </span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">二、市场状况</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_market']?>" /></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_market_1']?>" /></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_market_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_market_2']?>" /></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_market_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_market_3']?>" /></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_market_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">市场状况修正系数</span></p>
+</td>
+<td>
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_market_total_compensation_1']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_market_total_compensation_2']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_market_total_compensation_3']?> </span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">三、交易情况</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_transaction']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_transaction_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_transaction_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_transaction_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_transaction_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_transaction_3']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_transaction_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">交易情况修正系数</span></p>
+</td>
+<td>
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_transaction_total_compensation_1']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_transaction_total_compensation_2']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_transaction_total_compensation_3']?> </span></p>
+</td>
+</tr>
+<tr>
+<td rowspan="6">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">四、个别因素</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">建筑结构</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_structure'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_structure_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_structure_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_structure_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_structure_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_structure_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_structure_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">成新率</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_precent'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_precent_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_precent_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_precent_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_precent_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_precent_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_precent_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;">内部装修</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= $income_table['project_nbzx'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= $income_table['project_nbzx_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= (int)$income_table['project_nbzx_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= $income_table['project_nbzx_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= (int)$income_table['project_nbzx_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= $income_table['project_nbzx_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #00B050;"><?= (int)$income_table['project_nbzx_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">设施设备</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_shsb'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_shsb_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_shsb_2'] ?: $calculat_table['gbys_fssszk_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_shsb_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_shsb_2'] ?: $calculat_table['gbys_fssszk_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_shsb_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_shsb_2'] ?: $calculat_table['gbys_fssszk_3'] ?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">产别</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_qycb'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_qycb_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_qycb_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_qycb_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_qycb_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_qycb_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_qycb_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">面积（㎡）</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jzmj'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jzmj_1'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_jzmj_compensation_1']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jzmj_2'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_jzmj_compensation_2']?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_jzmj_3'] ?></span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= (int)$income_table['project_jzmj_compensation_3']?></span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">个别因素调整系数</span></p>
+</td>
+<td>
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: right; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #D735FF;"><?= $income_table['project_gbys_total_compensation_1']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #D735FF;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #D735FF;"><?= $income_table['project_gbys_total_compensation_2']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #D735FF;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt; color: #D735FF;"><?= $income_table['project_gbys_total_compensation_3']?> </span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">五、综合修正系数</span></p>
+</td>
+<td>
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_total_compensation_1']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_total_compensation_2']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_total_compensation_3']?> </span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">六、交易租金（元/㎡.天）</span></p>
+</td>
+<td>
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_unit_1']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_unit_2']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_unit_3']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<p style="text-align: left; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">七、修正后租金（元/㎡.天）</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_unit']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_adjust_unit_1']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_adjust_unit_2']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;"><?= $income_table['project_adjust_unit_3']?> </span></p>
+</td>
+<td>
+<p style="text-align: center; margin-top: 0; margin-bottom: 0;"><span style="font-family: '仿宋'; font-size: 10pt;">　</span></p>
+</td>
+</tr>
+</tbody></table>

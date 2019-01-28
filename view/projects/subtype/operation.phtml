@@ -20,9 +20,9 @@
                     </div>
                 </td>
                 <td>
-                    <input name="operation_from" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->operation_from ? strtotime($project->operation_from) : time()) ?>">
+                    <input data-toggle="tooltip" title="#0158" name="operation_from" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->operation_from ? strtotime($project->operation_from) : time()) ?>">
                         ~
-                    <input name="operation_to" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->operation_to ? strtotime($project->operation_to) : time()) ?>">
+                    <input data-toggle="tooltip" title="#0159" name="operation_to" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->operation_to ? strtotime($project->operation_to) : time()) ?>">
                 </td>
             </tr>
             <tr>

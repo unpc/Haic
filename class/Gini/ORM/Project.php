@@ -189,11 +189,11 @@ class Project extends Object
             '#078' => $building->dyjz_unit,
             '#079' => $building->upper_dyjz_unit,
             '#080' => (string)V('projects/template/register', ['project' => $project]),
-            '#081' => $project->operation_date,
-            '#082' => $project->operation_from . ' ~ ' . $project->operation_to,
-            '#083' => '表1-比较因素条件说明表',
-            '#084' => '表2-比较因素条件指数表',
-            '#085' => '表3-比较因素条件修正指数表',
+            '#081' => Help::toDateChinese(strtotime($project->operation_date)),
+            '#082' => Help::toDateChinese(strtotime($project->operation_from)) . ' 至 ' . Help::toDateChinese(strtotime($project->operation_to)),
+            '#083' => (string)V('projects/template/compar_desc', ['project' => $project]),
+            '#084' => (string)V('projects/template/compar_zhishu', ['project' => $project]),
+            '#085' => (string)V('projects/template/adjust_zhishu', ['project' => $project]),
             '#086' => $project->source_from,
             '#087' => $project->bank_from,
             '#088' => $approval->info['user_name'] ?: $project->user_name,
@@ -228,8 +228,8 @@ class Project extends Object
             '#0117' => $true_group['time_limit'],
             '#0120' => $ownership['number'],
             '#0121' => '产权证视图',
-            "#0122" => "租赁实例说明表视图",
-            "#0123" => "估价对象与可比实例对比分析表视图",
+            "#0122" => (string)V('projects/template/example_desc', ['project' => $project]),
+            "#0123" => (string)V('projects/template/example_object_desc', ['project' => $project]),
             "#0124" => $calculat_table['pgdj'],
             "#0125" => $income_table['project_total_compensation_1'],
             "#0126" => $income_table['project_total_compensation_2'],
@@ -263,7 +263,9 @@ class Project extends Object
             "#0154" => $income_table['project_income_zjz'],
             "#0155" => $project->operation_dur,
             "#0156" => $project->company_title,
-            "#0157" => $project->company_address
+            "#0157" => $project->company_address,
+            "#0158" => Help::toDateChinese(strtotime($project->operation_from)),
+            "#0159" => Help::toDateChinese(strtotime($project->operation_to))
         ];
         return $data;
     }
