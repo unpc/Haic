@@ -113,4 +113,12 @@ class Help
         }
         return $str_time;
     }
+
+    public static function chinanum($num) {
+        $china = array('零','一','二','三','四','五','六','七','八','九');
+        $arr = str_split($num);
+        for($i = 0; $i < count($arr); $i++){
+            return $china[$arr[$i]];
+        }
+    }
 }

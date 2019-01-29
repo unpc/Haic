@@ -261,12 +261,37 @@ class Project extends Object
             "#0152" => $income_table['project_income_zhdj'],
             "#0153" => $income_table['project_income_dj'],
             "#0154" => $income_table['project_income_zjz'],
-            "#0155" => $project->operation_dur,
+            "#0155" => Help::chinanum($project->operation_dur),
             "#0156" => $project->company_title,
             "#0157" => $project->company_address,
             "#0158" => Help::toDateChinese(strtotime($project->operation_from)),
-            "#0159" => Help::toDateChinese(strtotime($project->operation_to))
+            "#0159" => Help::toDateChinese(strtotime($project->operation_to)),
+            "#0160" => Help::toDateChinese(strtotime("+{$project->operation_dur} year", strtotime($project->operation_to))),
+            "#0161" => $this->getRegisters('name'),
+            "#0162" => $this->getRegisters('list')
         ];
         return $data;
+    }
+
+    public function getRegisters($mode='name')
+    {
+        $registers = (array)$project->registers;
+        $d = [];
+        foreach ($registers as $register) {
+            if ($mode == 'name') {
+                $d[] = $register['name'];
+            }
+            if ($mode == 'list') {
+                $d[] = $register['name'] . "\t" . "(注册号 {$register['number']})";
+            }
+        }
+
+        if ($mode == 'name') {
+            return join('、', $d);
+        }
+        if ($mode == 'list') {
+            return join('<br/>', $d);
+        }
+        return join('、', $d);
     }
 }
