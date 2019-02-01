@@ -249,10 +249,11 @@ class Project extends Layout\God
 
         $content = file_get_contents($t->filePath('template.phtml'));
         $content = strtr((string)$content, $project->getTemplateData());
-        file_put_contents($t->filePath('template.phtml'), $content);
+        file_put_contents($t->filePath('template.html'), $content);
 
         $this->view->body = V('template/before-show', [
-            'view' => \Gini\IoC::construct('\Gini\VIEW\PHTML', $t->filePath('template.phtml'), []),
+            // 'view' => \Gini\IoC::construct('\Gini\VIEW\PHTML', $t->filePath('template.phtml'), []),
+            'url' => URL("/data/template/{$t->id}/template.html"),
             'project' => $project,
         ]);
     }

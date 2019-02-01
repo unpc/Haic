@@ -219,13 +219,13 @@ class Project extends Object
             '#0108' => $calculat_table['gbys_ggbf'],
             '#0109' => $calculat_table['gbys_nbzx'],
             '#0110' => $calculat_table['gbys_fssszk'],
-            '#0111' => $true_group['name'],
-            '#0112' => $true_group['owner'],
-            '#0113' => $true_group['address'],
-            '#0114' => $true_group['code'],
-            '#0115' => $true_group['level'],
-            '#0116' => $true_group['number'],
-            '#0117' => $true_group['time_limit'],
+            '#0111' => $true_group['name'] ?: $group['name'],
+            '#0112' => $true_group['owner'] ?: $group['owner'],
+            '#0113' => $true_group['address'] ?: $group['address'],
+            '#0114' => $true_group['code'] ?: $group['code'],
+            '#0115' => $true_group['level'] ?: $group['level'],
+            '#0116' => $true_group['number'] ?: $group['number'],
+            '#0117' => $true_group['time_limit'] ?: $group['time_limit'],
             '#0120' => $ownership['number'],
             '#0121' => '产权证视图',
             "#0122" => (string)V('projects/template/example_desc', ['project' => $project]),
@@ -275,7 +275,7 @@ class Project extends Object
 
     public function getRegisters($mode='name')
     {
-        $registers = (array)$project->registers;
+        $registers = (array)$this->registers;
         $d = [];
         foreach ($registers as $register) {
             if ($mode == 'name') {
