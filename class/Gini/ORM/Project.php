@@ -227,7 +227,7 @@ class Project extends Object
             '#0116' => $true_group['number'] ?: $group['number'],
             '#0117' => $true_group['time_limit'] ?: $group['time_limit'],
             '#0120' => $ownership['number'],
-            '#0121' => '产权证视图',
+            '#0121' => (string)V('projects/template/ownership', ['project' => $project]),
             "#0122" => (string)V('projects/template/example_desc', ['project' => $project]),
             "#0123" => (string)V('projects/template/example_object_desc', ['project' => $project]),
             "#0124" => $calculat_table['pgdj'],

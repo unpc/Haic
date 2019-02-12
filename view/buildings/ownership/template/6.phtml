@@ -1,0 +1,47 @@
+<table style="border: 1px solid black;border-spacing: 0px;width: 100%;">
+    <?php $ownership = (array)$building->ownership[6]; ?>
+    <tbody>
+        <tr>
+            <td colspan="3" class="disable"><p>房屋共有权证</p></td>
+            <td colspan="6">
+                <p><?= $ownership['fwgyqz'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable"><p>房屋所有权证持证人</p></td>
+            <td colspan="6">
+                <p><?= $ownership['fwsyqczzr'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable"><p>房屋所有权证号</p></td>
+            <td colspan="6">
+                <p><?= $ownership['fwsyqzh'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable"><p>房屋坐落</p></td>
+            <td colspan="6">
+                <p><?= $ownership['fwzl'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable" style="white-space:nowrap;"><p>房屋建筑面积（平方米）</p></td>
+            <td colspan="6" style="width: 80%;">
+                <p><?= $ownership['fwjzmj'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable"><p>共有权人所占份额</p></td>
+            <td colspan="6">
+                <p><?= $ownership['gyqszfe'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="disable"><p>附记</p></td>
+            <td colspan="6">
+                <p><?= $ownership['fj'] ?></p>
+            </td>
+        </tr>
+    </tbody>
+</table>

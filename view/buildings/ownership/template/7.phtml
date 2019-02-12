@@ -1,0 +1,154 @@
+<table style="border: 1px solid black;border-spacing: 0px;width: 100%;">
+    <?php $ownership = (array)$building->ownership[7]; ?>
+    <tbody>
+        <tr>
+            <td colspan="2" class="disable"><p>房屋坐落</p></td>
+            <td colspan="6">
+                <p><?= $ownership['fwzl'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>地号</p></td>
+            <td colspan="6">
+                <p><?= $ownership['fwdh'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>所有权人(单位)</p></td>
+            <td colspan="6">
+                <p><?= $ownership['syqrdw'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>所有权性质</p></td>
+            <td colspan="6">
+                <p><?= $ownership['syqxz'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>共有人</p></td>
+            <td colspan="6">
+                <p><?= $ownership['fwgyr'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" rowspan="7" class="disable"><p>房屋状况</p></td>
+            <td class="disable"><p>幢号</p></td>
+            <td class="disable"><p>房号</p></td>
+            <td class="disable"><p>层数</p></td>
+            <td class="disable"><p>建筑结构</p></td>
+            <td class="disable"><p>间数</p></td>
+            <td class="disable"><p>建筑面积（平方米）</p></td>
+        </tr>
+        <tr>
+            <td><p><?= $ownership['fwzk'][1]['zh'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][1]['fh'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][1]['cs'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][1]['jzjg'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][1]['js'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][1]['jzmj'] ?></p></td>
+        </tr>
+        <tr>
+            <td><p><?= $ownership['fwzk'][2]['zh'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][2]['fh'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][2]['cs'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][2]['jzjg'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][2]['js'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][2]['jzmj'] ?></p></td>
+        </tr>
+        <tr>
+            <td><p><?= $ownership['fwzk'][3]['zh'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][3]['fh'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][3]['cs'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][3]['jzjg'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][3]['js'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][3]['jzmj'] ?></p></td>
+        </tr>
+        <tr>
+            <td><p><?= $ownership['fwzk'][4]['zh'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][4]['fh'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][4]['cs'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][4]['jzjg'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][4]['js'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][4]['jzmj'] ?></p></td>
+        </tr>
+        <tr>
+            <td><p><?= $ownership['fwzk'][5]['zh'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][5]['fh'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][5]['cs'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][5]['jzjg'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][5]['js'] ?></p></td>
+            <td><p><?= $ownership['fwzk'][5]['jzmj'] ?></p></td>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="4" class="disable"><p>合计</p></td>
+            <td><p><?= $ownership['fwzkjscount'] ?></p></td>
+            <td><p><?= $ownership['fwzkjzmjcount'] ?></p></td>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="8" class="disable"><p>使用国有土地状况</p></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>建筑占地面积</p></td>
+            <td colspan="6">
+                <p><?= $ownership['jzzdmj'] ?> 平方米</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>院落面积</p></td>
+            <td colspan="6">
+                <p><?= $ownership['ylmj'] ?> 平方米</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" rowspan="2" class="disable"><p>四至</p></td>
+            <td colspan="3">
+                <p>东: <?= $ownership['fwszdong'] ?></p>
+            </td>
+            <td colspan="3">
+                <p>西: <?= $ownership['fwszxi'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <p>南: <?= $ownership['fwsznan'] ?></p>
+            </td>
+            <td colspan="3">
+                <p>北: <?= $ownership['fwszbei'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>用途</p></td>
+            <td colspan="6">
+                <p><?= $ownership['fwyt'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center disable" colspan="8" class="disable"><p>契税摘要</p></td>
+        </tr>
+        <tr>
+            <td class="text-center disable" colspan="2"><p>立契日期</p></td>
+            <td class="text-center disable" ><p>价格</p></td>
+            <td class="text-center disable" colspan="2" ><p>契税种类</p></td>
+            <td class="text-center disable" ><p>税率</p></td>
+            <td class="text-center disable" colspan="2"><p>纳税金额（元）</p></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p><?= $ownership['lqzy'] ?></p>
+            </td>
+            <td>
+                <p><?= $ownership['fwjg'] ?></p>
+            </td>
+            <td colspan="2">
+                <p><?= $ownership['fwqyzl'] ?></p>
+            </td>
+            <td >
+                <p><?= $ownership['fwsl'] ?></p>
+            </td>
+            <td colspan="2">
+                <p><?= $ownership['fwnsje'] ?></p>
+            </td>
+        </tr>
+    </tbody>
+</table>

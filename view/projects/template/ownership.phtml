@@ -1,0 +1,19 @@
+<style>
+table {
+    width: 100%;
+    font-family: '仿宋'; 
+    font-size: 14pt; 
+    color: #000000;
+}
+table td p {
+    text-align: center; 
+    margin-top: 0; 
+    margin-bottom: 0;
+}
+</style>
+<?php
+    $building = $project->building ?: a('building');
+    foreach ((array)$building->ownership_cert as $t) {
+        echo V("buildings/ownership/template/{$t}", ['building' => $building]);
+    }
+?>

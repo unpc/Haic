@@ -1,0 +1,66 @@
+<table style="border: 1px solid black;border-spacing: 0px;width: 100%;">
+    <?php $ownership = (array)$building->ownership[4]; ?>
+    <tbody>
+        <tr>
+            <td class="disable"><p>共有权人</p></td>
+            <td colspan="7">
+                <p><?= $ownership['owner'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>坐落</p></td>
+            <td colspan="7">
+                <p><?= $ownership['zl'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>地号</p></td>
+            <td colspan="7">
+                <p><?= $ownership['dh'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>图号</p></td>
+            <td colspan="7">
+                <p><?= $ownership['th'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>房地产权利持证人</p></td>
+            <td colspan="7">
+                <p><?= $ownership['fdcqlczr'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>房地产权证证号</p></td>
+            <td colspan="7">
+                <p><?= $ownership['fdcqzzh'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2" class="disable" style="white-space:nowrap;"><p>共有房屋土地状况</p></td>
+            <td colspan="2" class="disable" style="white-space:nowrap;">房屋建筑面积</td>
+            <td colspan="5" style="width:80%;">
+                <p><?= $ownership['fwjzmj'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable" style="white-space:nowrap;">土地使用权面积</td>
+            <td colspan="5">
+                <p><?= $ownership['tdsyqmj'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>共有权人所占份额</p></td>
+            <td colspan="7">
+                <p><?= $ownership['gyqrszfe'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>记事</p></td>
+            <td colspan="7">
+                <p><?= $ownership['js'] ?></p>
+            </td>
+        </tr>
+    </tbody>
+</table>

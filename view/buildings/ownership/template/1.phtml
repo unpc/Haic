@@ -1,0 +1,71 @@
+<table style="border: 1px solid black;border-spacing: 0px;width: 100%;">
+    <?php $ownership = (array)$building->ownership[1]; ?>
+    <tbody>
+        <tr>
+            <td colspan="2"><p>权利人</p></td>
+            <td colspan="6">
+                <p><?= $ownership['owner'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><p>共有情况</p></td>
+            <td colspan="6">
+                <p><?= $ownership['gyqk'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><p>坐落</p></td>
+            <td colspan="6">
+                <p><?= $ownership['zl'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>不动产单元号</p></td>
+            <td colspan="6">
+                <p><?= $ownership['bdcdyh'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>权利类型</p></td>
+            <td colspan="6">
+                <p><?= $ownership['qllx'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>权利性质</p></td>
+            <td colspan="6">
+                <p><?= $ownership['qlxz'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>用途</p></td>
+            <td colspan="6">
+                <p><?= $ownership['yt'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>面积</p></td>
+            <td colspan="6">
+                <p><?= $ownership['mj'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>使用期限</p></td>
+            <td colspan="6">
+                <p><?= $ownership['syqx'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>权利其他状况</p></td>
+            <td colspan="6">
+                <p><?= $ownership['qlqtzk'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="disable"><p>附记</p></td>
+            <td colspan="6">
+                <p><?= $ownership['fj'] ?></p>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,98 @@
+<table style="border: 1px solid black;border-spacing: 0px;width: 100%;">
+    <?php $ownership = (array)$building->ownership[5]; ?>
+    <tbody>
+        <tr>
+            <td class="disable"><p>房屋所有权证</p></td>
+            <td colspan="7">
+                <p><?= $ownership['fwsyqz'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>房屋坐落</p></td>
+            <td colspan="7">
+                <p><?= $ownership['fwzl'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>丘（地）号</p></td>
+            <td colspan="4">
+                <p><?= $ownership['qdh'] ?></p>
+            </td>
+            <td class="disable"><p>产别</p></td>
+            <td colspan="2">
+                <p><?= $ownership['fwcb'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="3" class="disable"><p>房屋状况</p></td>
+            <td class="disable"><p>幢号</p></td>
+            <td class="disable"><p>房号</p></td>
+            <td class="disable"><p>结构</p></td>
+            <td class="disable"><p>房屋总层数</p></td>
+            <td class="disable"><p>所在层数</p></td>
+            <td class="disable"><p>建筑面积(m²)</p></td>
+            <td class="disable"><p>设计用途</p></td>
+        </tr>
+        <tr>
+            <td><p><?= $ownership['fwzh'] ?></p></td>
+            <td><p><?= $ownership['fwfh'] ?></p></td>
+            <td><p><?= $ownership['fwjg'] ?></p></td>
+            <td><p><?= $ownership['fwzcs'] ?></p></td>
+            <td><p><?= $ownership['fwszcs'] ?></p></td>
+            <td><p><?= $ownership['fwjzmj'] ?></p></td>
+            <td><p><?= $ownership['fwsjyt'] ?></p></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <p> 共有人 <?= $ownership['sum'] ?> 等 <?= $ownership['sum_name'] ?> 人 </p>
+            </td>
+            <td colspan="4">
+                <p> 共有权证号自 <?= $ownership['cert_start'] ?> 至 <?= $ownership['cert_end'] ?> </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <div class="text-center" class="disable"><p>土地使用情况摘要</p></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>土地证号</p></td>
+            <td colspan="2">
+                <p><?= $ownership['tdzh'] ?></p>
+            </td>
+            <td class="disable"><p>使用面积（平方米）</p></td>
+            <td colspan="4">
+                <p><?= $ownership['symj'] ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>权属性质</p></td>
+            <td colspan="2">
+                <p><?= $ownership['qsxz'] ?></p>
+            </td>
+            <td class="disable"><p>使用年限</p></td>
+            <td colspan="4">
+                <p>
+                    <?= $ownership['synx_start_y'] ?> 
+                    年 
+                    <?= $ownership['synx_start_m'] ?> 
+                    月 
+                    <?= $ownership['synx_start_d'] ?> 
+                    日至 
+                    <?= $ownership['synx_end_y'] ?> 
+                    年 
+                    <?= $ownership['synx_end_m'] ?> 
+                    月 
+                    <?= $ownership['synx_end_d'] ?> 
+                    日 
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td class="disable"><p>附记</p></td>
+            <td colspan="7">
+                <p><?= $ownership['fj'] ?></p>
+            </td>
+        </tr>
+    </tbody>
+</table>
