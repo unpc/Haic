@@ -5,6 +5,10 @@ namespace Gini\Controller\CGI;
 class Error extends Layout\God {
 
     function __index($code = 404) {
+
+        if (!\Gini\Auth::isLoggedIn()) {
+            $this->redirect('/login');
+        }
         
         switch ($code) {
         case 401:

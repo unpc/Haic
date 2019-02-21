@@ -67,8 +67,11 @@
                 <div class="hr_2"></div>
                 <div class="btn-toolbar" role="toolbar">
                     <div class="btn-group mr-2" role="group">
+                        <a class="btn btn-dark btn-raised" href="gini-ajax:ajax/project/edit/<?= $project->id?>">
+                            <i class="fa fa-eye fa-fw"></i> <?= H(T('修改信息')) ?>
+                        </a>
                         <a class="btn btn-primary btn-raised" href="gini-ajax:ajax/project/description/<?= $project->id?>">
-                            <i class="fa fa-eye fa-fw"></i> <?= H(T('查看备注')) ?>
+                            <i class="fa fa-eye fa-fw"></i> <?= H(T('查看私人备注')) ?>
                         </a>
                     </div>
                 </div>
@@ -88,37 +91,45 @@
             </div>
         </div>
     <div class="hr_2"></div>
-    <ul class="nav nav-tabs nav-fill">
-        <li class="nav-item">
-            <a class="nav-link <?= $sub == 'user' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/user")?>">估价委托人</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link <?= $sub == 'target' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/target")?>">估价目的</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link <?= $sub == 'object' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/object")?>">估价对象</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link <?= $sub == 'result' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/result")?>">估价结果</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link <?= $sub == 'register' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/register")?>">注册估价师</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link <?= $sub == 'operation' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/operation")?>">估价作业期</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link <?= $sub == 'report' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/report/comparison")?>">技术报告</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link <?= $sub == 'attachment' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/attachment")?>">附件信息</a>
-        </li>
-    </ul>
-    <?= V("projects/subtype/{$sub}", [
-        'project' => $project,
-        'subCat' => $subCat,
-        'form' => $form
-    ]) ?>
+    <?php if ($project->surveyor->id == $me->id && !$me->access('修改项目基础信息')): ?>
+        <?= V("projects/subtype/object", [
+            'project' => $project,
+            'subCat' => $subCat,
+            'form' => $form
+        ]) ?>
+    <?php else: ?>
+        <ul class="nav nav-tabs nav-fill">
+            <li class="nav-item">
+                <a class="nav-link <?= $sub == 'user' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/user")?>">估价委托人</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= $sub == 'target' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/target")?>">估价目的</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= $sub == 'object' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/object")?>">估价对象</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= $sub == 'result' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/result")?>">估价结果</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= $sub == 'register' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/register")?>">注册估价师</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= $sub == 'operation' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/operation")?>">估价作业期</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= $sub == 'report' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/report/comparison")?>">技术报告</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= $sub == 'attachment' ? 'active' : ''?>" href="<?= URL("/project/profile/{$project->id}/attachment")?>">附件信息</a>
+            </li>
+        </ul>
+        <?= V("projects/subtype/{$sub}", [
+            'project' => $project,
+            'subCat' => $subCat,
+            'form' => $form
+        ]) ?>
+    <?php endif; ?>
 </div>
 <script>
 require(['main'], function($){

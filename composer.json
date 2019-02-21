@@ -20,7 +20,8 @@
         "doctrine/inflector": "@stable",
         "mtdowling/cron-expression": "@stable",
         "twbs/bootstrap": "4.0.0",
-        "phpoffice/phpword": "dev-master"
+        "phpoffice/phpword": "dev-master",
+        "rkorebrits/htmltoopenxml": "^0.1.9"
     },
     "require-dev": {
         "henrikbjorn/lurker": "1.*"

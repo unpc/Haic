@@ -110,6 +110,7 @@
                                 <i class="fa fa-eye fa-lg fa-fw"></i>
                             </a>
                         <?php endif; ?>
+                        <?php if($me->isAllowedTo('删除', $project)): ?>
                         <a class="btn no-padding"
                             data-confirm="<?= H(T('您确认删除编号:project的项目?', [':project'=>$project->number])) ?>"
                             data-confirm-description="<?= H(T('点击确认后会删除项目信息, 请谨慎处理!')) ?>"
@@ -117,6 +118,7 @@
                             >
                             <i class="fa fa-trash-o fa-lg fa-fw"></i>
                         </a>
+                        <?php endif; ?>
                     </div>
                 </td>
             </tr>

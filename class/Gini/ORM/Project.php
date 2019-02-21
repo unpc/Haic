@@ -91,6 +91,95 @@ class Project extends Object
         return $this->archive_time != '0000-00-00 00:00:00';
     }
 
+    public function getTableListData() {
+        $building = $this->building;
+        $approval = a('approval', ['project' => $this]);
+        $project = $this;
+        $true_group = (array)Hub('template.group');
+        $group = (array)\Gini\Config::get('project.group');
+        $calculat_table = (array)$project->calculat_table;
+        $income_table = (array)$project->income_table;
+        $ownership = (array)current((array)$building->ownership);
+
+        $data = [];
+
+        $data['DES'] = [
+            'source' => [$income_table['project_source_1'], $income_table['project_source_2'], $income_table['project_source_3']],
+            'title' => [$income_table['project_title_1'], $income_table['project_title_2'], $income_table['project_title_3']],
+            'address' => [$income_table['project_address_1'], $income_table['project_address_2'], $income_table['project_address_3']],
+            'rent' => [$income_table['project_rent']],
+            'jzmj' => [$income_table['project_jzmj_1'], $income_table['project_jzmj_2'], $income_table['project_jzmj_3']],
+            'yt' => [$income_table['project_yt_1'], $income_table['project_yt_2'], $income_table['project_yt_3']],
+            'precent' => [$income_table['project_precent_1'], $income_table['project_precent_2'], $income_table['project_precent_3']],
+            'lcdc' => [$income_table['project_lcdc_1'], $income_table['project_lcdc_2'], $income_table['project_lcdc_3']],
+            'nbzx' => [$income_table['project_nbzx_1'], $income_table['project_nbzx_2'], $income_table['project_nbzx_3']],
+            'cjrq' => [$income_table['project_cjrq_1'], $income_table['project_cjrq_2'], $income_table['project_cjrq_3']],
+            'unit' => [$income_table['project_unit_1'], $income_table['project_unit_2'], $income_table['project_unit_3']]
+        ];
+
+        $data['DOB'] = [
+            'title' => [$income_table['project_title'], $income_table['project_title_1'], $income_table['project_title_2'], $income_table['project_title_3']],
+            'address' => [$income_table['project_address'], $income_table['project_address_1'], $income_table['project_address_2'], $income_table['project_address_3']],
+            'address_com' => [$income_table['project_title_compensation_1'], $income_table['project_title_compensation_2'], $income_table['project_title_compensation_3']],
+            'jttdd' => [$income_table['project_jttdd'], $income_table['project_jttdd_1'], $income_table['project_jttdd_2'], $income_table['project_jttdd_3']],
+            'jttdd_com' => [$income_table['project_jttdd_compensation_1'], $income_table['project_jttdd_compensation_2'], $income_table['project_jttdd_compensation_3']],
+            'syfhd' => [$income_table['project_syfhd'], $income_table['project_syfhd_1'], $income_table['project_syfhd_2'], $income_table['project_syfhd_3']],
+            'syfhd_com' => [$income_table['project_syfhd_compensation_1'], $income_table['project_syfhd_compensation_2'], $income_table['project_syfhd_compensation_3']],
+            'hj' => [$income_table['project_hj'], $income_table['project_hj_1'], $income_table['project_hj_2'], $income_table['project_hj_3']],
+            'hj_com' => [$income_table['project_hj_compensation_1'], $income_table['project_hj_compensation_2'], $income_table['project_hj_compensation_3']],
+            'jg' => [$income_table['project_jg'], $income_table['project_jg_1'], $income_table['project_jg_2'], $income_table['project_jg_3']],
+            'jg_com' => [$income_table['project_jg_compensation_1'], $income_table['project_jg_compensation_2'], $income_table['project_jg_compensation_3']],
+            'lcdc' => [$income_table['project_lcdc'], $income_table['project_lcdc_1'], $income_table['project_lcdc_2'], $income_table['project_lcdc_3']],
+            'lcdc_com' => [$income_table['project_lcdc_compensation_1'], $income_table['project_lcdc_compensation_2'], $income_table['project_lcdc_compensation_3']],
+            'ggptss' => [$income_table['project_ggptss'], $income_table['project_ggptss_1'], $income_table['project_ggptss_2'], $income_table['project_ggptss_3']],
+            'ggptss_com' => [$income_table['project_ggptss_compensation_1'], $income_table['project_ggptss_compensation_2'], $income_table['project_ggptss_compensation_3']],
+            'front' => [$income_table['project_front'], $income_table['project_front_1'], $income_table['project_front_2'], $income_table['project_front_3']],
+            'front_com' => [$income_table['project_front_compensation_1'], $income_table['project_front_compensation_2'], $income_table['project_front_compensation_3']],
+            'csghxz' => [$income_table['project_csghxz'], $income_table['project_csghxz_1'], $income_table['project_csghxz_2'], $income_table['project_csghxz_3']],
+            'csghxz_com' => [$income_table['project_csghxz_compensation_1'], $income_table['project_csghxz_compensation_2'], $income_table['project_csghxz_compensation_3']],
+            'area_com' => [$income_table['project_area_total_compensation_1'], $income_table['project_area_total_compensation_2'], $income_table['project_area_total_compensation_3']],
+            'market' => [$income_table['project_market'], $income_table['project_market_1'], $income_table['project_market_2'], $income_table['project_market_3']],
+            'market_com' => [$income_table['project_market_compensation_1'], $income_table['project_market_compensation_2'], $income_table['project_market_compensation_3']],
+            'market_t_com' => [$income_table['project_market_total_compensation_1'], $income_table['project_market_total_compensation_2'], $income_table['project_market_total_compensation_3']],
+            'tran' => [$income_table['project_transaction'], $income_table['project_transaction_1'], $income_table['project_transaction_2'], $income_table['project_transaction_3']],
+            'tran_com' => [$income_table['project_transaction_compensation_1'], $income_table['project_transaction_compensation_2'], $income_table['project_transaction_compensation_3']],
+            'tran_t_com' => [$income_table['project_transaction_total_compensation_1'], $income_table['project_transaction_total_compensation_2'], $income_table['project_transaction_total_compensation_3']],
+            'struct' => [$income_table['project_structure'], $income_table['project_structure_1'], $income_table['project_structure_2'], $income_table['project_structure_3']],
+            'struct_com' => [$income_table['project_structure_compensation_1'], $income_table['project_structure_compensation_2'], $income_table['project_structure_compensation_3']],
+            'precent' => [$income_table['project_precent'], $income_table['project_precent_1'], $income_table['project_precent_2'], $income_table['project_precent_3']],
+            'precent_com' => [$income_table['project_precent_compensation_1'], $income_table['project_precent_compensation_2'], $income_table['project_precent_compensation_3']],
+            'nbzx' => [$income_table['project_nbzx'], $income_table['project_nbzx_1'], $income_table['project_nbzx_2'], $income_table['project_nbzx_3']],
+            'nbzx_com' => [$income_table['project_nbzx_compensation_1'], $income_table['project_nbzx_compensation_2'], $income_table['project_nbzx_compensation_3']],
+            'shsb' => [$income_table['project_shsb'], $income_table['project_shsb_1'], $income_table['project_shsb_2'], $income_table['project_shsb_3']],
+            'shsb_com' => [$income_table['project_shsb_compensation_1'], $income_table['project_shsb_compensation_2'], $income_table['project_shsb_compensation_3']],
+            'qycb' => [$income_table['project_qycb'], $income_table['project_qycb_1'], $income_table['project_qycb_2'], $income_table['project_qycb_3']],
+            'qycb_com' => [$income_table['project_qycb_compensation_1'], $income_table['project_qycb_compensation_2'], $income_table['project_qycb_compensation_3']],
+            'jzmj' => [$income_table['project_jzmj'], $income_table['project_jzmj_1'], $income_table['project_jzmj_2'], $income_table['project_jzmj_3']],
+            'jzmj_com' => [$income_table['project_jzmj_compensation_1'], $income_table['project_jzmj_compensation_2'], $income_table['project_jzmj_compensation_3']],
+            'gbys' => [$income_table['project_gbys_total_compensation_1'], $income_table['project_gbys_total_compensation_2'], $income_table['project_gbys_total_compensation_3']],
+            'total' => [$income_table['project_total_compensation_1'], $income_table['project_total_compensation_2'], $income_table['project_total_compensation_3']],
+            'unit' => [$income_table['project_unit'], $income_table['project_unit_1'], $income_table['project_unit_2'], $income_table['project_unit_3']],
+            'ad_unit' => [$income_table['project_adjust_unit_1'], $income_table['project_adjust_unit_1'], $income_table['project_adjust_unit_1']],
+        ];
+
+        return $data;
+    }
+
+    public function getTableData() {
+
+        $data = [];
+
+        $r = [];
+        $registers = (array)$this->registers;
+        foreach ($registers as $register) {
+            $r[] = ['name' => $register['name'], 'number' => $register['number'], 'date' => date('Y年m月d日')];
+        }
+
+        $data['register.name'] = $r;
+
+        return $data;
+    }
+
     public function getTemplateData()
     {
         $building = $this->building;
@@ -171,7 +260,6 @@ class Project extends Object
             '#060' => $building->around_appurtenance,
             '#061' => $building->another_desc,
             '#062' => $building->plot,
-            '#063' => (string)V('projects/template/result', ['project' => $project]),
             '#064' => $building->amount,
             '#065' => $building->upper_amount,
             '#066' => $building->unit,
@@ -188,12 +276,8 @@ class Project extends Object
             '#077' => $building->upper_dyjz_amount,
             '#078' => $building->dyjz_unit,
             '#079' => $building->upper_dyjz_unit,
-            '#080' => (string)V('projects/template/register', ['project' => $project]),
             '#081' => Help::toDateChinese(strtotime($project->operation_date)),
             '#082' => Help::toDateChinese(strtotime($project->operation_from)) . ' 至 ' . Help::toDateChinese(strtotime($project->operation_to)),
-            '#083' => (string)V('projects/template/compar_desc', ['project' => $project]),
-            '#084' => (string)V('projects/template/compar_zhishu', ['project' => $project]),
-            '#085' => (string)V('projects/template/adjust_zhishu', ['project' => $project]),
             '#086' => $project->source_from,
             '#087' => $project->bank_from,
             '#088' => $approval->info['user_name'] ?: $project->user_name,
@@ -227,9 +311,6 @@ class Project extends Object
             '#0116' => $true_group['number'] ?: $group['number'],
             '#0117' => $true_group['time_limit'] ?: $group['time_limit'],
             '#0120' => $ownership['number'],
-            '#0121' => (string)V('projects/template/ownership', ['project' => $project]),
-            "#0122" => (string)V('projects/template/example_desc', ['project' => $project]),
-            "#0123" => (string)V('projects/template/example_object_desc', ['project' => $project]),
             "#0124" => $calculat_table['pgdj'],
             "#0125" => $income_table['project_total_compensation_1'],
             "#0126" => $income_table['project_total_compensation_2'],
@@ -268,7 +349,17 @@ class Project extends Object
             "#0159" => Help::toDateChinese(strtotime($project->operation_to)),
             "#0160" => Help::toDateChinese(strtotime("+{$project->operation_dur} year", strtotime($project->operation_to))),
             "#0161" => $this->getRegisters('name'),
-            "#0162" => $this->getRegisters('list')
+            "#0162" => $this->getRegisters('list'),
+            
+            // '#0121' => (string)V('projects/template/ownership', ['project' => $project]),
+            // '#083' => (string)V('projects/template/compar_desc', ['project' => $project]),
+            // '#084' => (string)V('projects/template/compar_zhishu', ['project' => $project]),
+            // '#085' => (string)V('projects/template/adjust_zhishu', ['project' => $project]),
+
+            // "#0123" => (string)V('projects/template/example_object_desc', ['project' => $project]),
+            // "#0122" => (string)V('projects/template/example_desc', ['project' => $project]),
+            // '#063' => (string)V('projects/template/result', ['project' => $project]),
+            // '#080' => (string)V('projects/template/register', ['project' => $project]),
         ];
         return $data;
     }

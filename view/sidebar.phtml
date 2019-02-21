@@ -7,8 +7,11 @@
         </li>
         <?php if ($me->isAllowedTo('查看', 'project')): ?>
         <li class="<?= 'project' == $selected ? 'active' : ''; ?>">
-            <a href="<?= URL('/project'); ?>" class="text-white userList" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('项目管理')); ?>">
+            <a href="<?= URL('/project'); ?>" class="text-white userList" data-toggle="tooltip" data-placement="right" data-original-title="<?= H(T('项目管理')); ?>" style="position: relative;">
                 <i class="fa fa-sitemap"></i><span style="padding-left: 8px;"><?= H(T('项目管理')); ?></span>
+                <?php if ($num): ?>
+                    <span class="badge badge-pill badge-danger" style="position: absolute;top: 5px;right: 5px;"><?= $num ?></span>
+                <?php endif; ?>
             </a>
         </li>
         <?php endif; ?>

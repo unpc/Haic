@@ -6,6 +6,10 @@ use Gini\Model\Alert;
 use Gini\Model\Help;
 use Gini\ORM\Approval;
 
+use PhpOffice\PhpWord\Settings as WordSettings;
+use PhpOffice\Common\XMLWriter;
+use PhpOffice\PhpWord\Writer\Word2007\Element\Container;
+
 class Project extends Layout\God
 {
     public function __index($type = 1)
@@ -272,13 +276,51 @@ class Project extends Layout\God
             $this->redirect('error/401');
         }
         $t = $project->template;
-        $fullPath = $t->filePath('template.phtml');
-        if (!$fullPath) {
+
+        $fullPath = $t->filePath($t->attachments('docx')[0]);
+        if (!$fullPath || !$t->attachments('docx')[0]) {
             $this->redirect('error/404');
         }
 
-        $word = \PhpOffice\PhpWord\IOFactory::load($fullPath, 'HTML');
-        $word->save($t->filePath('template.docx'), 'Word2007', true);
+        $templ = new \PhpOffice\PhpWord\TemplateProcessor($fullPath);
+        foreach ($project->getTemplateData() as $k => $v) {
+            $templ->setValue($k, $v);
+        }
+
+        foreach ($project->getTableData() as $name => $data) {
+            $templ->cloneRow($name, count($data));
+            $keys = (array)explode('.', $name);
+            $preKey = $keys[0];
+            foreach ($data as $n => $v) {
+                $num = $n + 1;
+                foreach ((array)$v as $key => $value) {
+                    $templ->setValue("$preKey.$key#$num", $value);
+                }
+            }
+        }
+
+        foreach ($project->getTableListData() as $name => $data) {
+            foreach ((array)$data as $k => $v) {
+                if (count($v) == 1) {
+                    $templ->setValue("$name.$k", current($v));
+                }
+                else {
+                    foreach ((array)$v as $num => $value) {
+                        $real_num = $num + 1;
+                        $templ->setValue("$name.$k.$real_num", $value);
+                    }
+                }
+            }
+        }
+
+        header('Content-Description: File Transfer');
+        header('Content-Disposition: attachment; filename="'.$project->title."报告.docx".'"');
+        header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+        header('Content-Transfer-Encoding: binary');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Expires: 0');
+
+        $templ->saveAs('php://output');
     }
 
     public function actionDownloadPreeval($id = 0)
@@ -295,12 +337,49 @@ class Project extends Layout\God
             $this->redirect('error/401');
         }
         $t = $project->preeval;
-        $fullPath = $t->filePath('template.phtml');
-        if (!$fullPath) {
+        $fullPath = $t->filePath($t->attachments('docx')[0]);
+        if (!$fullPath || !$t->attachments('docx')[0]) {
             $this->redirect('error/404');
         }
 
-        $word = \PhpOffice\PhpWord\IOFactory::load($fullPath, 'HTML');
-        $word->save($t->filePath('template.docx'), 'Word2007', true);
+        $templ = new \PhpOffice\PhpWord\TemplateProcessor($fullPath);
+        foreach ($project->getTemplateData() as $k => $v) {
+            $templ->setValue($k, $v);
+        }
+
+        foreach ($project->getTableData() as $name => $data) {
+            $templ->cloneRow($name, count($data));
+            $keys = (array)explode('.', $name);
+            $preKey = $keys[0];
+            foreach ($data as $n => $v) {
+                $num = $n + 1;
+                foreach ((array)$v as $key => $value) {
+                    $templ->setValue("$preKey.$key#$num", $value);
+                }
+            }
+        }
+
+        foreach ($project->getTableListData() as $name => $data) {
+            foreach ((array)$data as $k => $v) {
+                if (count($v) == 1) {
+                    $templ->setValue("$name.$k", current($v));
+                }
+                else {
+                    foreach ((array)$v as $num => $value) {
+                        $real_num = $num + 1;
+                        $templ->setValue("$name.$k.$real_num", $value);
+                    }
+                }
+            }
+        }
+
+        header('Content-Description: File Transfer');
+        header('Content-Disposition: attachment; filename="'.$project->title."预评.docx".'"');
+        header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+        header('Content-Transfer-Encoding: binary');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Expires: 0');
+
+        $templ->saveAs('php://output');
     }
 }

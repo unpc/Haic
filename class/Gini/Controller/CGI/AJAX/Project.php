@@ -59,6 +59,59 @@ class Project extends \Gini\Controller\CGI
 
     public function actionEdit($id=0)
     {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
+        }
+        $form = $this->form();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $validator = new \Gini\CGI\Validator;
+
+            try {
+                $validator
+                    // ->validate('title', $form['title'], T('项目名称不能为空!'))
+                    ->validate('number', $form['number'], T('项目编号不能为空!'))
+                    ->validate('type', $form['type'], T('请选择项目类型!'))
+                    ->validate('user_phone', $form['user_phone'], T('请填写委托人联系方式!'))
+                    // ->validate('source_from', $form['source_from'], T('请选择业务来源!'))
+                    ->done();
+                $project->ctime = H($form['ctime']);
+                $project->number = $form['number'];
+                $project->title = $form['title'];
+                $project->type = (int)$form['type'];
+                $project->source_description = $form['source_description'];
+                $project->source_from = H($form['source_from']);
+                $project->bank_from = H($form['bank_from']);
+                $project->user_name = H($form['user_name']);
+                $project->user_phone = H($form['user_phone']);
+                $project->target = H($form['target']);
+                $project->isPreparation = (int)$form['isPreparation'];
+                $project->save();
+
+                if ($project->id) {
+                    $log = a('log');
+                    $log->user = $me;
+                    $log->project = $project;
+                    $log->action = \Gini\ORM\Log::ACTION_EDIT;
+                    $log->description = strtr("%user 修改项目基础信息。", ['%user' => $me->name]);
+                    $log->save();
+                }
+
+                return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
+            } catch (\Gini\CGI\Validator\Exception $e) {
+                $form['_errors'] = $validator->errors();
+            }
+        }
+
+        return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('projects/edit-project-modal', [
+            'form' => $form,
+            'project' => $project
+        ]));
     }
 
     public function actionDelete($id=0)

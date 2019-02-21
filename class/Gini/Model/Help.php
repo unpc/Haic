@@ -68,7 +68,6 @@ class Help
     {
         $new = [];
         foreach ($arr1 as $key => $value) {
-            error_log("value:{$value}");
             if ($arr2[$value]) {
                 $new[] = $arr2[$value];
             }

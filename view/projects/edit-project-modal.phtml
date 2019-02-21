@@ -1,0 +1,159 @@
+<div id="edit-project-modal" class="modal fade in">
+<div class="modal-dialog" style="width:70%;max-width:70%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title"><?= H(T('修改项目')) ?></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body" style="padding-top:20px;">
+            <form id="edit-project-form" method="POST" action="gini-ajax:ajax/project/edit/<?= $project->id ?>">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['title'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['title']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="title"><?= H(T('项目名称')) ?></label>
+                        <input id="title" name="title" type="text" class="form-control <?= isset($form['_errors']['title']) ? 'is-invalid' : '' ?>" autocomplete="off" value="<?= H($form['_errors'] ? $form['title'] : $project->title ) ?>" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['number'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['number']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="number"><?= H('项目编号') ?></label>
+                        <input id="number" name="number" type="text" class="form-control <?= isset($form['_errors']['number']) ? 'is-invalid' : '' ?>" value="<?= H($form['_errors'] ? $form['number'] : $project->number) ?>"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['type'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['type']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="type"><?= H('项目类型') ?></label>
+                        <select class="custom-select form-control <?= isset($form['_errors']['type']) ? 'is-invalid' : '' ?>" name="type" id="type" size="1">
+                            <option value=0 <?= ($form['_errors'] ? $form['type'] : $project->type) == 0 ? "selected" : '' ?> >-------</option>
+                            <?php foreach (\Gini\ORM\Project::$TYPES as $k => $v): ?>
+                                <option value="<?= T($k) ?>" <?= ($form['_errors'] ? $form['type'] : $project->type) == $k ? "selected" : '' ?>><?= T($v) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['ctime'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['ctime']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="ctime"><?= H('委托时间') ?></label>
+                        <input name="ctime" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', strtotime($form['_errors'] ?  $form['ctime'] : $project->ctime)) ?>">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['user_name'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['user_name']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="user_name"><?= H('委托人') ?></label>
+                        <input name="user_name" type="text" class="form-control" value="<?= $form['_errors'] ? $form['user_name'] : $project->user_name ?>">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['user_phone'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['user_phone']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="user_phone"><?= H('委托人联系电话') ?></label>
+                        <input name="user_phone" type="text" class="form-control" value="<?= $form['_errors'] ? $form['user_phone'] : $project->user_phone ?>">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['source_from'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['source_from']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="source_from"><?= H('业务来源') ?></label>
+                        <input name="source_from" type="text" class="form-control" value="<?= H($form['_errors'] ? $form['source_from'] : $project->source_from) ?>" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['bank_from'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['bank_from']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="bank_from"><?= H('贷款银行') ?></label>
+                        <input name="bank_from" type="text" class="form-control" value="<?= H($form['_errors'] ? $form['bank_from'] : $project->bank_from) ?>" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
+                        <label class="control-label" for="bank_from"><?= H('仅做预评') ?></label>
+                        <div class="form-check">
+                            <input class="form-check-input" name="isPreparation" type="checkbox" value="1" id="defaultCheck1" <?= ( $form['_errors'] ? $form['isPreparation'] : $project->isPreparation ) == 1 ? 'checked="checked"' : "" ?> />
+                            <label class="form-check-label" for="defaultCheck1">是</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <label class="control-label" for="target"><?= H('估价目的') ?></label>
+                        <textarea name="target" class="form-control" rows="2" id="target"><?= $form['_errors'] ? $form['target'] : $project->target ?></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <label class="control-label" for="source_description"><?= H('备注信息') ?></label>
+                        <textarea name="source_description" class="form-control" rows="2" id="source_description"><?= $form['_errors'] ? $form['source_description'] : $project->source_description ?></textarea>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-raised" form="edit-project-form" type="submit"><i class="fa fa-plus fa-fw"></i> <?= H(T('添加')) ?></button>
+            <button class="btn btn-secondary btn-raised" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-fw "></i><?= H(T('关闭')) ?></button>
+        </div>
+    </div>
+</div>
+</div>
+<script data-ajax="true">
+require(['main'], function($) {
+    require(['bootstrap-datepicker', 'locales/bootstrap-datepicker.zh-CN', 'css!../css/bootstrap-datepicker'], function(){
+        $('.date').datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'zh-CN',
+            minView: 'Day'
+        }) 
+    })
+
+    var $modal = $('#edit-project-modal');
+    $modal
+    .on('hidden.bs.modal', function(){
+        $modal.remove();
+    })
+    .modal();
+
+    $('#edit-project-form').on('ajax-success', function(){
+        $modal
+        .removeAttr('id').modal('hide')
+        .find('[id]').removeAttr('id');
+    });
+
+});
+</script>
