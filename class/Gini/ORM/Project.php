@@ -162,6 +162,8 @@ class Project extends Object
             'ad_unit' => [$income_table['project_adjust_unit_1'], $income_table['project_adjust_unit_1'], $income_table['project_adjust_unit_1']],
         ];
 
+        $data['OWNERSHIP'] = $this->getOwnershipData();
+
         return $data;
     }
 
@@ -384,5 +386,181 @@ class Project extends Object
             return join('<br/>', $d);
         }
         return join('、', $d);
+    }
+
+    public function getOwnershipData()
+    {
+        $data = [];
+        $building = $project->building ?: a('building');
+        foreach ((array)$building->ownership_cert as $t) {
+            $ownership = (array)$building->ownership[$t];
+            switch ($t) {
+                case \Gini\ORM\Building::OWNERSHIP_BDCQZS:
+                    $data["{$t}#owner"] = $ownership['owner'];
+                    $data["{$t}#gyqk"] = $ownership['gyqk'];
+                    $data["{$t}#zl"] = $ownership['zl'];
+                    $data["{$t}#bdcdyh"] = $ownership['bdcdyh'];
+                    $data["{$t}#qllx"] = $ownership['qllx'];
+                    $data["{$t}#qlxz"] = $ownership['qlxz'];
+                    $data["{$t}#yt"] = $ownership['yt'];
+                    $data["{$t}#mj"] = $ownership['mj'];
+                    $data["{$t}#syqx"] = $ownership['syqx'];
+                    $data["{$t}#qlqtzk"] = $ownership['qlqtzk'];
+                    $data["{$t}#fj"] = $ownership['fj'];
+                    break;
+                case \Gini\ORM\Building::OWNERSHIP_BDCQZS_GY:
+                    $data["{$t}#owner"] = $ownership['owner'];
+                    $data["{$t}#gyqk"] = $ownership['gyqk'];
+                    $data["{$t}#zl"] = $ownership['zl'];
+                    $data["{$t}#bdcdyh"] = $ownership['bdcdyh'];
+                    $data["{$t}#qllx"] = $ownership['qllx'];
+                    $data["{$t}#qlxz"] = $ownership['qlxz'];
+                    $data["{$t}#yt"] = $ownership['yt'];
+                    $data["{$t}#mj"] = $ownership['mj'];
+                    $data["{$t}#syqx"] = $ownership['syqx'];
+                    $data["{$t}#qlqtzk"] = $ownership['qlqtzk'];
+                    $data["{$t}#fj"] = $ownership['fj'];
+                    break;
+                case \Gini\ORM\Building::OWNERSHIP_TJSFDCQZ:
+                    $data["{$t}#owner"] = $ownership['owner'];
+                    $data["{$t}#zl"] = $ownership['zl'];
+                    $data["{$t}#dh"] = $ownership['dh'];
+                    $data["{$t}#th"] = $ownership['th'];
+                    $data["{$t}#qsxz"] = $ownership['qllx'];
+                    $data["{$t}#yt"] = $ownership['yt'];
+                    $data["{$t}#syqlx"] = $ownership['syqlx'];
+                    $data["{$t}#zzrq"] = $ownership['zzrq'];
+                    $data["{$t}#syqmj"] = $ownership['syqmj'];
+                    $data["{$t}#cb"] = $ownership['cb'];
+                    $data["{$t}#fwzh"] = $ownership['fwzh'];
+                    $data["{$t}#fwfh"] = $ownership['fwfh'];
+                    $data["{$t}#fwjg"] = $ownership['fwjg'];
+                    $data["{$t}#fwzcs"] = $ownership['fwzcs'];
+                    $data["{$t}#fwszcs"] = $ownership['fwszcs'];
+                    $data["{$t}#fwjzmj"] = $ownership['fwjzmj'];
+                    $data["{$t}#fwsjyt"] = $ownership['fwsjyt'];
+                    $data["{$t}#sum"] = $ownership['sum'];
+                    $data["{$t}#sum_name"] = $ownership['sum_name'];
+                    $data["{$t}#cert_start"] = $ownership['cert_start'];
+                    $data["{$t}#cert_end"] = $ownership['cert_end'];
+                    $data["{$t}#js"] = $ownership['js'];
+                    break;
+                case \Gini\ORM\Building::OWNERSHIP_TJSFDCGYQZ:
+                    $data["{$t}#owner"] = $ownership['owner'];
+                    $data["{$t}#zl"] = $ownership['zl'];
+                    $data["{$t}#dh"] = $ownership['dh'];
+                    $data["{$t}#th"] = $ownership['th'];
+                    $data["{$t}#fdcqlczr"] = $ownership['fdcqlczr'];
+                    $data["{$t}#fdcqzzh"] = $ownership['fdcqzzh'];
+                    $data["{$t}#fwjzmj"] = $ownership['fwjzmj'];
+                    $data["{$t}#tdsyqmj"] = $ownership['tdsyqmj'];
+                    $data["{$t}#gyqrszfe"] = $ownership['gyqrszfe'];
+                    $data["{$t}#js"] = $ownership['js'];
+                    break;
+                case \Gini\ORM\Building::OWNERSHIP_FDSYQZ:
+                    $data["{$t}#fwsyqz"] = $ownership['fwsyqz'];
+                    $data["{$t}#fwzl"] = $ownership['fwzl'];
+                    $data["{$t}#qdh"] = $ownership['qdh'];
+                    $data["{$t}#fwcb"] = $ownership['fwcb'];
+                    $data["{$t}#fwzh"] = $ownership['fwzh'];
+                    $data["{$t}#fwfh"] = $ownership['fwfh'];
+                    $data["{$t}#fwjg"] = $ownership['fwjg'];
+                    $data["{$t}#fwzcs"] = $ownership['fwzcs'];
+                    $data["{$t}#fwszcs"] = $ownership['fwszcs'];
+                    $data["{$t}#fwjzmj"] = $ownership['fwjzmj'];
+                    $data["{$t}#fwsjyt"] = $ownership['fwsjyt'];
+                    $data["{$t}#sum"] = $ownership['sum'];
+                    $data["{$t}#cert_start"] = $ownership['cert_start'];
+                    $data["{$t}#cert_end"] = $ownership['cert_end'];
+                    $data["{$t}#tdzh"] = $ownership['tdzh'];
+                    $data["{$t}#symj"] = $ownership['symj'];
+                    $data["{$t}#qsxz"] = $ownership['qsxz'];
+                    $data["{$t}#synx_start_y"] = $ownership['synx_start_y'];
+                    $data["{$t}#synx_start_m"] = $ownership['synx_start_m'];
+                    $data["{$t}#synx_start_d"] = $ownership['synx_start_d'];
+                    $data["{$t}#synx_end_y"] = $ownership['synx_end_y'];
+                    $data["{$t}#synx_end_m"] = $ownership['synx_end_m'];
+                    $data["{$t}#synx_end_d"] = $ownership['synx_end_d'];
+                    $data["{$t}#fj"] = $ownership['fj'];
+                    break;
+                case \Gini\ORM\Building::OWNERSHIP_FWGYQZ:
+                    $data["{$t}#fwgyqz"] = $ownership['fwgyqz'];
+                    $data["{$t}#fwsyqczzr"] = $ownership['fwsyqczzr'];
+                    $data["{$t}#fwsyqzh"] = $ownership['fwsyqzh'];
+                    $data["{$t}#fwzl"] = $ownership['fwzl'];
+                    $data["{$t}#fwjzmj"] = $ownership['fwjzmj'];
+                    $data["{$t}#gyqszfe"] = $ownership['gyqszfe'];
+                    $data["{$t}#fj"] = $ownership['fj'];
+                    break;
+                case \Gini\ORM\Building::OWNERSHIP_SXB_FWSYQZ:
+                    $data["{$t}#fwzl"] = $ownership['fwzl'];
+                    $data["{$t}#fwdh"] = $ownership['fwdh'];
+                    $data["{$t}#syqrdw"] = $ownership['syqrdw'];
+                    $data["{$t}#syqxz"] = $ownership['syqxz'];
+                    $data["{$t}#fwgyr"] = $ownership['fwgyr'];
+                    $data["{$t}#fwzk#1#zh"] = $ownership['fwzk'][1]['zh'];
+                    $data["{$t}#fwzk#1#fh"] = $ownership['fwzk'][1]['fh'];
+                    $data["{$t}#fwzk#1#cs"] = $ownership['fwzk'][1]['cs'];
+                    $data["{$t}#fwzk#1#jzjg"] = $ownership['fwzk'][1]['jzjg'];
+                    $data["{$t}#fwzk#1#js"] = $ownership['fwzk'][1]['js'];
+                    $data["{$t}#fwzk#1#jzmj"] = $ownership['fwzk'][1]['jzmj'];
+                    $data["{$t}#fwzk#2#zh"] = $ownership['fwzk'][2]['zh'];
+                    $data["{$t}#fwzk#2#fh"] = $ownership['fwzk'][2]['fh'];
+                    $data["{$t}#fwzk#2#cs"] = $ownership['fwzk'][2]['cs'];
+                    $data["{$t}#fwzk#2#jzjg"] = $ownership['fwzk'][2]['jzjg'];
+                    $data["{$t}#fwzk#2#js"] = $ownership['fwzk'][2]['js'];
+                    $data["{$t}#fwzk#2#jzmj"] = $ownership['fwzk'][2]['jzmj'];
+                    $data["{$t}#fwzk#3#zh"] = $ownership['fwzk'][3]['zh'];
+                    $data["{$t}#fwzk#3#fh"] = $ownership['fwzk'][3]['fh'];
+                    $data["{$t}#fwzk#3#cs"] = $ownership['fwzk'][3]['cs'];
+                    $data["{$t}#fwzk#3#jzjg"] = $ownership['fwzk'][3]['jzjg'];
+                    $data["{$t}#fwzk#3#js"] = $ownership['fwzk'][3]['js'];
+                    $data["{$t}#fwzk#3#jzmj"] = $ownership['fwzk'][3]['jzmj'];
+                    $data["{$t}#fwzk#4#zh"] = $ownership['fwzk'][4]['zh'];
+                    $data["{$t}#fwzk#4#fh"] = $ownership['fwzk'][4]['fh'];
+                    $data["{$t}#fwzk#4#cs"] = $ownership['fwzk'][4]['cs'];
+                    $data["{$t}#fwzk#4#jzjg"] = $ownership['fwzk'][4]['jzjg'];
+                    $data["{$t}#fwzk#4#js"] = $ownership['fwzk'][4]['js'];
+                    $data["{$t}#fwzk#4#jzmj"] = $ownership['fwzk'][4]['jzmj'];
+                    $data["{$t}#fwzk#5#zh"] = $ownership['fwzk'][5]['zh'];
+                    $data["{$t}#fwzk#5#fh"] = $ownership['fwzk'][5]['fh'];
+                    $data["{$t}#fwzk#5#cs"] = $ownership['fwzk'][5]['cs'];
+                    $data["{$t}#fwzk#5#jzjg"] = $ownership['fwzk'][5]['jzjg'];
+                    $data["{$t}#fwzk#5#js"] = $ownership['fwzk'][5]['js'];
+                    $data["{$t}#fwzk#5#jzmj"] = $ownership['fwzk'][5]['jzmj'];
+                    $data["{$t}#fwzkjscount"] = $ownership['fwzkjscount'];
+                    $data["{$t}#fwzkjzmjcount"] = $ownership['fwzkjzmjcount'];
+                    $data["{$t}#jzzdmj"] = $ownership['jzzdmj'];
+                    $data["{$t}#ylmj"] = $ownership['ylmj'];
+                    $data["{$t}#fwszdong"] = $ownership['fwszdong'];
+                    $data["{$t}#fwszxi"] = $ownership['fwszxi'];
+                    $data["{$t}#fwsznan"] = $ownership['fwsznan'];
+                    $data["{$t}#fwszbei"] = $ownership['fwszbei'];
+                    $data["{$t}#fwyt"] = $ownership['fwyt'];
+                    $data["{$t}#lqzy"] = $ownership['lqzy'];
+                    $data["{$t}#fwjg"] = $ownership['fwjg'];
+                    $data["{$t}#fwqyzl"] = $ownership['fwqyzl'];
+                    $data["{$t}#fwsl"] = $ownership['fwsl'];
+                    $data["{$t}#fwnsje"] = $ownership['fwnsje'];
+                    break;
+                case \Gini\ORM\Building::OWNERSHIP_GYTDSYQ:
+                    $data["{$t}#owner"] = $ownership['owner'];
+                    $data["{$t}#fwzl"] = $ownership['fwzl'];
+                    $data["{$t}#fwdh"] = $ownership['fwdh'];
+                    $data["{$t}#fwth"] = $ownership['fwth'];
+                    $data["{$t}#fwdlyt"] = $ownership['fwdlyt'];
+                    $data["{$t}#fwqdjg"] = $ownership['fwqdjg'];
+                    $data["{$t}#syqlx"] = $ownership['syqlx'];
+                    $data["{$t}#fwzzrq"] = $ownership['fwzzrq'];
+                    $data["{$t}#syqmj"] = $ownership['syqmj'];
+                    $data["{$t}#syqdymj"] = $ownership['syqdymj'];
+                    $data["{$t}#syqftmj"] = $ownership['syqftmj'];
+                    $data["{$t}#jsdes"] = $ownership['jsdes'];
+                    break;
+                default:
+                    break;
+            }
+        }
+        return $data;
     }
 }

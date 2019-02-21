@@ -313,14 +313,16 @@ class Project extends Layout\God
             }
         }
 
-        header('Content-Description: File Transfer');
-        header('Content-Disposition: attachment; filename="'.$project->title."报告.docx".'"');
-        header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-        header('Content-Transfer-Encoding: binary');
-        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-        header('Expires: 0');
-
+        $title = "{$project->title}报告.docx";
+        header("Cache-Control: public");     
+        header("Content-Description: File Transfer");     
+        header('Content-Disposition: attachment; filename="' . $title . '"');  
+        header("Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");     
+        header("Content-Transfer-Encoding: binary");
+        ob_clean();
+        flush();
         $templ->saveAs('php://output');
+        exit();
     }
 
     public function actionDownloadPreeval($id = 0)
