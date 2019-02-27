@@ -352,16 +352,38 @@ class Project extends Object
             "#0160" => Help::toDateChinese(strtotime("+{$project->operation_dur} year", strtotime($project->operation_to))),
             "#0161" => $this->getRegisters('name'),
             "#0162" => $this->getRegisters('list'),
-            
-            // '#0121' => (string)V('projects/template/ownership', ['project' => $project]),
+            "#0163" => $project->number,
+            '#0164' => $building->amount ? $building->amount * 10000 : '',
+            '#0165' => $building->dyjz_amount * 10000,
+            '#0166' => date('Y 年 m 月 d 日', time()) . ' 至 ' . date('Y 年 m 月 d 日', time()),
+            '#0167' => $building->lighting ? '■' : '□',
+            '#0168' => $building->ammeter ? '■' : '□',
+            '#0169' => $building->smoke_detector ? '■' : '□',
+            '#0170' => $building->up_down_water ? '■' : '□',
+            '#0171' => $building->line_tv ? '■' : '□',
+            '#0172' => $building->spray_system ? '■' : '□',
+            '#0173' => $building->heating ? '■' : '□',
+            '#0174' => $building->telephone_reservation ? '■' : '□',
+            '#0175' => $building->center_water ? '■' : '□',
+            '#0176' => $building->gas ? '■' : '□',
+            '#0177' => $building->lift ? '■' : '□',
+            '#0178' => $building->hot_water ? '■' : '□',
+            '#0179' => $building->talk_back ? '■' : '□',
+            '#0180' => in_array(\Gini\ORM\Building::APP_XY, (array)$building->appurtenance) ? '■' : '□',
+            '#0181' => in_array(\Gini\ORM\Building::APP_GL, (array)$building->appurtenance) ? '■' : '□',
+            '#0182' => in_array(\Gini\ORM\Building::APP_LT, (array)$building->appurtenance) ? '■' : '□',
+            '#0183' => in_array(\Gini\ORM\Building::APP_DXS, (array)$building->appurtenance) ? '■' : '□',
+            '#0184' => in_array(\Gini\ORM\Building::APP_CK, (array)$building->appurtenance) ? '■' : '□',
+            '#0185' => $building->getOwnership(),
+            '#0186' => $building->getOwnership('syqlx'),
+            '#0187' => $building->getOwnership('syqzh'),
+            '#0188' => $building->getOwnership('syqmj'),
+            '#0189' => $building->getOwnership('syqx'),
+            "#0190" => $building->isDecoration() ? '■' : '□',
+
             // '#083' => (string)V('projects/template/compar_desc', ['project' => $project]),
             // '#084' => (string)V('projects/template/compar_zhishu', ['project' => $project]),
             // '#085' => (string)V('projects/template/adjust_zhishu', ['project' => $project]),
-
-            // "#0123" => (string)V('projects/template/example_object_desc', ['project' => $project]),
-            // "#0122" => (string)V('projects/template/example_desc', ['project' => $project]),
-            // '#063' => (string)V('projects/template/result', ['project' => $project]),
-            // '#080' => (string)V('projects/template/register', ['project' => $project]),
         ];
         return $data;
     }
@@ -391,7 +413,7 @@ class Project extends Object
     public function getOwnershipData()
     {
         $data = [];
-        $building = $project->building ?: a('building');
+        $building = $this->building ?: a('building');
         foreach ((array)$building->ownership_cert as $t) {
             $ownership = (array)$building->ownership[$t];
             switch ($t) {
@@ -458,7 +480,7 @@ class Project extends Object
                     $data["{$t}#js"] = $ownership['js'];
                     break;
                 case \Gini\ORM\Building::OWNERSHIP_FDSYQZ:
-                    $data["{$t}#fwsyqz"] = $ownership['fwsyqz'];
+                    $data["{$t}#owner"] = $ownership['owner'];
                     $data["{$t}#fwzl"] = $ownership['fwzl'];
                     $data["{$t}#qdh"] = $ownership['qdh'];
                     $data["{$t}#fwcb"] = $ownership['fwcb'];
@@ -470,6 +492,7 @@ class Project extends Object
                     $data["{$t}#fwjzmj"] = $ownership['fwjzmj'];
                     $data["{$t}#fwsjyt"] = $ownership['fwsjyt'];
                     $data["{$t}#sum"] = $ownership['sum'];
+                    $data["{$t}#sum_name"] = $ownership['sum_name'];
                     $data["{$t}#cert_start"] = $ownership['cert_start'];
                     $data["{$t}#cert_end"] = $ownership['cert_end'];
                     $data["{$t}#tdzh"] = $ownership['tdzh'];
@@ -552,6 +575,7 @@ class Project extends Object
                     $data["{$t}#fwqdjg"] = $ownership['fwqdjg'];
                     $data["{$t}#syqlx"] = $ownership['syqlx'];
                     $data["{$t}#fwzzrq"] = $ownership['fwzzrq'];
+                    $data["{$t}#fwzzrq#1"] = date('Y 年 m 月 d 日', strtotime($ownership['fwzzrq']));
                     $data["{$t}#syqmj"] = $ownership['syqmj'];
                     $data["{$t}#syqdymj"] = $ownership['syqdymj'];
                     $data["{$t}#syqftmj"] = $ownership['syqftmj'];

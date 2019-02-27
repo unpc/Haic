@@ -464,4 +464,67 @@ class Building extends Object
         self::OWNERSHIP_SXB_FWSYQZ => '房屋共有权证(手写版)',
         self::OWNERSHIP_GYTDSYQ => '国有土地使用使用证'
     ];
+
+    public function getOwnership($key='owner')
+    {
+        foreach ((array)$this->ownership_cert as $t) {
+            $ownership = (array)$this->ownership[$t];
+            switch ($key) {
+                case 'owner':
+                    $value = $ownership['owner'];
+                    break;
+                case 'syqlx':
+                    $value = $ownership['syqlx'] ?: $ownership['qlxz'];
+                    break;
+                case 'syqzh':
+                    $value = $ownership['tdzh'];
+                    break;
+                case 'syqmj':
+                    $value = $ownership['syqmj'] ?: $ownership['symj'];
+                    break;
+                case 'syqx':
+                    $value = $ownership['syqx'] ? ( ' 年  月  日 ' . $ownership['syqx'] ) : 
+                            (
+                                $ownership['fwzzrq'] ? (' 年  月  日 至 ' . date('Y 年 m 月 d 日', strtotime($ownership['fwzzrq']))) : 
+                                (
+                                    $ownership['synx_start_y'] ?
+                                    ( 
+                                        $ownership['synx_start_y'] . ' 年' .$ownership['synx_start_m'] . ' 月' . $ownership['synx_start_d'] . ' 日' .
+                                        ' 至 ' . $ownership['synx_end_y'] . ' 年' .$ownership['synx_end_m'] . ' 月' . $ownership['synx_end_d'] . ' 日'
+                                    ) : ''
+                                )
+                            );
+                    break;
+                default:
+                    break;
+            }
+            if ($value) break;
+        }
+        return $value ?: '/';
+    }
+
+    public function isDecoration() 
+    {
+        if ($this->parlour_door_outside) return true;
+        if ($this->parlour_door_inside) return true;
+        if ($this->parlour_window_outside) return true;
+        if ($this->parlour_window_inside) return true;
+        if ($this->parlour_wall) return true;
+        if ($this->parlour_platfond) return true; 
+        if ($this->parlour_floor) return true;
+        if ($this->room_wall) return true;
+        if ($this->room_platfond) return true;
+        if ($this->room_floor) return true;
+        if ($this->toilet_wall) return true;
+        if ($this->toilet_platfond) return true;
+        if ($this->toilet_floor) return true;
+        if (count((array)$this->toilet_appurtenance) > 0) return true;
+        if ($this->cook_wall) return true;
+        if ($this->cook_platfond) return true;
+        if ($this->cook_floor) return true;
+        if (count((array)$this->cook_appurtenance) > 0) return true;
+        if ($this->veranda_wall) return true;
+        if ($this->veranda_floor) return true;
+        return false;
+    }
 }

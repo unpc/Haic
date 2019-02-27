@@ -116,37 +116,39 @@ class Project extends Layout\God
             $form = $this->form();
 
             try {
-                $validator
-                    ->validate('user_name', $form['user_name'], T('估价委托人不可为空!'))
-                    ->validate('report_no', $form['report_no'], T('报告编号不能为空!'))
-                    ->validate('owner', $form['owner'], T('房屋所有权人不能为空!'))
-                    ->validate('number', $form['number'], T('项目编号不能为空!'))
-                    ->validate('address', $form['address'], T('项目坐落不能为空!'))
-                    ->validate('title', $form['title'], T('项目名称不能为空!'))
-                    ->validate('contact', $form['contact'], T('联系人不能为空!'))
-                    ->validate('contact_phone', $form['contact_phone'], T('联系电话不能为空!'))
-                    ->validate('case_name', $form['case_name'], T('项目案名不能为空!'))
-                    ->validate('stment_date', $form['stment_date'], T('委托日期不能为空!'))
-                    ->validate('explor_date', $form['explor_date'], T('价值时点不能为空!'))
-                    ->validate('explor_user', $form['explor_user'], T('领勘人不能为空!'))
-                    ->validate('area', $form['area'], T('建筑面积不能为空!'))
-                    ->validate('acreage', $form['acreage'], T('土地面积不能为空!'))
-                    ->validate('target', $form['target'], T('估价目的不能为空!'))
-                    ->validate('structure', $form['structure'], T('建筑结构不能为空!'))
-                    ->validate('year', $form['year'], T('建筑年代不能为空!'))
-                    ->validate('land_source', $form['land_source'], T('土地来源不能为空!'))
-                    ->validate('bus_source', $form['bus_source'], T('业务来源不能为空!'))
-                    ->validate('bus_contact', $form['bus_contact'], T('业务联系人不能为空!'))
-                    ->validate('project_type', $form['project_type'], T('项目类型不能为空!'))
-                    ->validate('bank', $form['bank'], T('贷款银行不能为空!'))
-                    ->validate('type', $form['type'], T('评估类别不能为空!'))
-                    ->validate('amount', $form['amount'], T('估价结果（万元）不能为空!'))
-                    ->validate('pages', $form['pages'], T('档案总页数不能为空!'))
-                    ->validate('archived_time', $form['archived_time'], T('归档时间不能为空!'))
-                    ->validate('function', $form['function'], T('评估方法不能为空!'))
-                    ->validate('explor_option', $form['explor_option'], T('实地查勘人意见不能为空!'))
-                    ->validate('appraisal_option', $form['appraisal_option'], T('评估思路不能为空!'))
-                    ->done();
+                if (!$project->isPreparation) {
+                    $validator
+                        ->validate('user_name', $form['user_name'], T('估价委托人不可为空!'))
+                        ->validate('report_no', $form['report_no'], T('报告编号不能为空!'))
+                        ->validate('owner', $form['owner'], T('房屋所有权人不能为空!'))
+                        ->validate('number', $form['number'], T('项目编号不能为空!'))
+                        ->validate('address', $form['address'], T('项目坐落不能为空!'))
+                        ->validate('title', $form['title'], T('项目名称不能为空!'))
+                        ->validate('contact', $form['contact'], T('联系人不能为空!'))
+                        ->validate('contact_phone', $form['contact_phone'], T('联系电话不能为空!'))
+                        ->validate('case_name', $form['case_name'], T('项目案名不能为空!'))
+                        ->validate('stment_date', $form['stment_date'], T('委托日期不能为空!'))
+                        ->validate('explor_date', $form['explor_date'], T('价值时点不能为空!'))
+                        ->validate('explor_user', $form['explor_user'], T('领勘人不能为空!'))
+                        ->validate('area', $form['area'], T('建筑面积不能为空!'))
+                        ->validate('acreage', $form['acreage'], T('土地面积不能为空!'))
+                        ->validate('target', $form['target'], T('估价目的不能为空!'))
+                        ->validate('structure', $form['structure'], T('建筑结构不能为空!'))
+                        ->validate('year', $form['year'], T('建筑年代不能为空!'))
+                        ->validate('land_source', $form['land_source'], T('土地来源不能为空!'))
+                        ->validate('bus_source', $form['bus_source'], T('业务来源不能为空!'))
+                        ->validate('bus_contact', $form['bus_contact'], T('业务联系人不能为空!'))
+                        ->validate('project_type', $form['project_type'], T('项目类型不能为空!'))
+                        ->validate('bank', $form['bank'], T('贷款银行不能为空!'))
+                        ->validate('type', $form['type'], T('评估类别不能为空!'))
+                        ->validate('amount', $form['amount'], T('估价结果（万元）不能为空!'))
+                        ->validate('pages', $form['pages'], T('档案总页数不能为空!'))
+                        ->validate('archived_time', $form['archived_time'], T('归档时间不能为空!'))
+                        ->validate('function', $form['function'], T('评估方法不能为空!'))
+                        ->validate('explor_option', $form['explor_option'], T('实地查勘人意见不能为空!'))
+                        ->validate('appraisal_option', $form['appraisal_option'], T('评估思路不能为空!'))
+                        ->done();
+                }
 
                 $approval->info = (array) $form;
                 $approval->status = Approval::APPROVAL_FIRST;
@@ -277,37 +279,44 @@ class Project extends Layout\God
         }
         $t = $project->template;
 
-        $fullPath = $t->filePath($t->attachments('docx')[0]);
-        if (!$fullPath || !$t->attachments('docx')[0]) {
-            $this->redirect('error/404');
-        }
-
         $templ = new \PhpOffice\PhpWord\TemplateProcessor($fullPath);
+        $variables = $templ->getVariables();
         foreach ($project->getTemplateData() as $k => $v) {
-            $templ->setValue($k, $v);
+            if (in_array($k, $variables)) {
+                $templ->setValue($k, $v);
+            }
         }
 
         foreach ($project->getTableData() as $name => $data) {
-            $templ->cloneRow($name, count($data));
-            $keys = (array)explode('.', $name);
-            $preKey = $keys[0];
-            foreach ($data as $n => $v) {
-                $num = $n + 1;
-                foreach ((array)$v as $key => $value) {
-                    $templ->setValue("$preKey.$key#$num", $value);
+            if (in_array($name, $variables)) {
+                $templ->cloneRow($name, count($data));
+                $keys = (array)explode('.', $name);
+                $preKey = $keys[0];
+                foreach ($data as $n => $v) {
+                    $num = $n + 1;
+                    foreach ((array)$v as $key => $value) {
+                        $templ->setValue("$preKey.$key#$num", $value);
+                    }
                 }
             }
         }
 
         foreach ($project->getTableListData() as $name => $data) {
             foreach ((array)$data as $k => $v) {
+                if (!is_array($v)) $v = [$v];
                 if (count($v) == 1) {
-                    $templ->setValue("$name.$k", current($v));
+                    $replace = "$name.$k";
+                    if (in_array($replace, $variables)) {
+                        $templ->setValue($replace, current($v));
+                    }
                 }
                 else {
                     foreach ((array)$v as $num => $value) {
                         $real_num = $num + 1;
-                        $templ->setValue("$name.$k.$real_num", $value);
+                        $replace = "$name.$k.$real_num";
+                        if (in_array($replace, $variables)) {
+                            $templ->setValue($replace, $value?:'');
+                        }
                     }
                 }
             }
@@ -345,31 +354,43 @@ class Project extends Layout\God
         }
 
         $templ = new \PhpOffice\PhpWord\TemplateProcessor($fullPath);
+        $variables = $templ->getVariables();
         foreach ($project->getTemplateData() as $k => $v) {
-            $templ->setValue($k, $v);
+            if (in_array($k, $variables)) {
+                $templ->setValue($k, $v);
+            }
         }
 
         foreach ($project->getTableData() as $name => $data) {
-            $templ->cloneRow($name, count($data));
-            $keys = (array)explode('.', $name);
-            $preKey = $keys[0];
-            foreach ($data as $n => $v) {
-                $num = $n + 1;
-                foreach ((array)$v as $key => $value) {
-                    $templ->setValue("$preKey.$key#$num", $value);
+            if (in_array($name, $variables)) {
+                $templ->cloneRow($name, count($data));
+                $keys = (array)explode('.', $name);
+                $preKey = $keys[0];
+                foreach ($data as $n => $v) {
+                    $num = $n + 1;
+                    foreach ((array)$v as $key => $value) {
+                        $templ->setValue("$preKey.$key#$num", $value);
+                    }
                 }
             }
         }
 
         foreach ($project->getTableListData() as $name => $data) {
             foreach ((array)$data as $k => $v) {
+                if (!is_array($v)) $v = [$v];
                 if (count($v) == 1) {
-                    $templ->setValue("$name.$k", current($v));
+                    $replace = "$name.$k";
+                    if (in_array($replace, $variables)) {
+                        $templ->setValue($replace, current($v));
+                    }
                 }
                 else {
                     foreach ((array)$v as $num => $value) {
                         $real_num = $num + 1;
-                        $templ->setValue("$name.$k.$real_num", $value);
+                        $replace = "$name.$k.$real_num";
+                        if (in_array($replace, $variables)) {
+                            $templ->setValue($replace, $value?:'');
+                        }
                     }
                 }
             }
@@ -382,6 +403,9 @@ class Project extends Layout\God
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
         header('Expires: 0');
 
+        ob_clean();
+        flush();
         $templ->saveAs('php://output');
+        exit();
     }
 }
