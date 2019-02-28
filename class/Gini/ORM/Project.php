@@ -380,6 +380,12 @@ class Project extends Object
             '#0188' => $building->getOwnership('syqmj'),
             '#0189' => $building->getOwnership('syqx'),
             "#0190" => $building->isDecoration() ? '■' : '□',
+            "#0191" => $this->getRegisters('name-list'),
+            "#0192" => Help::toDateChinese(time()),
+            "#0193" => $building->type_door,
+            "#0194" => $this->getLandResidualMaturity(),
+            "#0195" => $building->use_status == 3 ? '是' : '否',
+            "#0196" => \Gini\ORM\Building::$ownership_cert_type[$building->ownership_cert[0]]
 
             // '#083' => (string)V('projects/template/compar_desc', ['project' => $project]),
             // '#084' => (string)V('projects/template/compar_zhishu', ['project' => $project]),
@@ -399,15 +405,32 @@ class Project extends Object
             if ($mode == 'list') {
                 $d[] = $register['name'] . "\t" . "(注册号 {$register['number']})";
             }
+            if ($mode == 'name-list') {
+                $d[] = $register['name'] . " (注册号 {$register['number']}）";
+            }
         }
 
         if ($mode == 'name') {
             return join('、', $d);
         }
         if ($mode == 'list') {
-            return join('<br/>', $d);
+            return join("\n\t\t\t\t\t\t\t\t\t", $d);
         }
         return join('、', $d);
+    }
+
+    // 土地剩余期限
+    public function getLandResidualMaturity()
+    {
+        $building = $this->building ?: a('building');
+        $ownership = (array)$building->ownership[$building->ownership_cert[0]];
+        $syqx = $ownership['syqx'];
+        preg_match_all('/(\d*)年\d*月\d*日/', $syqx, $out);
+        if (is_array($out[1]) && count($out[1])) {
+            $year = (int)$out[1][0];
+            return $year - date('Y');
+        }
+        return '/';
     }
 
     public function getOwnershipData()

@@ -278,29 +278,37 @@ class Project extends Layout\God
             $this->redirect('error/401');
         }
         $t = $project->template;
+        $fullPath = $t->filePath($t->attachments('docx')[0]);
+        if (!$fullPath || !$t->attachments('docx')[0]) {
+            $this->redirect('error/404');
+        }
 
         $templ = new \PhpOffice\PhpWord\TemplateProcessor($fullPath);
         $variables = $templ->getVariables();
+        foreach ($project->getTableData() as $name => $data) {
+            while (1) {
+                $variables = $templ->getVariables();
+                if (in_array($name, $variables)) {
+                    $templ->cloneRow($name, count($data));
+                    $keys = (array)explode('.', $name);
+                    $preKey = $keys[0];
+                    foreach ($data as $n => $v) {
+                        $num = $n + 1;
+                        foreach ((array)$v as $key => $value) {
+                            $templ->setValue("$preKey.$key#$num", $value);
+                        }
+                    }
+                }
+                else {
+                    break;
+                }
+            }
+        }
         foreach ($project->getTemplateData() as $k => $v) {
             if (in_array($k, $variables)) {
                 $templ->setValue($k, $v);
             }
         }
-
-        foreach ($project->getTableData() as $name => $data) {
-            if (in_array($name, $variables)) {
-                $templ->cloneRow($name, count($data));
-                $keys = (array)explode('.', $name);
-                $preKey = $keys[0];
-                foreach ($data as $n => $v) {
-                    $num = $n + 1;
-                    foreach ((array)$v as $key => $value) {
-                        $templ->setValue("$preKey.$key#$num", $value);
-                    }
-                }
-            }
-        }
-
         foreach ($project->getTableListData() as $name => $data) {
             foreach ((array)$data as $k => $v) {
                 if (!is_array($v)) $v = [$v];
@@ -322,7 +330,7 @@ class Project extends Layout\God
             }
         }
 
-        $title = "{$project->title}报告.docx";
+        $title = "Report({$project->number}).docx";
         header("Cache-Control: public");     
         header("Content-Description: File Transfer");     
         header('Content-Disposition: attachment; filename="' . $title . '"');  
@@ -355,26 +363,30 @@ class Project extends Layout\God
 
         $templ = new \PhpOffice\PhpWord\TemplateProcessor($fullPath);
         $variables = $templ->getVariables();
+        foreach ($project->getTableData() as $name => $data) {
+            while (1) {
+                $variables = $templ->getVariables();
+                if (in_array($name, $variables)) {
+                    $templ->cloneRow($name, count($data));
+                    $keys = (array)explode('.', $name);
+                    $preKey = $keys[0];
+                    foreach ($data as $n => $v) {
+                        $num = $n + 1;
+                        foreach ((array)$v as $key => $value) {
+                            $templ->setValue("$preKey.$key#$num", $value);
+                        }
+                    }
+                }
+                else {
+                    break;
+                }
+            }
+        }
         foreach ($project->getTemplateData() as $k => $v) {
             if (in_array($k, $variables)) {
                 $templ->setValue($k, $v);
             }
         }
-
-        foreach ($project->getTableData() as $name => $data) {
-            if (in_array($name, $variables)) {
-                $templ->cloneRow($name, count($data));
-                $keys = (array)explode('.', $name);
-                $preKey = $keys[0];
-                foreach ($data as $n => $v) {
-                    $num = $n + 1;
-                    foreach ((array)$v as $key => $value) {
-                        $templ->setValue("$preKey.$key#$num", $value);
-                    }
-                }
-            }
-        }
-
         foreach ($project->getTableListData() as $name => $data) {
             foreach ((array)$data as $k => $v) {
                 if (!is_array($v)) $v = [$v];
