@@ -11,7 +11,7 @@
             </button>
         </div>
         <?php endif; ?>
-        <form method="POST" action="<?= URL('/user')?>">
+        <form method="POST" action="<?= URL('')?>">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text" id="btnGroupAddon2">姓名</div>
@@ -22,6 +22,16 @@
     </div>
     <div class="hr_2"></div>
     <?= V('components/confirm') ?>
+    <div class="hr"></div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link <?= $sub == 'normal' ? 'active' : '' ?>" href="<?= URL('/user/normal') ?>">普通用户</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?= $sub == 'evaluate' ? 'active' : '' ?>" href="<?= URL('/user/evaluate') ?>">估价师</a>
+        </li>
+    </ul>
+    <div class="hr"></div>
     <table class="table table-light table-striped" id="user-table">
         <thead>
             <tr class="table-primary">
@@ -29,7 +39,11 @@
                 <th scope="col">账号</th>
                 <th scope="col">姓名</th>
                 <th scope="col">联系方式</th>
-                <th scope="col">目前角色</th>
+                <?php if($sub == 'normal'): ?>
+                    <th scope="col">目前角色</th>
+                <?php else: ?>
+                    <th scope="col">估价师注册号</th>
+                <?php endif; ?>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -46,6 +60,7 @@
                     <i class="fa fa-mobile fa-lg"></i>&#160;
                     <?= H($user->phone) ?>
                 </td>
+                <?php if($sub == 'normal'): ?>
                 <td><?php
                     $uroles = $user->roles();
                     $r = [];
@@ -54,6 +69,9 @@
                     }
                     echo implode(', ', $r);
                 ?></td>
+                <?php else: ?>
+                    <td><?= H($user->number) ?></td>
+                <?php endif; ?>
                 <td style="vertical-align:middle">
                     <div class="pull-right action-buttons">
                         <?php if ($me->isAllowedTo('修改基本信息', $user)): ?>
@@ -91,7 +109,7 @@
             </tr>
         <?php endforeach; else: ?>
             <tr>
-                <td colspan="5" style="text-align: center;"><?= T('没有找到匹配的用户!') ?></td>
+                <td colspan="6" style="text-align: center;"><?= T('没有找到匹配的用户!') ?></td>
             </tr>
         <?php endif; ?>
         </tbody>

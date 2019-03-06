@@ -174,7 +174,7 @@ class Project extends Object
         $r = [];
         $registers = (array)$this->registers;
         foreach ($registers as $register) {
-            $r[] = ['name' => $register['name'], 'number' => $register['number'], 'date' => date('Y年m月d日')];
+            $r[] = ['name' => $register['name'], 'number' => $register['number'], 'date' => date('Y年m月d日', strtotime($register['sign_date']))];
         }
 
         $data['register.name'] = $r;
@@ -344,12 +344,12 @@ class Project extends Object
             "#0152" => $income_table['project_income_zhdj'],
             "#0153" => $income_table['project_income_dj'],
             "#0154" => $income_table['project_income_zjz'],
-            "#0155" => Help::chinanum($project->operation_dur),
+            "#0155" => Help::chinanum($project->operation_dur ?: 1),
             "#0156" => $project->company_title,
             "#0157" => $project->company_address,
             "#0158" => Help::toDateChinese(strtotime($project->operation_from)),
             "#0159" => Help::toDateChinese(strtotime($project->operation_to)),
-            "#0160" => Help::toDateChinese(strtotime("+{$project->operation_dur} year", strtotime($project->operation_to))),
+            "#0160" => Help::toDateChinese(strtotime("+{$project->operation_dur} year -1 day", strtotime($project->operation_to))),
             "#0161" => $this->getRegisters('name'),
             "#0162" => $this->getRegisters('list'),
             "#0163" => $project->number,

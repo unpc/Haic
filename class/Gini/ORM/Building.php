@@ -145,18 +145,39 @@ class Building extends Object
         self::BB => '北'
     ];
 
-    const USE_ZZ = 1;
-    const USE_BG = 2;
-    const USE_SY = 3;
-    const USE_GY = 4;
-    const USE_QT = 5;
+    const USE_JZ = 1;
+    const USE_JZYF = 2;
+    const USE_FJZ = 3;
+    const USE_ZZ = 4;
+    const USE_ZZYF = 5;
+    const USE_PTZZ = 6;
+    const USE_BG = 7;
+    const USE_BGSY = 8;
+    const USE_SY = 9;
+    const USE_BS = 10;
+    const USE_GY = 11;
+    const USE_JZXGY = 12;
+    const USE_JDSGY = 13;
+    const USE_GYE = 14;
+    const USE_XZL = 15;
+
 
     public static $use_s = [
+        self::USE_JZ => '居住',
+        self::USE_JZYF => '居住用房',
+        self::USE_FJZ => '非居住',
         self::USE_ZZ => '住宅',
+        self::USE_ZZYF => '住宅用房',
+        self::USE_PTZZ => '普通住宅',
         self::USE_BG => '办公',
+        self::USE_BGSY => '办公商业',
         self::USE_SY => '商业',
-        self::USE_GY => '工业',
-        self::USE_QT => '其他'
+        self::USE_BS => '别墅',
+        self::USE_GY => '公寓',
+        self::USE_JZXGY => '居住型公寓',
+        self::USE_JDSGY => '酒店式公寓',
+        self::USE_GYE => '工业',
+        self::USE_XZL => '写字楼',
     ];
 
     const TYPE_ONE = 1;
@@ -465,6 +486,16 @@ class Building extends Object
         self::OWNERSHIP_GYTDSYQ => '国有土地使用使用证'
     ];
 
+    const FUNC_ONE = 1;
+    const FUNC_TWO = 2;
+    const FUNC_THREE = 3;
+
+    public static $evaluate_methods = [
+        self::FUNC_ONE => '比较法',
+        self::FUNC_TWO => '比较法、收益法',
+        self::FUNC_THREE => '比较法、成本法'
+    ];
+
     public function getOwnership($key='owner')
     {
         foreach ((array)$this->ownership_cert as $t) {
@@ -494,6 +525,12 @@ class Building extends Object
                                     ) : ''
                                 )
                             );
+                    break;
+                case 'yt':
+                    $value = ($ownership['fwsjyt'] ?: $ownership['fwyt']) ?: $ownership['yt'];
+                    break;
+                case 'address':
+                    $value = $ownership['zl'] ?: $ownership['fwzl'];
                     break;
                 default:
                     break;

@@ -12,8 +12,11 @@
             </a>
         </div>
         <div class="btn-group mr-2" role="group">
-            <?php if($me->isAllowedTo('提交', $approval)): ?>
-                <button class="btn btn-primary btn-raised" form="project-approval" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('生成审核表')) ?></button>
+            <?php if($me->isAllowedTo('提交', $approval) && $approval->status == \Gini\ORM\Approval::APPROVAL_PENDING): ?>
+                <a class="btn btn-success btn-raised" 
+                    data-confirm="<?= H(T('您确认将该项目提交审核吗?')) ?>"
+                    data-confirm-description="<?= H(T('点击确认后该项目将提交到部门审核, 请谨慎处理!')) ?>"
+                    href="gini-ajax:ajax/approval/create/<?= $project->id ?>"><i class="fa fa-check fa-fw fa-scale"></i> <?= H(T('提交审核')) ?></a>
             <?php endif; ?>
         </div>
         <?php
@@ -48,21 +51,19 @@
             <a class="btn btn-success btn-raised"
                 data-confirm="<?= H(T('您确认要审核通过该项目吗?')) ?>"
                 data-confirm-description="<?= H(T('点击确认后该项目将审核通过, 请谨慎处理!')) ?>"
-                href="gini-ajax:ajax/approval/pass/<?= $approval->id ?>"><i class="fa fa-check fa-fw"></i> <?= H(T('通过审核')) ?></a>
-            <button class="btn btn-danger btn-raised" type="button" href="gini-ajax:ajax/approval/reply/<?= $approval->id ?>"><i class="fa fa-reply fa-fw"></i> <?= H(T('驳回审核')) ?></button>
+                href="gini-ajax:ajax/approval/pass/<?= $approval->id ?>"><i class="fa fa-check fa-fw fa-scale"></i> <?= H(T('通过审核')) ?></a>
+            <button class="btn btn-danger btn-raised" type="button" href="gini-ajax:ajax/approval/reply/<?= $approval->id ?>"><i class="fa fa-reply fa-fw fa-scale"></i> <?= H(T('驳回审核')) ?></button>
         </div>
         <?php endif; ?>
         <div class="btn-group mr-2" role="group">
-            <?php if(!$project->isPreparation): ?>
-                <a class="btn btn-dark" href="<?= URL("/project/template/{$project->id}") ?>"><i class="fa fa-eye fa-fw"></i> <?= H(T('查看报告')) ?><a>
-            <?php endif; ?>
-            <a class="btn btn-secondary" href="<?= URL("/project/preeval/{$project->id}") ?>"><i class="fa fa-eye fa-fw"></i> <?= H(T('查看预评')) ?><a>
+            <a class="btn btn-dark" href="<?= URL("/project/template/{$project->id}") ?>"><i class="fa fa-eye fa-fw"></i> <?= H(T('查看报告')) ?><a>
+            <!-- <a class="btn btn-secondary" href="<?= URL("/project/preeval/{$project->id}") ?>"><i class="fa fa-eye fa-fw"></i> <?= H(T('查看预评')) ?><a> -->
         </div>
         <div class="btn-group mr-2" role="group">
-            <?php if(!$project->isPreparation): ?>
-                <a class="btn btn-dark" href="<?= URL("/project/downloadTemplate/{$project->id}") ?>"><i class="fa fa-eye fa-fw"></i> <?= H(T('下载 Word 报告')) ?><a>
+            <?php if($approval->status == \Gini\ORM\Approval::APPROVAL_OFFICE_PASS): ?>
+                <a class="btn btn-dark" href="<?= URL("/project/downloadTemplate/{$project->id}") ?>"><i class="fa fa-download fa-fw fa-scale"></i> <?= H(T('下载 Word 报告')) ?><a>
             <?php endif; ?>
-            <a class="btn btn-secondary" href="<?= URL("/project/downloadPreeval/{$project->id}") ?>"><i class="fa fa-eye fa-fw"></i> <?= H(T('下载 Word 预评')) ?><a>
+            <!-- <a class="btn btn-secondary" href="<?= URL("/project/downloadPreeval/{$project->id}") ?>"><i class="fa fa-download fa-fw"></i> <?= H(T('下载 Word 预评')) ?><a> -->
         </div>
     </div>
     <div class="hr_2"></div>
@@ -89,7 +90,7 @@
                     <tr>
                         <td colspan="1" class="disable" data-toggle="tooltip" title="#088">估价委托人</td>
                         <td colspan="3">
-                            <input name="user_name" type="text" class="form-control <?= isset($form['_errors']['user_name']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['user_name'] : ($approval->info['user_name'] ?: $project->user_name) ?>" />
+                            <input name="user_name" type="text" class="form-control <?= isset($form['_errors']['user_name']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['user_name'] : ($approval->info['user_name'] ?: $building->getOwnership()) ?>" />
                         </td>
                         <td class="disable" data-toggle="tooltip" title="#089">报告编号</td>
                         <td >
@@ -99,7 +100,7 @@
                     <tr>
                         <td colspan="1" class="disable" data-toggle="tooltip" title="#090">房屋所有权人</td>
                         <td colspan="3">
-                            <input name="owner" type="text" class="form-control <?= isset($form['_errors']['owner']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['owner'] : ($approval->info['owner'] ?: $building->ownership['owner']) ?>" />
+                            <input name="owner" type="text" class="form-control <?= isset($form['_errors']['owner']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['owner'] : ($approval->info['owner'] ?: $building->getOwnership()) ?>" />
                         </td>
                         <td class="disable" data-toggle="tooltip" title="#001">项目编号</td>
                         <td >
@@ -109,7 +110,7 @@
                     <tr>
                         <td colspan="1" class="disable" data-toggle="tooltip" title="#091">项目坐落</td>
                         <td colspan="3">
-                            <input name="address" type="text" class="form-control <?= isset($form['_errors']['address']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['address'] : ($approval->info['address'] ?: $building->address)?>" />
+                            <input name="address" type="text" class="form-control <?= isset($form['_errors']['address']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['address'] : ($approval->info['address'] ?: $building->getOwnership('address'))?>" />
                         </td>
                         <td class="disable" data-toggle="tooltip" title="#002">项目名称</td>
                         <td >
@@ -127,21 +128,21 @@
                         </td>
                         <td class="disable" data-toggle="tooltip" title="#094">项目案名</td>
                         <td >
-                            <input name="case_name" type="text" class="form-control <?= isset($form['_errors']['case_name']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['case_name'] : ($approval->info['case_name'] ?: $project->case_name) ?>" />
+                            <input name="case_name" type="text" class="form-control <?= isset($form['_errors']['case_name']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['case_name'] : ($approval->info['case_name'] ?: '/') ?>" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="1" class="disable" data-toggle="tooltip" title="#095">委托日期</td>
                         <td >
-                            <input name="stment_date" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->stment_date ? strtotime($project->stment_date) : time()) ?>">
+                            <input name="stment_date" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->stment_date ? strtotime($project->stment_date) : strtotime($project->operation_date)) ?>">
                         </td>
                         <td class="disable" data-toggle="tooltip" title="#096">价值时点</td>
                         <td >
-                            <input name="explor_date" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->explor_date ? strtotime($project->explor_date) : time()) ?>">
+                            <input name="explor_date" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= date('Y-m-d', $project->explor_date ? strtotime($project->explor_date) : strtotime($project->operation_date)) ?>">
                         </td>
                         <td class="disable" data-toggle="tooltip" title="#097">领勘人</td>
                         <td >
-                            <input name="explor_user" type="text" class="form-control  <?= isset($form['_errors']['explor_user']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['explor_user'] : ($approval->info['explor_user'] ?: $building->explor_user) ?>" />
+                            <input name="explor_user" type="text" class="form-control  <?= isset($form['_errors']['explor_user']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['explor_user'] : ($approval->info['explor_user'] ?: $building->getOwnership()) ?>" />
                         </td>
                     </tr>
                     <tr>
@@ -151,7 +152,7 @@
                         </td>
                         <td class="disable norwap" data-toggle="tooltip" title="#099">土地面积（㎡）</td>
                         <td >
-                            <input name="acreage" type="text" class="form-control <?= isset($form['_errors']['acreage']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['acreage'] : ($approval->info['acreage'] ?: $building->acreage) ?>" />
+                            <input name="acreage" type="text" class="form-control <?= isset($form['_errors']['acreage']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['acreage'] : ($approval->info['acreage'] ?: $building->getOwnership('syqmj')) ?>" />
                         </td>
                         <td class="disable" data-toggle="tooltip" title="#100">估价目的</td>
                         <td >
@@ -163,19 +164,19 @@
                         <td >
                             <input name="structure" type="text" class="form-control <?= isset($form['_errors']['structure']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['structure'] : ($approval->info['structure'] ?: \Gini\ORM\Building::$structure_s[$building->structure]) ?>" />
                         </td>
-                        <td class="disable">建筑年代</td>
+                        <td class="disable">建成年代（年）</td>
                         <td >
                             <input name="year" type="text" class="form-control <?= isset($form['_errors']['year']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['year'] : ($approval->info['year'] ?:  $building->year) ?>" />
                         </td>
                         <td class="disable">土地来源</td>
                         <td >
-                            <input name="land_source" type="text" class="form-control <?= isset($form['_errors']['land_source']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['land_source'] : ($approval->info['land_source'] ?: $building->land_source) ?>" />
+                            <input name="land_source" type="text" class="form-control <?= isset($form['_errors']['land_source']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['land_source'] : ($approval->info['land_source'] ?: $building->getOwnership('syqlx')) ?>" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="1" class="disable">业务来源</td>
                         <td >
-                            <input name="bus_source" type="text" class="form-control <?= isset($form['_errors']['source_from']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['source_from'] : ($approval->info['source_from'] ?: $project->source_from) ?>" />
+                            <input name="source_from" type="text" class="form-control <?= isset($form['_errors']['source_from']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['source_from'] : ($approval->info['source_from'] ?: $project->source_from) ?>" />
                         </td>
                         <td class="disable">业务联系人</td>
                         <td >
@@ -183,13 +184,13 @@
                         </td>
                         <td class="disable">项目类型</td>
                         <td >
-                            <input name="project_type" type="text" class="form-control <?= isset($form['_errors']['project_type']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['project_type'] : ($approval->info['project_type'] ?: $project->project_type) ?>" />
+                            <input name="project_type" type="text" class="form-control <?= isset($form['_errors']['project_type']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['project_type'] : ($approval->info['project_type'] ?: $building->getOwnership('yt')) ?>" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="1" class="disable">贷款银行</td>
                         <td colspan="3">
-                            <input name="bank" type="text" class="form-control <?= isset($form['_errors']['bank_from']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['bank_from'] : ($approval->info['bank_from'] ?: $project->bank_from) ?>" />
+                            <input name="bank_from" type="text" class="form-control <?= isset($form['_errors']['bank_from']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['bank_from'] : ($approval->info['bank_from'] ?: $project->bank_from) ?>" />
                         </td>
                         <td class="disable">评估类别</td>
                         <td >
@@ -203,24 +204,28 @@
                         </td>
                         <td class="disable">档案总页数</td>
                         <td >
-                            <input name="pages" type="text" class="form-control <?= isset($form['_errors']['pages']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['pages'] : ($approval->info['pages'] ?: $project->pages) ?>" />
+                            <input name="pages" type="text" class="form-control <?= isset($form['_errors']['pages']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['pages'] : ($approval->info['pages'] ?: '7页') ?>" />
                         </td>
                         <td class="disable norwap">归档时间</td>
                         <td >
-                            <input name="archived_time" type="text" class="form-control <?= isset($form['_errors']['archived_time']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['archived_time'] : ($approval->info['archived_time'] ?: $project->archived_time) ?>" />
+                            <input name="archived_time" type="text" class="form-control <?= isset($form['_errors']['archived_time']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['archived_time'] : ($approval->info['archived_time'] ?: date('Y-m-d', strtotime($project->operation_to))) ?>" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="1" class="disable">评估方法</td>
                         <td colspan="5">
-                            <input name="function" type="text" class="form-control <?= isset($form['_errors']['function']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['function'] : ($approval->info['function'] ?: ($project->function ?: '比较法、收益法')) ?>" />
+                            <select class="custom-select form-control <?= isset($form['_errors']['type']) ? 'is-invalid' : '' ?>" name="function" id="function" size="1">
+                                <?php foreach (\Gini\ORM\Building::$evaluate_methods as $k => $v): ?>
+                                    <option value="<?= T($k) ?>" <?= ($form['_errors'] ? $form['function'] : $approval->info['function']) == $k ? "selected" : '' ?>><?= T($v) ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="6">
                             <div class="form-group form-group-sm">
                                 <label class="control-label" for="target">实地查勘人意见：</label>
-                                <textarea placeholder="" name="explor_option" type="text" class="form-control <?= isset($form['_errors']['explor_option']) ? 'is-invalid' : '' ?>"><?= $form['_errors'] ? $form['explor_option'] : ($approval->info['explor_option'] ?: ($project->explor_option ?: '本估价报告估价目的为确定房地产已进行实地查勘，与《不动产权证书》证记载内容一致，核实无误。押贷款额度提供参考依据而评估房地产抵押价值。')) ?></textarea>
+                                <textarea placeholder="" name="explor_option" type="text" class="form-control <?= isset($form['_errors']['explor_option']) ? 'is-invalid' : '' ?>"><?= $form['_errors'] ? $form['explor_option'] : ($approval->info['explor_option'] ?: ($project->explor_option ?: '本估价报告估价目的为确定房地产已进行实地查勘，与《'.\Gini\ORM\Building::$ownership_cert_type[$building->ownership_cert[0]].'》证记载内容一致，核实无误。押贷款额度提供参考依据而评估房地产抵押价值。')) ?></textarea>
                             </div>
                         </td>
                     </tr>
@@ -235,6 +240,11 @@
                 </tbody>
             </table>
             </form>
+            <div class="btn-group mr-2" role="group">
+                <?php if($me->isAllowedTo('提交', $approval)): ?>
+                    <button class="btn btn-primary btn-raised" form="project-approval" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('保存审核表')) ?></button>
+                <?php endif; ?>
+            </div>
             <div class="hr_2"></div>
             <div class="hr_2"></div>
         </div>

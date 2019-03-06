@@ -9,7 +9,7 @@
 
     </td>
     <td class="text-center">
-        
+      <input name="items[<?= $index ?>][sign_date]" type="text" class="date form-control" placeholder="<?= H(T('0000-00-00'))?>" value="<?= H($item['sign_date'])?:date('Y-m-d');?>"/>
     </td>
     <td>
       <button class="btn btn-danger btn-sm delete-item"><i class="fa fa-minus"></i></button>

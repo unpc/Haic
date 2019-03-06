@@ -4,14 +4,23 @@ namespace Gini\Controller\CGI\AJAX;
 
 class User extends \Gini\Controller\CGI
 {
-    public function actionGetUsers()
+    public function actionGetUsers($sub='normal')
     {
         $me = _G('ME');
         $form = $this->form();
         $objects = [];
 
         try {
-            $users = those('user')->whose('name')->contains(H($form['query']));
+            if ($sub == 'normal') {
+                $users = those('user')->whose('number')->is('');
+            }
+            else {
+                $users = those('user')->whose('number')->isNot('');
+            }
+            if ($query = trim($form['query'])) {
+                $users = $users->whose('name')->contains(H($query));
+            }
+            $users = $users->limit(10);
             foreach ($users as $key => $user) {
                 $objects[$key] = [
                     'name' => $user->name,
@@ -55,6 +64,7 @@ class User extends \Gini\Controller\CGI
                 $user->username = $username;
                 $user->email = H($form['email']);
                 $user->phone = H($form['phone']);
+                $user->number = H($form['number']);
                 $user->save();
 
                 $auth = \Gini\IoC::construct('\Gini\Auth', $username);

@@ -38,68 +38,74 @@
 </form>
 <div class="hr_2"></div>
 <?php if(_G('ME')->isAllowedTo('修改', $project)): ?>
-<button class="btn btn-primary btn-raised" name="supply"><i class="fa fa-plus fa-fw"></i> <?= H(T('补充信息')) ?></button>
-<button class="btn btn-primary btn-raised" form="add-register-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
+<button class="btn btn-primary btn-raised" form="add-register-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('保存信息')) ?></button>
 <?php endif; ?>
 <div class="hr_2"></div>
 <div class="hr_2"></div>
 <script data-ajax="true">
 require(['main', 'bootstrap.autocomplete'], function($) {
-    var $form = $('#add-register-form')
-        , $items = $form.find('.register-items')
-        , template = $('#register-item-template').text()
-        , index = <?= count($registers) ?>;
-    $form
-    .on('click', '.add-item', function() {
-        var $tr = $(template)
-        $tr.find('[name*="$INDEX"]').each(function(){
-            var $el = $(this)
-            $el.attr('name', $el.attr('name').replace('$INDEX', index))
+    require(['bootstrap-datepicker', 'locales/bootstrap-datepicker.zh-CN', 'css!../css/bootstrap-datepicker'], function(){
+        var $form = $('#add-register-form')
+            , $items = $form.find('.register-items')
+            , template = $('#register-item-template').text()
+            , index = <?= count($registers) ?>;
+        $form
+        .on('click', '.add-item', function() {
+            var $tr = $(template)
+            $tr.find('[name*="$INDEX"]').each(function(){
+                var $el = $(this)
+                $el.attr('name', $el.attr('name').replace('$INDEX', index))
+            })
+
+            index++;
+            $items.append($tr);
+            bindAutocompleteEvent();
+            return false
         })
-
-        index++;
-        $items.append($tr);
-        bindAutocompleteEvent();
-        return false
-    })
-    .on('click', '.delete-item', function() {
-        $(this).parents('tr.register-item').remove()
-        return false
-    });
-
-    var bindAutocompleteEvent = function () {
-        $('input.autocomplete', $form).autocomplete({
-            source: function(query, process){
-                $.ajax({
-                    url: '<?= URL("ajax/user/getUsers") ?>',
-                    method: 'POST',
-                    data: {
-                        query: query
-                    },
-                    success: function(respData) {
-                        return process(respData)
-                    }
-                })
-            },
-            formatItem: function(item){
-                return item["name"];
-            },
-            setValue: function(item){
-                return { 'data-value': item["name"], 'real-value': item["id"], 'number': item["number"] };
-            },
-            select: function () {
-                var val = this.$menu.find('.active').attr('data-value'),
-                    realVal = this.$menu.find('.active').attr('real-value')
-                    number = this.$menu.find('.active').attr('number')
-                this.$element.val(this.updater(val)).attr("real-value", realVal)
-                this.$element
-                .parents('tr:eq(0)').find('[name*="number"]')
-                .val(number)
-                .change()
-                return this.hide()
-            }
+        .on('click', '.delete-item', function() {
+            $(this).parents('tr.register-item').remove()
+            return false
         });
-    };
-    bindAutocompleteEvent(); 
+
+        var bindAutocompleteEvent = function () {
+            $('.date').datepicker({
+                format: 'yyyy-mm-dd',
+                language: 'zh-CN',
+                minView: 'Day'
+            }) 
+            $('input.autocomplete', $form).autocomplete({
+                source: function(query, process){
+                    $.ajax({
+                        url: '<?= URL("ajax/user/getUsers/evaluate") ?>',
+                        method: 'POST',
+                        data: {
+                            query: query
+                        },
+                        success: function(respData) {
+                            return process(respData)
+                        }
+                    })
+                },
+                formatItem: function(item){
+                    return item["name"] + ' (' + item['number'] + ')';
+                },
+                setValue: function(item){
+                    return { 'data-value': item["name"], 'real-value': item["id"], 'number': item["number"] };
+                },
+                select: function () {
+                    var val = this.$menu.find('.active').attr('data-value'),
+                        realVal = this.$menu.find('.active').attr('real-value')
+                        number = this.$menu.find('.active').attr('number')
+                    this.$element.val(this.updater(val)).attr("real-value", realVal)
+                    this.$element
+                    .parents('tr:eq(0)').find('[name*="number"]')
+                    .val(number)
+                    .change()
+                    return this.hide()
+                }
+            });
+        };
+        bindAutocompleteEvent();
+    });
 });
 </script>

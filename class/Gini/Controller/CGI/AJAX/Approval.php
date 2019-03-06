@@ -2,8 +2,33 @@
 
 namespace Gini\Controller\CGI\AJAX;
 
+use Gini\Model\Alert;
+
 class Approval extends \Gini\Controller\CGI
 {
+
+    public function actionCreate($id=0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        $approval = a('approval')->whose('project')->is($project);
+        $approval->status = \Gini\ORM\Approval::APPROVAL_FIRST;
+        $approval->save();
+        $current_status = \Gini\ORM\Approval::$APPROVAL_STATUS[$approval->status];
+
+        $log = a('log');
+        $log->user = $me;
+        $log->project = $project;
+        $log->action = \Gini\ORM\Log::ACTION_APPROVAL;
+        $log->description = strtr('%user 提交审核! ', ['%user' => $me->name]);
+        $log->save();
+
+        return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
+    }
+
     public function actionPass($id=0)
     {
         $me = _G('ME');

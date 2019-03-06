@@ -5,6 +5,18 @@
 html,body {
 	height: 100%;
 	background: #FFF !important;
+	@keyframes scaleDraw {  /*定义关键帧、scaleDrew是需要绑定到选择器的关键帧名称*/
+		0% { transform: scale(1); }
+		25% { transform: scale(2); }
+		50% { transform: scale(1); }
+		75%{ transform: scale(2); }
+	}
+	.fa-scale {
+		animation-name: scaleDraw; /*关键帧名称*/
+		animation-timing-function: ease-in-out; /*动画的速度曲线*/
+		animation-iteration-count: infinite;  /*动画播放的次数*/
+		animation-duration: 2s; /*动画所花费的时间*/
+	}
 
 	.typeahead{
 		margin-top: 2px;

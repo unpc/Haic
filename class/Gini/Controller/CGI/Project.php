@@ -151,20 +151,17 @@ class Project extends Layout\God
                 }
 
                 $approval->info = (array) $form;
-                $approval->status = Approval::APPROVAL_FIRST;
                 if ($approval->save()) {
-                    $current_status = Approval::$APPROVAL_STATUS[$approval->status];
-                    if ($approval->id) {
-                        $log = a('log');
-                        $log->user = $me;
-                        $log->project = $project;
-                        $log->action = \Gini\ORM\Log::ACTION_APPROVAL;
-                        $log->description = strtr('%user 提交审核! ', ['%user' => $me->name]);
-                        $log->save();
-                    }
-                    Alert::setMessage("提交审核成功至{$current_status}!", Alert::TYPE_OK);
-                } else {
-                    Alert::setMessage('提交审核失败!', Alert::TYPE_ERROR);
+                    Alert::setMessage("审核信息保存成功!", Alert::TYPE_OK);
+                    $log = a('log');
+                    $log->user = $me;
+                    $log->project = $project;
+                    $log->action = \Gini\ORM\Log::ACTION_APPROVAL;
+                    $log->description = strtr('%user 保存审核表信息! ', ['%user' => $me->name]);
+                    $log->save();
+                }
+                else {
+                    Alert::setMessage('审核信息保存失败!', Alert::TYPE_ERROR);
                 }
             } catch (\Gini\CGI\Validator\Exception $e) {
                 $form['_errors'] = $validator->errors();

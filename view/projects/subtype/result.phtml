@@ -4,6 +4,8 @@
     $building = $project->building ?: new StdClass();
     $area = $building->area;
 ?>
+<p style="border-left: 20px solid #E9ECEF;padding-left: 5px;color: #666;font-size: 14px;">* 仅填写左侧颜色表单内容信息即可完成自动计算</p>
+<p style="border-left: 20px solid #E9ECEF;padding-left: 5px;color: #666;font-size: 14px;">* 自动计算前请确保需要填写估价对象 - 基础信息 - 建筑面积</p>
 <table class="table table-sm table-bordered table-object">
     <tbody data-toggle="tooltip" title="#063（估价结果视图）">
         <tr>
@@ -83,8 +85,7 @@
 </form>
 <div class="hr_2"></div>
 <?php if(_G('ME')->isAllowedTo('修改', $project)): ?>
-<button class="btn btn-primary btn-raised" name="supply"><i class="fa fa-plus fa-fw"></i> <?= H(T('补充信息')) ?></button>
-<button class="btn btn-primary btn-raised" form="add-result-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?></button>
+<button class="btn btn-primary btn-raised" form="add-result-form" type="submit" name="edit"><i class="fa fa-edit fa-fw"></i> <?= H(T('保存信息')) ?></button>
 <?php endif; ?>
 <div class="hr_2"></div>
 <div class="hr_2"></div>
