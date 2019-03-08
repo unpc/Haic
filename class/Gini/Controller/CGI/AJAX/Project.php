@@ -30,6 +30,7 @@ class Project extends \Gini\Controller\CGI
                 $project->type = (int)$form['type'];
                 $project->source_description = $form['source_description'];
                 $project->source_from = H($form['source_from']);
+                $project->source_contact = H($form['source_contact']);
                 $project->bank_from = H($form['bank_from']);
                 $project->user_name = H($form['user_name']);
                 $project->user_phone = H($form['user_phone']);
@@ -87,6 +88,7 @@ class Project extends \Gini\Controller\CGI
                 $project->source_description = $form['source_description'];
                 $project->source_from = H($form['source_from']);
                 $project->bank_from = H($form['bank_from']);
+                $project->source_contact = H($form['source_contact']);
                 $project->user_name = H($form['user_name']);
                 $project->user_phone = H($form['user_phone']);
                 $project->target = H($form['target']);
@@ -729,6 +731,37 @@ class Project extends \Gini\Controller\CGI
         }
 
         return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('projects/before-preeval-project', [
+            'project' => $project,
+            'form' => $form
+        ]));
+    }
+
+    public function actionSuppleDesc($id=0)
+    {
+        $me = _G('ME');
+        $project = a('project', $id);
+        if (!$project->id) {
+            $this->redirect('error/404');
+        }
+        if (!$me->isAllowedTo('修改', $project)) {
+            $this->redirect('error/401');
+        }
+
+        $form = $this->form();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $validator = new \Gini\CGI\Validator;
+            try {
+                $project->supple_desc = (array)$form;
+                $project->hasSuppleDesc = $form['hasSuppleDesc'];
+                $project->save();
+                return \Gini\IoC::construct('\Gini\CGI\Response\HTML', '<script data-ajax="true">window.location.reload();</script>');
+            } catch (\Gini\CGI\Validator\Exception $e) {
+                $form['_errors'] = $validator->errors();
+            }
+        }
+
+        return \Gini\IoC::construct('\Gini\CGI\Response\HTML', V('projects/supple-desc', [
             'project' => $project,
             'form' => $form
         ]));

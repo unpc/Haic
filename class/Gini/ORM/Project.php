@@ -385,7 +385,8 @@ class Project extends Object
             "#0193" => $building->type_door,
             "#0194" => $this->getLandResidualMaturity(),
             "#0195" => $building->use_status == 3 ? '是' : '否',
-            "#0196" => \Gini\ORM\Building::$ownership_cert_type[$building->ownership_cert[0]]
+            "#0196" => \Gini\ORM\Building::$ownership_cert_type[$building->ownership_cert[0]],
+            "#0197" => \Gini\ORM\Building::$evaluate_methods[$approval->function]
 
             // '#083' => (string)V('projects/template/compar_desc', ['project' => $project]),
             // '#084' => (string)V('projects/template/compar_zhishu', ['project' => $project]),

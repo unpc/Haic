@@ -92,6 +92,17 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group form-group-lg">
+                        <?php if (isset($form['_errors']['source_contact'])) { ?>
+                        <span class="badge badge-danger pull-right">
+                            <?= H($form['_errors']['source_contact']) ?>
+                        </span>
+                        <?php } ?>
+                        <label class="control-label" for="source_contact"><?= H('业务联系人') ?></label>
+                        <input name="source_contact" type="text" class="form-control" value="<?= H($form['_errors'] ? $form['source_contact'] : $project->source_contact) ?>" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-lg">
                         <?php if (isset($form['_errors']['bank_from'])) { ?>
                         <span class="badge badge-danger pull-right">
                             <?= H($form['_errors']['bank_from']) ?>
@@ -110,13 +121,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group form-group-lg">
                         <label class="control-label" for="target"><?= H('估价目的') ?></label>
                         <textarea name="target" class="form-control" rows="2" id="target"><?= $form['_errors'] ? $form['target'] : $project->target ?></textarea>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group form-group-lg">
                         <label class="control-label" for="source_description"><?= H('备注信息') ?></label>
                         <textarea name="source_description" class="form-control" rows="2" id="source_description"><?= $form['_errors'] ? $form['source_description'] : $project->source_description ?></textarea>

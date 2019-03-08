@@ -68,10 +68,13 @@
                 <div class="btn-toolbar" role="toolbar">
                     <div class="btn-group mr-2" role="group">
                         <a class="btn btn-dark btn-raised" href="gini-ajax:ajax/project/edit/<?= $project->id?>">
-                            <i class="fa fa-eye fa-fw"></i> <?= H(T('修改信息')) ?>
+                            <i class="fa fa-edit fa-fw"></i> <?= H(T('修改信息')) ?>
                         </a>
                         <a class="btn btn-primary btn-raised" href="gini-ajax:ajax/project/description/<?= $project->id?>">
                             <i class="fa fa-eye fa-fw"></i> <?= H(T('查看私人备注')) ?>
+                        </a>
+                        <a class="btn btn-secondary btn-raised" href="gini-ajax:ajax/project/supple-desc/<?= $project->id?>">
+                            <i class="fa fa-edit fa-fw"></i> <?= H(T('补充说明')) ?>
                         </a>
                     </div>
                 </div>

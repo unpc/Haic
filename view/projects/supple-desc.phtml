@@ -1,0 +1,62 @@
+<div id="supple-desc-modal" class="modal fade in">
+<div class="modal-dialog" style="width:60%;max-width:60%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title"><?= H(T('调整补充说明')) ?></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body form-inline"  style="padding-top:20px;">
+            <form id="supple-desc-form" method="POST" action="gini-ajax:ajax/project/supple-desc/<?= $project->id ?>">
+                <?php 
+                    $building = $project->building;
+                    $true_group = (array)Hub('template.group');
+                    $group = (array)\Gini\Config::get('project.group');
+                    $supple_desc = (array)$project->supple_desc;
+                ?>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="hasSuppleDesc" value="1" id="hasSuppleDesc" <?= $project->hasSuppleDesc ? 'checked="checked" ' : '' ?> >
+                    <label class="form-check-label" for="hasSuppleDesc"><?= T('是否附加到报告') ?></label>
+                </div>
+                <div class="container">
+                    <div class="hr_2"></div>
+                    <h4 class="text-center red"><?= T('补充说明') ?></h4>
+                    <div class="hr_2"></div>
+                    <p style="text-indent:2em;padding:10px 50px;">我公司估价人员已对
+                        <input type="text" class="form-control" name="addr" value="<?= $supple_desc['address'] ?: $building->address ?>" placeholder="房屋坐落地址" />
+                        的房屋进行了实地查勘，该估价对象
+                        <input type="text" class="form-control" name="desc_1" value="<?= $supple_desc['desc_1'] ?>" placeholder="房屋情况说明" />
+                        ，经核实确为该估价对象所属
+                        <input type="text" class="form-control" name="desc_2" value="<?= $supple_desc['desc_2'] ?>" placeholder="房屋情况说明" />
+                        。
+                    </p>
+                    <p style="text-indent:2em;padding:10px 50px;">我公司声明以上情况均为事实，估价人员进行了实地查勘并如实拍照记录。</p>
+                    <p style="text-indent:2em;padding:50px 50px 0px;text-align: right;"><input type="text" class="form-control text-right" name="company" value="<?= $supple_desc['company'] ?: ($true_group['name'] ?: $group['name']) ?>" placeholder="估价公司名称" size="30" /></p>
+                    <p style="text-indent:2em;padding:5px 50px;text-align: right;"><input type="text" class="form-control text-right" name="time" value="<?= $supple_desc['time'] ?: \Gini\Model\Help::toDateChinese(time()) ?>" placeholder="报告出具日期" size="30" /></p>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-raised" form="supple-desc-form" type="submit"><i class="fa fa-plus fa-fw"></i> <?= H(T('保存')) ?></button>
+            <button class="btn btn-secondary btn-raised" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-fw "></i><?= H(T('关闭')) ?></button>
+        </div>
+    </div>
+</div>
+</div>
+<script data-ajax="true">
+require(['main'], function($) {
+
+    var $modal = $('#supple-desc-modal');
+    $modal
+    .on('hidden.bs.modal', function(){
+        $modal.remove();
+    })
+    .modal();
+
+    $('#supple-desc-form').on('ajax-success', function(){
+        $modal
+        .removeAttr('id').modal('hide')
+        .find('[id]').removeAttr('id');
+    });
+
+});
+</script>
