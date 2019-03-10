@@ -505,7 +505,7 @@ class Building extends Object
                     $value = $ownership['owner'];
                     break;
                 case 'syqlx':
-                    $value = $ownership['syqlx'] ?: $ownership['qlxz'];
+                    $value = $ownership['syqlx'] ?: $ownership['qllx'];
                     break;
                 case 'syqzh':
                     $value = $ownership['tdzh'];
@@ -526,11 +526,17 @@ class Building extends Object
                                 )
                             );
                     break;
+                case 'fwyt':
+                    $value = $ownership['fwsjyt'] ?: $ownership['fwyt'];
+                    break;
                 case 'yt':
-                    $value = ($ownership['fwsjyt'] ?: $ownership['fwyt']) ?: $ownership['yt'];
+                    $value = $ownership['yt'];
                     break;
                 case 'address':
                     $value = $ownership['zl'] ?: $ownership['fwzl'];
+                    break;
+                case 'syqxz':
+                    $value = $ownership['qsxz'] ?: $ownership['qlxz'];
                     break;
                 default:
                     break;

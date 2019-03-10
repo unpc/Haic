@@ -180,7 +180,7 @@
                         </td>
                         <td class="disable">业务联系人</td>
                         <td >
-                            <input name="bus_contact" type="text" class="form-control <?= isset($form['_errors']['bus_contact']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['bus_contact'] : ($approval->info['bus_contact'] ?: $building->bus_contact) ?>" />
+                            <input name="source_contact" type="text" class="form-control <?= isset($form['_errors']['source_contact']) ? 'is-invalid' : '' ?>" value="<?= $form['_errors'] ? $form['source_contact'] : ($approval->info['source_contact'] ?: $project->source_contact) ?>" />
                         </td>
                         <td class="disable">项目类型</td>
                         <td >

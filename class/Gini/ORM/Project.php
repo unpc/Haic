@@ -162,7 +162,7 @@ class Project extends Object
             'ad_unit' => [$income_table['project_adjust_unit_1'], $income_table['project_adjust_unit_1'], $income_table['project_adjust_unit_1']],
         ];
 
-        $data['OWNERSHIP'] = $this->getOwnershipData();
+        $data['SHIP'] = $this->getOwnershipData();
 
         return $data;
     }
@@ -174,7 +174,7 @@ class Project extends Object
         $r = [];
         $registers = (array)$this->registers;
         foreach ($registers as $register) {
-            $r[] = ['name' => $register['name'], 'number' => $register['number'], 'date' => date('Y年m月d日', strtotime($register['sign_date']))];
+            $r[] = ['name' => $register['name'], 'number' => $register['number'], 'date' => $register['sign_date']];
         }
 
         $data['register.name'] = $r;
@@ -218,7 +218,7 @@ class Project extends Object
             ),
             '#017' => $building->height,
             '#018' => $building->mortgage ? '有' : '无',
-            '#019' => Help::mergeArrayText((array)$building->appurtenance, Building::$appurtenance_s),
+            '#019' => Help::mergeArrayText((array)$building->appurtenance, Building::$appurtenance_s) ?: '/',
             '#020' => Help::mergeArrayText((array)$building->out_wall, Building::$out_wall_s),
             '#021' => $building->parlour_door_outside_text ?: Building::$door_outside_s[$building->parlour_door_outside],
             '#022' => $building->parlour_door_inside_text ?: Building::$door_inside_s[$building->parlour_door_inside],
@@ -382,11 +382,14 @@ class Project extends Object
             "#0190" => $building->isDecoration() ? '■' : '□',
             "#0191" => $this->getRegisters('name-list'),
             "#0192" => Help::toDateChinese(time()),
-            "#0193" => $building->type_door,
+            "#0193" => $building->type_door  ?: '/',
             "#0194" => $this->getLandResidualMaturity(),
             "#0195" => $building->use_status == 3 ? '是' : '否',
             "#0196" => \Gini\ORM\Building::$ownership_cert_type[$building->ownership_cert[0]],
-            "#0197" => \Gini\ORM\Building::$evaluate_methods[$approval->function]
+            "#0197" => \Gini\ORM\Building::$evaluate_methods[$approval->function],
+            '#0198' => $building->getOwnership('syqxz'),
+            '#0199' => $building->getOwnership('fwyt'),
+            '#0200' => $building->getOwnership('yt')
 
             // '#083' => (string)V('projects/template/compar_desc', ['project' => $project]),
             // '#084' => (string)V('projects/template/compar_zhishu', ['project' => $project]),
@@ -429,7 +432,7 @@ class Project extends Object
         preg_match_all('/(\d*)年\d*月\d*日/', $syqx, $out);
         if (is_array($out[1]) && count($out[1])) {
             $year = (int)$out[1][0];
-            return $year - date('Y');
+            return ($year - date('Y'))."年";
         }
         return '/';
     }
@@ -472,7 +475,7 @@ class Project extends Object
                     $data["{$t}#zl"] = $ownership['zl'];
                     $data["{$t}#dh"] = $ownership['dh'];
                     $data["{$t}#th"] = $ownership['th'];
-                    $data["{$t}#qsxz"] = $ownership['qllx'];
+                    $data["{$t}#qsxz"] = $ownership['qsxz'];
                     $data["{$t}#yt"] = $ownership['yt'];
                     $data["{$t}#syqlx"] = $ownership['syqlx'];
                     $data["{$t}#zzrq"] = $ownership['zzrq'];

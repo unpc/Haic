@@ -115,7 +115,7 @@ class Project extends Layout\God
 
             $form = $this->form();
 
-            try {
+            try {   
                 if (!$project->isPreparation) {
                     $validator
                         ->validate('user_name', $form['user_name'], T('估价委托人不可为空!'))
@@ -136,10 +136,10 @@ class Project extends Layout\God
                         ->validate('structure', $form['structure'], T('建筑结构不能为空!'))
                         ->validate('year', $form['year'], T('建筑年代不能为空!'))
                         ->validate('land_source', $form['land_source'], T('土地来源不能为空!'))
-                        ->validate('bus_source', $form['bus_source'], T('业务来源不能为空!'))
-                        ->validate('bus_contact', $form['bus_contact'], T('业务联系人不能为空!'))
+                        ->validate('source_from', $form['source_from'], T('业务来源不能为空!'))
+                        ->validate('source_contact', $form['source_contact'], T('业务联系人不能为空!'))
                         ->validate('project_type', $form['project_type'], T('项目类型不能为空!'))
-                        ->validate('bank', $form['bank'], T('贷款银行不能为空!'))
+                        ->validate('bank_from', $form['bank_from'], T('贷款银行不能为空!'))
                         ->validate('type', $form['type'], T('评估类别不能为空!'))
                         ->validate('amount', $form['amount'], T('估价结果（万元）不能为空!'))
                         ->validate('pages', $form['pages'], T('档案总页数不能为空!'))
