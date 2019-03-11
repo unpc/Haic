@@ -38,6 +38,10 @@ class Building extends \Gini\Controller\CGI
 
         $building->ownership_cert = (array)$form['ownership_cert'];
         $building->ownership = (array)$form['ownership'];
+
+        /** 权属状况更新需要同步更新到基础信息 */
+        
+
         $building->save();
 
         if ($add && $building->id) {

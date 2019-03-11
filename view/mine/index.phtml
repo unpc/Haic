@@ -56,9 +56,61 @@
         <?php if (_G('ME')->isAllowedTo('修改', 'group')): ?>
         <div class="card-footer text-muted">
              <div class="btn-group mr-2" role="group" >
-                <button form="group-info-form" type="submit" class="btn btn-primary"><i class="fa fa-edit fa-fw"></i><?= T('修改信息') ?></button>
+                <button form="group-info-form" type="submit" class="btn btn-primary"><i class="fa fa-save fa-fw"></i><?= T('保存信息') ?></button>
             </div>
         </div>
         <?php endif; ?>
+    </div>
+    <div class="hr_1"></div>
+    <?php
+        $true_policy = (array)Hub('template.policy');
+        $policy = (array)\Gini\Config::get('project.policy');
+    ?>
+    <div class="card text-left bg-light">
+        <div class="card-header">
+            <?= T('政策模板信息') ?>
+        </div>
+        <div class="card-body">
+            <form id="policy-info-form" method="POST" action="<?= URL('/mine')?>">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col row">
+                            <label for="added_value" class="col-sm-6 col-form-label">增值税（%）</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="added_value" class="form-control" id="added_value" placeholder="<?= $policy['added_value'] ?>" value="<?= $true_policy['added_value']?>" />
+                            </div>
+                        </div>
+                        <div class="col row">
+                            <label for="business_tax_value" class="col-sm-6 col-form-label">房产税（%）</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="business_tax_value" class="form-control" id="business_tax_value" placeholder="<?= $policy['business_tax_value'] ?>" value="<?= $true_policy['business_tax_value']?>" />
+                            </div>
+                        </div>
+                        <div class="col row">
+                            <label for="banker_rate_value" class="col-sm-6 col-form-label">银行存款利率（%）</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="banker_rate_value" class="form-control" id="banker_rate_value" placeholder="<?= $policy['banker_rate_value'] ?>" value="<?= $true_policy['banker_rate_value']?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr_1"></div>
+                    <div class="row">
+                        <div class="col row">
+                            <label for="added_tax_value" class="col-sm-6 col-form-label">附加增值税（%）</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="added_tax_value" class="form-control" id="added_tax_value" placeholder="<?= $policy['added_tax_value'] ?>" value="<?= $true_policy['added_tax_value']?>" />
+                            </div>
+                        </div>
+                        <div class="col row"></div>
+                        <div class="col row"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+             <div class="btn-group mr-2" role="group" >
+                <button form="policy-info-form" type="submit" value="policy" class="btn btn-primary"><i class="fa fa-save fa-fw"></i><?= T('保存信息') ?></button>
+            </div>
+        </div>
     </div>
 </div>

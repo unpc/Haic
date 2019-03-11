@@ -9,4 +9,9 @@ group:
   time_limit: 2018年9月12日至2021年9月11日
 target: 本估价报告估价目的为确定房地产抵押贷款额度提供参考依据而评估房地产抵押价值。
 number_template: 津天元房估字E（%year）第%number号
+policy:
+  added_value: 1.5
+  business_tax_value: 12 
+  banker_rate_value: 1.5
+  added_tax_value: 12
 ...
